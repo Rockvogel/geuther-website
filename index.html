@@ -442,6 +442,7 @@
             font-size: 0.9rem;
             color: var(--geuther-text);
             opacity: 0.7;
+            padding-left: 0.5rem;
             text-decoration: none;
             white-space: nowrap;
             display: inline-block;
@@ -803,18 +804,128 @@
         @media (max-width: 992px) {
             .product-hero {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: 1rem;
+                margin-top: 0;
             }
 
             .product-gallery {
                 position: relative;
                 top: 0;
             }
+
+            .manufacturer-badge span {
+                display: none;
+            }
+
+            .product-id {
+                font-size: 0.85rem;
+            }
+
+            .availability-section {
+                flex-direction: row;
+                flex-wrap: nowrap;
+                gap: 1rem;
+            }
+
+            .delivery-time {
+                white-space: nowrap;
+            }
+
+            .delivery-time span:first-child {
+                display: none;
+            }
+
+            .trust-elements {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
+
+            .trust-item {
+                padding: 0.75rem;
+            }
+
+            .trust-item i {
+                font-size: 1.1rem;
+            }
+
+            .trust-text {
+                font-size: 0.85rem;
+            }
+
+            .color-selection {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.5rem;
+            }
+
+            .color-label {
+                font-size: 0.9rem;
+            }
+
+            .color-options {
+                justify-content: flex-end;
+            }
         }
 
         @media (max-width: 768px) {
             .gallery-thumbs {
-                grid-template-columns: repeat(4, 1fr);
+                display: none;
+            }
+
+            .gallery-main {
+                display: none;
+            }
+
+            .mobile-gallery {
+                display: block;
+                margin: 1rem 0;
+                position: relative;
+            }
+
+            .gallery-nav {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 40px;
+                height: 40px;
+                background: rgba(255, 255, 255, 0.9);
+                border: none;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                z-index: 2;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+
+            .gallery-nav.prev {
+                left: 10px;
+            }
+
+            .gallery-nav.next {
+                right: 10px;
+            }
+
+            .product-title {
+                font-size: 1.5rem;
+            }
+
+            .price-main {
+                font-size: 1.5rem;
+            }
+
+            .availability-section {
+                flex-direction: row;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .delivery-time span:first-child {
+                display: none;
+            }
+
+            .delivery-time span:last-child {
+                content: "In 2-3 Tagen bei dir";
             }
         }
 
@@ -1044,6 +1155,41 @@
         @media (max-width: 768px) {
             .product-grid {
                 grid-template-columns: 1fr;
+            }
+        }
+
+        /* Sticky Bottom Bar */
+        .sticky-bottom-bar {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--geuther-bg);
+            padding: 1rem;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .sticky-bottom-bar.visible {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 992px) {
+            .sticky-bottom-bar {
+                display: block; /* Standardmäßig sichtbar auf mobilen Geräten */
+            }
+
+            /* Verstecke die nicht-scrollenden Elemente in der mobilen Ansicht */
+            .product-info .color-selection,
+            .product-info .add-to-cart-section {
+                display: none;
+            }
+
+            .product-content {
+                margin-bottom: 120px;
             }
         }
     </style>
@@ -1890,6 +2036,86 @@
 
                     // Update comparison image
                     updateComparisonImage(url);
+
+                    // Initialize Sticky Bottom Bar if on product detail page
+                    const existingStickyBar = document.querySelector('.sticky-bottom-bar');
+                    if (existingStickyBar) {
+                        existingStickyBar.remove();
+                    }
+
+                    if (document.querySelector('.geuther-product')) {
+                        const stickyBar = document.createElement('div');
+                        stickyBar.className = 'sticky-bottom-bar';
+                        stickyBar.innerHTML = `
+                            <div class="color-selection">
+                                <label class="color-label">Farbe:</label>
+                                <div class="color-options">
+                                    <div class="color-option selected" style="background: #ffffff;" title="Weiß"></div>
+                                    <div class="color-option" style="background: #2c2c2c;" title="Schwarz"></div>
+                                    <div class="color-option" style="background: #d4bc9c;" title="Natur"></div>
+                                </div>
+                            </div>
+                            <div class="add-to-cart-section">
+                                <div class="quantity-input">
+                                    <button class="quantity-btn" type="button">-</button>
+                                    <input type="number" class="quantity-value" value="1" min="1" max="99">
+                                    <button class="quantity-btn" type="button">+</button>
+                                </div>
+                                <button class="add-to-cart-btn">
+                                    <i class="bi bi-cart-plus"></i>
+                                    In den Warenkorb
+                                </button>
+                            </div>
+                        `;
+                        document.body.appendChild(stickyBar);
+
+                        const originalBar = document.querySelector('.add-to-cart-section').parentElement;
+                        const observer = new IntersectionObserver((entries) => {
+                            entries.forEach(entry => {
+                                if (!entry.isIntersecting) {
+                                    stickyBar.classList.add('visible');
+                                } else {
+                                    stickyBar.classList.remove('visible');
+                                }
+                            });
+                        }, { threshold: 1.0 });
+
+                        observer.observe(originalBar);
+
+                        // Sync color selection and quantity between original and sticky bar
+                        const syncElements = () => {
+                            const originalColorOptions = document.querySelectorAll('.color-option');
+                            const stickyColorOptions = stickyBar.querySelectorAll('.color-option');
+                            const originalQuantity = document.querySelector('.quantity-value');
+                            const stickyQuantity = stickyBar.querySelector('.quantity-value');
+
+                            stickyColorOptions.forEach((option, index) => {
+                                option.addEventListener('click', () => {
+                                    stickyColorOptions.forEach(opt => opt.classList.remove('selected'));
+                                    option.classList.add('selected');
+                                    originalColorOptions[index].click();
+                                });
+                            });
+
+                            originalColorOptions.forEach((option, index) => {
+                                option.addEventListener('click', () => {
+                                    originalColorOptions.forEach(opt => opt.classList.remove('selected'));
+                                    option.classList.add('selected');
+                                    stickyColorOptions[index].click();
+                                });
+                            });
+
+                            originalQuantity.addEventListener('change', () => {
+                                stickyQuantity.value = originalQuantity.value;
+                            });
+
+                            stickyQuantity.addEventListener('change', () => {
+                                originalQuantity.value = stickyQuantity.value;
+                            });
+                        };
+
+                        syncElements();
+                    }
 
                 } catch (error) {
                     console.error('Loading error:', error);
