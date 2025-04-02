@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wickelregal Clarissa | Geuther</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --geuther-primary: #42584A;
+            --geuther-secondary: #D4C4B7;
+            --geuther-text: #333333;
+            --geuther-bg: #FFFFFF;
+            --geuther-accent: #F5F1ED;
+            --geuther-border: #E5E5E5;
+            --geuther-success: #2da73c;
+            --geuther-warning: #ffa726;
+            --geuther-error: #ef5350;
+        }
+
+        .geuther-product {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--geuther-text);
+            padding: 0;
+        }
+
+        .geuther-product .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Hero Section */
+        .product-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin: 2rem 0 4rem;
+            align-items: start;
+        }
+
+        /* Gallery Section */
+        .product-gallery {
+            position: sticky;
+            top: 2rem;
+        }
+
+        .gallery-main {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4/3;
+            max-height: 500px;
+            background: var(--geuther-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .gallery-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 2rem;
+        }
+
+        .gallery-thumbs {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+        }
+
+        .gallery-thumb {
+            aspect-ratio: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-thumb:hover {
+            transform: translateY(-2px);
+        }
+
+        .gallery-thumb.active {
+            border-color: var(--geuther-primary);
+        }
+
+        .gallery-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 0.5rem;
+        }
+
+        /* Manufacturer Badge */
+        .manufacturer-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            background: var(--geuther-accent);
+            border-radius: 8px;
+            width: fit-content;
+        }
+
+        .manufacturer-badge img {
+            height: 20px;
+            width: auto;
+        }
+
+        .manufacturer-badge span {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--geuther-primary);
+        }
+
+        /* Product Info Section */
+        .product-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .product-header {
+            border-bottom: 1px solid var(--geuther-border);
+            padding-bottom: 0.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin: 0 0 0.5rem;
+        }
+
+        .product-subtitle {
+            font-size: 1.1rem;
+            color: var(--geuther-text);
+            opacity: 0.8;
+        }
+
+        .product-id {
+            font-size: 0.9rem;
+            color: var(--geuther-text);
+            opacity: 0.6;
+            margin-top: 0.25rem;
+        }
+
+        /* Key Features */
+        .key-features {
+            display: grid;
+            gap: 0.5rem;
+            margin: 0.25rem 0;
+        }
+
+        .key-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1rem;
+            color: var(--geuther-primary);
+        }
+
+        .key-feature i {
+            font-size: 1.25rem;
+            color: var(--geuther-primary);
+            flex-shrink: 0;
+        }
+
+        /* Trust Elements */
+        .trust-elements {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+            margin: 0.5rem 0;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: var(--geuther-accent);
+            border-radius: 8px;
+        }
+
+        .trust-item i {
+            font-size: 1.25rem;
+            color: var(--geuther-primary);
+        }
+
+        .trust-text {
+            font-size: 0.85rem;
+            line-height: 1.3;
+        }
+
+        .trust-text strong {
+            display: block;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Price Section */
+        .product-price-section {
+            background: var(--geuther-accent);
+            padding: 1rem;
+            border-radius: 12px;
+            margin: 0.5rem 0;
+        }
+
+        .price-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0;
+        }
+
+        .price-main {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+        }
+
+        .price-tax {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .price-shipping {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--geuther-success);
+            background: #2da73c15;
+            padding: 0.4rem 0.75rem;
+            border-radius: 6px;
+            border: 1px solid #2da73c30;
+        }
+
+        .price-shipping i {
+            font-size: 1.1rem;
+        }
+
+        .shipping-text {
+            display: flex;
+            flex-direction: column;
+            font-size: 0.85rem;
+            line-height: 1.2;
+        }
+
+        .shipping-text strong {
+            color: var(--geuther-success);
+        }
+
+        .availability-section {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 1.5rem;
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--geuther-border);
+        }
+
+        .stock-status, .delivery-time {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .stock-status {
+            color: var(--geuther-success);
+            font-weight: 500;
+        }
+
+        .delivery-time i {
+            color: var(--geuther-primary);
+            font-size: 1rem;
+        }
+
+        /* Color Selection */
+        .color-selection {
+            margin: 0rem 0;
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .color-label {
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .color-options {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-start;
+        }
+
+        .color-option {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid var(--geuther-border);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .color-option:hover {
+            transform: translateY(-2px);
+        }
+
+        .color-option.selected {
+            border-color: var(--geuther-primary);
+        }
+
+        .color-option.selected::after {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border: 2px solid var(--geuther-primary);
+            border-radius: 10px;
+        }
+
+        /* Add to Cart Section */
+        .add-to-cart-section {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .quantity-input {
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--geuther-border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .quantity-btn {
+            width: 48px;
+            height: 48px;
+            border: none;
+            background: var(--geuther-bg);
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--geuther-primary);
+            transition: all 0.3s ease;
+        }
+
+        .quantity-btn:hover {
+            background: var(--geuther-accent);
+        }
+
+        .quantity-value {
+            width: 64px;
+            height: 48px;
+            border: none;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 500;
+            border-left: 1px solid var(--geuther-border);
+            border-right: 1px solid var(--geuther-border);
+        }
+
+        .add-to-cart-btn {
+            flex: 1;
+            height: 48px;
+            background: var(--geuther-primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .add-to-cart-btn:hover {
+            background: #364b3d;
+        }
+
+        @media (max-width: 992px) {
+            .product-hero {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .product-gallery {
+                position: relative;
+                top: 0;
+            }
+
+            .trust-elements {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .gallery-thumbs {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .product-title {
+                font-size: 1.5rem;
+            }
+
+            .price-main {
+                font-size: 1.5rem;
+            }
+
+            .availability-section {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+        }
+
+        /* Weitere Styles folgen... */
+    </style>
+</head>
+<body>
+    <div class="geuther-product">
+        <div class="container">
+            <!-- Product Hero Section -->
+            <section class="product-hero">
+                <!-- Gallery Section -->
+                <div class="product-gallery">
+                    <div class="gallery-main">
+                        <img src="https://www.geuther.de/media/04/21/bf/1705518517/4842we_1n6fjzbh6sb7gw-2.webp" alt="Wickelregal Clarissa Hauptbild">
+                    </div>
+                    <div class="gallery-thumbs">
+                        <div class="gallery-thumb active">
+                            <img src="https://www.geuther.de/media/04/21/bf/1705518517/4842we_1n6fjzbh6sb7gw-2.webp" alt="Wickelregal Clarissa Ansicht 1">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="https://www.geuther.de/media/23/f3/78/1705518553/4842we_2a5jhgjkznnw7k-2.webp" alt="Wickelregal Clarissa Ansicht 2">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="https://www.geuther.de/media/d0/07/16/1705518556/4842_sw.webp" alt="Wickelregal Clarissa Ansicht 3">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="https://www.geuther.de/media/6c/3f/b8/1705518633/4842_mb_07.webp" alt="Wickelregal Clarissa im Badezimmer">
+                        </div>
+                        <div class="gallery-thumb">
+                            <img src="https://www.geuther.de/media/ed/10/11/1705518720/4842_mb_08.webp" alt="Wickelregal Clarissa in Nutzung">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Info Section -->
+                <div class="product-info">
+                    <div class="product-header">
+                        <div class="manufacturer-badge">
+                            <img src="https://www.geuther.de/media/a7/ee/58/1705518033/logo-geuther.svg?ts=1705518033" alt="Geuther Logo">
+                            <span>Ein Original von Geuther</span>
+                        </div>
+                        <h1 class="product-title">Wickelregal Clarissa</h1>
+                        <p class="product-id">Artikelnummer: 4942_WE</p>
+                    </div>
+
+                    <!-- Key Features -->
+                    <div class="key-features">
+                        <div class="key-feature">
+                            <i class="bi bi-rulers"></i>
+                            <span>Kompakte 56 cm Breite - ideal für kleine Räume</span>
+                        </div>
+                        <div class="key-feature">
+                            <i class="bi bi-arrows-move"></i>
+                            <span>Mobil durch 4 feststellbare Rollen</span>
+                        </div>
+                        <div class="key-feature">
+                            <i class="bi bi-stack"></i>
+                            <span>2 geräumige Ablageflächen + Wickelfläche</span>
+                        </div>
+                    </div>                   
+
+                    <!-- Price Section -->
+                    <div class="product-price-section">
+                        <div class="price-header">
+                            <div>
+                                <div class="price-main">92,99 €*</div>
+                                <div class="price-tax">* inkl. MwSt.</div>
+                            </div>
+                            <div class="price-shipping">
+                                <i class="bi bi-truck"></i>
+                                <div class="shipping-text">
+                                    <strong>Versandkostenfrei</strong>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="availability-section">
+                            <div class="stock-status">
+                                <i class="bi bi-check-circle-fill"></i>
+                                Sofort verfügbar
+                            </div>
+                            <div class="delivery-time">
+                                <i class="bi bi-truck-front"></i>
+                                Lieferzeit: 1-3 Tage
+                            </div>
+                        </div>
+                    </div>                      
+
+                    <!-- Color Selection -->
+                    <div class="color-selection">
+                        <label class="color-label">Farbe auswählen:</label>
+                        <div class="color-options">
+                            <div class="color-option selected" style="background: #ffffff;" title="Weiß"></div>
+                            <div class="color-option" style="background: #2c2c2c;" title="Schwarz"></div>
+                            <div class="color-option" style="background: #d4bc9c;" title="Natur"></div>
+                        </div>
+                    </div>
+
+                    <!-- Add to Cart Section -->
+                    <div class="add-to-cart-section">
+                        <div class="quantity-input">
+                            <button class="quantity-btn" type="button">-</button>
+                            <input type="number" class="quantity-value" value="1" min="1" max="99">
+                            <button class="quantity-btn" type="button">+</button>
+                        </div>
+                        <button class="add-to-cart-btn">
+                            <i class="bi bi-cart-plus"></i>
+                            In den Warenkorb
+                        </button>
+                    </div>
+
+                    <!-- Trust Elements -->
+                    <div class="trust-elements">
+                        <div class="trust-item">
+                            <i class="bi bi-shield-check"></i>
+                            <div class="trust-text">
+                                <strong>Geprüfte Sicherheit</strong>
+                                TÜV/GS zertifiziert
+                            </div>
+                        </div>
+                        <div class="trust-item">
+                            <i class="bi bi-award"></i>
+                            <div class="trust-text">
+                                <strong>Made in Germany</strong>
+                                Höchste Qualität
+                            </div>
+                        </div>
+                        <div class="trust-item">
+                            <i class="bi bi-patch-check"></i>
+                            <div class="trust-text">
+                                <strong>2 Jahre Garantie</strong>
+                                Qualitätsversprechen
+                            </div>
+                        </div>
+                        <div class="trust-item">
+                            <i class="bi bi-arrow-return-left"></i>
+                            <div class="trust-text">
+                                <strong>30 Tage Rückgabe</strong>
+                                Kostenlos & einfach
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                </div>
+            </section>
+
+            <!-- Product Content Sections -->
+            <div class="product-content">
+                <!-- Feature Section -->
+                <section class="feature-section">
+                    <div class="feature-grid">
+                        <div class="feature-content">
+                            <h2 class="section-title">Perfekt für kleine Räume</h2>
+                            <p class="feature-highlight">
+                                Mit nur 56 cm Breite ist das Wickelregal Clarissa die ideale Lösung für kleine Räume.
+                            </p>
+                            <p class="feature-text">
+                                Platzsparend und doch mit viel Stauraum, mobil und trotzdem standfest: Das durchdachte Wickelregal Clarissa überzeugt in jeder Hinsicht. Perfekt überall da, wo die Platzverhältnisse begrenzt sind, wie beispielsweise im Badezimmer und auch ideal geeignet zur Einrichtung eines Wickelbereiches in gastronomischen Betrieben wie Hotels, Cafés oder Restaurants.
+                            </p>
+                            <ul class="feature-list">
+                                <li class="feature-item">
+                                    <i class="bi bi-check-circle"></i>
+                                    <span>Rückenfreundliche Arbeitshöhe von 86 cm</span>
+                                </li>
+                                <li class="feature-item">
+                                    <i class="bi bi-check-circle"></i>
+                                    <span>Schmale, aber ausreichende Wickelfläche mit leichtem Überstand</span>
+                                </li>
+                                <li class="feature-item">
+                                    <i class="bi bi-check-circle"></i>
+                                    <span>Zwei geräumige Ablageflächen mit umlaufenden Streben</span>
+                                </li>
+                                <li class="feature-item">
+                                    <i class="bi bi-check-circle"></i>
+                                    <span>4 feststellbare Rollen für sicheren Stand und Mobilität</span>
+                                </li>
+                                <li class="feature-item">
+                                    <i class="bi bi-check-circle"></i>
+                                    <span>Verletzungssicher abgerundete Ecken und Kanten</span>
+                                </li>
+                                <li class="feature-item">
+                                    <i class="bi bi-check-circle"></i>
+                                    <span>Passende Wickelauflagen separat erhältlich (Art.Nr. 5832)</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <img src="https://www.geuther.de/media/6c/3f/b8/1705518633/4842_mb_07.webp" 
+                             alt="Wickelregal Clarissa Features" 
+                             class="feature-image">
+                    </div>
+                </section>
+
+                <!-- Safety Section -->
+                <section class="safety-section">
+                    <div class="safety-grid reversed">
+                        <div class="safety-content">
+                            <h2 class="section-title">Sicherheit an erster Stelle</h2>
+                            <p class="safety-text">
+                                Das Wickelregal Clarissa wurde nach höchsten Sicherheitsstandards entwickelt und ist TÜV/GS zertifiziert. Die hochwertigen Materialien und die durchdachte Konstruktion sorgen für maximale Stabilität und Sicherheit beim Wickeln.
+                            </p>
+                            <div class="safety-features">
+                                <div class="safety-feature">
+                                    <i class="bi bi-shield-check"></i>
+                                    <div class="safety-feature-text">
+                                        <strong>TÜV/GS geprüft</strong>
+                                        <span>Entspricht allen Sicherheitsnormen</span>
+                                    </div>
+                                </div>
+                                <div class="safety-feature">
+                                    <i class="bi bi-lock"></i>
+                                    <div class="safety-feature-text">
+                                        <strong>Feststellbare Rollen</strong>
+                                        <span>Sicherer Stand beim Wickeln</span>
+                                    </div>
+                                </div>
+                                <div class="safety-feature">
+                                    <i class="bi bi-droplet"></i>
+                                    <div class="safety-feature-text">
+                                        <strong>Pflegeleichte Oberflächen</strong>
+                                        <span>Hygienisch und leicht zu reinigen</span>
+                                    </div>
+                                </div>
+                                <div class="safety-feature">
+                                    <i class="bi bi-tools"></i>
+                                    <div class="safety-feature-text">
+                                        <strong>Einfache Montage</strong>
+                                        <span>Schneller Aufbau mit beiliegender Anleitung</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <img src="https://www.geuther.de/media/ed/10/11/1705518720/4842_mb_08.webp" 
+                             alt="Wickelregal Clarissa Sicherheit" 
+                             class="safety-image">
+                    </div>
+                </section>
+
+                <!-- Materials Section -->
+                <section class="materials-section">
+                    <div class="materials-grid">
+                        <div class="materials-content">
+                            <h2 class="section-title">Hochwertige Materialien</h2>
+                            <p class="materials-text">
+                                Für das Wickelregal Clarissa verwenden wir ausschließlich hochwertige und nachhaltige Materialien. Die Böden sind aus hochwertiger Spanplatte gefertigt, während das Gestell aus massivem Buchenholz besteht. Erhältlich in den Farbvarianten Natur, Weiß und Schlamm – passend für verschiedene Einrichtungsstile.
+                            </p>
+                            <div class="materials-list">
+                                <span class="material-badge">Massive Buche (Gestell)</span>
+                                <span class="material-badge">Hochwertige Spanplatte (Böden)</span>
+                                <span class="material-badge">Schadstofffreie Lacke</span>
+                                <span class="material-badge">Speichel- und schweißfest</span>
+                                <span class="material-badge">Made in Germany</span>
+                            </div>
+                        </div>
+                        <img src="https://www.geuther.de/media/dd/4b/23/1705518720/4842_mb_08qrtdqqn1qdc6c.webp" 
+                             alt="Wickelregal Clarissa Materialien" 
+                             class="materials-image">
+                    </div>
+                </section>
+
+                <!-- Product Properties Section -->
+                <section class="properties-section">
+                    <h2 class="section-title">Produkteigenschaften</h2>
+                    <div class="properties-table">
+                        <div class="property-row">
+                            <div class="property-label">Altersempfehlung:</div>
+                            <div class="property-value">bis 12 Monate</div>
+                        </div>
+                        <div class="property-row">
+                            <div class="property-label">Baumuster geprüft:</div>
+                            <div class="property-value">TÜV Rheinland</div>
+                        </div>
+                        <div class="property-row">
+                            <div class="property-label">Material:</div>
+                            <div class="property-value">Holz</div>
+                        </div>
+                        <div class="property-row">
+                            <div class="property-label">Max. Belastung:</div>
+                            <div class="property-value">11 kg</div>
+                        </div>
+                        <div class="property-row">
+                            <div class="property-label">Prüfnummer:</div>
+                            <div class="property-value">21226082_2</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Downloads Section -->
+                <section class="downloads-section">
+                    <h2 class="section-title">Downloads & Dokumente</h2>
+                    <div class="downloads-grid">
+                        <a href="#" class="download-card">
+                            <i class="bi bi-file-pdf"></i>
+                            <div class="download-info">
+                                <h3>Produktdatenblatt</h3>
+                                <span>PDF, 2.1 MB</span>
+                            </div>
+                            <i class="bi bi-download"></i>
+                        </a>
+                        <a href="#" class="download-card">
+                            <i class="bi bi-file-pdf"></i>
+                            <div class="download-info">
+                                <h3>Bedienungsanleitung</h3>
+                                <span>PDF, 3.4 MB</span>
+                            </div>
+                            <i class="bi bi-download"></i>
+                        </a>
+                        <a href="#" class="download-card">
+                            <i class="bi bi-file-pdf"></i>
+                            <div class="download-info">
+                                <h3>Sicherheitshinweise</h3>
+                                <span>PDF, 1.8 MB</span>
+                            </div>
+                            <i class="bi bi-download"></i>
+                        </a>
+                    </div>
+                </section>
+
+                <!-- Reviews Section -->
+                <section class="reviews-section">
+                    <div class="reviews-header">
+                        <h2 class="section-title">Kundenbewertungen</h2>
+                        <div class="rating-overview">
+                            <div class="rating-average">
+                                <div class="rating-number">4.8</div>
+                                <div class="rating-stars">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-half"></i>
+                                </div>
+                                <div class="rating-count">96 Bewertungen</div>
+                            </div>
+                            <div class="rating-bars">
+                                <div class="rating-bar">
+                                    <span class="rating-label">5 Sterne</span>
+                                    <div class="bar-container">
+                                        <div class="bar" style="width: 85%"></div>
+                                    </div>
+                                    <span class="rating-count">82</span>
+                                </div>
+                                <div class="rating-bar">
+                                    <span class="rating-label">4 Sterne</span>
+                                    <div class="bar-container">
+                                        <div class="bar" style="width: 10%"></div>
+                                    </div>
+                                    <span class="rating-count">10</span>
+                                </div>
+                                <div class="rating-bar">
+                                    <span class="rating-label">3 Sterne</span>
+                                    <div class="bar-container">
+                                        <div class="bar" style="width: 3%"></div>
+                                    </div>
+                                    <span class="rating-count">3</span>
+                                </div>
+                                <div class="rating-bar">
+                                    <span class="rating-label">2 Sterne</span>
+                                    <div class="bar-container">
+                                        <div class="bar" style="width: 1%"></div>
+                                    </div>
+                                    <span class="rating-count">1</span>
+                                </div>
+                                <div class="rating-bar">
+                                    <span class="rating-label">1 Stern</span>
+                                    <div class="bar-container">
+                                        <div class="bar" style="width: 0%"></div>
+                                    </div>
+                                    <span class="rating-count">0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="reviews-grid">
+                        <!-- Review Card 1 -->
+                        <div class="review-card">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <div class="reviewer-name">Sarah M.</div>
+                                    <div class="review-date">15.02.2024</div>
+                                </div>
+                                <div class="review-rating">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                </div>
+                            </div>
+                            <h3 class="review-title">Perfekt für kleine Bäder!</h3>
+                            <p class="review-text">
+                                Das Wickelregal ist genau das, was wir für unser kleines Bad gesucht haben. 
+                                Sehr stabil und trotzdem mobil. Die Qualität ist wie von Geuther gewohnt erstklassig.
+                            </p>
+                            <div class="review-verified">
+                                <i class="bi bi-patch-check-fill"></i>
+                                Verifizierter Kauf
+                            </div>
+                        </div>
+
+                        <!-- Review Card 2 -->
+                        <div class="review-card">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <div class="reviewer-name">Michael K.</div>
+                                    <div class="review-date">03.02.2024</div>
+                                </div>
+                                <div class="review-rating">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star"></i>
+                                </div>
+                            </div>
+                            <h3 class="review-title">Gute Qualität, einfacher Aufbau</h3>
+                            <p class="review-text">
+                                Der Aufbau war super einfach und die Qualität ist sehr gut. 
+                                Einziger kleiner Kritikpunkt: Die Rollen könnten etwas leichtgängiger sein.
+                            </p>
+                            <div class="review-verified">
+                                <i class="bi bi-patch-check-fill"></i>
+                                Verifizierter Kauf
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="load-more-reviews">
+                        Weitere Bewertungen laden
+                        <i class="bi bi-chevron-down"></i>
+                    </button>
+                </section>
+            </div>
+
+            <style>
+                /* Product Content Styles */
+                .product-content {
+                    margin-top: 4rem;
+                }
+
+                .section-title {
+                    font-size: 2rem;
+                    font-weight: 600;
+                    color: var(--geuther-primary);
+                    margin-bottom: 1.5rem;
+                }
+
+                /* Feature Section */
+                .feature-section,
+                .safety-section,
+                .materials-section {
+                    margin-bottom: 6rem;
+                }
+
+                .feature-grid,
+                .safety-grid,
+                .materials-grid {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 4rem;
+                    align-items: center;
+                }
+
+                .safety-grid.reversed {
+                    direction: rtl;
+                }
+
+                .safety-grid.reversed > * {
+                    direction: ltr;
+                }
+
+                .feature-highlight {
+                    font-size: 1.2rem;
+                    font-weight: 500;
+                    color: var(--geuther-primary);
+                    margin-bottom: 1rem;
+                    line-height: 1.4;
+                }
+
+                .feature-text,
+                .safety-text,
+                .materials-text {
+                    font-size: 1rem;
+                    line-height: 1.6;
+                    margin-bottom: 2rem;
+                }
+
+                .feature-list {
+                    display: grid;
+                    gap: 1rem;
+                }
+
+                .feature-item {
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+                }
+
+                .feature-item i {
+                    color: var(--geuther-primary);
+                    font-size: 1.2rem;
+                }
+
+                .feature-image,
+                .safety-image,
+                .materials-image {
+                    width: 100%;
+                    border-radius: 12px;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                }
+
+                /* Safety Features */
+                .safety-features {
+                    display: grid;
+                    gap: 1.5rem;
+                    margin-top: 2rem;
+                }
+
+                .safety-feature {
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+                    padding: 1rem;
+                    background: var(--geuther-accent);
+                    border-radius: 8px;
+                }
+
+                .safety-feature i {
+                    font-size: 1.5rem;
+                    color: var(--geuther-primary);
+                }
+
+                .safety-feature-text strong {
+                    display: block;
+                    font-weight: 600;
+                    margin-bottom: 0.25rem;
+                }
+
+                .safety-feature-text span {
+                    font-size: 0.9rem;
+                    opacity: 0.8;
+                }
+
+                /* Materials Section */
+                .materials-list {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 0.75rem;
+                    margin-top: 1.5rem;
+                }
+
+                .material-badge {
+                    background: var(--geuther-accent);
+                    padding: 0.5rem 1rem;
+                    border-radius: 20px;
+                    font-size: 0.9rem;
+                    color: var(--geuther-primary);
+                    border: 1px solid var(--geuther-secondary);
+                }
+
+                /* Downloads Section */
+                .downloads-section {
+                    margin-bottom: 4rem;
+                }
+
+                .downloads-grid {
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 2rem;
+                }
+
+                .download-card {
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+                    padding: 1.5rem;
+                    background: var(--geuther-accent);
+                    border-radius: 12px;
+                    text-decoration: none;
+                    color: var(--geuther-text);
+                    transition: all 0.3s ease;
+                }
+
+                .download-card:hover {
+                    transform: translateY(-2px);
+                    background: var(--geuther-secondary);
+                }
+
+                .download-card i {
+                    font-size: 2rem;
+                    color: var(--geuther-primary);
+                }
+
+                .download-info {
+                    flex: 1;
+                }
+
+                .download-info h3 {
+                    font-size: 1rem;
+                    font-weight: 600;
+                    margin: 0 0 0.25rem;
+                }
+
+                .download-info span {
+                    font-size: 0.9rem;
+                    opacity: 0.7;
+                }
+
+                /* Reviews Section */
+                .reviews-section {
+                    margin-bottom: 4rem;
+                }
+
+                .reviews-header {
+                    margin-bottom: 3rem;
+                }
+
+                .rating-overview {
+                    display: grid;
+                    grid-template-columns: auto 1fr;
+                    gap: 4rem;
+                    align-items: center;
+                    background: var(--geuther-accent);
+                    padding: 2rem;
+                    border-radius: 12px;
+                }
+
+                .rating-average {
+                    text-align: center;
+                }
+
+                .rating-number {
+                    font-size: 3rem;
+                    font-weight: 600;
+                    color: var(--geuther-primary);
+                    line-height: 1;
+                    margin-bottom: 0.5rem;
+                }
+
+                .rating-stars {
+                    color: #ffd700;
+                    font-size: 1.2rem;
+                    margin-bottom: 0.5rem;
+                }
+
+                .rating-count {
+                    font-size: 0.9rem;
+                    opacity: 0.7;
+                }
+
+                .rating-bars {
+                    display: grid;
+                    gap: 0.75rem;
+                }
+
+                .rating-bar {
+                    display: grid;
+                    grid-template-columns: 80px 1fr 50px;
+                    align-items: center;
+                    gap: 1rem;
+                    font-size: 0.9rem;
+                }
+
+                .bar-container {
+                    height: 8px;
+                    background: rgba(0,0,0,0.1);
+                    border-radius: 4px;
+                    overflow: hidden;
+                }
+
+                .bar {
+                    height: 100%;
+                    background: var(--geuther-primary);
+                    border-radius: 4px;
+                }
+
+                .reviews-grid {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 2rem;
+                    margin-bottom: 2rem;
+                }
+
+                .review-card {
+                    background: var(--geuther-bg);
+                    border: 1px solid var(--geuther-border);
+                    border-radius: 12px;
+                    padding: 1.5rem;
+                }
+
+                .review-header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: flex-start;
+                    margin-bottom: 1rem;
+                }
+
+                .reviewer-name {
+                    font-weight: 600;
+                    margin-bottom: 0.25rem;
+                }
+
+                .review-date {
+                    font-size: 0.9rem;
+                    opacity: 0.7;
+                }
+
+                .review-rating {
+                    color: #ffd700;
+                }
+
+                .review-title {
+                    font-size: 1.1rem;
+                    font-weight: 600;
+                    margin-bottom: 0.75rem;
+                }
+
+                .review-text {
+                    font-size: 0.95rem;
+                    line-height: 1.5;
+                    margin-bottom: 1rem;
+                }
+
+                .review-verified {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    font-size: 0.9rem;
+                    color: var(--geuther-success);
+                }
+
+                .load-more-reviews {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    margin: 0 auto;
+                    padding: 1rem 2rem;
+                    background: var(--geuther-accent);
+                    border: none;
+                    border-radius: 8px;
+                    font-size: 1rem;
+                    font-weight: 500;
+                    color: var(--geuther-primary);
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                }
+
+                .load-more-reviews:hover {
+                    background: var(--geuther-secondary);
+                }
+
+                @media (max-width: 992px) {
+                    .feature-grid,
+                    .safety-grid,
+                    .materials-grid {
+                        grid-template-columns: 1fr;
+                        gap: 2rem;
+                    }
+
+                    .downloads-grid {
+                        grid-template-columns: 1fr;
+                    }
+
+                    .rating-overview {
+                        grid-template-columns: 1fr;
+                        gap: 2rem;
+                    }
+
+                    .reviews-grid {
+                        grid-template-columns: 1fr;
+                    }
+
+                    .section-title {
+                        font-size: 1.5rem;
+                    }
+                }
+
+                /* Product Properties Section */
+                .properties-section {
+                    margin-bottom: 4rem;
+                }
+
+                .properties-table {
+                    background: var(--geuther-bg);
+                    border-radius: 12px;
+                    overflow: hidden;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+                }
+
+                .property-row {
+                    display: grid;
+                    grid-template-columns: 200px 1fr;
+                    border-bottom: 1px solid var(--geuther-border);
+                }
+
+                .property-row:last-child {
+                    border-bottom: none;
+                }
+
+                .property-row:nth-child(odd) {
+                    background: var(--geuther-accent);
+                }
+
+                .property-label,
+                .property-value {
+                    padding: 1rem 1.5rem;
+                    font-size: 1rem;
+                    line-height: 1.4;
+                }
+
+                .property-label {
+                    font-weight: 500;
+                    color: var(--geuther-primary);
+                }
+
+                @media (max-width: 768px) {
+                    .property-row {
+                        grid-template-columns: 1fr;
+                    }
+
+                    .property-label {
+                        padding-bottom: 0.25rem;
+                        background: none;
+                    }
+
+                    .property-value {
+                        padding-top: 0.25rem;
+                    }
+                }
+            </style>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    // Gallery Navigation
+                    const mainImage = document.querySelector('.gallery-main img');
+                    const thumbs = document.querySelectorAll('.gallery-thumb');
+
+                    thumbs.forEach(thumb => {
+                        thumb.addEventListener('click', function() {
+                            // Update main image
+                            mainImage.src = thumb.querySelector('img').src;
+                            
+                            // Update active state
+                            thumbs.forEach(t => t.classList.remove('active'));
+                            thumb.classList.add('active');
+                        });
+                    });
+
+                    // Quantity Input
+                    const quantityInput = document.querySelector('.quantity-value');
+                    const minusBtn = document.querySelector('.quantity-btn:first-child');
+                    const plusBtn = document.querySelector('.quantity-btn:last-child');
+
+                    minusBtn.addEventListener('click', () => {
+                        const currentValue = parseInt(quantityInput.value);
+                        if (currentValue > 1) {
+                            quantityInput.value = currentValue - 1;
+                        }
+                    });
+
+                    plusBtn.addEventListener('click', () => {
+                        const currentValue = parseInt(quantityInput.value);
+                        if (currentValue < 99) {
+                            quantityInput.value = currentValue + 1;
+                        }
+                    });
+
+                    // Color Selection
+                    const colorOptions = document.querySelectorAll('.color-option');
+                    
+                    colorOptions.forEach(option => {
+                        option.addEventListener('click', function() {
+                            colorOptions.forEach(opt => opt.classList.remove('selected'));
+                            this.classList.add('selected');
+                        });
+                    });
+                });
+            </script>
+        </div>
+    </div>
+</body>
+</html> 

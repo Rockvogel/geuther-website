@@ -100,7 +100,7 @@
 ## Layout-System
 
 ### Container
-- Maximale Breite: 1200px
+- Maximale Breite: 1400px
 - Zentriert mit Auto-Margins
 - Padding in mobiler Ansicht: 1rem
 
