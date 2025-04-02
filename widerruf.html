@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Widerruf & Retouren | Geuther</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --geuther-primary: #42584A;
+            --geuther-secondary: #D4C4B7;  /* Beige Ton */
+            --geuther-text: #333333;
+            --geuther-bg: #FFFFFF;
+            --geuther-accent: #F5F1ED;  /* Heller Beige Hintergrund */
+            --geuther-border: #E5E5E5;
+        }
+
+        .geuther-widerruf {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--geuther-text);
+            padding: 0;
+        }
+
+        .geuther-widerruf .hero-section {
+            text-align: center;
+            padding: 4rem 0;
+            background-color: var(--geuther-accent);
+            margin-bottom: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .geuther-widerruf .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://www.geuther.de/media/8c/82/75/1705518661/1111ko_na_121_mb_3.webp') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .geuther-widerruf .hero-section > .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .geuther-widerruf .hero-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--geuther-primary);
+        }
+
+        .geuther-widerruf .hero-subtitle {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+            color: var(--geuther-text);
+        }
+
+        .geuther-widerruf .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .geuther-widerruf .process-section {
+            margin-bottom: 4rem;
+            padding: 0;
+        }
+
+        .geuther-widerruf .process-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .geuther-widerruf .process-grid {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            margin: 0 -1rem 3rem -1rem;
+            position: relative;
+            gap: 2rem;
+            max-width: 1160px;
+            margin: 0 auto;
+        }
+
+        .geuther-widerruf .process-step {
+            flex: 0 1 240px;
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--geuther-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid var(--geuther-border);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+        }
+
+        .geuther-widerruf .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--geuther-secondary);
+            color: var(--geuther-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin: 0 auto 1rem;
+            flex-shrink: 0;
+        }
+
+        .geuther-widerruf .step-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+        }
+
+        .geuther-widerruf .step-text {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: var(--geuther-text);
+            margin: 0;
+        }
+
+        .geuther-widerruf .process-step::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -2rem;
+            width: 2rem;
+            height: 1px;
+            background: var(--geuther-secondary);
+            transform: translateY(-50%);
+        }
+
+        .geuther-widerruf .process-step:last-child::after {
+            display: none;
+        }
+
+        .geuther-widerruf .info-section {
+            background: var(--geuther-accent);
+            padding: 3rem;
+            border-radius: 12px;
+            margin-bottom: 4rem;
+        }
+
+        .geuther-widerruf .info-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 2rem;
+        }
+
+        .geuther-widerruf .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .geuther-widerruf .info-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .geuther-widerruf .info-icon {
+            font-size: 1.5rem;
+            color: var(--geuther-secondary);
+            flex-shrink: 0;
+        }
+
+        .geuther-widerruf .info-content h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .geuther-widerruf .info-content p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--geuther-text);
+            margin: 0;
+        }
+
+        .geuther-widerruf .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .geuther-widerruf .legal-section {
+            background: var(--geuther-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid var(--geuther-border);
+        }
+
+        .geuther-widerruf .legal-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 2rem;
+        }
+
+        .geuther-widerruf .legal-content {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--geuther-text);
+        }
+
+        .geuther-widerruf .legal-content h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin: 2rem 0 1rem;
+        }
+
+        .geuther-widerruf .legal-content h2:first-child {
+            margin-top: 0;
+        }
+
+        .geuther-widerruf .form-section {
+            background: var(--geuther-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid var(--geuther-border);
+        }
+
+        .geuther-widerruf .form-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 2rem;
+        }
+
+        .geuther-widerruf .form-text {
+            margin: 2rem 0;
+            line-height: 1.8;
+        }
+
+        .geuther-widerruf .form-text p {
+            margin-bottom: 1rem;
+        }
+
+        .geuther-widerruf .form-line {
+            border-bottom: 1px solid var(--geuther-text);
+            margin: 1rem 0;
+            opacity: 0.5;
+        }
+
+        .geuther-widerruf .form-date {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .geuther-widerruf .form-date .date-line {
+            flex: 1;
+            border-bottom: 1px solid var(--geuther-text);
+            opacity: 0.5;
+            max-width: 200px;
+        }
+
+        .geuther-widerruf .form-content {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--geuther-text);
+        }
+
+        .geuther-widerruf .form-content .address {
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: var(--geuther-accent);
+            border-radius: 8px;
+        }
+
+        .geuther-widerruf .form-note {
+            margin-top: 2rem;
+            font-style: italic;
+            color: var(--geuther-text);
+            opacity: 0.8;
+        }
+
+        .geuther-widerruf .download-section {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--geuther-border);
+        }
+
+        .geuther-widerruf .download-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: var(--geuther-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .geuther-widerruf .download-button:hover {
+            background: #2d3b2f;
+        }
+
+        .geuther-widerruf .download-button i {
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 992px) {
+            .geuther-widerruf .container {
+                padding: 0 1.5rem;
+            }
+
+            .geuther-widerruf .process-grid {
+                flex-wrap: wrap;
+                gap: 1.5rem;
+                justify-content: center;
+                margin: 0;
+            }
+
+            .geuther-widerruf .process-step {
+                flex: 0 1 calc(50% - 1.5rem);
+                max-width: 260px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .geuther-widerruf {
+                padding: 1rem 0;
+            }
+
+            .geuther-widerruf .container {
+                padding: 0 1rem;
+            }
+
+            .geuther-widerruf .hero-section {
+                padding: 2rem 0;
+                margin-bottom: 2rem;
+            }
+
+            .geuther-widerruf .hero-title {
+                font-size: 1.75rem;
+                margin-bottom: 1rem;
+            }
+
+            .geuther-widerruf .hero-subtitle {
+                font-size: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .geuther-widerruf .process-section {
+                margin-bottom: 2rem;
+            }
+
+            .geuther-widerruf .process-title {
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .geuther-widerruf .process-grid {
+                flex-direction: column;
+                align-items: center;
+                gap: 1.5rem;
+                position: relative;
+                padding: 0 1rem;
+                max-width: 280px;
+                margin: 0 auto;
+            }
+
+            .geuther-widerruf .process-step {
+                width: 100%;
+                margin: 0;
+                position: relative;
+                padding: 1.25rem;
+            }
+
+            .geuther-widerruf .process-step::after {
+                content: '';
+                position: absolute;
+                left: 50%;
+                top: 100%;
+                transform: translateX(-50%);
+                width: 1px;
+                height: 1.5rem;
+                background: var(--geuther-secondary);
+            }
+
+            .geuther-widerruf .process-step:last-child::after {
+                display: none;
+            }
+
+            .geuther-widerruf .step-number {
+                width: 32px;
+                height: 32px;
+                font-size: 0.9rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .geuther-widerruf .step-title {
+                font-size: 1rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .geuther-widerruf .step-text {
+                font-size: 0.9rem;
+            }
+
+            .geuther-widerruf .info-section {
+                padding: 1.5rem;
+                margin-bottom: 2rem;
+            }
+
+            .geuther-widerruf .info-title {
+                font-size: 1.25rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .geuther-widerruf .info-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .geuther-widerruf .info-icon {
+                font-size: 1.25rem;
+            }
+
+            .geuther-widerruf .info-content h3 {
+                font-size: 1rem;
+            }
+
+            .geuther-widerruf .info-content p {
+                font-size: 0.9rem;
+            }
+
+            .geuther-widerruf .content-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                margin-bottom: 2rem;
+            }
+
+            .geuther-widerruf .legal-section,
+            .geuther-widerruf .form-section {
+                padding: 1.5rem;
+            }
+
+            .geuther-widerruf .legal-title,
+            .geuther-widerruf .form-title {
+                font-size: 1.25rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .geuther-widerruf .legal-content,
+            .geuther-widerruf .form-content {
+                font-size: 0.9rem;
+            }
+
+            .geuther-widerruf .legal-content h2 {
+                font-size: 1.1rem;
+                margin: 1.5rem 0 1rem;
+            }
+
+            .geuther-widerruf .form-content .address {
+                padding: 1rem;
+                margin: 1rem 0;
+            }
+
+            .geuther-widerruf .form-date {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .geuther-widerruf .form-date .date-line {
+                max-width: 100%;
+            }
+
+            .geuther-widerruf .download-section {
+                margin-top: 2rem;
+                padding-top: 1.5rem;
+            }
+
+            .geuther-widerruf .download-button {
+                width: 100%;
+                justify-content: center;
+                padding: 0.75rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="geuther-widerruf">
+        <section class="hero-section">
+            <div class="container">
+                <h1 class="hero-title">Widerruf & Retouren</h1>
+                <p class="hero-subtitle">
+                    Wir machen Ihnen die Rückgabe so einfach wie möglich. Hier finden Sie alle wichtigen Informationen 
+                    zum Widerrufsrecht und zur Rücksendung Ihrer Bestellung.
+                </p>
+            </div>
+        </section>
+
+        <div class="container">
+            <section class="process-section">
+                <h2 class="process-title">So einfach ist die Rückgabe</h2>
+                <div class="process-grid">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <h3 class="step-title">Widerruf erklären</h3>
+                        <p class="step-text">Informieren Sie uns innerhalb von 14 Tagen über Ihren Widerruf per E-Mail oder Post.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <h3 class="step-title">Paket vorbereiten</h3>
+                        <p class="step-text">Verpacken Sie die Ware in der Originalverpackung und fügen Sie alle Zubehörteile hinzu.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <h3 class="step-title">Zurücksenden</h3>
+                        <p class="step-text">Senden Sie das Paket an unsere Retourenadresse. Die Kosten tragen Sie.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <h3 class="step-title">Rückerstattung</h3>
+                        <p class="step-text">Nach Eingang und Prüfung erhalten Sie den Kaufpreis zurückerstattet.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="info-section">
+                <h2 class="info-title">Wichtige Informationen zur Rückgabe</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <i class="bi bi-clock info-icon"></i>
+                        <div class="info-content">
+                            <h3>Widerrufsfrist</h3>
+                            <p>Sie haben 14 Tage Zeit, um den Widerruf zu erklären. Die Frist beginnt ab dem Tag, an dem Sie die Ware erhalten haben.</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="bi bi-box-seam info-icon"></i>
+                        <div class="info-content">
+                            <h3>Originalverpackung</h3>
+                            <p>Bitte senden Sie die Ware in der Originalverpackung zurück. Falls nicht mehr vorhanden, verwenden Sie eine geeignete Verpackung.</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="bi bi-geo-alt info-icon"></i>
+                        <div class="info-content">
+                            <h3>Retourenadresse</h3>
+                            <p>Bomi GmbH - Geuther Retouren<br>Otto-Hahn-Straße 24<br>48480 Schapen<br>Deutschland</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="bi bi-credit-card info-icon"></i>
+                        <div class="info-content">
+                            <h3>Rückerstattung</h3>
+                            <p>Die Rückerstattung erfolgt binnen 14 Tagen nach Eingang der Ware. Wir verwenden das ursprüngliche Zahlungsmittel.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="content-grid">
+                <div class="legal-section">
+                    <h2 class="legal-title">Widerrufsbelehrung</h2>
+                    <div class="legal-content">
+                        <h2>Einleitung</h2>
+                        <p>Verbrauchern steht ein Widerrufsrecht nach folgender Maßgabe zu, wobei Verbraucher jede natürliche Person ist, die ein Rechtsgeschäft zu Zwecken abschließt, die überwiegend weder ihrer gewerblichen noch ihrer selbständigen beruflichen Tätigkeit zugerechnet werden können:</p>
+
+                        <h2>Widerrufsrecht</h2>
+                        <p>Sie haben das Recht, binnen vierzehn Tagen ohne Angabe von Gründen diesen Vertrag zu widerrufen.</p>
+                        <p>Die Widerrufsfrist beträgt vierzehn Tage ab dem Tag, an dem Sie oder ein von Ihnen benannter Dritter, der nicht der Beförderer ist, die letzte Ware in Besitz genommen haben bzw. hat.</p>
+                        <p>Um Ihr Widerrufsrecht auszuüben, müssen Sie uns (Geuther Baby Products GmbH, Bürgerwaldstr. 1, 83278 Traunstein, Deutschland, Tel.: 092669912411, E-Mail: service@geuther.de) mittels einer eindeutigen Erklärung (z. B. ein mit der Post versandter Brief oder E-Mail) über Ihren Entschluss, diesen Vertrag zu widerrufen, informieren. Sie können dafür das beigefügte Muster-Widerrufsformular verwenden, das jedoch nicht vorgeschrieben ist.</p>
+
+                        <h2>Folgen des Widerrufs</h2>
+                        <p>Wenn Sie diesen Vertrag widerrufen, haben wir Ihnen alle Zahlungen, die wir von Ihnen erhalten haben, einschließlich der Lieferkosten (mit Ausnahme der zusätzlichen Kosten, die sich daraus ergeben, dass Sie eine andere Art der Lieferung als die von uns angebotene, günstigste Standardlieferung gewählt haben), unverzüglich und spätestens binnen vierzehn Tagen ab dem Tag zurückzuzahlen, an dem die Mitteilung über Ihren Widerruf dieses Vertrags bei uns eingegangen ist.</p>
+                        <p>Sie haben die Waren unverzüglich und in jedem Fall spätestens binnen vierzehn Tagen ab dem Tag, an dem Sie uns über den Widerruf dieses Vertrags unterrichten, zurückzusenden oder zu übergeben.</p>
+
+                        <h2>Ausschluss des Widerrufsrechts</h2>
+                        <p>Das Widerrufsrecht gilt nicht für Verbraucher, die zum Zeitpunkt des Vertragsschlusses keinem Mitgliedstaat der Europäischen Union angehören und deren alleiniger Wohnsitz und Lieferadresse zum Zeitpunkt des Vertragsschlusses außerhalb der Europäischen Union liegen.</p>
+
+                        <h2>Allgemeine Hinweise</h2>
+                        <ol>
+                            <li>Bitte vermeiden Sie Beschädigungen und Verunreinigungen der Ware.</li>
+                            <li>Senden Sie die Ware bitte nicht unfrei an uns zurück.</li>
+                            <li>Bitte beachten Sie, dass die vorgenannten Ziffern 1-2 nicht Voraussetzung für die wirksame Ausübung des Widerrufsrechts sind.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2 class="form-title">Widerrufsformular</h2>
+                    <div class="form-content">
+                        <p>Wenn Sie den Vertrag widerrufen wollen, dann füllen Sie bitte das folgende Formular aus und senden es zurück.</p>
+
+                        <div class="address">
+                            <strong>An</strong><br>
+                            Geuther Baby Products GmbH<br>
+                            Bürgerwaldstr. 1<br>
+                            83278 Traunstein<br>
+                            Deutschland<br>
+                            E-Mail: service@geuther.de
+                        </div>
+
+                        <div class="form-text">
+                            <p>Hiermit widerrufe(n) ich/wir (*) den von mir/uns (*) abgeschlossenen Vertrag über den Kauf der folgenden Waren (*)/die Erbringung der folgenden Dienstleistung (*)</p>
+                            
+                            <div class="form-line"></div>
+                            <div class="form-line"></div>
+                            <div class="form-line"></div>
+
+                            <div class="form-date">
+                                <span>Bestellt am (*)</span>
+                                <div class="date-line"></div>
+                                <span>/ erhalten am (*)</span>
+                                <div class="date-line"></div>
+                            </div>
+
+                            <p>Name des/der Verbraucher(s):</p>
+                            <div class="form-line"></div>
+
+                            <p>Anschrift des/der Verbraucher(s):</p>
+                            <div class="form-line"></div>
+                            <div class="form-line"></div>
+
+                            <p>Unterschrift des/der Verbraucher(s) (nur bei Mitteilung auf Papier):</p>
+                            <div class="form-line"></div>
+
+                            <p>Datum:</p>
+                            <div class="form-line"></div>
+
+                            <p class="form-note">(*) Unzutreffendes streichen</p>
+                        </div>
+
+                        <div class="download-section">
+                            <a href="widerrufsformular.pdf" class="download-button" download>
+                                <i class="bi bi-download"></i>
+                                Widerrufsformular als PDF herunterladen
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 

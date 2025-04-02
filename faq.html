@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ & Hilfe | Geuther</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --geuther-primary: #42584A;
+            --geuther-secondary: #D4C4B7;
+            --geuther-text: #333333;
+            --geuther-bg: #FFFFFF;
+            --geuther-accent: #F5F1ED;
+            --geuther-border: #E5E5E5;
+        }
+
+        .geuther-faq {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--geuther-text);
+            padding: 0;
+        }
+
+        .geuther-faq .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .geuther-faq .hero-section {
+            position: relative;
+            padding: 4rem 0 8rem;
+            background-color: var(--geuther-accent);
+            text-align: center;
+            overflow: hidden;
+            margin-bottom: 0;
+        }
+
+        .geuther-faq .icon-boxes-container {
+            background: transparent;
+            position: relative;
+            z-index: 4;
+            margin-bottom: 2rem;
+        }
+
+        .geuther-faq .icon-boxes {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 1.5rem;
+            margin: -4rem auto 0;
+            position: relative;
+            z-index: 4;
+            padding: 0 1rem;
+            max-width: 1200px;
+        }
+
+        .geuther-faq .icon-box {
+            background: var(--geuther-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid var(--geuther-border);
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--geuther-text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .geuther-faq .icon-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            background: var(--geuther-accent);
+        }
+
+        .geuther-faq .icon-box i {
+            font-size: 1.8rem;
+            color: var(--geuther-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .geuther-faq .icon-box-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        @media (max-width: 1200px) {
+            .geuther-faq .icon-boxes {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .geuther-faq .icon-boxes {
+                grid-template-columns: repeat(2, 1fr);
+                margin: -2rem auto 2rem;
+            }
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://www.geuther.de/thumbnail/62/f2/83/1705518704/1155_nest_in_the_clouds_005_800x800.webp') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .hero-section > .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .hero-content {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            color: var(--geuther-primary);
+        }
+
+        .hero-section h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: var(--geuther-primary);
+        }
+
+        .hero-section p {
+            font-size: 1.1rem;
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+            color: var(--geuther-text);
+        }
+
+        .categories-grid {
+            padding-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .category-section {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            padding: 2rem;
+            background: var(--geuther-bg);
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .category-info {
+            padding: 2rem;
+            background: var(--geuther-accent);
+            border-radius: 8px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .category-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+            transition: transform 0.3s ease;
+        }
+
+        .category-image:hover {
+            transform: scale(1.05);
+        }
+
+        .category-info h3 {
+            color: var(--geuther-primary);
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .category-info p {
+            font-size: 1rem;
+            color: var(--geuther-text);
+            line-height: 1.6;
+        }
+
+        .category-faq {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .faq-section {
+            background: var(--geuther-bg);
+            border-radius: 12px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .accordion-header-faq {
+            width: 100%;
+            text-align: left;
+            padding: 1.5rem;
+            background: var(--geuther-accent);
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        .accordion-header-faq:hover {
+            background: var(--geuther-secondary);
+        }
+
+        .accordion-content-faq {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .accordion-content-faq.open {
+            max-height: 1000px;
+            padding: 1.5rem;
+        }
+
+        .sub-header-faq {
+            width: 100%;
+            text-align: left;
+            padding: 1rem;
+            background: none;
+            border: none;
+            border-bottom: 1px solid var(--geuther-border);
+            font-size: 1rem;
+            color: var(--geuther-text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
+            margin: 0;
+        }
+
+        .sub-header-faq:hover {
+            color: var(--geuther-primary);
+            background-color: var(--geuther-accent);
+        }
+
+        .sub-header-faq.active {
+            color: var(--geuther-primary);
+            background-color: var(--geuther-accent);
+            font-weight: 500;
+        }
+
+        .toggle-icon-faq {
+            flex-shrink: 0;
+            font-size: 1.2rem;
+            line-height: 1;
+            padding: 0 0.5rem;
+        }
+
+        .sub-content-faq {
+            padding: 0;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background-color: var(--geuther-accent);
+            visibility: hidden;
+            transform-origin: top;
+            margin: 0;
+        }
+
+        .sub-content-faq.open {
+            max-height: 1000px;
+            opacity: 1;
+            padding: 1.5rem;
+            margin: 0.5rem 0;
+            background-color: var(--geuther-accent);
+            border-radius: 8px;
+            visibility: visible;
+        }
+
+        .sub-content-faq p {
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .contact-section {
+            background-color: var(--geuther-accent);
+            padding: 4rem 0;
+            margin: 4rem 0 0;
+            position: relative;
+            overflow: hidden;
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            margin-right: calc(-50vw + 50%);
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://www.geuther.de/media/17/e2/ce/1706262480/2263_2261_NA_MB_03.webp') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .contact-section > .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .contact-section h2 {
+            color: var(--geuther-primary);
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 0 auto;
+        }
+
+        .contact-card {
+            background: var(--geuther-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid var(--geuther-border);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            color: var(--geuther-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-card h3 {
+            color: var(--geuther-primary);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .contact-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--geuther-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-link {
+            color: var(--geuther-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-weight: 500;
+        }
+
+        .contact-link:hover {
+            color: var(--geuther-secondary);
+            transform: translateY(-2px);
+        }
+
+        .contact-hours {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--geuther-text);
+            padding-top: 1rem;
+            border-top: 1px solid var(--geuther-border);
+        }
+
+        @media (max-width: 992px) {
+            .contact-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-section {
+                padding: 2rem 0;
+            }
+        }
+
+        .responsive-table-faq {
+            width: 100%;
+            margin: 1rem 0;
+            border-collapse: collapse;
+        }
+
+        .responsive-table-faq .table-row {
+            border-bottom: 1px solid var(--geuther-border);
+        }
+
+        .responsive-table-faq .table-cell {
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        .responsive-table-faq .header {
+            background: var(--geuther-accent);
+            font-weight: 600;
+        }
+
+        @media (max-width: 992px) {
+            .hero-section {
+                padding: 4rem 0 6rem;
+            }
+
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 3rem 0 6rem;
+            }
+
+            .hero-section h1 {
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+            }
+
+            .hero-section p {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+
+            .geuther-faq .icon-boxes {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+                margin: -3rem auto 2rem;
+                padding: 0 1rem;
+            }
+
+            .geuther-faq .icon-box {
+                padding: 1rem;
+            }
+
+            .geuther-faq .icon-box i {
+                font-size: 1.5rem;
+                margin-bottom: 0.25rem;
+            }
+
+            .geuther-faq .icon-box-title {
+                font-size: 0.85rem;
+            }
+
+            .geuther-faq .category-section {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 1.5rem;
+                margin-bottom: 2rem;
+            }
+
+            .geuther-faq .category-info {
+                padding: 1.5rem;
+            }
+
+            .geuther-faq .category-info h3 {
+                font-size: 1.2rem;
+            }
+
+            .geuther-faq .category-image {
+                height: 160px;
+            }
+
+            .geuther-faq .sub-header-faq {
+                padding: 0.75rem;
+                font-size: 0.95rem;
+                gap: 1rem;
+            }
+
+            .geuther-faq .sub-content-faq.open {
+                padding: 1rem;
+            }
+
+            .geuther-faq .sub-content-faq p {
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+
+            .geuther-faq .responsive-table-faq {
+                font-size: 0.85rem;
+            }
+
+            .geuther-faq .responsive-table-faq .table-cell {
+                padding: 0.5rem;
+            }
+
+            .geuther-faq .contact-section {
+                padding: 2rem 0;
+                margin: 2rem 0;
+            }
+
+            .geuther-faq .contact-grid {
+                gap: 1rem;
+            }
+
+            .geuther-faq .contact-card {
+                padding: 1.5rem;
+            }
+
+            .geuther-faq .contact-icon {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+
+            .geuther-faq .contact-card h3 {
+                font-size: 1.1rem;
+            }
+
+            .geuther-faq .contact-text {
+                font-size: 0.9rem;
+            }
+
+            .geuther-faq .contact-hours {
+                font-size: 0.85rem;
+                margin-top: 0.75rem;
+                padding-top: 0.75rem;
+            }
+        }
+
+        /* Tablet Optimierungen */
+        @media (min-width: 769px) and (max-width: 1200px) {
+            .geuther-faq .icon-boxes {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.25rem;
+                margin: -3rem auto 2rem;
+            }
+
+            .geuther-faq .category-section {
+                grid-template-columns: 1fr 1.5fr;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="geuther-faq">
+        <div class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">FAQ & Hilfe</h1>
+                    <p class="hero-subtitle">
+                        Hier bekommen Sie Antworten auf die am häufigsten gestellten Fragen zu allen Themen. 
+                        Finden Sie schnell und einfach die Informationen, die Sie suchen.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="icon-boxes-container">
+            <div class="icon-boxes">
+                <a href="#schutzgitter" class="icon-box" onclick="scrollToSection('schutzgitter')">
+                    <i class="bi bi-door-open"></i>
+                    <h3 class="icon-box-title">Schutzgitter</h3>
+                </a>
+                <a href="#laufgitter" class="icon-box" onclick="scrollToSection('laufgitter')">
+                    <i class="bi bi-grid-3x3"></i>
+                    <h3 class="icon-box-title">Laufgitter</h3>
+                </a>
+                <a href="#hochstuehle" class="icon-box" onclick="scrollToSection('hochstuehle')">
+                    <i class="bi bi-easel"></i>
+                    <h3 class="icon-box-title">Hochstühle</h3>
+                </a>
+                <a href="#bettschutzgitter" class="icon-box" onclick="scrollToSection('bettschutzgitter')">
+                    <i class="bi bi-shield-lock"></i>
+                    <h3 class="icon-box-title">Bettschutzgitter</h3>
+                </a>
+                <a href="#babybetten" class="icon-box" onclick="scrollToSection('babybetten')">
+                    <i class="bi bi-cloud-moon"></i>
+                    <h3 class="icon-box-title">Babybetten</h3>
+                </a>
+                <a href="#wickelregale" class="icon-box" onclick="scrollToSection('wickelregale')">
+                    <i class="bi bi-basket2"></i>
+                    <h3 class="icon-box-title">Wickelregale</h3>
+                </a>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="categories-grid">
+                <!-- Schutzgitter -->
+                <div class="category-section" id="schutzgitter">
+                    <div class="category-info">
+                        <img src="https://www.geuther.de/media/ba/68/ae/1706262351/2273_NA_MB_10.webp" 
+                             alt="Geuther Schutzgitter" 
+                             class="category-image"
+                             loading="lazy">
+                        <h3>Schutzgitter</h3>
+                        <p>Informationen zu Maßen, Installation und Sicherheit</p>
+                    </div>
+                    <div class="category-faq">
+                        <div class="subsection-faq">
+                            <button class="sub-header-faq">
+                                Wie sind die Durchgangsbreiten der Schutzgitter?
+                                <span class="toggle-icon-faq">+</span>
+                            </button>
+                            <div class="sub-content-faq">
+                                <div class="responsive-table-faq">
+                                    <div class="table-row header">
+                                        <div class="table-cell">Schutzgitter</div>
+                                        <div class="table-cell">Durchgangsbreite</div>
+                                    </div>
+                                    <div class="table-row">
+                                        <div class="table-cell">SET2791*⁵</div>
+                                        <div class="table-cell">497mm</div>
+                                    </div>
+                                    <div class="table-row">
+                                        <div class="table-cell">SET2792*⁵ SET2793*⁵</div>
+                                        <div class="table-cell">566mm</div>
+                                    </div>
+                                    <div class="table-row">
+                                        <div class="table-cell">SET4791*⁵</div>
+                                        <div class="table-cell">435mm</div>
+                                    </div>
+                                    <div class="table-row">
+                                        <div class="table-cell">SET4792*⁵ SET4793*⁵</div>
+                                        <div class="table-cell">566mm</div>
+                                    </div>
+                                    <div class="table-row">
+                                        <div class="table-cell">2713</div>
+                                        <div class="table-cell">522mm</div>
+                                    </div>
+                                    <div class="table-row">
+                                        <div class="table-cell">SET4712*⁵</div>
+                                        <div class="table-cell">522mm</div>
+                                    </div>
+                                    <div class="table-row">
+                                        <div class="table-cell">2768</div>
+                                        <div class="table-cell">548mm</div>
+                                    </div>
+                                </div>
+                                <p>*⁵ gültig für alle SET-Artikel, da sie über das gleiche Schutzgitter verfügen</p>
+                            </div>
+                        </div>
+
+                        <div class="subsection-faq">
+                            <button class="sub-header-faq">
+                                Sind die Tür- und Treppenschutzgitter für den Außenbereich geeignet?
+                                <span class="toggle-icon-faq">+</span>
+                            </button>
+                            <div class="sub-content-faq">
+                                <p>Nein, unsere Tür- und Treppenschutzgitter sind nicht wetterbeständig und daher ausschließlich für den Innenbereich konzipiert.</p>
+                            </div>
+                        </div>
+
+                        <div class="subsection-faq">
+                            <button class="sub-header-faq">
+                                Wie groß sollte der Abstand des hölzernen Konfigurationsgitters zu einer Wärmequelle sein?
+                                <span class="toggle-icon-faq">+</span>
+                            </button>
+                            <div class="sub-content-faq">
+                                <p>Der Abstand sollte mindestens 80 cm betragen, um Schäden durch Hitzeeinwirkung zu vermeiden.</p>
+                            </div>
+                        </div>
+
+                        <div class="subsection-faq">
+                            <button class="sub-header-faq">
+                                Welchen Abstand haben die Sprossen Ihrer Laufgitter, Kinderbetten sowie Tür- und Treppenschutzgitter?
+                                <span class="toggle-icon-faq">+</span>
+                            </button>
+                            <div class="sub-content-faq">
+                                <p>Der Abstand der Sprossen beträgt je nach Produkt ein lichtes Maß von 45 mm bis 65 mm.</p>
+                            </div>
+                        </div>
+
+                        <div class="subsection-faq">
+                            <button class="sub-header-faq">
+                                Für welche Schutzgitter ist die Y-Spindel geeignet?
+                                <span class="toggle-icon-faq">+</span>
+                            </button>
+                            <div class="sub-content-faq">
+                                <p>Für alle Easylock-Modelle der Serie 2791+, 2792+, 2793+, 4791+, 4792+, 4793+.</p>
+                            </div>
+                        </div>
+
+                        <div class="subsection-faq">
+                            <button class="sub-header-faq">
+                                Mein Schutzgitter wackelt nach einiger Zeit im Gebrauch. Was kann ich tun?
+                                <span class="toggle-icon-faq">+</span>
+                            </button>
+                            <div class="sub-content-faq">
+                                <p>Prüfen Sie regelmäßig den festen Sitz, den Zustand und die Funktion der Verschlüsse. Schrauben regelmäßig nachziehen.</p>
+                            </div>
+                        </div>
+
+                        <div class="subsection-faq">
+                            <button class="sub-header-faq">
+                                Für wen sind die Schutzgitter bestimmt?
+                                <span class="toggle-icon-faq">+</span>
+                            </button>
+                            <div class="sub-content-faq">
+                                <p>Die Schutzgitter sind für Kinder bis zu 24 Monate geeignet, wobei dies nur ein Richtwert ist.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Laufgitter -->
+                <div class="category-section" id="laufgitter">
+                    <div class="category-info">
+                        <img src="https://www.geuther.de/media/7d/fb/2c/1706262551/2232_2234_NA_MB_23.webp" 
+                             alt="Geuther Laufgitter" 
+                             class="category-image"
+                             loading="lazy">
+                        <h3>Laufgitter</h3>
+                        <p>Alles über Materialien, Pflege und Mobilität</p>
+                    </div>
+                    <div class="category-faq">
+                        <div class="subsection-faq">
+                            <button class="sub-header-faq">
+                                Welche Materialien werden für die Bodenplatten verwendet?
+                                <span class="toggle-icon-faq">+</span>
+                            </button>
+                            <div class="sub-content-faq">
+                                <p>Geuther setzt auf schadstofffreie Materialien die für Babys geeignet sind. Der Boden ist mit einer PVC-Folie beschichtet, was eine einfache Reinigung ermöglicht.</p>
+                            </div>
+                        </div>
+
+                        <div class="subsection-faq">
+                            <button class="sub-header-faq">
+                                Ist ein Geuther-Laufstall höhenverstellbar?
+                                <span class="toggle-icon-faq">+</span>
+                            </button>
+                            <div class="sub-content-faq">
+                                <p>Viele unserer Modelle verfügen über verschiedene Höhenstufen zur Anpassung an das Alter und die Entwicklung des Kindes.</p>
+                            </div>
+                        </div>
+
+                        <div class="subsection-faq">
+                            <button class="sub-header-faq">
+                                Gibt es passende Laufgittereinlagen für die Laufgitter?
+                                <span class="toggle-icon-faq">+</span>
+                            </button>
+                            <div class="sub-content-faq">
+                                <p>Für unsere Laufgitter bieten wir passende Laufgittereinlagen sowie Nestchen an.</p>
+                            </div>
+                        </div>
+
+                        <div class="subsection-faq">
+                            <button class="sub-header-faq">
+                                Sind die Laufgitter mobil?
+                                <span class="toggle-icon-faq">+</span>
+                            </button>
+                            <div class="sub-content-faq">
+                                <p>Viele Modelle sind mit Teppich-Rollen ausgestattet, um sie einfach zu bewegen. Rollen lassen sich in der Regel feststellen. Beachten Sie hier, dass wir ausschließlich Teppich-rollen verwenden.</p>
+                            </div>
+                        </div>
+
+                        <div class="subsection-faq">
+                            <button class="sub-header-faq">
+                                Wie reinige ich mein Geuther-Laufgitter?
+                                <span class="toggle-icon-faq">+</span>
+                            </button>
+                            <div class="sub-content-faq">
+                                <p>Für die Reinigung des Laufgitter ist ausschließlich warmes Wasser empfohlen. Vermeiden Sie Reinigungsmittel, da diese meist sehr aggressiv sind und die Farben angreifen.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hochstühle -->
+                <div class="category-section" id="hochstuehle">
+                    <div class="category-info">
+                        <img src="https://www.geuther.de/media/09/76/7c/1706262415/2359_MB_02.webp" 
+                             alt="Geuther Hochstuhl" 
+                             class="category-image"
+                             loading="lazy">
+                        <h3>Hochstühle</h3>
+                        <p>Tipps zur Auswahl und Sicherheit</p>
+                    </div>
+                    <div class="category-faq">
+                        <div class="subsection-faq">
+                            <button class="sub-header-faq">
+                                Welcher Hochstuhl ist der richtige für mein Kind?
+                                <span class="toggle-icon-faq">+</span>
+                            </button>
+                            <div class="sub-content-faq">
+                                <p>Wir bieten verschiedene Modelle an. Besonders empfehlenswert sind die Modelle "Syt" und "Filou up". Diese Hochstühle sind mitwachsend und lassen sich in der Höhe und Tiefe anpassen, um Ihrem Kind jederzeit den besten Komfort und die optimale Unterstützung zu bieten. Achten Sie darauf, das Modell entsprechend dem Alter und den individuellen Bedürfnissen Ihres Kindes auszuwählen.</p>
+                            </div>
+                        </div>
+
+                        <div class="subsection-faq">
+                            <button class="sub-header-faq">
+                                Kann ich ein extra Ess- und Spielbrett als Zubehör erwerben?
+                                <span class="toggle-icon-faq">+</span>
+                            </button>
+                            <div class="sub-content-faq">
+                                <p>Für unseren Hochstuhl Syt bieten wir das Ess- und Spielbrett an. In verschiedenen Farben passend zu Ihrem Hochstuhl und Ihrer Einrichtung.</p>
+                            </div>
+                        </div>
+
+                        <div class="subsection-faq">
+                            <button class="sub-header-faq">
+                                Bis zu welchem Alter lassen sich Hochstühle nutzen?
+                                <span class="toggle-icon-faq">+</span>
+                            </button>
+                            <div class="sub-content-faq">
+                                <p>Geuther-Hochstühle sind in der Regel für Kinder ab etwa 6 Monaten geeignet, sobald sie selbstständig sitzen können. Je nach Modell können sie bis zu einem Alter von 3 bis 5 Jahren genutzt werden – einige Modelle sogar darüber hinaus. Diese Hochstühle sind auf eine maximale Belastung von 85 kg ausgelegt, sodass sie auch in späteren Jahren noch Verwendung finden können. Viele Geuther-Hochstühle bieten zusätzlich verstellbare Fußstützen und abnehmbare Tabletts, die es ermöglichen, den Hochstuhl individuell an die Bedürfnisse und das Wachstum Ihres Kindes anzupassen.</p>
+                            </div>
+                        </div>
+
+                        <div class="subsection-faq">
+                            <button class="sub-header-faq">
+                                Welche Sicherheitsfunktionen haben Geuther-Hochstühle?
+                                <span class="toggle-icon-faq">+</span>
+                            </button>
+                            <div class="sub-content-faq">
+                                <p>Sicherheitsgurte und robuste Bauweise sorgen für Stabilität und Sicherheit.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bettschutzgitter -->
+                <div class="category-section" id="bettschutzgitter">
+                    <div class="category-info">
+                        <img src="https://www.geuther.de/media/56/1d/fc/1705518565/2110_we_mb_4.webp" 
+                             alt="Geuther Bettschutzgitter" 
+                             class="category-image"
+                             loading="lazy">
+                        <h3>Bettschutzgitter</h3>
+                        <p>Details zu Montage und Kompatibilität</p>
+                    </div>
+                    <div class="category-faq">
+                        <div class="subsection-faq">
+                            <button class="sub-header-faq">
+                                Für welche Betten sind Geuther-Bettschutzgitter geeignet?
+                                <span class="toggle-icon-faq">+</span>
+                            </button>
+                            <div class="sub-content-faq">
+                                <p>Die Geuther-Bettschutzgitter sind für alle Betten mit Lattenrost geeignet. Sie sind in verschiedenen Größen erhältlich, um sich an die unterschiedlichen Bettgrößen anzupassen.</p>
+                            </div>
+                        </div>
+
+                        <div class="subsection-faq">
+                            <button class="sub-header-faq">
+                                Sind die Geuther-Bettschutzgitter klappbar?
+                                <span class="toggle-icon-faq">+</span>
+                            </button>
+                            <div class="sub-content-faq">
+                                <p>Alle unsere Bettschutzgitter sind klappbar. So können Sie das Bett schnell und bequem nutzen, ohne das Gitter ständig abmontieren zu müssen.</p>
+                            </div>
+                        </div>
+
+                        <div class="subsection-faq">
+                            <button class="sub-header-faq">
+                                Wie wird das Bettschutzgitter befestigt?
+                                <span class="toggle-icon-faq">+</span>
+                            </button>
+                            <div class="sub-content-faq">
+                                <p>Unsere Bettschutzgitter werden am Lattenrost verschraubt. Dies sorgt für eine stabile und sichere Montage. Die Montage ist sowohl einfach als auch schnell.</p>
+                            </div>
+                        </div>
+
+                        <div class="subsection-faq">
+                            <button class="sub-header-faq">
+                                Aus welchem Material besteht das Bettschutzgitter?
+                                <span class="toggle-icon-faq">+</span>
+                            </button>
+                            <div class="sub-content-faq">
+                                <p>Unser Bettschutzgitter ist aus PEFC-zertifiziertem Buchenholz hergestellt. Alle verwendeten Materialien sind für die Sicherheit und Gesundheit von Kindern bedenkenlos, sodass Sie sich keine Sorgen über mögliche schädliche Substanzen machen müssen.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Babybetten -->
+                <div class="category-section" id="babybetten">
+                    <div class="category-info">
+                        <img src="https://www.geuther.de/media/17/e2/ce/1706262480/2263_2261_NA_MB_03.webp" 
+                             alt="Geuther Babybett" 
+                             class="category-image"
+                             loading="lazy">
+                        <h3>Babybetten</h3>
+                        <p>Größen, Höhenverstellung und mehr</p>
+                    </div>
+                    <div class="category-faq">
+                        <div class="subsection-faq">
+                            <button class="sub-header-faq">
+                                Welche Größe haben die Geuther-Babybetten?
+                                <span class="toggle-icon-faq">+</span>
+                            </button>
+                            <div class="sub-content-faq">
+                                <p>Wir bieten Standardgrößen wie 60x120 cm und 70x140 cm an. Diese Größen sind ideal, um Ihrem Baby den nötigen Schlafkomfort zu bieten und sich gleichzeitig in Ihr Kinderzimmer zu integrieren. Beachten Sie bei den Größen, dass die Abmessungen bei den Babybetten nach Liegefläche erfolgt.</p>
+                            </div>
+                        </div>
+
+                        <div class="subsection-faq">
+                            <button class="sub-header-faq">
+                                Sind die Betten höhenverstellbar?
+                                <span class="toggle-icon-faq">+</span>
+                            </button>
+                            <div class="sub-content-faq">
+                                <p>Einige unserer Babybetten verfügen über eine höhenverstellbare Liegefläche, die in 2 bis 3 Stufen angepasst werden kann. Diese Funktion ermöglicht es, das Bett je nach Alter und Entwicklungsstand Ihres Babys so zu positionieren, dass es für Sie und Ihr Kind bequem und sicher ist.</p>
+                            </div>
+                        </div>
+
+                        <div class="subsection-faq">
+                            <button class="sub-header-faq">
+                                Gibt es mitwachsende Modelle?
+                                <span class="toggle-icon-faq">+</span>
+                            </button>
+                            <div class="sub-content-faq">
+                                <p>Einige unserer Babybetten sind mitwachsende Modelle, die sich in Juniorbetten umwandeln lassen. So können Sie das Bett über die ersten Jahre hinaus verwenden und es an die Bedürfnisse Ihres wachsenden Kindes anpassen.</p>
+                            </div>
+                        </div>
+
+                        <div class="subsection-faq">
+                            <button class="sub-header-faq">
+                                Welche Matratzen passen in Geuther-Betten?
+                                <span class="toggle-icon-faq">+</span>
+                            </button>
+                            <div class="sub-content-faq">
+                                <p>Die Dicke der Matratze muss so gewählt werden, dass die senkrechte Innenhöhe (Matratzenoberfläche bis Oberkante des Bettrahmen) in der höchsten Stellung des Bettbodens mindestens 200 mm beträgt.</p>
+                            </div>
+                        </div>
+
+                        <div class="subsection-faq">
+                            <button class="sub-header-faq">
+                                Wie lange darf ich eine Krippe/Wiege nutzen?
+                                <span class="toggle-icon-faq">+</span>
+                            </button>
+                            <div class="sub-content-faq">
+                                <p>Wenn das Kind sich aufsetzen, knien oder sich selbst hochziehen kann, darf die Krippe/Wiege für dieses Kind nicht mehr benutzt werden.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wickelregale -->
+                <div class="category-section" id="wickelregale">
+                    <div class="category-info">
+                        <img src="https://www.geuther.de/thumbnail/6a/48/f7/1705518642/geuther-wickelkommode-1155wkxl-31_800x800.webp" 
+                             alt="Geuther Wickelregal" 
+                             class="category-image"
+                             loading="lazy">
+                        <h3>Wickelregale</h3>
+                        <p>Montage und Sicherheitshinweise</p>
+                    </div>
+                    <div class="category-faq">
+                        <div class="subsection-faq">
+                            <button class="sub-header-faq">
+                                Sind Geuther-Wickelregale platzsparend?
+                                <span class="toggle-icon-faq">+</span>
+                            </button>
+                            <div class="sub-content-faq">
+                                <p>Ja, viele Modelle wie das "Wand Wickelregal Wicki" sind klappbar und ideal für kleine Räume.</p>
+                            </div>
+                        </div>
+
+                        <div class="subsection-faq">
+                            <button class="sub-header-faq">
+                                Welche Gewichtslimitierungen gibt es?
+                                <span class="toggle-icon-faq">+</span>
+                            </button>
+                            <div class="sub-content-faq">
+                                <p>Die meisten Wickelregale sind bis zu einem Gewicht von 11kg oder 15kg belastbar. Beachten Sie hierzu unbedingt die Information in der Aufbauanleitung!</p>
+                            </div>
+                        </div>
+
+                        <div class="subsection-faq">
+                            <button class="sub-header-faq">
+                                Gibt es passende Wickelauflagen?
+                                <span class="toggle-icon-faq">+</span>
+                            </button>
+                            <div class="sub-content-faq">
+                                <p>Für unsere Pflegeprodukte - Wickelregale bieten wir passende Wickelauflagen an.</p>
+                            </div>
+                        </div>
+
+                        <div class="subsection-faq">
+                            <button class="sub-header-faq">
+                                Wie wird das Regal an der Wand befestigt?
+                                <span class="toggle-icon-faq">+</span>
+                            </button>
+                            <div class="sub-content-faq">
+                                <p>Das Wand-Wickelregal Wicki muss fest an der Wand befestigt sein, damit es sich verwendet werden kann. Für die Wand, an der das Wand-Wickelregal montiert werden soll, sind Befestigungen zu verwenden. Bei festem Mauerwerk eignet sich das mitgelieferte Montagematerial. Für Trockenbauwände oder Porenbeton verwenden Sie bitte Spezialdübel aus dem Fachhandel.</p>
+                            </div>
+                        </div>
+
+                        <div class="subsection-faq">
+                            <button class="sub-header-faq">
+                                Sind die Wickelregale mobil?
+                                <span class="toggle-icon-faq">+</span>
+                            </button>
+                            <div class="sub-content-faq">
+                                <p>Einige unserer Modelle verfügen über Rollen. Beachten Sie, dass die Wickeleinrichtung dann nur verwendet werden darf, wenn diese gesperrt sind.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-section">
+                <div class="container">
+                    <h2>Lassen Sie uns Ihnen weiterhelfen!</h2>
+                    <div class="contact-grid">
+                        <div class="contact-card">
+                            <i class="bi bi-telephone contact-icon"></i>
+                            <h3>Telefonischer Support</h3>
+                            <p class="contact-text">
+                                <a href="tel:+4959056799050" class="contact-link">+49 (0) 590 567 990 50</a>
+                            </p>
+                            <p class="contact-hours">
+                                Montag - Freitag<br>
+                                08:00 - 15:30 Uhr
+                            </p>
+                        </div>
+
+                        <div class="contact-card">
+                            <i class="bi bi-whatsapp contact-icon"></i>
+                            <h3>WhatsApp Support</h3>
+                            <p class="contact-text">
+                                <a href="https://wa.me/491628385527" target="_blank" class="contact-link">+49 162 8385527</a>
+                            </p>
+                            <p class="contact-hours">
+                                Montag - Freitag<br>
+                                08:00 - 15:30 Uhr
+                            </p>
+                        </div>
+
+                        <div class="contact-card">
+                            <i class="bi bi-envelope contact-icon"></i>
+                            <h3>E-Mail Support</h3>
+                            <p class="contact-text">Nutzen Sie unser Kontaktformular für eine schnelle Bearbeitung Ihrer Anfrage.</p>
+                            <p class="contact-text">
+                                <a href="/support.html#kontaktformular" class="contact-link">Zum Kontaktformular</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const headers = document.querySelectorAll('.accordion-header-faq');
+            headers.forEach(header => {
+                header.addEventListener('click', () => {
+                    const content = header.nextElementSibling;
+                    const icon = header.querySelector('.toggle-icon-faq');
+                    content.classList.toggle('open');
+                    icon.textContent = content.classList.contains('open') ? '-' : '+';
+                });
+            });
+
+            const subHeaders = document.querySelectorAll('.sub-header-faq');
+            subHeaders.forEach(subHeader => {
+                subHeader.addEventListener('click', () => {
+                    const subContent = subHeader.nextElementSibling;
+                    const wasOpen = subContent.classList.contains('open');
+                    
+                    // Schließe alle anderen offenen Inhalte
+                    document.querySelectorAll('.sub-content-faq').forEach(content => {
+                        if (content !== subContent) {
+                            content.style.maxHeight = '0';
+                            content.style.padding = '0';
+                            content.style.margin = '0';
+                            content.classList.remove('open');
+                        }
+                    });
+                    
+                    document.querySelectorAll('.sub-header-faq').forEach(header => {
+                        if (header !== subHeader) {
+                            header.classList.remove('active');
+                            header.querySelector('.toggle-icon-faq').textContent = '+';
+                        }
+                    });
+                    
+                    if (!wasOpen) {
+                        subContent.style.maxHeight = '1000px';
+                        subContent.style.padding = '1.5rem';
+                        subContent.style.margin = '0.5rem 0';
+                        subContent.classList.add('open');
+                        subHeader.classList.add('active');
+                        subHeader.querySelector('.toggle-icon-faq').textContent = '-';
+                    } else {
+                        subContent.style.maxHeight = '0';
+                        subContent.style.padding = '0';
+                        subContent.style.margin = '0';
+                        subContent.classList.remove('open');
+                        subHeader.classList.remove('active');
+                        subHeader.querySelector('.toggle-icon-faq').textContent = '+';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

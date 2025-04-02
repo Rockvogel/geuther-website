@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unsere Geschichte | Geuther</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --geuther-primary: #42584A;
+            --geuther-secondary: #D4C4B7;
+            --geuther-text: #333333;
+            --geuther-bg: #FFFFFF;
+            --geuther-accent: #F5F1ED;
+            --geuther-border: #E5E5E5;
+        }
+
+        .geuther-geschichte {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--geuther-text);
+        }
+
+        .geuther-geschichte .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Hero Section */
+        .geuther-geschichte .hero-section {
+            position: relative;
+            padding: 4rem 0 8rem;
+            background-color: var(--geuther-accent);
+            text-align: center;
+            overflow: hidden;
+            margin-bottom: 0;
+        }
+
+        .geuther-geschichte .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://www.geuther.de/thumbnail/f1/d4/86/1710529191/2420_MB_800x800.webp') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .geuther-geschichte .hero-section > .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .geuther-geschichte .hero-content {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            color: var(--geuther-primary);
+        }
+
+        .geuther-geschichte .hero-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: var(--geuther-primary);
+        }
+
+        .geuther-geschichte .hero-subtitle {
+            font-size: 1.1rem;
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+            color: var(--geuther-text);
+        }
+
+        /* Icon Boxes */
+        .geuther-geschichte .icon-boxes {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin: -4rem auto 4rem;
+            position: relative;
+            z-index: 4;
+            padding: 0 1rem;
+            max-width: 1200px;
+        }
+
+        .geuther-geschichte .icon-box {
+            background: var(--geuther-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid var(--geuther-border);
+        }
+
+        .geuther-geschichte .icon-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        .geuther-geschichte .icon-box i {
+            font-size: 2rem;
+            color: var(--geuther-primary);
+            margin-bottom: 1rem;
+        }
+
+        .geuther-geschichte .icon-box-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .geuther-geschichte .icon-box-text {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: var(--geuther-text);
+        }
+
+        /* Content Sections */
+        .geuther-geschichte .content-section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .geuther-geschichte .content-section:nth-child(even) {
+            background-color: var(--geuther-accent);
+        }
+
+        .geuther-geschichte .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .geuther-geschichte .section-content {
+            max-width: 600px;
+        }
+
+        /* Bildpositionierung basierend auf Sektion */
+        .geuther-geschichte .content-section:nth-child(odd) .content-grid {
+            grid-template-areas: "text image";
+        }
+
+        .geuther-geschichte .content-section:nth-child(even) .content-grid {
+            grid-template-areas: "image text";
+        }
+
+        .geuther-geschichte .section-content {
+            grid-area: text;
+        }
+
+        .geuther-geschichte .section-image {
+            grid-area: image;
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .geuther-geschichte .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 2rem;
+        }
+
+        .geuther-geschichte .section-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .geuther-geschichte .section-image:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Link Section */
+        .geuther-geschichte .link-section {
+            background: var(--geuther-accent);
+            padding-bottom: 6rem;
+        }
+
+        .geuther-geschichte .link-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .geuther-geschichte .link-card {
+            background: var(--geuther-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid var(--geuther-border);
+        }
+
+        .geuther-geschichte .link-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        .geuther-geschichte .link-card i {
+            font-size: 2rem;
+            color: var(--geuther-primary);
+            margin-bottom: 1rem;
+        }
+
+        .geuther-geschichte .link-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .geuther-geschichte .link-text {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: var(--geuther-text);
+            margin-bottom: 1.5rem;
+        }
+
+        .geuther-geschichte .link-button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--geuther-primary);
+            color: var(--geuther-bg);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .geuther-geschichte .link-button:hover {
+            background-color: var(--geuther-secondary);
+            color: var(--geuther-primary);
+            transform: translateY(-2px);
+        }
+
+        /* Mobile Optimierung */
+        @media (max-width: 992px) {
+            .geuther-geschichte .hero-section {
+                padding: 4rem 0 6rem;
+            }
+
+            .geuther-geschichte .hero-title {
+                font-size: 2rem;
+            }
+
+            .geuther-geschichte .content-grid {
+                grid-template-columns: 1fr;
+                grid-template-areas: "image" "text";
+                gap: 2rem;
+            }
+
+            .geuther-geschichte .section-content {
+                max-width: 100%;
+            }
+
+            .geuther-geschichte .icon-boxes {
+                grid-template-columns: repeat(2, 1fr);
+                margin: -3rem auto 3rem;
+            }
+
+            .geuther-geschichte .link-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .geuther-geschichte .section-image {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .geuther-geschichte .hero-section {
+                padding: 3rem 0 5rem;
+            }
+
+            .geuther-geschichte .hero-title {
+                font-size: 1.8rem;
+            }
+
+            .geuther-geschichte .content-section {
+                padding: 4rem 0;
+            }
+
+            .geuther-geschichte .section-title {
+                font-size: 1.8rem;
+            }
+
+            .geuther-geschichte .icon-boxes {
+                grid-template-columns: 1fr;
+                margin: -2rem auto 2rem;
+                gap: 1rem;
+            }
+
+            .geuther-geschichte .link-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Mobile Optimierung für Content Grid */
+            .geuther-geschichte .content-grid {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .geuther-geschichte .content-grid .section-image {
+                order: -1;
+                margin-bottom: 2rem;
+            }
+
+            .geuther-geschichte .section-image {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="geuther-geschichte">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Geuther, ein Ausblick in die Zukunft</h1>
+                    <p class="hero-subtitle">
+                        Ein deutsches Traditionsunternehmen seit 1881 - Qualität und Sicherheit für Generationen
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="icon-boxes">
+            <div class="icon-box">
+                <i class="bi bi-clock-history"></i>
+                <h3 class="icon-box-title">Tradition</h3>
+                <p class="icon-box-text">Seit 1881 Ihr verlässlicher Partner</p>
+            </div>
+            <div class="icon-box">
+                <i class="bi bi-shield-check"></i>
+                <h3 class="icon-box-title">Sicherheit</h3>
+                <p class="icon-box-text">Höchste Standards für Ihre Kinder</p>
+            </div>
+            <div class="icon-box">
+                <i class="bi bi-award"></i>
+                <h3 class="icon-box-title">Qualität</h3>
+                <p class="icon-box-text">Zertifizierte Spitzenqualität</p>
+            </div>
+            <div class="icon-box">
+                <i class="bi bi-globe"></i>
+                <h3 class="icon-box-title">Global</h3>
+                <p class="icon-box-text">Weltweite Präsenz</p>
+            </div>
+        </div>
+
+        <!-- Ein Vermächtnis -->
+        <section class="content-section">
+            <div class="container">
+                <div class="content-grid">
+                    <div class="section-content">
+                        <h2 class="section-title">Ein Vermächtnis</h2>
+                        <p class="section-text">
+                            Die Geschichte der Marke Geuther geht auf das Jahr 1881 zurück, als Heinrich Geuther 
+                            in Bayern mit der Produktion von Korbwaren begann. Mit der Umstellung auf Kindermöbel 
+                            in den 1960er Jahren hat die Marke ihr Sortiment in den letzten sechs Jahrzehnten 
+                            kontinuierlich erweitert, stets mit dem Fokus, sichere und hochwertige Babymöbel mit 
+                            schönen und funktionalen Designs herzustellen.
+                        </p>
+                        <p class="section-text">
+                            Unter neuer Führung weitet Geuther derzeit seine globale Präsenz über Europa hinaus aus.
+                        </p>
+                    </div>
+                    <img src="https://www.geuther.de/thumbnail/f1/d4/86/1710529191/2420_MB_800x800.webp" 
+                         alt="Geuther Tradition" 
+                         class="section-image">
+                </div>
+            </div>
+        </section>
+
+        <!-- Das Leben mit Kindern -->
+        <section class="content-section">
+            <div class="container">
+                <div class="content-grid">
+                    <div class="section-content">
+                        <h2 class="section-title">Das Leben mit Kindern sicher gestalten</h2>
+                        <p class="section-text">
+                            Bei Geuther's ist es nicht nur eine Mission, den Alltag mit Kindern zu vereinfachen; 
+                            Unser umfangreiches Portfolio spiegelt dieses Engagement wider. Ganz gleich, ob es sich 
+                            um einen mitwachsenden Hochstuhl, ein wandelbares Kinderbett oder einen höhenverstellbaren 
+                            Laufstall handelt, bei jedem Produkt stehen Anpassungsfähigkeit und Sicherheit im 
+                            Vordergrund, sodass sich Familien ganz auf sich konzentrieren können.
+                        </p>
+                    </div>
+                    <img src="https://www.geuther.de/thumbnail/74/e3/f9/1706513328/Article_ttRYK1StMgsCaEP_800x800.webp" 
+                         alt="Geuther Kindermöbel" 
+                         class="section-image">
+                </div>
+            </div>
+        </section>
+
+        <!-- Sicherheit und Qualität -->
+        <section class="content-section">
+            <div class="container">
+                <div class="content-grid">
+                    <div class="section-content">
+                        <h2 class="section-title">Kompromisslose Sicherheit, langlebige Qualität</h2>
+                        <p class="section-text">
+                            Bei Geuther steht Sicherheit an erster Stelle. Alle Produkte entsprechen den europäischen 
+                            und US-amerikanischen Sicherheitsstandards und werden intern und von unabhängigen 
+                            Instituten strengen Tests unterzogen, die zu Zertifizierungen wie dem prestigeträchtigen 
+                            GS-Zeichen führen.
+                        </p>
+                        <p class="section-text">
+                            Außergewöhnliche Qualität steht im Mittelpunkt: natürliche und langlebige Materialien, 
+                            viel Liebe zum Detail und anpassungsfähige/ergonomische Designs.
+                        </p>
+                    </div>
+                    <img src="https://www.geuther.de/media/8c/82/75/1705518661/1111ko_na_121_mb_3.webp" 
+                         alt="Geuther Qualität" 
+                         class="section-image">
+                </div>
+            </div>
+        </section>
+
+        <!-- Nachhaltigkeit -->
+        <section class="content-section">
+            <div class="container">
+                <div class="content-grid">
+                    <div class="section-content">
+                        <h2 class="section-title">Nachhaltigkeit als treibende Kraft</h2>
+                        <p class="section-text">
+                            Geuther engagiert sich für eine nachhaltige Zukunft und setzt auf natürliche Materialien 
+                            wie die Verwendung von hochwertigem europäischem Buchenholz und Farben auf Wasserbasis 
+                            sowie auf umweltfreundliche Produktionsmethoden.
+                        </p>
+                        <p class="section-text">
+                            Mit Zertifizierungen für nachhaltige Holzbeschaffung und der Einhaltung der BSCI-Standards 
+                            für ethische Praktiken trägt Geuther aktiv zu einer sicheren Zukunft unserer Kinder bei. 
+                            Nachhaltigkeit erstreckt sich von der Produktion bis zur Verpackung und verbindet 
+                            Innovation mit Sicherheit, um den besten Schutz für das Wachstum und Gedeihen der 
+                            Kleinen zu gewährleisten.
+                        </p>
+                    </div>
+                    <img src="https://www.geuther.de/media/17/e2/ce/1706262480/2263_2261_NA_MB_03.webp" 
+                         alt="Geuther Nachhaltigkeit" 
+                         class="section-image">
+                </div>
+            </div>
+        </section>
+
+        <!-- Link Section -->
+        <section class="link-section">
+            <div class="container">
+                <div class="link-grid">
+                    <div class="link-card">
+                        <i class="bi bi-journal-text"></i>
+                        <h3 class="link-title">Unser Blog</h3>
+                        <p class="link-text">
+                            Entdecken Sie spannende Einblicke, Tipps und Neuigkeiten rund um Kindermöbel 
+                            und Familienleben.
+                        </p>
+                        <a href="/blog" class="link-button">Zum Blog</a>
+                    </div>
+                    <div class="link-card">
+                        <i class="bi bi-tree"></i>
+                        <h3 class="link-title">Unsere Werte</h3>
+                        <p class="link-text">
+                            Erfahren Sie mehr über unsere Werte und wie wir nachhaltig die Zukunft gestalten.
+                        </p>
+                        <a href="/werte" class="link-button">Mehr erfahren</a>
+                    </div>
+                    <div class="link-card">
+                        <i class="bi bi-headset"></i>
+                        <h3 class="link-title">Support</h3>
+                        <p class="link-text">
+                            Haben Sie Fragen? Unser Support-Team steht Ihnen jederzeit mit Rat und 
+                            Tat zur Seite.
+                        </p>
+                        <a href="/support" class="link-button">Zum Support</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html> 

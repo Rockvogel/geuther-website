@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unsere Werte | Geuther</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --geuther-primary: #42584A;
+            --geuther-secondary: #D4C4B7;
+            --geuther-text: #333333;
+            --geuther-bg: #FFFFFF;
+            --geuther-accent: #F5F1ED;
+            --geuther-border: #E5E5E5;
+        }
+
+        .geuther-werte {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--geuther-text);
+        }
+
+        .geuther-werte .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Hero Section */
+        .geuther-werte .hero-section {
+            position: relative;
+            padding: 4rem 0 8rem;
+            background-color: var(--geuther-accent);
+            text-align: center;
+            overflow: hidden;
+            margin-bottom: 0;
+        }
+
+        .geuther-werte .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://www.geuther.de/thumbnail/62/f2/83/1705518704/1155_nest_in_the_clouds_005_800x800.webp') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .geuther-werte .hero-section > .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .geuther-werte .hero-content {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            color: var(--geuther-primary);
+        }
+
+        .geuther-werte .hero-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: var(--geuther-primary);
+        }
+
+        .geuther-werte .hero-subtitle {
+            font-size: 1.1rem;
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+            color: var(--geuther-text);
+        }
+
+        /* Value Sections */
+        .geuther-werte .value-section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .geuther-werte .value-section:nth-child(even) {
+            background-color: var(--geuther-accent);
+        }
+
+        .geuther-werte .value-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .geuther-werte .value-grid.reversed {
+            direction: rtl;
+        }
+
+        .geuther-werte .value-grid.reversed > * {
+            direction: ltr;
+        }
+
+        .geuther-werte .value-content {
+            max-width: 600px;
+        }
+
+        /* Bildpositionierung basierend auf Sektion */
+        .geuther-werte .value-section:nth-child(odd) .value-grid {
+            grid-template-areas: "text image";
+        }
+
+        .geuther-werte .value-section:nth-child(even) .value-grid {
+            grid-template-areas: "image text";
+        }
+
+        .geuther-werte .value-content {
+            grid-area: text;
+        }
+
+        .geuther-werte .value-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 2rem;
+        }
+
+        .geuther-werte .value-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .geuther-werte .highlight-text {
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: var(--geuther-primary);
+            margin: 2rem 0;
+            line-height: 1.6;
+        }
+
+        .geuther-werte .value-image {
+            grid-area: image;
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .geuther-werte .value-image:hover {
+            transform: translateY(-10px);
+        }
+
+        .geuther-werte .image-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .geuther-werte .image-grid img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .geuther-werte .image-grid img:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        /* Icon Boxes */
+        .geuther-werte .icon-boxes {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin: -4rem auto 4rem;
+            position: relative;
+            z-index: 4;
+            padding: 0 1rem;
+            max-width: 1200px;
+        }
+
+        .geuther-werte .icon-box {
+            background: var(--geuther-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid var(--geuther-border);
+        }
+
+        .geuther-werte .icon-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        .geuther-werte .icon-box i {
+            font-size: 2rem;
+            color: var(--geuther-primary);
+            margin-bottom: 1rem;
+        }
+
+        .geuther-werte .icon-box-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .geuther-werte .icon-box-text {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: var(--geuther-text);
+        }
+
+        /* Certification Section */
+        .geuther-werte .certification-section {
+            background: var(--geuther-accent);
+            padding: 6rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .geuther-werte .certification-content {
+            margin-bottom: 6rem;
+        }
+
+        .geuther-werte .certification-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .geuther-werte .certification-card {
+            background: var(--geuther-bg);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 1px solid var(--geuther-border);
+            transition: all 0.3s ease;
+        }
+
+        .geuther-werte .certification-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        .geuther-werte .certification-logo {
+            width: 120px;
+            height: auto;
+            margin-bottom: 1.5rem;
+        }
+
+        .geuther-werte .certification-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 1rem;
+        }
+
+        .geuther-werte .certification-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--geuther-text);
+            margin-bottom: 1.5rem;
+        }
+
+        .geuther-werte .quality-link {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: var(--geuther-primary);
+            color: var(--geuther-bg);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .geuther-werte .quality-link:hover {
+            background-color: var(--geuther-secondary);
+            color: var(--geuther-primary);
+            transform: translateY(-2px);
+        }
+
+        .geuther-werte .quality-link i {
+            margin-left: 0.75rem;
+            transition: transform 0.3s ease;
+        }
+
+        .geuther-werte .quality-link:hover i {
+            transform: translateX(5px);
+        }
+
+        .geuther-werte .materials-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .geuther-werte .material-badge {
+            background: var(--geuther-accent);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--geuther-primary);
+            border: 1px solid var(--geuther-secondary);
+        }
+
+        /* Link Section */
+        .geuther-werte .link-section {
+            padding: 0 0 6rem 0;
+            background: var(--geuther-accent);
+        }
+
+        .geuther-werte .link-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .geuther-werte .link-card {
+            background: var(--geuther-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid var(--geuther-border);
+        }
+
+        .geuther-werte .link-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        .geuther-werte .link-card i {
+            font-size: 2rem;
+            color: var(--geuther-primary);
+            margin-bottom: 1rem;
+        }
+
+        .geuther-werte .link-card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .geuther-werte .link-card-text {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: var(--geuther-text);
+        }
+
+        .geuther-werte .link-button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--geuther-primary);
+            color: var(--geuther-bg);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .geuther-werte .link-button:hover {
+            background-color: var(--geuther-secondary);
+            color: var(--geuther-primary);
+            transform: translateY(-2px);
+        }
+
+        /* Mobile Optimierung */
+        @media (max-width: 992px) {
+            .geuther-werte .hero-section {
+                padding: 4rem 0 6rem;
+            }
+
+            .geuther-werte .hero-title {
+                font-size: 2rem;
+            }
+
+            .geuther-werte .value-grid {
+                grid-template-columns: 1fr;
+                grid-template-areas: "image" "text";
+                gap: 2rem;
+            }
+
+            .geuther-werte .value-content {
+                max-width: 100%;
+            }
+
+            .geuther-werte .value-image {
+                height: 400px;
+            }
+
+            .geuther-werte .image-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .geuther-werte .icon-boxes {
+                grid-template-columns: repeat(2, 1fr);
+                margin: -3rem auto 3rem;
+            }
+
+            .geuther-werte .link-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .geuther-werte .certification-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .geuther-werte .hero-section {
+                padding: 3rem 0 5rem;
+            }
+
+            .geuther-werte .hero-title {
+                font-size: 1.8rem;
+            }
+
+            .geuther-werte .value-section {
+                padding: 4rem 0;
+            }
+
+            .geuther-werte .value-title {
+                font-size: 2rem;
+            }
+
+            .geuther-werte .highlight-text {
+                font-size: 1.2rem;
+            }
+
+            .geuther-werte .value-image {
+                height: 300px;
+            }
+
+            .geuther-werte .image-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .geuther-werte .icon-boxes {
+                grid-template-columns: 1fr;
+                margin: -2rem auto 2rem;
+                gap: 1rem;
+            }
+
+            .geuther-werte .link-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Korrektur der Bildpositionierung für mobile */
+            .geuther-werte .value-section:nth-child(odd) .value-grid,
+            .geuther-werte .value-section:nth-child(even) .value-grid {
+                grid-template-areas: "image" "text";
+            }
+
+            .geuther-werte .value-content {
+                grid-area: text;
+            }
+
+            .geuther-werte .value-image {
+                grid-area: image;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="geuther-werte">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Unsere Werte</h1>
+                    <p class="hero-subtitle">
+                        Mit Leidenschaft entwickeln wir seit über 100 Jahren hochwertige Kindermöbel, 
+                        die Familien in ihrem Alltag begleiten und Geborgenheit schenken.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="icon-boxes">
+            <div class="icon-box">
+                <i class="bi bi-shield-check"></i>
+                <h3 class="icon-box-title">Sicherheit</h3>
+                <p class="icon-box-text">Höchste Qualitätsstandards für die Sicherheit Ihrer Kinder</p>
+            </div>
+            <div class="icon-box">
+                <i class="bi bi-heart"></i>
+                <h3 class="icon-box-title">Familie</h3>
+                <p class="icon-box-text">Produkte, die das Familienleben bereichern</p>
+            </div>
+            <div class="icon-box">
+                <i class="bi bi-tree"></i>
+                <h3 class="icon-box-title">Nachhaltigkeit</h3>
+                <p class="icon-box-text">Verantwortungsvoller Umgang mit Ressourcen</p>
+            </div>
+            <div class="icon-box">
+                <i class="bi bi-stars"></i>
+                <h3 class="icon-box-title">Innovation</h3>
+                <p class="icon-box-text">Stetige Weiterentwicklung unserer Produkte</p>
+            </div>
+        </div>
+
+        <!-- Was uns antreibt -->
+        <section class="value-section">
+            <div class="container">
+                <div class="value-grid">
+                    <div class="value-content">
+                        <h2 class="value-title">Was uns antreibt</h2>
+                        <p class="highlight-text">
+                            Wir möchten den Alltag mit Kind(ern) einfach und sorgenfrei machen.
+                        </p>
+                        <p class="value-text">
+                            Unsere Produkte definieren den Maßstab und stehen für eine ausgezeichnete Qualität. 
+                            Dafür hinterfragen wir das Bestehende immer wieder aufs Neue.
+                        </p>
+                        <p class="value-text">
+                            Bewährtes Know-How und der Rohstoff Holz sind unsere Basis – kombiniert mit innovativen 
+                            Technologien, alternativen Materialien und durchdachtem Design.
+                        </p>
+                        <p class="value-text">
+                            Wir kennen unsere Zielgruppe, kümmern uns um deren Bedürfnisse genauso wie um die 
+                            Trends von morgen.
+                        </p>
+                        <p class="value-text">
+                            Unter fairen Bedingungen, durch nachhaltiges Denken und Handeln und durch ein 
+                            profitables Wachstum wollen wir die Zukunft sichern – für unsere Mitarbeiter, 
+                            unser Unternehmen und für die Kinder und Eltern von heute und morgen.
+                        </p>
+                    </div>
+                    <img src="https://www.geuther.de/thumbnail/75/68/c6/1705518647/geuther-4-in-1-cozy-do-1118bb-37_800x800.webp" 
+                         alt="Geuther Cozy" 
+                         class="value-image">
+                </div>
+            </div>
+        </section>
+
+        <!-- Kompromisslose Sicherheit -->
+        <section class="value-section">
+            <div class="container">
+                <div class="value-grid">
+                    <div class="value-content">
+                        <h2 class="value-title">Kompromisslose Sicherheit</h2>
+                        <p class="highlight-text">
+                            Auf Produkte für die Kleinsten muss in jeder Lebenslage Verlass sein.
+                        </p>
+                        <p class="value-text">
+                            Deshalb steht für uns zuverlässige Sicherheit an erster Stelle – ohne Kompromisse.
+                        </p>
+                        <p class="value-text">
+                            Unsere Produkte durchlaufen zahlreiche Tests unserer internen Qualitätssicherung und 
+                            bei unabhängigen Prüfinstituten. Und: bereits während der Entwicklung testen wir 
+                            gemeinsam mit Experten: Eltern und Kindern. Denn sie kümmern sich Tag für Tag um 
+                            ihre Kleinen und wissen, worauf es ankommt.
+                        </p>
+                    </div>
+                    <img src="https://www.geuther.de/thumbnail/f1/ca/7e/1705518703/geuther-hochstuhl-filou-up-2359-28_1920x1920.webp" 
+                         alt="Geuther Hochstuhl" 
+                         class="value-image">
+                </div>
+            </div>
+        </section>
+
+        <!-- Durchdachtes Design -->
+        <section class="value-section">
+            <div class="container">
+                <div class="value-grid">
+                    <div class="value-content">
+                        <h2 class="value-title">Durchdachtes Design</h2>
+                        <p class="highlight-text">
+                            Gutes Design bedeutet für uns mehr als nur eine ansprechende Optik.
+                        </p>
+                        <p class="value-text">
+                            Es ist die Kunst, die Bedürfnisse unserer Zielgruppe – der Familien – in den 
+                            Mittelpunkt zu stellen. Dabei fokussieren wir uns darauf, wie wir den Familienalltag 
+                            leichter, sicherer und angenehmer gestalten können.
+                        </p>
+                        <p class="value-text">
+                            Unsere Verantwortung als Hersteller von Kindermöbeln, wie Hochstühlen, Schutzgittern, 
+                            Laufgittern und Babybetten, ist es, eine Balance zwischen Sicherheit, Komfort und 
+                            Ästhetik zu finden.
+                        </p>
+                        <p class="value-text">
+                            Mit jedem Produkt, das wir entwickeln, verfolgen wir das Ziel, den Alltag mit Kindern 
+                            zu bereichern. Es geht uns nicht nur darum, Möbel zu schaffen, die nützlich sind – 
+                            wir wollen, dass unsere Produkte ein Teil des Familienlebens werden, die Freude und 
+                            Geborgenheit vermitteln.
+                        </p>
+                    </div>
+                    <img src="https://www.geuther.de/thumbnail/6a/48/f7/1705518642/geuther-wickelkommode-1155wkxl-31_800x800.webp" 
+                         alt="Geuther Wickelkommode" 
+                         class="value-image">
+                </div>
+            </div>
+        </section>
+
+        <!-- Natürlichkeit & Nachhaltigkeit -->
+        <section class="certification-section">
+            <div class="container">
+                <div class="certification-content">
+                    <h2 class="value-title">Natürlichkeit & Nachhaltigkeit</h2>
+                    <p class="highlight-text">
+                        Wir engagieren uns für die Entwicklung der sichersten, langlebigsten und 
+                        ästhetischsten Produkte für Ihr Baby.
+                    </p>
+                    <div class="certification-grid">
+                        <div class="certification-card">
+                            <h3 class="certification-title">FSC-Zertifizierung</h3>
+                            <p class="certification-text">
+                                Die FSC-Zertifizierung garantiert, dass unsere Holzprodukte aus verantwortungsvoll 
+                                bewirtschafteten Wäldern stammen. Dies unterstützt die Erhaltung der Artenvielfalt 
+                                und respektiert lokale Gemeinschaften.
+                            </p>
+                            <div class="materials-list">
+                                <span class="material-badge">Gummiholz</span>
+                                <span class="material-badge">Kiefernholz</span>
+                                <span class="material-badge">MDF</span>
+                            </div>
+                        </div>
+                        <div class="certification-card">
+                            <h3 class="certification-title">PEFC-Zertifizierung</h3>
+                            <p class="certification-text">
+                                PEFC garantiert nachhaltig beschafftes Holz aus verantwortungsvoll bewirtschafteten 
+                                Wäldern. Strenge Kontrollen stellen sicher, dass Umwelt- und Sozialstandards 
+                                eingehalten werden.
+                            </p>
+                            <div class="materials-list">
+                                <span class="material-badge">Buchenholz</span>
+                                <span class="material-badge">Buchenfurnier</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="text-align: center; margin-top: 3rem;">
+                        <a href="/qualitaetsversprechen" class="quality-link">
+                            Mehr über unser Qualitätsversprechen 
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Link Cards direkt im certification-section -->
+                <div class="link-grid">
+                    <div class="link-card">
+                        <i class="bi bi-journal-text"></i>
+                        <h3 class="link-title">Unser Blog</h3>
+                        <p class="link-text">
+                            Entdecken Sie spannende Einblicke, Tipps und Neuigkeiten rund um Kindermöbel 
+                            und Familienleben.
+                        </p>
+                        <a href="/blog" class="link-button">Zum Blog</a>
+                    </div>
+                    <div class="link-card">
+                        <i class="bi bi-clock-history"></i>
+                        <h3 class="link-title">Unsere Geschichte</h3>
+                        <p class="link-text">
+                            Erfahren Sie mehr über unsere Tradition und wie wir seit Generationen 
+                            Familien begleiten.
+                        </p>
+                        <a href="/geschichte" class="link-button">Mehr erfahren</a>
+                    </div>
+                    <div class="link-card">
+                        <i class="bi bi-headset"></i>
+                        <h3 class="link-title">Support</h3>
+                        <p class="link-text">
+                            Haben Sie Fragen? Unser Support-Team steht Ihnen jederzeit mit Rat und 
+                            Tat zur Seite.
+                        </p>
+                        <a href="/support" class="link-button">Zum Support</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html> 

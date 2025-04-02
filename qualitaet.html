@@ -1,0 +1,1632 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unser Qualitätsversprechen | Geuther</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --geuther-primary: #42584A;
+            --geuther-secondary: #D4C4B7;
+            --geuther-text: #333333;
+            --geuther-bg: #FFFFFF;
+            --geuther-accent: #F5F1ED;
+            --geuther-border: #E5E5E5;
+        }
+
+        .geuther-qualitaet {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--geuther-text);
+        }
+
+        .geuther-qualitaet .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Hero Section */
+        .geuther-qualitaet .hero-section {
+            position: relative;
+            padding: 4rem 0 8rem;
+            background-color: var(--geuther-accent);
+            text-align: center;
+            overflow: hidden;
+            margin-bottom: 0;
+        }
+
+        .geuther-qualitaet .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://www.geuther.de/media/67/04/ee/1705518697/1150_ia_4123_4124_4125_118_mb_03.webp') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .geuther-qualitaet .hero-section > .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .geuther-qualitaet .hero-content {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            color: var(--geuther-primary);
+        }
+
+        .geuther-qualitaet .hero-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: var(--geuther-primary);
+        }
+
+        .geuther-qualitaet .hero-subtitle {
+            font-size: 1.1rem;
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+            color: var(--geuther-text);
+        }
+
+        /* Icon Boxes Container nach Hero */
+        .geuther-qualitaet .icon-boxes-container {
+            background: transparent;
+            position: relative;
+            z-index: 4;
+            margin-bottom: -4rem;
+        }
+
+        .geuther-qualitaet .icon-boxes {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin: -4rem auto 0;
+            position: relative;
+            z-index: 4;
+            padding: 0 1rem;
+            max-width: 1200px;
+        }
+
+        .geuther-qualitaet .icon-box {
+            background: var(--geuther-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid var(--geuther-border);
+        }
+
+        .geuther-qualitaet .icon-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        .geuther-qualitaet .icon-box i {
+            font-size: 2rem;
+            color: var(--geuther-primary);
+            margin-bottom: 1rem;
+        }
+
+        .geuther-qualitaet .icon-box-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .geuther-qualitaet .icon-box-text {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 0px;
+            color: var(--geuther-text);
+        }
+
+        /* Certification Section */
+        .geuther-qualitaet .certification-section {
+            background: var(--geuther-bg);
+            padding: 8rem 0 6rem;
+            position: relative;
+        }
+
+        .geuther-qualitaet .certification-intro {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 4rem;
+        }
+
+        .geuther-qualitaet .certification-title {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .geuther-qualitaet .certification-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: var(--geuther-text);
+        }
+
+        .geuther-qualitaet .certification-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .geuther-qualitaet .certification-card {
+            background: var(--geuther-bg);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 1px solid var(--geuther-border);
+            transition: all 0.3s ease;
+        }
+
+        .geuther-qualitaet .certification-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        .geuther-qualitaet .certification-logo {
+            width: 120px;
+            height: auto;
+            margin-bottom: 2rem;
+        }
+
+        .geuther-qualitaet .material-badges {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .geuther-qualitaet .material-badge {
+            background: var(--geuther-accent);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--geuther-primary);
+            border: 1px solid var(--geuther-secondary);
+        }
+
+        /* Material Overview Section */
+        .geuther-qualitaet .materials-overview {
+            padding: 6rem 0;
+            background: var(--geuther-accent);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .geuther-qualitaet .materials-overview::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(212,196,183,0.2) 0%, rgba(66,88,74,0.1) 100%);
+            z-index: 1;
+        }
+
+        .geuther-qualitaet .materials-overview .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .geuther-qualitaet .material-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+            padding-bottom: 2rem;
+        }
+
+        .geuther-qualitaet .material-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--geuther-secondary);
+            border-radius: 2px;
+        }
+
+        .geuther-qualitaet .material-title {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .geuther-qualitaet .material-subtitle {
+            font-size: 1.2rem;
+            color: var(--geuther-text);
+            opacity: 0.9;
+        }
+
+        .geuther-qualitaet .material-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .geuther-qualitaet .feature-category {
+            background: var(--geuther-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 1px solid var(--geuther-border);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .geuther-qualitaet .feature-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--geuther-secondary);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .geuther-qualitaet .feature-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        .geuther-qualitaet .feature-category:hover::before {
+            opacity: 1;
+        }
+
+        .geuther-qualitaet .feature-category-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            color: var(--geuther-primary);
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--geuther-border);
+        }
+
+        .geuther-qualitaet .feature-category i {
+            font-size: 1.5rem;
+            color: var(--geuther-primary);
+            transition: all 0.3s ease;
+        }
+
+        .geuther-qualitaet .feature-category:hover i {
+            color: var(--geuther-primary);
+            transform: scale(1.1);
+        }
+
+        .geuther-qualitaet .feature-list {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .geuther-qualitaet .feature-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            transition: all 0.3s ease;
+        }
+
+        .geuther-qualitaet .feature-icon {
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+            background: var(--geuther-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .geuther-qualitaet .feature-category:hover .feature-icon {
+            background: var(--geuther-secondary);
+        }
+
+        .geuther-qualitaet .feature-icon i {
+            font-size: 1rem;
+            color: var(--geuther-primary);
+        }
+
+        .geuther-qualitaet .feature-content h4 {
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .geuther-qualitaet .feature-content p {
+            color: var(--geuther-text);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .geuther-qualitaet .material-origin {
+            background: var(--geuther-bg);
+            padding: 3rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 3rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 1px solid var(--geuther-border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .geuther-qualitaet .material-origin::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="20" fill="none"/><circle cx="10" cy="10" r="1" fill="%23D4C4B7" opacity="0.2"/></svg>') repeat;
+            opacity: 0.5;
+            z-index: 1;
+        }
+
+        .geuther-qualitaet .material-origin > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .geuther-qualitaet .material-origin p {
+            color: var(--geuther-primary);
+            font-weight: 600;
+            margin-bottom: 2.5rem;
+            font-size: 1.2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .geuther-qualitaet .origin-badges {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .geuther-qualitaet .origin-badges.single-country {
+            grid-template-columns: minmax(200px, 300px);
+            justify-content: center;
+        }
+
+        .geuther-qualitaet .origin-badge {
+            background: var(--geuther-accent);
+            padding: 1.5rem;
+            border-radius: 12px;
+            color: var(--geuther-primary);
+            transition: all 0.3s ease;
+            border: 1px solid var(--geuther-secondary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .geuther-qualitaet .origin-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(66,88,74,0.03) 0%, rgba(212,196,183,0.05) 100%);
+            z-index: 1;
+        }
+
+        .geuther-qualitaet .origin-badge > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .geuther-qualitaet .origin-badge i {
+            font-size: 2rem;
+            color: var(--geuther-primary);
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .geuther-qualitaet .origin-badge:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            background: var(--geuther-bg);
+        }
+
+        .geuther-qualitaet .origin-badge:hover i {
+            transform: scale(1.1);
+        }
+
+        .geuther-qualitaet .origin-badge span {
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .geuther-qualitaet .origin-badge .country-details {
+            font-size: 0.9rem;
+            color: var(--geuther-text);
+            opacity: 0.8;
+        }
+
+        @media (max-width: 992px) {
+            .geuther-qualitaet .material-features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Mobile Optimierungen */
+        @media (max-width: 768px) {
+            .geuther-qualitaet .hero-section {
+                padding: 3rem 0 6rem;
+            }
+
+            .geuther-qualitaet .hero-title {
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+            }
+
+            .geuther-qualitaet .hero-subtitle {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+
+            .geuther-qualitaet .icon-boxes {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+                margin: -3rem auto 2rem;
+                padding: 0 1rem;
+            }
+
+            .geuther-qualitaet .icon-box {
+                padding: 1.5rem;
+            }
+
+            .geuther-qualitaet .icon-box i {
+                font-size: 1.8rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .geuther-qualitaet .icon-box-title {
+                font-size: 0.95rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .geuther-qualitaet .icon-box-text {
+                font-size: 0.85rem;
+            }
+
+            .geuther-qualitaet .certification-section {
+                padding: 6rem 0 3rem;
+            }
+
+            .geuther-qualitaet .certification-intro {
+                margin-bottom: 2rem;
+            }
+
+            .geuther-qualitaet .certification-title {
+                font-size: 1.6rem;
+                margin-bottom: 1rem;
+            }
+
+            .geuther-qualitaet .certification-text {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+
+            .geuther-qualitaet .certification-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .geuther-qualitaet .certification-card {
+                padding: 1.5rem;
+            }
+
+            .geuther-qualitaet .certification-logo {
+                width: 100px;
+                margin-bottom: 1.5rem;
+            }
+
+            .geuther-qualitaet .material-badges {
+                gap: 0.75rem;
+            }
+
+            .geuther-qualitaet .material-badge {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
+
+            .geuther-qualitaet .materials-overview {
+                padding: 4rem 0;
+            }
+
+            .geuther-qualitaet .material-header {
+                margin-bottom: 2rem;
+                padding-bottom: 1.5rem;
+            }
+
+            .geuther-qualitaet .material-title {
+                font-size: 1.6rem;
+            }
+
+            .geuther-qualitaet .material-subtitle {
+                font-size: 1rem;
+            }
+
+            .geuther-qualitaet .material-features {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                margin-bottom: 2rem;
+            }
+
+            .geuther-qualitaet .feature-category {
+                padding: 1.5rem;
+            }
+
+            .geuther-qualitaet .feature-category-title {
+                font-size: 1.1rem;
+                margin-bottom: 1rem;
+            }
+
+            .geuther-qualitaet .feature-list {
+                gap: 1rem;
+            }
+
+            .geuther-qualitaet .feature-icon {
+                width: 28px;
+                height: 28px;
+                min-width: 28px;
+            }
+
+            .geuther-qualitaet .feature-content h4 {
+                font-size: 1rem;
+            }
+
+            .geuther-qualitaet .feature-content p {
+                font-size: 0.9rem;
+            }
+
+            .geuther-qualitaet .material-origin {
+                padding: 2rem 1.5rem;
+                margin-top: 2rem;
+            }
+
+            .geuther-qualitaet .material-origin p {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .geuther-qualitaet .origin-badges {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .geuther-qualitaet .origin-badge {
+                padding: 1.25rem;
+            }
+
+            .geuther-qualitaet .origin-badge i {
+                font-size: 1.8rem;
+            }
+
+            .geuther-qualitaet .origin-badge span {
+                font-size: 1rem;
+            }
+
+            .geuther-qualitaet .origin-badge .country-details {
+                font-size: 0.85rem;
+            }
+
+            .geuther-qualitaet .material-tabs {
+                flex-wrap: wrap;
+                gap: 0.75rem;
+                margin-bottom: 2rem;
+            }
+
+            .geuther-qualitaet .material-tab {
+                padding: 0.75rem 1.25rem;
+                font-size: 0.9rem;
+            }
+
+            .geuther-qualitaet .conclusion-section {
+                padding: 4rem 0;
+            }
+
+            .geuther-qualitaet .conclusion-title {
+                font-size: 1.8rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .geuther-qualitaet .conclusion-subtitle {
+                font-size: 1rem;
+                margin-bottom: 3rem;
+            }
+
+            .geuther-qualitaet .conclusion-section .icon-boxes {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .geuther-qualitaet .conclusion-section .icon-box {
+                padding: 1.5rem;
+            }
+
+            .geuther-qualitaet .conclusion-section .icon-box i {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+
+            .geuther-qualitaet .conclusion-section .icon-box-title {
+                font-size: 1.1rem;
+            }
+
+            .geuther-qualitaet .conclusion-section .icon-box-text {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Tablet Optimierungen */
+        @media (min-width: 769px) and (max-width: 1200px) {
+            .geuther-qualitaet .icon-boxes {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .geuther-qualitaet .certification-grid {
+                gap: 2rem;
+            }
+
+            .geuther-qualitaet .material-features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .geuther-qualitaet .conclusion-section .icon-boxes {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Material Tabs */
+        .geuther-qualitaet .material-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .geuther-qualitaet .material-tab {
+            padding: 1rem 2rem;
+            background: var(--geuther-bg);
+            border-radius: 30px;
+            color: var(--geuther-primary);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .geuther-qualitaet .material-tab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-color: var(--geuther-secondary);
+        }
+
+        .geuther-qualitaet .material-tab.active {
+            background: var(--geuther-primary);
+            color: white;
+            border-color: var(--geuther-primary);
+        }
+
+        .geuther-qualitaet .material-content {
+            display: none;
+        }
+
+        .geuther-qualitaet .material-content.active {
+            display: block;
+        }
+
+        /* Abschluss-Sektion */
+        .geuther-qualitaet .conclusion-section {
+            background: var(--geuther-accent);
+            padding: 8rem 0;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .geuther-qualitaet .conclusion-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://www.geuther.de/media/67/04/ee/1705518697/1150_ia_4123_4124_4125_118_mb_03.webp') center/cover no-repeat;
+            opacity: 0.15;
+            z-index: 1;
+            filter: brightness(0.9) contrast(1.1);
+        }
+
+        .geuther-qualitaet .conclusion-section .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            padding: 0 1rem;
+        }
+
+        .geuther-qualitaet .conclusion-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .geuther-qualitaet .conclusion-title {
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+
+        .geuther-qualitaet .conclusion-subtitle {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            color: var(--geuther-primary);
+            margin-bottom: 5rem;
+            font-weight: 500;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .geuther-qualitaet .conclusion-section .icon-boxes {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .geuther-qualitaet .conclusion-section .icon-box {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            height: 100%;
+        }
+
+        .geuther-qualitaet .conclusion-section .icon-box i {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--geuther-primary);
+        }
+
+        .geuther-qualitaet .conclusion-section .icon-box-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .geuther-qualitaet .conclusion-section .icon-box-text {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 992px) {
+            .geuther-qualitaet .conclusion-section .icon-boxes {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .geuther-qualitaet .conclusion-section {
+                padding: 6rem 0;
+            }
+
+            .geuther-qualitaet .conclusion-section .icon-boxes {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .geuther-qualitaet .conclusion-title {
+                font-size: 2rem;
+            }
+
+            .geuther-qualitaet .conclusion-subtitle {
+                font-size: 1.2rem;
+                margin-bottom: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="geuther-qualitaet">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Unser Qualitätsversprechen</h1>
+                    <p class="hero-subtitle">
+                        Mit Leidenschaft entwickeln wir hochwertige Kindermöbel, die höchste Sicherheitsstandards erfüllen 
+                        und durch ihre Langlebigkeit und Ästhetik überzeugen.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Icon Boxes Container -->
+        <div class="icon-boxes-container">
+            <div class="icon-boxes">
+                <div class="icon-box">
+                    <i class="bi bi-shield-check"></i>
+                    <h3 class="icon-box-title">Sicherheit</h3>
+                    <p class="icon-box-text">Höchste Standards für den Schutz Ihres Kindes</p>
+                </div>
+                <div class="icon-box">
+                    <i class="bi bi-tree"></i>
+                    <h3 class="icon-box-title">Nachhaltigkeit</h3>
+                    <p class="icon-box-text">Verantwortungsvolle Materialauswahl</p>
+                </div>
+                <div class="icon-box">
+                    <i class="bi bi-stars"></i>
+                    <h3 class="icon-box-title">Qualität</h3>
+                    <p class="icon-box-text">Langlebige Materialien und Verarbeitung</p>
+                </div>
+                <div class="icon-box">
+                    <i class="bi bi-heart"></i>
+                    <h3 class="icon-box-title">Design</h3>
+                    <p class="icon-box-text">Ästhetik trifft auf Funktionalität</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Certification Section -->
+        <section class="certification-section">
+            <div class="container">
+                <div class="certification-intro">
+                    <h2 class="certification-title">Unsere Materialien: Qualität von Anfang an</h2>
+                    <p class="certification-text">
+                        Unser Streben nach bester Qualität beginnt bereits bei der Auswahl der Materialien. 
+                        Für unsere Premium-Produkte verwenden wir überwiegend Buchenholz und Sperrholz mit 
+                        Buchenfurnier, während wir für unsere kostengünstigeren Produkte Gummiholz, 
+                        Kiefernholz und MDF einsetzen.
+                    </p>
+                </div>
+
+                <div class="certification-grid">
+                    <div class="certification-card">
+                        <img src="https://www.geuther.de/thumbnail/d3/1a/80/1741259758/FSC_1920x1920.png?ts=1741259759" 
+                             alt="FSC Zertifizierung" 
+                             class="certification-logo">
+                        <h3 class="certification-title">FSC-Zertifizierung</h3>
+                        <p class="certification-text">
+                            Die FSC-Zertifizierung garantiert, dass unsere Holzprodukte aus 
+                            verantwortungsvoll bewirtschafteten Wäldern stammen. Dies unterstützt 
+                            die Erhaltung der Artenvielfalt und respektiert lokale Gemeinschaften.
+                        </p>
+                        <div class="material-badges">
+                            <span class="material-badge">Gummiholz</span>
+                            <span class="material-badge">Kiefernholz</span>
+                            <span class="material-badge">MDF</span>
+                        </div>
+                    </div>
+
+                    <div class="certification-card">
+                        <img src="https://www.geuther.de/thumbnail/5d/01/b8/1741259769/PEFC_1920x1920.png?ts=1741259779" 
+                             alt="PEFC Zertifizierung" 
+                             class="certification-logo">
+                        <h3 class="certification-title">PEFC-Zertifizierung</h3>
+                        <p class="certification-text">
+                            PEFC garantiert nachhaltig beschafftes Holz aus verantwortungsvoll 
+                            bewirtschafteten Wäldern. Strenge Kontrollen stellen sicher, dass 
+                            Umwelt- und Sozialstandards eingehalten werden.
+                        </p>
+                        <div class="material-badges">
+                            <span class="material-badge">Buchenholz</span>
+                            <span class="material-badge">Buchenfurnier</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Material Sections -->
+        <section class="materials-overview">
+            <div class="container">
+                <div class="material-tabs">
+                    <button class="material-tab active" onclick="showMaterial('buchenholz')">Buchenholz</button>
+                    <button class="material-tab" onclick="showMaterial('gummiholz')">Gummiholz</button>
+                    <button class="material-tab" onclick="showMaterial('kiefernholz')">Kiefernholz</button>
+                    <button class="material-tab" onclick="showMaterial('sperrholz')">Sperrholz</button>
+                    <button class="material-tab" onclick="showMaterial('mdf')">MDF</button>
+                </div>
+
+                <!-- Buchenholz -->
+                <div id="buchenholz" class="material-content active">
+                    <div class="material-header">
+                        <h2 class="material-title">Buchenholz – Premium-Qualität für Ihr Baby</h2>
+                        <p class="material-subtitle">Entdecken Sie die besonderen Eigenschaften unseres hochwertigen Materials</p>
+                    </div>
+
+                    <div class="material-features">
+                        <div class="feature-category">
+                            <div class="feature-category-title">
+                                <i class="bi bi-shield-check"></i>
+                                <span>Stabilität & Qualität</span>
+                            </div>
+                            <div class="feature-list">
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="bi bi-star"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>Herausragende Robustheit</h4>
+                                        <p>Außergewöhnliche Stabilität und Widerstandsfähigkeit – die ideale Wahl für Babymöbel, die Generationen überdauern können.</p>
+                                    </div>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="bi bi-shield"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>Hohe Widerstandsfähigkeit</h4>
+                                        <p>Dank seiner dichten Maserung ist Buchenholz besonders unempfindlich gegenüber Dellen und Kratzern.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="feature-category">
+                            <div class="feature-category-title">
+                                <i class="bi bi-tree"></i>
+                                <span>Nachhaltigkeit</span>
+                            </div>
+                            <div class="feature-list">
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="bi bi-award"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>PEFC-Zertifiziert</h4>
+                                        <p>Unser Buchenholz erfüllt die hohen Standards des "Programme for the Endorsement of Forest Certification" und fördert die Biodiversität.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="feature-category">
+                            <div class="feature-category-title">
+                                <i class="bi bi-heart"></i>
+                                <span>Sicherheit & Wohlbefinden</span>
+                            </div>
+                            <div class="feature-list">
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="bi bi-flower1"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>Natürlich und schadstofffrei</h4>
+                                        <p>Buchenholz enthält keine schädlichen Chemikalien und sorgt für eine gesunde und sichere Umgebung.</p>
+                                    </div>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="bi bi-droplet"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>Sanft und hypoallergen</h4>
+                                        <p>Die glatte Oberfläche minimiert das Risiko von Splittern und Allergenen.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="feature-category">
+                            <div class="feature-category-title">
+                                <i class="bi bi-palette"></i>
+                                <span>Ästhetische Eleganz</span>
+                            </div>
+                            <div class="feature-list">
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="bi bi-brush"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>Natürliches Flair</h4>
+                                        <p>Die feine, gleichmäßige Textur und helle Farbe bereichert jedes Kinderzimmer mit zeitloser Schönheit.</p>
+                                    </div>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="bi bi-palette2"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>Vielseitige Gestaltung</h4>
+                                        <p>Hervorragende Eigenschaften zum Beizen und Behandeln für individuelle Designs.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="material-origin">
+                        <p>Unser hochwertiges Buchenholz stammt aus nachhaltig bewirtschafteten Wäldern in:</p>
+                        <div class="origin-badges">
+                            <div class="origin-badge">
+                                <i class="bi bi-geo-alt-fill"></i>
+                                <span>Frankreich</span>
+                                <div class="country-details">Europäische Premium-Qualität</div>
+                            </div>
+                            <div class="origin-badge">
+                                <i class="bi bi-geo-alt-fill"></i>
+                                <span>Deutschland</span>
+                                <div class="country-details">Regionale Nachhaltigkeit</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gummiholz -->
+                <div id="gummiholz" class="material-content">
+                    <div class="material-header">
+                        <h2 class="material-title">Gummiholz – Nachhaltige Qualität</h2>
+                        <p class="material-subtitle">Umweltfreundlich und sicher für Ihr Kind</p>
+                    </div>
+
+                    <div class="material-features">
+                        <div class="feature-category">
+                            <div class="feature-category-title">
+                                <i class="bi bi-tree"></i>
+                                <span>Umweltbewusstsein</span>
+                            </div>
+                            <div class="feature-list">
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="bi bi-recycle"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>Nachhaltige Entscheidung</h4>
+                                        <p>Gewonnen aus Kautschukbäumen nach ihrem Latexproduktionszyklus – eine umweltfreundliche Wahl.</p>
+                                    </div>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="bi bi-tree"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>Ressourcenschonend</h4>
+                                        <p>Reduzierung von Abfall und Unterstützung nachhaltiger Forstwirtschaft.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="feature-category">
+                            <div class="feature-category-title">
+                                <i class="bi bi-shield-check"></i>
+                                <span>Sicherheit & Qualität</span>
+                            </div>
+                            <div class="feature-list">
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="bi bi-shield"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>Ungiftig und sicher</h4>
+                                        <p>Frei von schädlichen Stoffen – garantiert sichere Babymöbel und Spielzeug.</p>
+                                    </div>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="bi bi-heart"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>Sanfte Oberfläche</h4>
+                                        <p>Gleichmäßige, glatte Textur ohne scharfe Kanten – ideal für Babys zarte Haut.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="feature-category">
+                            <div class="feature-category-title">
+                                <i class="bi bi-award"></i>
+                                <span>Nachhaltigkeit</span>
+                            </div>
+                            <div class="feature-list">
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="bi bi-patch-check"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>FSC-Zertifiziert</h4>
+                                        <p>Garantiert aus verantwortungsvoll bewirtschafteten Wäldern mit ökologischen und sozialen Vorteilen.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="feature-category">
+                            <div class="feature-category-title">
+                                <i class="bi bi-stars"></i>
+                                <span>Funktionelle Vorteile</span>
+                            </div>
+                            <div class="feature-list">
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="bi bi-check2-circle"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>Hohe Stabilität</h4>
+                                        <p>Geringe Neigung zu Verformung und Schrumpfung für langanhaltende Stabilität.</p>
+                                    </div>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="bi bi-currency-euro"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>Preis-Leistung</h4>
+                                        <p>Erschwingliche Qualität ohne Kompromisse – ideal für unser preisbewusstes Sortiment.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="material-origin">
+                        <p>Unser Gummiholz beziehen wir aus nachhaltig bewirtschafteten Wäldern in:</p>
+                        <div class="origin-badges single-country">
+                            <div class="origin-badge">
+                                <i class="bi bi-geo-alt-fill"></i>
+                                <span>Vietnam</span>
+                                <div class="country-details">Nachhaltige Forstwirtschaft</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kiefernholz -->
+                <div id="kiefernholz" class="material-content">
+                    <div class="material-header">
+                        <h2 class="material-title">Kiefernholz – Natürliche Robustheit</h2>
+                        <p class="material-subtitle">Traditionelles Material mit modernen Vorteilen</p>
+                    </div>
+
+                    <div class="material-features">
+                        <div class="feature-category">
+                            <div class="feature-category-title">
+                                <i class="bi bi-shield-check"></i>
+                                <span>Sicherheit & Stabilität</span>
+                            </div>
+                            <div class="feature-list">
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="bi bi-shield"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>Leicht und robust</h4>
+                                        <p>Sichere und zuverlässige Wahl für Babymöbel, die den Alltag meistern.</p>
+                                    </div>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="bi bi-clock-history"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>Langlebigkeit</h4>
+                                        <p>Erstaunlich robust und widerstandsfähig gegen alltägliche Abnutzung.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="feature-category">
+                            <div class="feature-category-title">
+                                <i class="bi bi-palette"></i>
+                                <span>Ästhetik & Design</span>
+                            </div>
+                            <div class="feature-list">
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="bi bi-brush"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>Natürliche Optik</h4>
+                                        <p>Helle, gelbliche Farbe und sichtbare Astknoten für rustikale, warme Ausstrahlung.</p>
+                                    </div>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="bi bi-tools"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>Vielseitigkeit</h4>
+                                        <p>Einfache Bearbeitung für filigrane Designs und individuelle Anpassungen.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="feature-category">
+                            <div class="feature-category-title">
+                                <i class="bi bi-tree"></i>
+                                <span>Nachhaltigkeit</span>
+                            </div>
+                            <div class="feature-list">
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="bi bi-award"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>FSC-Zertifiziert</h4>
+                                        <p>Aus verantwortungsvoll bewirtschafteten Wäldern mit nachhaltigen Erntezyklen.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="feature-category">
+                            <div class="feature-category-title">
+                                <i class="bi bi-stars"></i>
+                                <span>Praktische Vorteile</span>
+                            </div>
+                            <div class="feature-list">
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="bi bi-droplet"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>Pflegeleicht</h4>
+                                        <p>Einfach zu reinigen und zu pflegen für langanhaltende Schönheit.</p>
+                                    </div>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="bi bi-currency-euro"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>Erschwinglichkeit</h4>
+                                        <p>Kostengünstige Wahl durch schnelles Wachstum und einfache Verarbeitung.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="material-origin">
+                        <p>Unser Kiefernholz stammt aus nachhaltig bewirtschafteten Wäldern in:</p>
+                        <div class="origin-badges">
+                            <div class="origin-badge">
+                                <i class="bi bi-geo-alt-fill"></i>
+                                <span>Chile</span>
+                                <div class="country-details">Zertifizierte Plantagen</div>
+                            </div>
+                            <div class="origin-badge">
+                                <i class="bi bi-geo-alt-fill"></i>
+                                <span>Neuseeland</span>
+                                <div class="country-details">Nachhaltige Forstwirtschaft</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sperrholz -->
+                <div id="sperrholz" class="material-content">
+                    <div class="material-header">
+                        <h2 class="material-title">Sperrholz – Innovative Stabilität</h2>
+                        <p class="material-subtitle">Mehrschichtige Qualität für besondere Anforderungen</p>
+                    </div>
+
+                    <div class="material-features">
+                        <div class="feature-category">
+                            <div class="feature-category-title">
+                                <i class="bi bi-shield-check"></i>
+                                <span>Stabilität & Belastbarkeit</span>
+                            </div>
+                            <div class="feature-list">
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="bi bi-shield"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>Hohe Belastbarkeit</h4>
+                                        <p>Mehrschichtige Struktur für besondere Stabilität, übertrifft Massivholz.</p>
+                                    </div>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="bi bi-moisture"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>Formstabilität</h4>
+                                        <p>Widerstandsfähig gegen Verziehen und Quellen bei wechselnden Bedingungen.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="feature-category">
+                            <div class="feature-category-title">
+                                <i class="bi bi-tools"></i>
+                                <span>Verarbeitung & Design</span>
+                            </div>
+                            <div class="feature-list">
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="bi bi-pencil"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>Einfache Verarbeitung</h4>
+                                        <p>Präzise und flexible Bearbeitung ohne Splittern oder Lösen.</p>
+                                    </div>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="bi bi-palette"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>Ästhetische Vielfalt</h4>
+                                        <p>Hervorragend zu streichen, beizen und veredeln für individuelle Gestaltung.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="feature-category">
+                            <div class="feature-category-title">
+                                <i class="bi bi-currency-euro"></i>
+                                <span>Wirtschaftlichkeit</span>
+                            </div>
+                            <div class="feature-list">
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="bi bi-graph-up"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>Kosteneffizienz</h4>
+                                        <p>Günstigere Alternative zu vielen anderen Materialien bei gleicher Qualität.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="feature-category">
+                            <div class="feature-category-title">
+                                <i class="bi bi-award"></i>
+                                <span>Zertifizierung</span>
+                            </div>
+                            <div class="feature-list">
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="bi bi-patch-check"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>FSC-Zertifiziert</h4>
+                                        <p>Garantiert aus verantwortungsvoll bewirtschafteten Wäldern mit ökologischen Standards.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="material-origin">
+                        <p>Unser Sperrholz beziehen wir aus nachhaltig bewirtschafteten Quellen in:</p>
+                        <div class="origin-badges single-country">
+                            <div class="origin-badge">
+                                <i class="bi bi-geo-alt-fill"></i>
+                                <span>Vietnam</span>
+                                <div class="country-details">Moderne Produktionsstandards</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MDF -->
+                <div id="mdf" class="material-content">
+                    <div class="material-header">
+                        <h2 class="material-title">MDF – Moderne Vielseitigkeit</h2>
+                        <p class="material-subtitle">Gleichmäßige Qualität für präzise Anwendungen</p>
+                    </div>
+
+                    <div class="material-features">
+                        <div class="feature-category">
+                            <div class="feature-category-title">
+                                <i class="bi bi-layers"></i>
+                                <span>Oberfläche & Struktur</span>
+                            </div>
+                            <div class="feature-list">
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="bi bi-square"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>Gleichmäßige Oberflächen</h4>
+                                        <p>Homogene Struktur für perfekte, glatte Oberflächen zum Streichen und Furnieren.</p>
+                                    </div>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="bi bi-tools"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>Präzise Bearbeitung</h4>
+                                        <p>Einfaches Schneiden und Formen ohne Splittern für komplexe Designs.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="feature-category">
+                            <div class="feature-category-title">
+                                <i class="bi bi-shield-check"></i>
+                                <span>Stabilität & Haltbarkeit</span>
+                            </div>
+                            <div class="feature-list">
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="bi bi-moisture"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>Beständigkeit</h4>
+                                        <p>Weniger anfällig für Verziehen oder Reißen bei Temperatur- und Feuchtigkeitsschwankungen.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="feature-category">
+                            <div class="feature-category-title">
+                                <i class="bi bi-tree"></i>
+                                <span>Nachhaltigkeit</span>
+                            </div>
+                            <div class="feature-list">
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="bi bi-recycle"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>Umweltfreundlichkeit</h4>
+                                        <p>Hergestellt aus recycelten Holzfasern für nachhaltige Ressourcennutzung.</p>
+                                    </div>
+                                </div>
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="bi bi-award"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>FSC-Zertifiziert</h4>
+                                        <p>Garantiert aus verantwortungsvoll bewirtschafteten Quellen.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="feature-category">
+                            <div class="feature-category-title">
+                                <i class="bi bi-currency-euro"></i>
+                                <span>Wirtschaftlichkeit</span>
+                            </div>
+                            <div class="feature-list">
+                                <div class="feature-item">
+                                    <div class="feature-icon">
+                                        <i class="bi bi-graph-up"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4>Erschwinglichkeit</h4>
+                                        <p>Kostengünstige Lösung ohne Qualitätskompromisse für preisbewusste Produkte.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="material-origin">
+                        <p>Unser MDF beziehen wir aus nachhaltig bewirtschafteten Quellen in:</p>
+                        <div class="origin-badges single-country">
+                            <div class="origin-badge">
+                                <i class="bi bi-geo-alt-fill"></i>
+                                <span>Vietnam</span>
+                                <div class="country-details">Innovative Fertigungstechnologie</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Abschluss-Sektion -->
+        <section class="conclusion-section">
+            <div class="container">
+                <div class="conclusion-content">
+                    <h2 class="conclusion-title">Geuther: Qualität der Sie vertrauen können</h2>
+                    <p class="conclusion-subtitle">
+                        Mit der Wahl von Geuther-Produkten entscheiden Sie sich für erstklassige 
+                        Materialien, die höchste Sicherheit und besten Komfort für Ihr Baby garantieren.
+                    </p>
+                    <div class="icon-boxes">
+                        <div class="icon-box">
+                            <i class="bi bi-clock-history"></i>
+                            <h3 class="icon-box-title">Langlebigkeit</h3>
+                            <p class="icon-box-text">Produkte, die über Jahre ihre Qualität bewahren</p>
+                        </div>
+                        <div class="icon-box">
+                            <i class="bi bi-shield-check"></i>
+                            <h3 class="icon-box-title">Sicherheit</h3>
+                            <p class="icon-box-text">Höchste Standards für Ihr Baby</p>
+                        </div>
+                        <div class="icon-box">
+                            <i class="bi bi-tree"></i>
+                            <h3 class="icon-box-title">Nachhaltigkeit</h3>
+                            <p class="icon-box-text">Im Einklang mit der Umwelt</p>
+                        </div>
+                        <div class="icon-box">
+                            <i class="bi bi-heart"></i>
+                            <h3 class="icon-box-title">Design</h3>
+                            <p class="icon-box-text">Stilvolle und funktionale Lösungen</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            function showMaterial(materialId) {
+                // Hide all material content
+                document.querySelectorAll('.material-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                
+                // Show selected material content
+                document.getElementById(materialId).classList.add('active');
+                
+                // Update tab styling
+                document.querySelectorAll('.material-tab').forEach(tab => {
+                    tab.classList.remove('active');
+                });
+                event.target.classList.add('active');
+            }
+        </script>
+    </div>
+</body>
+</html> 

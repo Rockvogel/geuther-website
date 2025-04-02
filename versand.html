@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Versand- und Zahlungsbedingungen | Geuther</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="all.css">
+    <!-- Nur für lokale Entwicklung -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <style>
+        /* Lokale Entwicklung: Icon-Mapping */
+        .geuther-shipping .icon-paypal::before { content: "\f1ed"; font-family: "Bootstrap Icons"; }
+        .geuther-shipping .icon-credit-card::before { content: "\f3d5"; font-family: "Bootstrap Icons"; }
+        .geuther-shipping .icon-sepa::before { content: "\f3d1"; font-family: "Bootstrap Icons"; }
+        .geuther-shipping .icon-klarna::before { content: "\f3d5"; font-family: "Bootstrap Icons"; }
+        .geuther-shipping .icon-bank-transfer::before { content: "\f3d1"; font-family: "Bootstrap Icons"; }
+        .geuther-shipping .icon-sofort::before { content: "\f3d1"; font-family: "Bootstrap Icons"; }
+        .geuther-shipping .icon-ideal::before { content: "\f3d5"; font-family: "Bootstrap Icons"; }
+        .geuther-shipping .icon-invoice::before { content: "\f3d1"; font-family: "Bootstrap Icons"; }
+
+        /* Geuther-spezifische Variablen */
+        :root {
+            --geuther-primary: #8B7355;
+            --geuther-secondary: #D4C4B7;
+            --geuther-text: #333333;
+            --geuther-bg: #FFFFFF;
+            --geuther-accent: #F5F2EF;
+            --geuther-border: #E5E5E5;
+        }
+        .table {
+            margin-bottom: 0px;
+        }
+        /* Tabellen-Styling */
+        .geuther-shipping .table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .geuther-shipping .table th,
+        .geuther-shipping .table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid var(--geuther-border);
+            transition: all 0.2s ease;
+            background-color: var(--geuther-bg);
+        }
+
+        .geuther-shipping .table tr:hover td {
+            background-color: var(--geuther-secondary);
+            border-color: var(--geuther-primary);
+        }
+
+        .geuther-shipping .table th {
+            font-weight: 600;
+            color: var(--geuther-primary);
+            background-color: var(--geuther-bg);
+            border-bottom: 2px solid var(--geuther-border);
+        }
+
+        .geuther-shipping .table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Tabellen im Container */
+        .geuther-shipping .table-responsive {
+            background-color: var(--geuther-bg);
+            border-radius: 4px;
+            border: 1px solid var(--geuther-border);
+            overflow: hidden;
+        }
+
+        /* Länder-Liste Styling */
+        .geuther-shipping .countries-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.50rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--geuther-border);
+            margin-bottom: 2rem;
+        }
+
+        .geuther-shipping .country-item {
+            background-color: var(--geuther-bg);
+            padding: 0.5rem 1.2rem;
+            border-radius: 4px;
+            border: 1px solid var(--geuther-border);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .geuther-shipping .country-item:hover {
+            background-color: var(--geuther-secondary);
+            border-color: var(--geuther-primary);
+            transform: translateY(-1px);
+        }
+
+        .geuther-shipping .country-item.active {
+            background-color: var(--geuther-primary);
+            border-color: var(--geuther-primary);
+        }
+
+        .geuther-shipping .country-item.active .country-code,
+        .geuther-shipping .country-item.active .country-name {
+            color: white;
+        }
+
+        .geuther-shipping .shipping-row,
+        .geuther-shipping .shipping-all {
+            display: none;
+        }
+
+        .geuther-shipping .no-filter .shipping-all {
+            display: table-row;
+        }
+
+        .geuther-shipping .has-filter .shipping-row.visible {
+            display: table-row;
+        }
+
+        /* Feste Spaltenbreiten */
+        .geuther-shipping .table.costs-table th:first-child,
+        .geuther-shipping .table.costs-table td:first-child {
+            width: 60%;
+        }
+
+        .geuther-shipping .table.costs-table th:last-child,
+        .geuther-shipping .table.costs-table td:last-child {
+            width: 40%;
+        }
+        /* Nur zusätzliche Styles, die nicht in all.css existieren */
+        .geuther-shipping {
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 2rem;
+            margin-top: 2rem;
+        }
+
+        .geuther-shipping .section {
+            background-color: var(--geuther-accent);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: box-shadow 0.2s ease;
+        }
+
+        .geuther-shipping .section:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+        }
+
+        .geuther-shipping .highlight {
+            background-color: var(--geuther-secondary);
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+        }
+
+        .geuther-shipping .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+            align-items: start;
+        }
+
+        .geuther-shipping .payment-method {
+            background-color: var(--geuther-bg);
+            padding: 1rem;
+            border-radius: 4px;
+            border: 1px solid var(--geuther-border);
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            height: fit-content;
+        }
+
+        .geuther-shipping .payment-method:hover {
+            background-color: var(--geuther-secondary);
+            border-color: var(--geuther-primary);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .geuther-shipping .payment-method-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            width: 100%;
+            min-height: 1.5rem;
+        }
+
+        .geuther-shipping .payment-method i {
+            font-size: 1.5rem;
+            color: var(--geuther-primary);
+            transition: transform 0.2s ease;
+        }
+
+        .geuther-shipping .payment-method:hover i {
+            transform: scale(1.1);
+        }
+
+        .geuther-shipping .payment-details {
+            display: none;
+            font-size: 0.9rem;
+            color: var(--geuther-text);
+            border-top: 1px solid var(--geuther-border);
+            padding-top: 0.5rem;
+            margin-top: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .geuther-shipping .payment-method.expanded {
+            background-color: var(--geuther-secondary);
+            border-color: var(--geuther-primary);
+            grid-row: span 2;
+        }
+
+        .geuther-shipping .payment-method.expanded .payment-details {
+            display: block;
+            opacity: 1;
+        }
+
+        .geuther-shipping .detail-list {
+            margin: 0;
+            padding-left: 1.2rem;
+        }
+
+        .geuther-shipping .detail-list li {
+            margin-bottom: 0.3rem;
+        }
+
+        .geuther-shipping .detail-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .geuther-shipping .block-title {
+            margin: 3rem 0 0;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--geuther-secondary);
+        }
+
+        .geuther-shipping .block-title:first-child {
+            margin-top: 0;
+        }
+
+        
+        /* Desktop Layout */
+        @media (min-width: 992px) {
+            .geuther-shipping .shipping-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+                align-items: start;
+            }
+
+            .geuther-shipping .shipping-grid .section {
+                height: auto;
+                margin-bottom: 0;
+            }
+
+            .geuther-shipping .shipping-grid .section:last-child {
+                margin-bottom: 0;
+            }
+
+            .geuther-shipping .shipping-grid .highlight {
+                grid-column: 1 / -1;
+                margin-top: 1rem;
+            }
+
+            .geuther-shipping .subsection {
+                margin-top: 1.5rem;
+            }
+
+            .geuther-shipping .section {
+                height: auto;
+            }
+
+        }
+
+        @media (max-width: 768px) {
+            .geuther-shipping .section {
+                padding: 1rem;
+                margin: 0.5rem 0;
+            }
+
+            .geuther-shipping .payment-methods {
+                grid-template-columns: 1fr;
+            }
+
+            .geuther-shipping .subsection {
+                margin-top: 1rem;
+            }
+
+            .geuther-shipping .block-title {
+                margin: 2rem 0 1rem;
+            }
+        }
+
+        .geuther-shipping .info-accordion {
+            margin: 1rem 0;
+        }
+
+        .geuther-shipping .info-accordion-header {
+            background-color: white;
+            padding: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.2s ease;
+            border: 1px solid var(--geuther-border);
+        }
+
+        .geuther-shipping .info-accordion-header:hover {
+            background-color: var(--geuther-secondary);
+        }
+
+        .geuther-shipping .info-accordion-header i {
+            transition: transform 0.2s ease;
+        }
+
+        .geuther-shipping .info-accordion.expanded .info-accordion-header i {
+            transform: rotate(180deg);
+        }
+
+        .geuther-shipping .info-accordion-content {
+            display: none;
+            padding: 1rem;
+            background-color: var(--geuther-bg);
+            border: 1px solid var(--geuther-border);
+            border-top: none;
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+
+        .geuther-shipping .info-accordion.expanded .info-accordion-content {
+            display: block;
+        }
+
+        .geuther-shipping .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-top: 0rem;
+        }
+
+        .geuther-shipping .info-card {
+            background-color: var(--geuther-accent);
+            padding: 1rem;
+            border-radius: 4px;
+            border: 1px solid var(--geuther-border);
+        }
+
+        .geuther-shipping .info-card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .geuther-shipping .info-card-header i {
+            color: var(--geuther-primary);
+            font-size: 1.2rem;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Payment Methods Accordion
+            const paymentMethods = document.querySelectorAll('.payment-method');
+            
+            paymentMethods.forEach(method => {
+                method.addEventListener('click', function() {
+                    if (this.classList.contains('expanded')) {
+                        this.classList.remove('expanded');
+                        return;
+                    }
+                    paymentMethods.forEach(m => {
+                        m.classList.remove('expanded');
+                    });
+                    this.classList.add('expanded');
+                });
+            });
+
+            // Country Filter
+            const countryItems = document.querySelectorAll('.country-item');
+            const shippingTables = document.querySelectorAll('.shipping-table');
+            
+            countryItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const countryCode = this.querySelector('.country-code').textContent;
+                    
+                    // Toggle active state
+                    if (this.classList.contains('active')) {
+                        // Deactivate filter
+                        this.classList.remove('active');
+                        shippingTables.forEach(table => {
+                            table.classList.remove('has-filter');
+                            table.classList.add('no-filter');
+                        });
+                    } else {
+                        // Activate filter
+                        countryItems.forEach(c => c.classList.remove('active'));
+                        this.classList.add('active');
+                        
+                        shippingTables.forEach(table => {
+                            table.classList.add('has-filter');
+                            table.classList.remove('no-filter');
+                            
+                            // Show only rows for selected country
+                            const rows = table.querySelectorAll('.shipping-row');
+                            rows.forEach(row => {
+                                const countries = row.getAttribute('data-countries').split(',');
+                                if (countries.includes(countryCode)) {
+                                    row.classList.add('visible');
+                                } else {
+                                    row.classList.remove('visible');
+                                }
+                            });
+                        });
+                    }
+                });
+            });
+
+            // New info accordions
+            const infoAccordions = document.querySelectorAll('.info-accordion');
+            
+            infoAccordions.forEach(accordion => {
+                const header = accordion.querySelector('.info-accordion-header');
+                
+                header.addEventListener('click', function() {
+                    const isExpanded = accordion.classList.contains('expanded');
+                    
+                    // Close all accordions
+                    infoAccordions.forEach(a => a.classList.remove('expanded'));
+                    
+                    // If clicked accordion wasn't expanded, expand it
+                    if (!isExpanded) {
+                        accordion.classList.add('expanded');
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="geuther-shipping">
+        <div class="container">
+            <h1 class="h1">Versand- und Zahlungsbedingungen</h1>
+
+            <h2 class="block-title">Versand und Zahlung innerhalb Deutschlands</h2>
+            <div class="shipping-grid" style="margin-top: 2rem;">
+                <section class="section">
+                    <h2 class="h2">Versand</h2>
+                    
+                    <div>
+                        <div class="table-responsive">
+                            <table class="table costs-table">
+                                <tr>
+                                    <th>Bestellwert</th>
+                                    <th>Versandkosten</th>
+                                </tr>
+                                <tr>
+                                    <td>Unter 80 €</td>
+                                    <td>4,95 €</td>
+                                </tr>
+                                <tr>
+                                    <td>Über 80 €</td>
+                                    <td>Kostenlos</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3 class="h3">Speditionsversand</h3>
+                        <div class="table-responsive">
+                            <table class="table costs-table">
+                                <tr>
+                                    <th>Details</th>
+                                    <th>Konditionen</th>
+                                </tr>
+                                <tr>
+                                    <td>Gewichtsabhängiger Versand</td>
+                                    <td>ab 59,99 €</td>
+                                </tr>
+                                <tr>
+                                    <td>Lieferumfang</td>
+                                    <td>Bis Bordsteinkante</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3 class="h3">Sperrgut-Versand</h3>
+                        <div class="table-responsive">
+                            <table class="table costs-table">
+                                <tr>
+                                    <th>Anzahl Artikel</th>
+                                    <th>Versandkosten</th>
+                                </tr>
+                                <tr>
+                                    <td>1-5 Artikel</td>
+                                    <td>24,99 €</td>
+                                </tr>
+                                <tr>
+                                    <td>6-10 Artikel</td>
+                                    <td>34,99 €</td>
+                                </tr>
+                                <tr>
+                                    <td>11+ Artikel</td>
+                                    <td>39,99 €</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section">
+                    <h2 class="h2">Zahlungsoptionen</h2>
+                    <div class="payment-methods">
+                        <div class="payment-method">
+                            <div class="payment-method-header">
+                                <i class="bi bi-paypal"></i>
+                                PayPal
+                            </div>
+                            <div class="payment-details">
+                                <ul class="detail-list">
+                                    <li>Schnelle und sichere Bezahlung</li>
+                                    <li>Käuferschutz inklusive</li>
+                                    <li>Keine zusätzlichen Gebühren</li>
+                                    <li>Sofortige Zahlungsbestätigung</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="payment-method">
+                            <div class="payment-method-header">
+                                <i class="bi bi-credit-card"></i>
+                                Kredit-/Debitkarte (über PayPal)
+                            </div>
+                            <div class="payment-details">
+                                <ul class="detail-list">
+                                    <li>Alle gängigen Karten akzeptiert (VISA, Mastercard, American Express)</li>
+                                    <li>Sichere SSL-verschlüsselte Übertragung</li>
+                                    <li>Keine zusätzlichen Gebühren</li>
+                                    <li>Sofortige Zahlungsbestätigung</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="payment-method">
+                            <div class="payment-method-header">
+                                <i class="bi bi-bank"></i>
+                                SEPA-Lastschrift
+                            </div>
+                            <div class="payment-details">
+                                <ul class="detail-list">
+                                    <li>Bequeme Abbuchung von Ihrem Bankkonto</li>
+                                    <li>Einzug erfolgt 2-3 Werktage nach Bestellung</li>
+                                    <li>Lastschriftmandat wird elektronisch erteilt</li>
+                                    <li>Keine zusätzlichen Gebühren</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="payment-method">
+                            <div class="payment-method-header">
+                                <i class="bi bi-credit-card-2-front"></i>
+                                Klarna Rechnungskauf
+                            </div>
+                            <div class="payment-details">
+                                <ul class="detail-list">
+                                    <li>14 Tage Zahlungsziel</li>
+                                    <li>Zahlung erst nach Erhalt der Ware</li>
+                                    <li>Einfache Überweisung mit Klarna-Referenz</li>
+                                    <li>Bonitätsprüfung erforderlich</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="payment-method">
+                            <div class="payment-method-header">
+                                <i class="bi bi-bank2"></i>
+                                Vorkasse
+                            </div>
+                            <div class="payment-details">
+                                <ul class="detail-list">
+                                    <li>3% Rabatt bei Zahlung per Vorkasse</li>
+                                    <li>Zahlungsfrist: 7 Tage</li>
+                                    <li>Ware wird für Sie reserviert</li>
+                                    <li>Versand nach Zahlungseingang</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="payment-method">
+                            <div class="payment-method-header">
+                                <i class="bi bi-lightning"></i>
+                                Sofortüberweisung
+                            </div>
+                            <div class="payment-details">
+                                <ul class="detail-list">
+                                    <li>Direkte Zahlungsbestätigung</li>
+                                    <li>Schneller Versand möglich</li>
+                                    <li>Keine zusätzlichen Gebühren</li>
+                                    <li>TÜV-zertifizierte Sicherheit</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="payment-method">
+                            <div class="payment-method-header">
+                                <i class="bi bi-receipt"></i>
+                                <div>
+                                    Rechnung
+                                    <div style="font-size: 0.8em; color: #666;">nur Firmen & öffentliche Einrichtungen</div>
+                                </div>
+                            </div>
+                            <div class="payment-details">
+                                <ul class="detail-list">
+                                    <li>Nur für gewerbliche Kunden und öffentliche Einrichtungen</li>
+                                    <li>Zahlungsziel: 14 Tage</li>
+                                    <li>Firmendaten und USt-IdNr. erforderlich</li>
+                                    <li>Prüfung und Freigabe erforderlich</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <h2 class="block-title">Versand und Zahlung ins Ausland</h2>
+            
+
+            <div class="countries-list">
+                <div class="country-item">
+                    <span class="country-code">AT</span>
+                    <span class="country-name">Österreich</span>
+                </div>
+                <div class="country-item">
+                    <span class="country-code">BE</span>
+                    <span class="country-name">Belgien</span>
+                </div>
+                <div class="country-item">
+                    <span class="country-code">DK</span>
+                    <span class="country-name">Dänemark</span>
+                </div>
+                <div class="country-item">
+                    <span class="country-code">FR</span>
+                    <span class="country-name">Frankreich</span>
+                </div>
+                <div class="country-item">
+                    <span class="country-code">IT</span>
+                    <span class="country-name">Italien</span>
+                </div>
+                <div class="country-item">
+                    <span class="country-code">LU</span>
+                    <span class="country-name">Luxemburg</span>
+                </div>
+                <div class="country-item">
+                    <span class="country-code">NL</span>
+                    <span class="country-name">Niederlande</span>
+                </div>
+                <div class="country-item">
+                    <span class="country-code">PL</span>
+                    <span class="country-name">Polen</span>
+                </div>
+                <div class="country-item">
+                    <span class="country-code">CZ</span>
+                    <span class="country-name">Tschechien</span>
+                </div>
+            </div>
+
+            <div class="shipping-grid">
+                <section class="section">
+                    <div>
+                        <h3 class="h3">Paketversand</h3>
+                        <div class="table-responsive">
+                            <table class="table costs-table shipping-table no-filter">
+                                <tr>
+                                    <th>Länder</th>
+                                    <th>Versandkosten</th>
+                                </tr>
+                                <tr class="shipping-all">
+                                    <td>AT, BE, LU, NL, FR</td>
+                                    <td>ab 4,95 €</td>
+                                </tr>
+                                <tr class="shipping-all">
+                                    <td>DK, IT, PL, CZ</td>
+                                    <td>ab 9,95 €</td>
+                                </tr>
+                                <tr class="shipping-row" data-countries="AT">
+                                    <td>Österreich</td>
+                                    <td>ab 4,95 €</td>
+                                </tr>
+                                <tr class="shipping-row" data-countries="BE">
+                                    <td>Belgien</td>
+                                    <td>ab 4,95 €</td>
+                                </tr>
+                                <tr class="shipping-row" data-countries="LU">
+                                    <td>Luxemburg</td>
+                                    <td>ab 4,95 €</td>
+                                </tr>
+                                <tr class="shipping-row" data-countries="NL">
+                                    <td>Niederlande</td>
+                                    <td>ab 4,95 €</td>
+                                </tr>
+                                <tr class="shipping-row" data-countries="FR">
+                                    <td>Frankreich</td>
+                                    <td>ab 4,95 €</td>
+                                </tr>
+                                <tr class="shipping-row" data-countries="DK">
+                                    <td>Dänemark</td>
+                                    <td>ab 9,95 €</td>
+                                </tr>
+                                <tr class="shipping-row" data-countries="IT">
+                                    <td>Italien</td>
+                                    <td>ab 9,95 €</td>
+                                </tr>
+                                <tr class="shipping-row" data-countries="PL">
+                                    <td>Polen</td>
+                                    <td>ab 9,95 €</td>
+                                </tr>
+                                <tr class="shipping-row" data-countries="CZ">
+                                    <td>Tschechien</td>
+                                    <td>ab 9,95 €</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="subsection">
+                        <h3 class="h3">Speditionsversand</h3>
+                        <div class="table-responsive">
+                            <table class="table costs-table shipping-table no-filter">
+                                <tr>
+                                    <th>Länder</th>
+                                    <th>Versandkosten</th>
+                                </tr>
+                                <tr class="shipping-all">
+                                    <td>LU, PL, CZ</td>
+                                    <td>ab 74,99 €</td>
+                                </tr>
+                                <tr class="shipping-all">
+                                    <td>BE, IT, AT, NL</td>
+                                    <td>ab 79,99 €</td>
+                                </tr>
+                                <tr class="shipping-all">
+                                    <td>DK, FR</td>
+                                    <td>ab 97,99 €</td>
+                                </tr>
+                                <tr class="shipping-row" data-countries="LU">
+                                    <td>Luxemburg</td>
+                                    <td>ab 74,99 €</td>
+                                </tr>
+                                <tr class="shipping-row" data-countries="PL">
+                                    <td>Polen</td>
+                                    <td>ab 74,99 €</td>
+                                </tr>
+                                <tr class="shipping-row" data-countries="CZ">
+                                    <td>Tschechien</td>
+                                    <td>ab 74,99 €</td>
+                                </tr>
+                                <tr class="shipping-row" data-countries="BE">
+                                    <td>Belgien</td>
+                                    <td>ab 79,99 €</td>
+                                </tr>
+                                <tr class="shipping-row" data-countries="IT">
+                                    <td>Italien</td>
+                                    <td>ab 79,99 €</td>
+                                </tr>
+                                <tr class="shipping-row" data-countries="AT">
+                                    <td>Österreich</td>
+                                    <td>ab 79,99 €</td>
+                                </tr>
+                                <tr class="shipping-row" data-countries="NL">
+                                    <td>Niederlande</td>
+                                    <td>ab 79,99 €</td>
+                                </tr>
+                                <tr class="shipping-row" data-countries="DK">
+                                    <td>Dänemark</td>
+                                    <td>ab 97,99 €</td>
+                                </tr>
+                                <tr class="shipping-row" data-countries="FR">
+                                    <td>Frankreich</td>
+                                    <td>ab 97,99 €</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                </section>
+
+                <section class="section">
+                    <h2 class="h2">Zahlungsoptionen</h2>
+                    <div class="payment-methods">
+                        <div class="payment-method">
+                            <div class="payment-method-header">
+                                <i class="bi bi-paypal"></i>
+                                PayPal
+                            </div>
+                            <div class="payment-details">
+                                <ul class="detail-list">
+                                    <li>Schnelle und sichere Bezahlung</li>
+                                    <li>Käuferschutz inklusive</li>
+                                    <li>Keine zusätzlichen Gebühren</li>
+                                    <li>Sofortige Zahlungsbestätigung</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="payment-method">
+                            <div class="payment-method-header">
+                                <i class="bi bi-lightning"></i>
+                                Sofortüberweisung
+                            </div>
+                            <div class="payment-details">
+                                <ul class="detail-list">
+                                    <li>Direkte Zahlungsbestätigung</li>
+                                    <li>Schneller Versand möglich</li>
+                                    <li>Keine zusätzlichen Gebühren</li>
+                                    <li>TÜV-zertifizierte Sicherheit</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="payment-method">
+                            <div class="payment-method-header">
+                                <i class="bi bi-credit-card-2-front"></i>
+                                iDEAL
+                            </div>
+                            <div class="payment-details">
+                                <ul class="detail-list">
+                                    <li>Schnelle und sichere Bezahlung</li>
+                                    <li>Käuferschutz inklusive</li>
+                                    <li>Keine zusätzlichen Gebühren</li>
+                                    <li>Sofortige Zahlungsbestätigung</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="payment-method">
+                            <div class="payment-method-header">
+                                <i class="bi bi-credit-card"></i>
+                                Kredit-/Debitkarte
+                            </div>
+                            <div class="payment-details">
+                                <ul class="detail-list">
+                                    <li>Alle gängigen Karten akzeptiert (VISA, Mastercard, American Express)</li>
+                                    <li>Sichere SSL-verschlüsselte Übertragung</li>
+                                    <li>Keine zusätzlichen Gebühren</li>
+                                    <li>Sofortige Zahlungsbestätigung</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="payment-method">
+                            <div class="payment-method-header">
+                                <i class="bi bi-credit-card-2-front"></i>
+                                Klarna Rechnungskauf
+                            </div>
+                            <div class="payment-details">
+                                <ul class="detail-list">
+                                    <li>14 Tage Zahlungsziel</li>
+                                    <li>Zahlung erst nach Erhalt der Ware</li>
+                                    <li>Einfache Überweisung mit Klarna-Referenz</li>
+                                    <li>Bonitätsprüfung erforderlich</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="payment-method">
+                            <div class="payment-method-header">
+                                <i class="bi bi-bank2"></i>
+                                Vorkasse
+                            </div>
+                            <div class="payment-details">
+                                <ul class="detail-list">
+                                    <li>3% Rabatt bei Zahlung per Vorkasse</li>
+                                    <li>Zahlungsfrist: 7 Tage</li>
+                                    <li>Ware wird für Sie reserviert</li>
+                                    <li>Versand nach Zahlungseingang</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="section" style="margin-top: 2rem;">
+            <h3>Weitere Informationen</h3>
+                <p style="margin-bottom: 1rem;">Ein Versand der Ware ist standardmäßig nur in die unten aufgeführten Länder möglich. Je nach Umfang Ihrer Bestellung erfolgt der Versand per DPD, DHL oder per Spedition.</p>
+
+                <div class="info-accordion">
+                    <div class="info-accordion-header">
+                        <strong>Versand in nicht gelistete Länder</strong>
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
+                    <div class="info-accordion-content">
+                        <div class="info-grid">
+                            <div class="info-card">
+                                <div class="info-card-header">
+                                    <i class="bi bi-envelope"></i>
+                                    <strong>Kontakt</strong>
+                                </div>
+                                <p>Senden Sie uns eine E-Mail an <a href="mailto:shop@geuther.de">shop@geuther.de</a></p>
+                            </div>
+                            <div class="info-card">
+                                <div class="info-card-header">
+                                    <i class="bi bi-list-check"></i>
+                                    <strong>Erforderliche Angaben</strong>
+                                </div>
+                                <ul class="detail-list">
+                                    <li>Artikel und gewünschte Menge</li>
+                                    <li>Vollständige Lieferadresse</li>
+                                    <li>Land und Postleitzahl</li>
+                                </ul>
+                            </div>
+                            <div class="info-card">
+                                <div class="info-card-header">
+                                    <i class="bi bi-info-circle"></i>
+                                    <strong>Weiteres Vorgehen</strong>
+                                </div>
+                                <p>Wir prüfen die Versandmöglichkeit und informieren Sie zeitnah über die anfallenden Kosten.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-accordion">
+                    <div class="info-accordion-header">
+                        <strong>Wichtige Hinweise zum Auslandsversand</strong>
+                        <i class="bi bi-chevron-down"></i>
+                    </div>
+                    <div class="info-accordion-content">
+                        <div class="info-grid">
+                            <div class="info-card">
+                                <div class="info-card-header">
+                                    <i class="bi bi-truck"></i>
+                                    <strong>Versandart</strong>
+                                </div>
+                                <ul class="detail-list">
+                                    <li>Versand per DPD, DHL oder Spedition</li>
+                                    <li>Änderung der Versandart vorbehalten</li>
+                                </ul>
+                            </div>
+                            <div class="info-card">
+                                <div class="info-card-header">
+                                    <i class="bi bi-box-seam"></i>
+                                    <strong>Speditionsversand</strong>
+                                </div>
+                                <ul class="detail-list">
+                                    <li>Lieferung bis Bordsteinkante</li>
+                                    <li>Transport zur Verwendungsstelle durch Kunden</li>
+                                    <li>Entsorgung der Verpackung durch Kunden</li>
+                                </ul>
+                            </div>
+                            <div class="info-card">
+                                <div class="info-card-header">
+                                    <i class="bi bi-cash-coin"></i>
+                                    <strong>Zusätzliche Kosten</strong>
+                                </div>
+                                <ul class="detail-list">
+                                    <li>Überweisungsgebühren</li>
+                                    <li>Wechselkursgebühren</li>
+                                    <li>Zölle und Einfuhrumsatzsteuer</li>
+                                    <li>Vom Kunden zu tragen</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

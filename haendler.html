@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Händler & Geschäftskunden | Geuther</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --geuther-primary: #42584A;
+            --geuther-secondary: #D4C4B7;  /* Beige Ton */
+            --geuther-text: #333333;
+            --geuther-bg: #FFFFFF;
+            --geuther-accent: #F5F1ED;  /* Heller Beige Hintergrund */
+            --geuther-border: #E5E5E5;
+        }
+
+        .geuther-haendler {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--geuther-text);
+            padding: 0;
+        }
+
+        .geuther-haendler .hero-section {
+            text-align: center;
+            padding: 4rem 0;
+            background-color: var(--geuther-accent);
+            margin-bottom: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .geuther-haendler .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://www.geuther.de/media/8c/82/75/1705518661/1111ko_na_121_mb_3.webp') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .geuther-haendler .hero-section > .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .geuther-haendler .hero-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--geuther-primary);
+        }
+
+        .geuther-haendler .hero-subtitle {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+            color: var(--geuther-text);
+        }
+
+        .geuther-haendler .hero-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: var(--geuther-primary);
+            color: var(--geuther-bg);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+        }
+
+        .geuther-haendler .hero-button:hover {
+            background-color: var(--geuther-secondary);
+            color: var(--geuther-primary);
+            transform: translateY(-2px);
+        }
+
+        .geuther-haendler .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .geuther-haendler .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 1rem;
+        }
+
+        .geuther-haendler .benefit-item {
+            background: var(--geuther-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 1px solid var(--geuther-border);
+            text-align: center;
+        }
+
+        .geuther-haendler .benefit-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .geuther-haendler .benefit-icon {
+            font-size: 2.5rem;
+            color: var(--geuther-secondary);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .geuther-haendler .benefit-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--geuther-primary);
+        }
+
+        .geuther-haendler .benefit-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--geuther-text);
+            margin: 0;
+        }
+
+        .geuther-haendler .testimonials-section {
+            background: var(--geuther-accent);
+            padding: 4rem 0;
+            margin: 4rem 0;
+        }
+
+        .geuther-haendler .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .geuther-haendler .testimonial-card {
+            background: var(--geuther-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            height: 100%;
+            border: 1px solid var(--geuther-border);
+            transition: all 0.3s ease;
+        }
+
+        .geuther-haendler .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .geuther-haendler .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: var(--geuther-text);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .geuther-haendler .testimonial-author {
+            color: var(--geuther-primary);
+            font-weight: 500;
+            margin: 0;
+        }
+
+        .geuther-haendler .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 1rem;
+        }
+
+        .geuther-haendler .feature-item {
+            text-align: center;
+            padding: 2rem;
+            background: var(--geuther-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 1px solid var(--geuther-border);
+        }
+
+        .geuther-haendler .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .geuther-haendler .feature-icon {
+            font-size: 2.5rem;
+            color: var(--geuther-secondary);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .geuther-haendler .feature-title {
+            color: var(--geuther-primary);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .geuther-haendler .feature-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--geuther-text);
+            margin: 0;
+        }
+
+        .geuther-haendler .cta-section {
+            text-align: center;
+            padding: 6rem 0;
+            background: var(--geuther-accent);
+            position: relative;
+            overflow: hidden;
+            margin-top: 4rem;
+        }
+
+        .geuther-haendler .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://www.geuther.de/media/17/e2/ce/1706262480/2263_2261_NA_MB_03.webp') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .geuther-haendler .cta-section > .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .geuther-haendler .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .geuther-haendler .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            min-width: 180px;
+            height: 48px;
+            white-space: nowrap;
+        }
+
+        .geuther-haendler .cta-button--primary {
+            background-color: var(--geuther-primary);
+            color: var(--geuther-bg);
+            border: 2px solid var(--geuther-primary);
+        }
+
+        .geuther-haendler .cta-button--primary:hover {
+            background-color: var(--geuther-secondary);
+            color: var(--geuther-primary);
+            transform: translateY(-2px);
+            border-color: var(--geuther-secondary);
+        }
+
+        .geuther-haendler .cta-button--secondary {
+            background-color: var(--geuther-bg);
+            color: var(--geuther-primary);
+            border: 2px solid var(--geuther-primary);
+        }
+
+        .geuther-haendler .cta-button--secondary:hover {
+            background-color: var(--geuther-primary);
+            color: var(--geuther-bg);
+            transform: translateY(-2px);
+        }
+
+        .section-title {
+            color: var(--geuther-primary);
+            font-weight: 600;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        @media (max-width: 992px) {
+            .geuther-haendler .benefits-grid,
+            .geuther-haendler .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .geuther-haendler .benefits-grid,
+            .geuther-haendler .testimonials-grid,
+            .geuther-haendler .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .geuther-haendler .cta-buttons {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 0 1rem;
+            }
+
+            .geuther-haendler .cta-button {
+                width: 100%;
+                min-width: unset;
+            }
+
+            .geuther-haendler .hero-title {
+                font-size: 2rem;
+            }
+
+        }
+    </style>
+</head>
+<body>
+    <div class="geuther-haendler">
+        <section class="hero-section">
+            <div class="container">
+                <h1 class="hero-title">Werden Sie unser Partner</h1>
+                <p class="hero-subtitle">Als registrierter Händler profitieren Sie von zahlreichen Vorteilen und Funktionen, die Ihnen den Einkauf erleichtern und Ihr Geschäft stärken.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="cta-button cta-button--primary">Händler werden</a>
+                    <a href="#" class="cta-button cta-button--secondary">Unternehmen & Einrichtungen</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <i class="bi bi-check-circle benefit-icon"></i>
+                    <h3 class="benefit-title">Verfügbarkeitsprüfung</h3>
+                    <p class="benefit-text">Echtzeit-Einblick in Produktverfügbarkeit und Lieferzeiten</p>
+                </div>
+                <div class="benefit-item">
+                    <i class="bi bi-truck benefit-icon"></i>
+                    <h3 class="benefit-title">Dropshipping-Service</h3>
+                    <p class="benefit-text">Direktversand an Ihre Kunden – schnell und zuverlässig</p>
+                </div>
+                <div class="benefit-item">
+                    <i class="bi bi-cart-check benefit-icon"></i>
+                    <h3 class="benefit-title">Online-Bestellung</h3>
+                    <p class="benefit-text">Bequemes Bestellen mit übersichtlicher Auftragsverwaltung</p>
+                </div>
+                <div class="benefit-item">
+                    <i class="bi bi-file-earmark-text benefit-icon"></i>
+                    <h3 class="benefit-title">Produkt-Feed & Kataloge</h3>
+                    <p class="benefit-text">Aktuelle Produktdaten als CSV-Feed und PDF-Kataloge</p>
+                </div>
+                <div class="benefit-item">
+                    <i class="bi bi-percent benefit-icon"></i>
+                    <h3 class="benefit-title">Attraktive Konditionen</h3>
+                    <p class="benefit-text">Exklusive Einkaufspreise und Sonderaktionen</p>
+                </div>
+                <div class="benefit-item">
+                    <i class="bi bi-credit-card benefit-icon"></i>
+                    <h3 class="benefit-title">Kauf auf Rechnung</h3>
+                    <p class="benefit-text">Bequeme Bezahlung für Business-Kunden</p>
+                </div>
+            </div>
+
+            <section class="testimonials-section">
+                <div class="container">
+                    <h2 class="section-title">Was unsere Partner sagen</h2>
+                    <div class="testimonials-grid">
+                        <div class="testimonial-card">
+                            <p class="testimonial-text">"Mit Geuther haben wir einen verlässlichen Partner gefunden. Die Qualität der Kindermöbel überzeugt unsere Kunden und sorgt für hohe Wiederkaufsraten."</p>
+                            <p class="testimonial-author">– Anna S., DE, Inhaberin eines Fachhandels</p>
+                        </div>
+                        <div class="testimonial-card">
+                            <p class="testimonial-text">"Seit wir Geuther-Produkte in unser Sortiment aufgenommen haben, ist unser Umsatz in der Kategorie Schutzgitter um 20 % gestiegen."</p>
+                            <p class="testimonial-author">– Thomas M., DE, Inhaber mehrerer Babymärkte</p>
+                        </div>
+                        <div class="testimonial-card">
+                            <p class="testimonial-text">"Durch das Dropshipping-Modell konnten wir unser Angebot erweitern, ohne ein eigenes Lager zu benötigen – ein echter Gamechanger!"</p>
+                            <p class="testimonial-author">– Lisa W., FR, Betreiberin eines Onlineshops</p>
+                        </div>
+                        <div class="testimonial-card">
+                            <p class="testimonial-text">"Geuther steht für Qualität und Sicherheit. Unsere Kunden lieben die Produkte, und wir profitieren von reibungslosen Lieferprozessen."</p>
+                            <p class="testimonial-author">– Markus L., DE, Betreiber eines Onlineshops</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="features-grid">
+                <div class="feature-item">
+                    <i class="bi bi-shield-check feature-icon"></i>
+                    <h3 class="feature-title">Kompromisslose Sicherheit</h3>
+                    <p class="feature-text">Unsere Produkte entsprechen höchsten europäischen und US-amerikanischen Sicherheitsstandards und durchlaufen strenge Qualitätskontrollen.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="bi bi-tree feature-icon"></i>
+                    <h3 class="feature-title">Natürlich & Nachhaltig</h3>
+                    <p class="feature-text">Wir setzen auf natürliche Materialien und nachhaltige Produktionsverfahren mit transparenten Lieferketten.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="bi bi-star feature-icon"></i>
+                    <h3 class="feature-title">Langlebige Qualität</h3>
+                    <p class="feature-text">Hochwertige Materialien und ergonomisches Design garantieren langlebige Produkte mit "Mitwachsend"-Funktion.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="bi bi-heart feature-icon"></i>
+                    <h3 class="feature-title">Ästhetisches Design</h3>
+                    <p class="feature-text">Seit 1881 vereinen wir Tradition mit Innovation und schaffen Produkte, die Funktionalität und modernes Design verbinden.</p>
+                </div>
+            </div>
+        </div>
+
+        <section class="cta-section">
+            <div class="container">
+                <h2 class="section-title">Werden Sie unser Partner</h2>
+                <p>Profitieren Sie von exklusiven Vorteilen und erweitern Sie Ihr Geschäft mit unseren hochwertigen Produkten.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="cta-button cta-button--primary">Händler werden</a>
+                    <a href="#" class="cta-button cta-button--secondary">Unternehmen & Einrichtungen</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 

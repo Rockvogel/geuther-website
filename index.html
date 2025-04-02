@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geuther - Kindermöbel aus Tradition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <style>
+        /* Navigation Styles */
+        .floating-nav {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+        }
+
+        .nav-toggle {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--geuther-primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+        }
+
+        .nav-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+        }
+
+        .nav-menu {
+            position: absolute;
+            bottom: calc(100% + 1rem);
+            right: 0;
+            background: white;
+            border-radius: 12px;
+            padding: 1rem;
+            width: 280px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            transform: translateY(20px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu.active {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .nav-menu::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            right: 24px;
+            width: 16px;
+            height: 16px;
+            background: white;
+            transform: rotate(45deg);
+            box-shadow: 4px 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .nav-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            max-height: calc(100vh - 200px);
+            overflow-y: auto;
+        }
+
+        .nav-menu li {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-menu a {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            color: var(--geuther-text);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-menu a:hover {
+            background: var(--geuther-accent);
+            color: var(--geuther-primary);
+        }
+
+        .nav-menu i {
+            margin-right: 0.75rem;
+            font-size: 1.1rem;
+            color: var(--geuther-primary);
+        }
+
+        /* Loading Indicator */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--geuther-secondary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+            z-index: 1001;
+        }
+
+        .loading.active {
+            transform: scaleX(1);
+        }
+
+        /* Content Area */
+        #content {
+            min-height: 100vh;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        #content.loading {
+            opacity: 0.7;
+        }
+
+        /* Error Message */
+        .error-message {
+            position: fixed;
+            top: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ff4444;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1002;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .error-message.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Newsletter Styles */
+        .geuther-newsletter {
+            background: linear-gradient(135deg, #C5D6CD 0%, #A7BFB4 100%);
+            padding: 4rem 0;
+            margin: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .geuther-newsletter .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .geuther-newsletter h2 {
+            color: #42584A;
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .geuther-newsletter p {
+            color: #42584A;
+            margin-bottom: 2rem;
+            max-width: 800px;
+        }
+
+        .geuther-newsletter .newsletter-form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .geuther-newsletter .form-control {
+            border: none;
+            border-radius: 4px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: white;
+        }
+
+        .geuther-newsletter .btn-newsletter {
+            width: 100%;
+            padding: 1rem;
+            background-color: #8B7355;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .geuther-newsletter .btn-newsletter:hover {
+            background-color: #6B5842;
+            transform: translateY(-2px);
+        }
+
+        .geuther-newsletter .newsletter-features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .geuther-newsletter .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .geuther-newsletter .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .geuther-newsletter .feature-icon {
+            font-size: 2rem;
+            color: #42584A;
+            margin-bottom: 1rem;
+        }
+
+        .geuther-newsletter .feature-title {
+            color: #42584A;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .geuther-newsletter .newsletter-features {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .geuther-newsletter {
+                padding: 3rem 0;
+            }
+
+            .geuther-newsletter h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="content"></div>
+
+    <div class="loading"></div>
+    <div class="error-message"></div>
+
+    <nav class="floating-nav">
+        <button class="nav-toggle" aria-label="Navigation öffnen">
+            <i class="bi bi-info-circle"></i>
+        </button>
+        <div class="nav-menu">
+            <ul>
+                <li><a href="home.html"><i class="bi bi-house"></i>Startseite</a></li>
+                <li><a href="kategorie.html"><i class="bi bi-grid"></i>Kategorien</a></li>
+                <li><a href="werte.html"><i class="bi bi-heart"></i>Unsere Werte</a></li>
+                <li><a href="qualitaet.html"><i class="bi bi-shield-check"></i>Qualität</a></li>
+                <li><a href="geschichte.html"><i class="bi bi-clock-history"></i>Geschichte</a></li>
+                <li><a href="haendler.html"><i class="bi bi-shop"></i>Händler</a></li>
+                <li><a href="affiliate.html"><i class="bi bi-people"></i>Affiliate</a></li>
+                <li><a href="support.html"><i class="bi bi-headset"></i>Support</a></li>
+                <li><a href="faq.html"><i class="bi bi-question-circle"></i>FAQ</a></li>
+                <li><a href="versand.html"><i class="bi bi-truck"></i>Versand</a></li>
+                <li><a href="widerruf.html"><i class="bi bi-arrow-return-left"></i>Widerruf</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const content = document.getElementById('content');
+            const loading = document.querySelector('.loading');
+            const errorMessage = document.querySelector('.error-message');
+            const navToggle = document.querySelector('.nav-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+
+            // Navigation Toggle
+            navToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
+                    navMenu.classList.remove('active');
+                }
+            });
+
+            // Function to extract and execute scripts
+            function executeScripts(sourceDoc) {
+                const scripts = sourceDoc.getElementsByTagName('script');
+                Array.from(scripts).forEach(script => {
+                    if (!script.src || !document.querySelector(`script[src="${script.src}"]`)) {
+                        const newScript = document.createElement('script');
+                        Array.from(script.attributes).forEach(attr => {
+                            newScript.setAttribute(attr.name, attr.value);
+                        });
+                        newScript.textContent = script.textContent;
+                        document.body.appendChild(newScript);
+                    }
+                });
+            }
+
+            // Function to initialize all interactive elements
+            function initializeInteractiveElements() {
+                // Initialize Bootstrap components
+                if (typeof bootstrap !== 'undefined') {
+                    // Initialize all dropdowns
+                    document.querySelectorAll('.dropdown-toggle').forEach(dropdown => {
+                        if (!bootstrap.Dropdown.getInstance(dropdown)) {
+                            new bootstrap.Dropdown(dropdown);
+                        }
+                    });
+
+                    // Initialize all tooltips
+                    document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(tooltip => {
+                        if (!bootstrap.Tooltip.getInstance(tooltip)) {
+                            new bootstrap.Tooltip(tooltip);
+                        }
+                    });
+                }
+
+                // Initialize Payment Methods Accordion
+                const paymentMethods = document.querySelectorAll('.payment-method');
+                paymentMethods.forEach(method => {
+                    // Remove existing event listeners
+                    const newMethod = method.cloneNode(true);
+                    method.parentNode.replaceChild(newMethod, method);
+                    
+                    newMethod.addEventListener('click', function() {
+                        if (this.classList.contains('expanded')) {
+                            this.classList.remove('expanded');
+                            return;
+                        }
+                        paymentMethods.forEach(m => {
+                            m.classList.remove('expanded');
+                        });
+                        this.classList.add('expanded');
+                    });
+                });
+
+                // Initialize Country Filter
+                const countryItems = document.querySelectorAll('.country-item');
+                const shippingTables = document.querySelectorAll('.shipping-table');
+                
+                countryItems.forEach(item => {
+                    // Remove existing event listeners
+                    const newItem = item.cloneNode(true);
+                    item.parentNode.replaceChild(newItem, item);
+                    
+                    newItem.addEventListener('click', function() {
+                        const countryCode = this.querySelector('.country-code').textContent;
+                        
+                        // Wenn das geklickte Land bereits aktiv ist, deaktiviere es
+                        if (this.classList.contains('active')) {
+                            this.classList.remove('active');
+                            shippingTables.forEach(table => {
+                                table.classList.remove('has-filter');
+                                table.classList.add('no-filter');
+                            });
+                            return;
+                        }
+                        
+                        // Deaktiviere alle anderen Länder
+                        countryItems.forEach(c => c.classList.remove('active'));
+                        
+                        // Aktiviere das geklickte Land
+                        this.classList.add('active');
+                        
+                        // Aktualisiere die Tabellen
+                        shippingTables.forEach(table => {
+                            table.classList.add('has-filter');
+                            table.classList.remove('no-filter');
+                            
+                            // Zeige nur die Zeilen für das ausgewählte Land
+                            const rows = table.querySelectorAll('.shipping-row');
+                            rows.forEach(row => {
+                                const countries = row.getAttribute('data-countries').split(',');
+                                if (countries.includes(countryCode)) {
+                                    row.classList.add('visible');
+                                } else {
+                                    row.classList.remove('visible');
+                                }
+                            });
+                        });
+                    });
+                });
+
+                // Initialize Info Accordions
+                const infoAccordions = document.querySelectorAll('.info-accordion');
+                infoAccordions.forEach(accordion => {
+                    // Remove existing event listeners
+                    const newAccordion = accordion.cloneNode(true);
+                    accordion.parentNode.replaceChild(newAccordion, accordion);
+                    
+                    const header = newAccordion.querySelector('.info-accordion-header');
+                    header.addEventListener('click', function() {
+                        const isExpanded = newAccordion.classList.contains('expanded');
+                        
+                        // Toggle current accordion
+                        if (isExpanded) {
+                            newAccordion.classList.remove('expanded');
+                        } else {
+                            // Close all other accordions first
+                            infoAccordions.forEach(a => {
+                                if (a !== newAccordion) {
+                                    a.classList.remove('expanded');
+                                }
+                            });
+                            // Then expand the clicked one
+                            newAccordion.classList.add('expanded');
+                        }
+                    });
+                });
+
+                // Initialize FAQ Accordions
+                const accordionHeaders = document.querySelectorAll('.accordion-header-faq');
+                accordionHeaders.forEach(header => {
+                    // Remove existing event listeners
+                    const newHeader = header.cloneNode(true);
+                    header.parentNode.replaceChild(newHeader, header);
+                    
+                    newHeader.addEventListener('click', () => {
+                        const content = newHeader.nextElementSibling;
+                        const icon = newHeader.querySelector('.toggle-icon-faq');
+                        content.classList.toggle('open');
+                        icon.textContent = content.classList.contains('open') ? '-' : '+';
+                    });
+                });
+
+                // Initialize FAQ Sub-Accordions
+                const subHeaders = document.querySelectorAll('.sub-header-faq');
+                subHeaders.forEach(subHeader => {
+                    // Remove existing event listeners
+                    const newSubHeader = subHeader.cloneNode(true);
+                    subHeader.parentNode.replaceChild(newSubHeader, subHeader);
+                    
+                    newSubHeader.addEventListener('click', () => {
+                        const subContent = newSubHeader.nextElementSibling;
+                        const wasOpen = subContent.classList.contains('open');
+                        
+                        // Schließe alle anderen offenen Inhalte
+                        document.querySelectorAll('.sub-content-faq').forEach(content => {
+                            if (content !== subContent) {
+                                content.style.maxHeight = '0';
+                                content.style.padding = '0';
+                                content.style.margin = '0';
+                                content.classList.remove('open');
+                            }
+                        });
+                        
+                        document.querySelectorAll('.sub-header-faq').forEach(header => {
+                            if (header !== newSubHeader) {
+                                header.classList.remove('active');
+                                header.querySelector('.toggle-icon-faq').textContent = '+';
+                            }
+                        });
+                        
+                        if (!wasOpen) {
+                            subContent.style.maxHeight = '1000px';
+                            subContent.style.padding = '1.5rem';
+                            subContent.style.margin = '0.5rem 0';
+                            subContent.classList.add('open');
+                            newSubHeader.classList.add('active');
+                            newSubHeader.querySelector('.toggle-icon-faq').textContent = '-';
+                        } else {
+                            subContent.style.maxHeight = '0';
+                            subContent.style.padding = '0';
+                            subContent.style.margin = '0';
+                            subContent.classList.remove('open');
+                            newSubHeader.classList.remove('active');
+                            newSubHeader.querySelector('.toggle-icon-faq').textContent = '+';
+                        }
+                    });
+                });
+
+                // Initialize Filter Toggle
+                const filterHeaders = document.querySelectorAll('.filter-header');
+                filterHeaders.forEach(header => {
+                    // Remove existing event listeners
+                    const newHeader = header.cloneNode(true);
+                    header.parentNode.replaceChild(newHeader, header);
+                    
+                    newHeader.addEventListener('click', function() {
+                        const content = this.nextElementSibling;
+                        const icon = this.querySelector('i');
+                        
+                        content.classList.toggle('active');
+                        icon.style.transform = content.classList.contains('active') 
+                            ? 'rotate(180deg)' 
+                            : 'rotate(0)';
+                    });
+                });
+
+                // Initialize Color Selection
+                const colorOptions = document.querySelectorAll('.color-option');
+                colorOptions.forEach(option => {
+                    // Remove existing event listeners
+                    const newOption = option.cloneNode(true);
+                    option.parentNode.replaceChild(newOption, option);
+                    
+                    newOption.addEventListener('click', function() {
+                        this.classList.toggle('selected');
+                    });
+                });
+
+                // Initialize Range Slider
+                const rangeSlider = document.querySelector('.range-slider input');
+                const rangeValues = document.querySelector('.range-values');
+                if (rangeSlider && rangeValues) {
+                    // Remove existing event listeners
+                    const newSlider = rangeSlider.cloneNode(true);
+                    rangeSlider.parentNode.replaceChild(newSlider, rangeSlider);
+                    
+                    newSlider.addEventListener('input', function() {
+                        rangeValues.children[0].textContent = this.value + ' cm';
+                    });
+                }
+
+                // Initialize Mega Menu
+                const navItems = document.querySelectorAll('.nav-item');
+                navItems.forEach(item => {
+                    const link = item.querySelector('.nav-link');
+                    const megaMenu = item.querySelector('.mega-menu');
+                    
+                    if (megaMenu) {
+                        // Remove any existing event listeners
+                        item.removeEventListener('mouseenter', null);
+                        item.removeEventListener('mouseleave', null);
+                        
+                        // Show mega menu on hover for desktop
+                        item.addEventListener('mouseenter', () => {
+                            if (window.innerWidth >= 992) {
+                                megaMenu.classList.add('show');
+                                link.classList.add('active');
+                            }
+                        });
+                        
+                        // Hide mega menu on mouse leave for desktop
+                        item.addEventListener('mouseleave', () => {
+                            if (window.innerWidth >= 992) {
+                                megaMenu.classList.remove('show');
+                                if (!link.getAttribute('aria-current')) {
+                                    link.classList.remove('active');
+                                }
+                            }
+                        });
+                        
+                        // Handle mobile touch
+                        link.addEventListener('click', (e) => {
+                            if (window.innerWidth < 992) {
+                                e.preventDefault();
+                                megaMenu.classList.toggle('show');
+                                link.classList.toggle('active');
+                            }
+                        });
+                    }
+                });
+
+                // Close mega menu when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!e.target.closest('.nav-item')) {
+                        document.querySelectorAll('.mega-menu').forEach(menu => {
+                            menu.classList.remove('show');
+                        });
+                        document.querySelectorAll('.nav-link').forEach(link => {
+                            if (!link.getAttribute('aria-current')) {
+                                link.classList.remove('active');
+                            }
+                        });
+                    }
+                });
+
+                // Mobile Search
+                const mobileSearchButton = document.querySelector('.mobile-search-button');
+                const mobileSearchOverlay = document.querySelector('.mobile-search-overlay');
+                const mobileSearchClose = document.querySelector('.mobile-search-close');
+                const mobileSearchInput = document.querySelector('.mobile-search-input');
+
+                if (mobileSearchButton && mobileSearchOverlay && mobileSearchClose && mobileSearchInput) {
+                    // Remove existing event listeners
+                    mobileSearchButton.removeEventListener('click', null);
+                    mobileSearchClose.removeEventListener('click', null);
+                    
+                    mobileSearchButton.addEventListener('click', () => {
+                        mobileSearchOverlay.classList.add('show');
+                        mobileSearchInput.focus();
+                    });
+
+                    mobileSearchClose.addEventListener('click', () => {
+                        mobileSearchOverlay.classList.remove('show');
+                    });
+
+                    mobileSearchInput.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === 'Escape') {
+                            mobileSearchOverlay.classList.remove('show');
+                        }
+                    });
+                }
+
+                // Mobile Menu Toggle
+                const mobileMenuButton = document.querySelector('.mobile-menu-button');
+                const sidepanel = document.querySelector('.sidepanel');
+                const sidepanelClose = document.querySelector('.sidepanel-close');
+                const mobileOverlay = document.querySelector('.mobile-overlay');
+
+                if (mobileMenuButton && sidepanel && sidepanelClose && mobileOverlay) {
+                    // Remove existing event listeners
+                    mobileMenuButton.removeEventListener('click', null);
+                    sidepanelClose.removeEventListener('click', null);
+                    mobileOverlay.removeEventListener('click', null);
+
+                    function openSidepanel() {
+                        sidepanel.classList.add('show');
+                        mobileOverlay.classList.add('show');
+                        document.body.style.overflow = 'hidden';
+                    }
+
+                    function closeSidepanel() {
+                        sidepanel.classList.remove('show');
+                        mobileOverlay.classList.remove('show');
+                        document.body.style.overflow = '';
+                    }
+
+                    mobileMenuButton.addEventListener('click', openSidepanel);
+                    sidepanelClose.addEventListener('click', closeSidepanel);
+                    mobileOverlay.addEventListener('click', closeSidepanel);
+                }
+
+                // Mobile Navigation Categories
+                const categoryTitles = document.querySelectorAll('.mobile-nav-category-title[data-category]');
+                categoryTitles.forEach(title => {
+                    // Remove existing event listeners
+                    title.removeEventListener('click', null);
+                    
+                    title.addEventListener('click', function() {
+                        const category = this.dataset.category;
+                        const subcategories = document.getElementById(category + '-sub');
+                        
+                        // Close all other categories
+                        categoryTitles.forEach(otherTitle => {
+                            if (otherTitle !== this) {
+                                otherTitle.classList.remove('active');
+                                const otherCategory = otherTitle.dataset.category;
+                                const otherSubcategories = document.getElementById(otherCategory + '-sub');
+                                if (otherSubcategories) {
+                                    otherSubcategories.classList.remove('show');
+                                }
+                            }
+                        });
+                        
+                        // Toggle current category
+                        this.classList.toggle('active');
+                        if (subcategories) {
+                            subcategories.classList.toggle('show');
+                        }
+                    });
+                });
+
+                // Dropdowns (Sprache, Service/Hilfe, Konto)
+                const dropdownButtons = {
+                    language: document.querySelector('.language-selector-button'),
+                    support: document.querySelector('.support-selector-button:has(.bi-question-circle)'),
+                    account: document.querySelector('.support-selector-button:has(.bi-person)')
+                };
+
+                const dropdownMenus = {
+                    language: document.querySelector('.language-dropdown'),
+                    support: document.querySelector('.support-dropdown'),
+                    account: document.querySelector('.account-dropdown')
+                };
+
+                // Function to close all dropdowns except the specified one
+                function closeDropdownsExcept(exceptDropdown) {
+                    Object.entries(dropdownMenus).forEach(([key, menu]) => {
+                        if (menu && menu !== exceptDropdown) {
+                            menu.classList.remove('show');
+                            const button = dropdownButtons[key];
+                            if (button) {
+                                button.classList.remove('active');
+                                button.setAttribute('aria-expanded', 'false');
+                            }
+                        }
+                    });
+                }
+
+                // Add click handlers for each dropdown button
+                Object.entries(dropdownButtons).forEach(([key, button]) => {
+                    if (button && dropdownMenus[key]) {
+                        button.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            const isExpanded = button.getAttribute('aria-expanded') === 'true';
+                            
+                            closeDropdownsExcept(isExpanded ? null : dropdownMenus[key]);
+                            
+                            dropdownMenus[key].classList.toggle('show');
+                            button.classList.toggle('active');
+                            button.setAttribute('aria-expanded', !isExpanded);
+                        });
+                    }
+                });
+
+                // Close dropdowns when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!e.target.closest('.header-action')) {
+                        closeDropdownsExcept(null);
+                    }
+                });
+
+                // Close dropdowns on ESC key
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        closeDropdownsExcept(null);
+                    }
+                });
+            }
+
+            // Helper function to close all dropdowns
+            function closeAllDropdowns() {
+                document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+                    menu.classList.remove('show');
+                });
+            }
+
+            // Load Content Function
+            async function loadContent(url) {
+                try {
+                    loading.classList.add('active');
+                    content.classList.add('loading');
+
+                    // Function to extract body content from HTML string
+                    function extractBodyContent(htmlString) {
+                        const tempDiv = document.createElement('div');
+                        tempDiv.innerHTML = htmlString;
+                        // Find the first element with class 'geuther-header', 'geuther-newsletter', etc.
+                        // or fall back to the body content
+                        const specificContent = tempDiv.querySelector('.geuther-header, .geuther-newsletter, .geuther-footer, main');
+                        return specificContent ? specificContent.outerHTML : tempDiv.innerHTML;
+                    }
+
+                    // Load all content
+                    const [mainResponse, headerResponse, newsletterResponse, footerResponse] = await Promise.all([
+                        fetch(url),
+                        fetch('header.html'),
+                        fetch('newsletter.html'),
+                        fetch('footer.html')
+                    ]);
+
+                    if (!mainResponse.ok) throw new Error('Seite konnte nicht geladen werden');
+
+                    const [html, headerHtml, newsletterHtml, footerHtml] = await Promise.all([
+                        mainResponse.text(),
+                        headerResponse.text(),
+                        newsletterResponse.text(),
+                        footerResponse.text()
+                    ]);
+
+                    // Parse all documents
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    const headerDoc = parser.parseFromString(headerHtml, 'text/html');
+                    const newsletterDoc = parser.parseFromString(newsletterHtml, 'text/html');
+                    const footerDoc = parser.parseFromString(footerHtml, 'text/html');
+
+                    // Clean up old styles and scripts
+                    document.querySelectorAll('style[data-source]').forEach(style => style.remove());
+
+                    // Extract main content (excluding header, footer, etc. if present)
+                    const mainContent = doc.body.innerHTML;
+
+                    // Combine contents
+                    content.innerHTML = 
+                        extractBodyContent(headerHtml) +
+                        mainContent +
+                        extractBodyContent(newsletterHtml) +
+                        extractBodyContent(footerHtml);
+
+                    // Extract and append styles from all documents
+                    function appendStyles(sourceDoc, source) {
+                        const styles = sourceDoc.getElementsByTagName('style');
+                        Array.from(styles).forEach(style => {
+                            // Prüfe, ob der Style bereits existiert
+                            const existingStyle = document.querySelector(`style[data-source="${source}"]`);
+                            if (existingStyle) {
+                                existingStyle.textContent = style.textContent;
+                            } else {
+                                const newStyle = document.createElement('style');
+                                newStyle.setAttribute('data-source', source);
+                                newStyle.textContent = style.textContent;
+                                document.head.appendChild(newStyle);
+                            }
+                        });
+
+                        const links = sourceDoc.getElementsByTagName('link');
+                        Array.from(links).forEach(link => {
+                            if (link.rel === 'stylesheet') {
+                                const existingLink = document.querySelector(`link[href="${link.href}"]`);
+                                if (!existingLink) {
+                                    const newLink = document.createElement('link');
+                                    Array.from(link.attributes).forEach(attr => {
+                                        newLink.setAttribute(attr.name, attr.value);
+                                    });
+                                    document.head.appendChild(newLink);
+                                }
+                            }
+                        });
+                    }
+
+                    // Extract and append styles from all documents
+                    appendStyles(headerDoc, 'header');
+                    appendStyles(doc, url);
+                    appendStyles(newsletterDoc, 'newsletter');
+                    appendStyles(footerDoc, 'footer');
+
+                    // Execute scripts from all documents
+                    executeScripts(headerDoc);
+                    executeScripts(doc);
+                    executeScripts(newsletterDoc);
+                    executeScripts(footerDoc);
+
+                    // Add Bootstrap CSS if not present
+                    if (!document.querySelector('link[href*="bootstrap"]')) {
+                        const bootstrapCSS = document.createElement('link');
+                        bootstrapCSS.rel = 'stylesheet';
+                        bootstrapCSS.href = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css';
+                        document.head.appendChild(bootstrapCSS);
+                    }
+
+                    // Add Bootstrap JS if not present
+                    if (!document.querySelector('script[src*="bootstrap"]')) {
+                        const bootstrapJS = document.createElement('script');
+                        bootstrapJS.src = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js';
+                        bootstrapJS.onload = () => {
+                            // Initialize all interactive elements after Bootstrap is loaded
+                            initializeInteractiveElements();
+                        };
+                        document.body.appendChild(bootstrapJS);
+                    } else {
+                        // If Bootstrap is already loaded, initialize immediately
+                        initializeInteractiveElements();
+                    }
+
+                    // Update page title
+                    const titleMatch = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
+                    if (titleMatch) document.title = titleMatch[1];
+
+                    // Update URL without reload
+                    history.pushState({}, '', url);
+
+                } catch (error) {
+                    console.error('Loading error:', error);
+                    showError('Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.');
+                } finally {
+                    loading.classList.remove('active');
+                    content.classList.remove('loading');
+                }
+            }
+
+            // Show Error Function
+            function showError(message) {
+                errorMessage.textContent = message;
+                errorMessage.classList.add('active');
+                setTimeout(() => {
+                    errorMessage.classList.remove('active');
+                }, 3000);
+            }
+
+            // Handle Navigation
+            document.addEventListener('click', (e) => {
+                const link = e.target.closest('a');
+                if (link && link.href && link.href.startsWith(window.location.origin)) {
+                    e.preventDefault();
+                    loadContent(link.href);
+                    navMenu.classList.remove('active');
+                }
+            });
+
+            // Handle Browser Back/Forward
+            window.addEventListener('popstate', () => {
+                loadContent(window.location.href);
+            });
+
+            // Initial Load
+            loadContent('home.html');
+        });
+    </script>
+</body>
+</html> 

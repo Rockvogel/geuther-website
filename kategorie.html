@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schutzgitter | Geuther</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --geuther-primary: #42584A;
+            --geuther-secondary: #D4C4B7;
+            --geuther-text: #333333;
+            --geuther-bg: #FFFFFF;
+            --geuther-accent: #F5F1ED;
+            --geuther-border: #E5E5E5;
+        }
+
+        .geuther-category {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--geuther-text);
+            padding: 0;
+        }
+
+        /* Layout */
+        .category-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .geuther-category .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Filter Sidebar */
+        .filter-sidebar {
+            background: var(--geuther-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            position: sticky;
+            top: 2rem;
+        }
+
+        .filter-group {
+            border-bottom: 1px solid var(--geuther-border);
+        }
+
+        .filter-header {
+            width: 100%;
+            text-align: left;
+            padding: 1rem;
+            background: var(--geuther-accent);
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--geuther-primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 0.5rem;
+        }
+
+        .filter-header h3 {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .filter-header i {
+            font-size: 0.9rem;
+            transition: transform 0.3s ease;
+        }
+
+        .filter-content {
+            padding: 0 1rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .filter-content.active {
+            max-height: 1000px;
+            padding: 0.5rem 1rem 1rem;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .filter-option {
+            margin: 0.5rem 0;
+            position: relative;
+        }
+
+        .filter-checkbox {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .filter-label {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .filter-label::before {
+            content: '';
+            width: 16px;
+            height: 16px;
+            border: 2px solid var(--geuther-border);
+            border-radius: 3px;
+            background-color: var(--geuther-bg);
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .filter-checkbox:checked + .filter-label::before {
+            background-color: var(--geuther-primary);
+            border-color: var(--geuther-primary);
+        }
+
+        .filter-checkbox:checked + .filter-label::after {
+            content: '';
+            position: absolute;
+            left: 11px;
+            top: 8px;
+            width: 4px;
+            height: 8px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        .filter-label:hover {
+            background: var(--geuther-accent);
+        }
+
+        /* Color Grid */
+        .color-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            padding: 0.5rem;
+        }
+
+        .color-option {
+            position: relative;
+            padding-top: 100%;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid var(--geuther-border);
+            transition: all 0.3s ease;
+        }
+
+        .color-option:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .color-option.selected {
+            border-color: var(--geuther-primary);
+            box-shadow: 0 0 0 2px var(--geuther-primary);
+        }
+
+        /* Range Slider Styling */
+        .range-slider {
+            padding: 1rem 0.5rem;
+        }
+
+        .range-slider input {
+            width: 100%;
+            height: 6px;
+            background: var(--geuther-accent);
+            border-radius: 3px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .range-slider input::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: var(--geuther-primary);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .range-slider input::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        .range-values {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            font-weight: 500;
+            color: var(--geuther-primary);
+        }
+
+        @media (max-width: 992px) {
+            .hero-image-container {
+                height: 300px;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-image-container {
+                height: 250px;
+            }
+
+            .hero-title {
+                font-size: 1.8rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: var(--geuther-bg);
+            border: 1px solid var(--geuther-border);
+            border-radius: 8px;
+            overflow: visible;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+            z-index: 2;
+        }
+
+        .product-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+            background: transparent;
+            margin: 0.5rem;
+            display: block;
+            text-decoration: none;
+        }
+
+        .product-image img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: auto;
+            height: auto;
+            max-width: 80%;
+            max-height: 180px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+
+        .product-info {
+            padding: 1rem;
+            position: relative;
+        }
+
+        .product-availability {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            margin: 0.5rem 0;
+            font-size: 0.85rem;
+        }
+
+        .availability-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #2da73c;
+        }
+
+        .delivery-time {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--geuther-text);
+        }
+
+        .product-availability i {
+            font-size: 0.9rem;
+        }
+
+        .product-features-hover {
+            position: absolute;
+            left: -1px;
+            right: -1px;
+            top: 100%;
+            background: white;
+            border: 1px solid var(--geuther-border);
+            border-radius: 0 0 8px 8px;
+            padding: 1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 3;
+        }
+
+        .product-card:hover .product-features-hover {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .product-feature {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+            line-height: 1.3;
+        }
+
+        .product-feature i {
+            color: var(--geuther-primary);
+            font-size: 0.8rem;
+            margin-top: 0.2rem;
+            flex-shrink: 0;
+        }
+
+        .product-feature:last-child {
+            margin-bottom: 0;
+        }
+
+        .product-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--geuther-primary);
+        }
+
+        .product-description {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+        }
+
+        .product-colors {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .color-variant {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            border: 1px solid var(--geuther-border);
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .color-variant:hover {
+            transform: translateY(-2px);
+        }
+
+        .color-variant.white {
+            background: #ffffff;
+        }
+
+        .color-variant.black {
+            background: #2c2c2c;
+        }
+
+        .color-variant.natural {
+            background: #d4bc9c;
+        }
+
+        .color-variant.more {
+            background: var(--geuther-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            color: var(--geuther-primary);
+            font-weight: 600;
+        }
+
+        .color-variant.selected {
+            border: 2px solid var(--geuther-primary);
+        }
+
+        .product-features {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--geuther-border);
+            font-size: 0.9rem;
+        }
+
+        .product-button {
+            display: block;
+            width: 100%;
+            padding: 0.75rem;
+            margin-top: 1rem;
+            background: var(--geuther-primary);
+            color: white;
+            text-align: center;
+            border: none;
+            border-radius: 4px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .product-button:hover {
+            background: #364b3d;
+        }
+
+        /* Mobile Optimierung */
+        @media (max-width: 992px) {
+            .category-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-sidebar {
+                position: static;
+                margin-bottom: 2rem;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Subcategory Grid */
+        .subcategory-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .subcategory-box {
+            position: relative;
+            text-decoration: none;
+            color: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            transition: transform 0.3s ease;
+            margin-top: 2rem;
+        }
+
+        .subcategory-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .subcategory-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .subcategory-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom,
+                rgba(0,0,0,0) 0%,
+                rgba(0,0,0,0.3) 60%,
+                rgba(0,0,0,0.7) 100%);
+            display: flex;
+            align-items: flex-end;
+            padding: 2rem 1.5rem;
+        }
+
+        .subcategory-content {
+            text-align: left;
+            color: #fff;
+            width: 100%;
+        }
+
+        .subcategory-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #fff;
+            position: relative;
+            display: inline-block;
+        }
+
+        .subcategory-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 40px;
+            height: 2px;
+            background-color: #fff;
+        }
+
+        .subcategory-description {
+            font-size: 1rem;
+            line-height: 1.4;
+            opacity: 0.95;
+            max-width: 90%;
+            margin-bottom: 0px;
+        }
+
+        @media (max-width: 992px) {
+            .subcategory-title {
+                font-size: 1.2rem;
+            }
+
+            .subcategory-description {
+                font-size: 0.9rem;
+            }
+
+            .subcategory-overlay {
+                padding: 1.75rem 1.25rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .subcategory-overlay {
+                padding: 1.5rem 1.25rem;
+            }
+
+            .subcategory-title {
+                font-size: 1.1rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .subcategory-description {
+                font-size: 0.85rem;
+                max-width: 100%;
+            }
+        }
+
+        /* Sorting */
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin: 0;
+        }
+
+        .sorting-select {
+            padding: 0.5rem 2rem 0.5rem 1rem;
+            border: 1px solid var(--geuther-border);
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            color: var(--geuther-text);
+            background: var(--geuther-bg);
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2342584A' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.5rem center;
+            background-size: 16px;
+        }
+
+        .sorting-select:focus {
+            outline: none;
+            border-color: var(--geuther-primary);
+        }
+
+        @media (max-width: 768px) {
+            .category-header {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+        }
+
+        /* Pagination Styling */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 3rem 0;
+            gap: 0.5rem;
+        }
+
+        .pagination-item, .pagination-next, .pagination-dots {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 40px;
+            height: 40px;
+            padding: 0 0.75rem;
+            border-radius: 8px;
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--geuther-text);
+            transition: all 0.3s ease;
+        }
+
+        .pagination-item:hover, .pagination-next:hover {
+            background: var(--geuther-accent);
+            color: var(--geuther-primary);
+        }
+
+        .pagination-item.active {
+            background: var(--geuther-primary);
+            color: white;
+        }
+
+        .pagination-next {
+            background: var(--geuther-accent);
+        }
+
+        .pagination-next i {
+            font-size: 1.1rem;
+        }
+
+        /* Kategorie-Beschreibung Styling */
+        .category-description {
+            margin: 4rem 0;
+            padding: 2rem 0;
+            background: var(--geuther-bg);
+        }
+
+        .description-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 3rem;
+            padding: 0 1rem;
+        }
+
+        .description-grid.reversed {
+            direction: rtl;
+        }
+
+        .description-grid.reversed > * {
+            direction: ltr;
+        }
+
+        .description-content {
+            max-width: 600px;
+        }
+
+        .description-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .description-highlight {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--geuther-primary);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .description-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .description-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            color: var(--geuther-primary);
+        }
+
+        .feature-item i {
+            font-size: 1.2rem;
+        }
+
+        .materials-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .material-badge {
+            background: var(--geuther-accent);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--geuther-primary);
+            border: 1px solid var(--geuther-secondary);
+        }
+
+        @media (max-width: 992px) {
+            .description-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .description-content {
+                max-width: 100%;
+            }
+
+            .description-image {
+                height: 300px;
+            }
+
+            .feature-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .description-title {
+                font-size: 1.5rem;
+            }
+
+            .description-highlight {
+                font-size: 1.1rem;
+            }
+
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+
+            .pagination {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="geuther-category">
+        <div class="container">
+            <!-- Unterkategorien Grid -->
+            <div class="subcategory-grid">
+                <a href="#" class="subcategory-box">
+                    <img src="https://www.geuther.de/thumbnail/62/f2/83/1705518704/1155_nest_in_the_clouds_005_800x800.webp" 
+                         alt="Bettschutzgitter" 
+                         class="subcategory-image">
+                    <div class="subcategory-overlay">
+                        <div class="subcategory-content">
+                            <h2 class="subcategory-title">Bettschutzgitter</h2>
+                            <p class="subcategory-description">Erstklassige Bettschutzgitter für sicheren Schlafkomfort</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="subcategory-box">
+                    <img src="https://www.geuther.de/media/ba/68/ae/1706262351/2273_NA_MB_10.webp" 
+                         alt="Tür-/Treppenschutzgitter" 
+                         class="subcategory-image">
+                    <div class="subcategory-overlay">
+                        <div class="subcategory-content">
+                            <h2 class="subcategory-title">Tür-/Treppenschutzgitter</h2>
+                            <p class="subcategory-description">Hochwertige Schutzgitter für Türen und Treppen</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="subcategory-box">
+                    <img src="https://www.geuther.de/media/8c/82/75/1705518661/1111ko_na_121_mb_3.webp" 
+                         alt="Laufgitter" 
+                         class="subcategory-image">
+                    <div class="subcategory-overlay">
+                        <div class="subcategory-content">
+                            <h2 class="subcategory-title">Laufgitter</h2>
+                            <p class="subcategory-description">Sichere Laufgitter für aktive Entdeckungstouren</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="category-layout">
+                <!-- Filter Sidebar -->
+                <aside class="filter-sidebar">
+                    <div class="filter-group">
+                        <div class="filter-header">
+                            <h3>Befestigung</h3>
+                            <i class="bi bi-chevron-down"></i>
+                        </div>
+                        <div class="filter-content">
+                            <div class="filter-option">
+                                <input type="checkbox" id="mount-1" class="filter-checkbox">
+                                <label for="mount-1" class="filter-label">
+                                    <span class="filter-custom-checkbox"></span>
+                                    Klemmen/Schrauben (2in1)
+                                </label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="mount-2" class="filter-checkbox">
+                                <label for="mount-2" class="filter-label">
+                                    <span class="filter-custom-checkbox"></span>
+                                    Zum Klemmen
+                                </label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="mount-3" class="filter-checkbox">
+                                <label for="mount-3" class="filter-label">
+                                    <span class="filter-custom-checkbox"></span>
+                                    Zum Schrauben
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <div class="filter-header">
+                            <h3>Dekor</h3>
+                            <i class="bi bi-chevron-down"></i>
+                        </div>
+                        <div class="filter-content">
+                            <div class="filter-option">
+                                <input type="checkbox" id="decor-1" class="filter-checkbox">
+                                <label for="decor-1" class="filter-label">
+                                    <span class="filter-custom-checkbox"></span>
+                                    Circle
+                                </label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="decor-2" class="filter-checkbox">
+                                <label for="decor-2" class="filter-label">
+                                    <span class="filter-custom-checkbox"></span>
+                                    Grau
+                                </label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="decor-3" class="filter-checkbox">
+                                <label for="decor-3" class="filter-label">
+                                    <span class="filter-custom-checkbox"></span>
+                                    Lama
+                                </label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="decor-4" class="filter-checkbox">
+                                <label for="decor-4" class="filter-label">
+                                    <span class="filter-custom-checkbox"></span>
+                                    Mint
+                                </label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="decor-5" class="filter-checkbox">
+                                <label for="decor-5" class="filter-label">
+                                    <span class="filter-custom-checkbox"></span>
+                                    Monster
+                                </label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="decor-6" class="filter-checkbox">
+                                <label for="decor-6" class="filter-label">
+                                    <span class="filter-custom-checkbox"></span>
+                                    Party Animals green
+                                </label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="decor-7" class="filter-checkbox">
+                                <label for="decor-7" class="filter-label">
+                                    <span class="filter-custom-checkbox"></span>
+                                    Punkte
+                                </label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="decor-8" class="filter-checkbox">
+                                <label for="decor-8" class="filter-label">
+                                    <span class="filter-custom-checkbox"></span>
+                                    Soft Swirl
+                                </label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="decor-9" class="filter-checkbox">
+                                <label for="decor-9" class="filter-label">
+                                    <span class="filter-custom-checkbox"></span>
+                                    Sprinkeled grey
+                                </label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="decor-10" class="filter-checkbox">
+                                <label for="decor-10" class="filter-label">
+                                    <span class="filter-custom-checkbox"></span>
+                                    Starry Night green
+                                </label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="decor-11" class="filter-checkbox">
+                                <label for="decor-11" class="filter-label">
+                                    <span class="filter-custom-checkbox"></span>
+                                    Starry Night pink
+                                </label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="decor-12" class="filter-checkbox">
+                                <label for="decor-12" class="filter-label">
+                                    <span class="filter-custom-checkbox"></span>
+                                    Stern
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <div class="filter-header">
+                            <h3>Faltbar</h3>
+                            <i class="bi bi-chevron-down"></i>
+                        </div>
+                        <div class="filter-content">
+                            <div class="filter-option">
+                                <input type="checkbox" id="foldable-1" class="filter-checkbox">
+                                <label for="foldable-1" class="filter-label">
+                                    <span class="filter-custom-checkbox"></span>
+                                    Ja
+                                </label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="foldable-2" class="filter-checkbox">
+                                <label for="foldable-2" class="filter-label">
+                                    <span class="filter-custom-checkbox"></span>
+                                    Nein - Fix
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <div class="filter-header">
+                            <h3>Model</h3>
+                            <i class="bi bi-chevron-down"></i>
+                        </div>
+                        <div class="filter-content">
+                            <div class="filter-option">
+                                <input type="checkbox" id="model-1" class="filter-checkbox">
+                                <label for="model-1" class="filter-label">
+                                    <span class="filter-custom-checkbox"></span>
+                                    2732+/2734+
+                                </label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="model-2" class="filter-checkbox">
+                                <label for="model-2" class="filter-label">
+                                    <span class="filter-custom-checkbox"></span>
+                                    2733+/2735+
+                                </label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="model-3" class="filter-checkbox">
+                                <label for="model-3" class="filter-label">
+                                    <span class="filter-custom-checkbox"></span>
+                                    2792+
+                                </label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="model-4" class="filter-checkbox">
+                                <label for="model-4" class="filter-label">
+                                    <span class="filter-custom-checkbox"></span>
+                                    4792+
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <div class="filter-header">
+                            <h3>Produktgruppe</h3>
+                            <i class="bi bi-chevron-down"></i>
+                        </div>
+                        <div class="filter-content">
+                            <div class="filter-option">
+                                <input type="checkbox" id="group-1" class="filter-checkbox">
+                                <label for="group-1" class="filter-label">
+                                    <span class="filter-custom-checkbox"></span>
+                                    Bettschutzgitter
+                                </label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="group-2" class="filter-checkbox">
+                                <label for="group-2" class="filter-label">
+                                    <span class="filter-custom-checkbox"></span>
+                                    Laufgitter
+                                </label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="group-3" class="filter-checkbox">
+                                <label for="group-3" class="filter-label">
+                                    <span class="filter-custom-checkbox"></span>
+                                    Sicherheitsgitter
+                                </label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="group-4" class="filter-checkbox">
+                                <label for="group-4" class="filter-label">
+                                    <span class="filter-custom-checkbox"></span>
+                                    Textil
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <div class="filter-header">
+                            <h3>Farbe</h3>
+                            <i class="bi bi-chevron-down"></i>
+                        </div>
+                        <div class="filter-content">
+                            <div class="color-options">
+                                <div class="color-option color-anthrazit" title="Anthrazit"></div>
+                                <div class="color-option color-schwarz" title="Gebeizt-Schwarz"></div>
+                                <div class="color-option color-grau" title="Grau"></div>
+                                <div class="color-option color-kolonial" title="Kolonial"></div>
+                                <div class="color-option color-lichtgrau" title="Lichtgrau"></div>
+                                <div class="color-option color-natur" title="Natur"></div>
+                                <div class="color-option color-weiss" title="Weiß"></div>
+                                <div class="color-option color-unbehandelt" title="Unbehandelt"></div>
+                                <div class="color-option color-weiss-natur" title="Weiß/Natur"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <div class="filter-header">
+                            <h3>Breite des Schutzgitters</h3>
+                            <i class="bi bi-chevron-down"></i>
+                        </div>
+                        <div class="filter-content">
+                            <div class="range-slider">
+                                <input type="range" min="57" max="233" value="57">
+                                <div class="range-values">
+                                    <span>57 cm</span>
+                                    <span>233 cm</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Produktbereich -->
+                <div class="product-section">
+                    <div class="category-header">
+                        <h1 class="category-title">Schutzgitter</h1>
+                        <select class="sorting-select">
+                            <option value="recommended">Empfohlen</option>
+                            <option value="price-asc">Preis aufsteigend</option>
+                            <option value="price-desc">Preis absteigend</option>
+                            <option value="name-asc">Name A-Z</option>
+                            <option value="name-desc">Name Z-A</option>
+                        </select>
+                    </div>
+
+                    <div class="product-grid">
+                        <!-- Produkt 1 -->
+                        <div class="product-card">
+                            <a href="/produkt/treppenschutzgitter-2733" class="product-image">
+                                <img src="https://www.geuther.de/media/dc/1d/16/1708101600/2733_WE_01.webp" 
+                                     alt="Treppenschutzgitter 2733+">
+                            </a>
+                            <div class="product-info">
+                                <h2 class="product-title">
+                                    <a href="/produkt/treppenschutzgitter-2733">
+                                        Treppenschutzgitter 2733+ für Öffnungen von 67 cm - 95 cm aus Holz
+                                    </a>
+                                </h2>
+                                <p class="product-description">Absolut sicher durch Wandbefestigung</p>
+                                <div class="product-availability">
+                                    <div class="availability-status">
+                                        <i class="bi bi-check-circle-fill"></i>
+                                        Sofort verfügbar
+                                    </div>
+                                    <div class="delivery-time">
+                                        <i class="bi bi-truck"></i>
+                                        Lieferzeit: 1-3 Tage
+                                    </div>
+                                </div>
+                                <div class="product-price">89,99 €*</div>
+                                <div class="product-colors">
+                                    <div class="color-variant white selected" title="Weiß"></div>
+                                    <div class="color-variant black" title="Gebeizt-Schwarz"></div>
+                                    <div class="color-variant natural" title="Natur"></div>
+                                    <div class="color-variant more" title="Weitere Farben">+1</div>
+                                </div>
+                                <div class="product-features-hover">
+                                    <div class="product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Barrierefreier Durchgang ohne Stolperfalle</span>
+                                    </div>
+                                    <div class="product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Sicherheitsplus durch extrahohe Ausführung</span>
+                                    </div>
+                                    <a href="/produkt/treppenschutzgitter-2733" class="product-button">
+                                        Zum Produkt
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Produkt 2 -->
+                        <div class="product-card">
+                            <a href="/produkt/tuerschutzgitter-2732" class="product-image">
+                                <img src="https://www.geuther.de/media/dc/4b/51/1724842241/2732_NA_01.jpg" 
+                                     alt="Türschutzgitter 2732+">
+                            </a>
+                            <div class="product-info">
+                                <h2 class="product-title">
+                                    <a href="/produkt/tuerschutzgitter-2732">
+                                        Türschutzgitter 2732+ für Öffnungen von 58 cm - 93 cm aus Holz
+                                    </a>
+                                </h2>
+                                <p class="product-description">Absolut sicher durch Wandbefestigung</p>
+                                <div class="product-availability">
+                                    <div class="availability-status">
+                                        <i class="bi bi-check-circle-fill"></i>
+                                        Sofort verfügbar
+                                    </div>
+                                    <div class="delivery-time">
+                                        <i class="bi bi-truck"></i>
+                                        Lieferzeit: 1-3 Tage
+                                    </div>
+                                </div>
+                                <div class="product-price">Ab 59,99 €*</div>
+                                <div class="product-colors">
+                                    <div class="color-variant natural selected" title="Natur"></div>
+                                    <div class="color-variant black" title="Schwarz"></div>
+                                    <div class="color-variant natural" title="Unbehandelt"></div>
+                                    <div class="color-variant more" title="Weitere Farben">+1</div>
+                                </div>
+                                <div class="product-features-hover">
+                                    <div class="product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Installation in der Türöffnung oder Wand außerhalb</span>
+                                    </div>
+                                    <div class="product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Sicherheitsplus durch extrahohe Ausführung</span>
+                                    </div>
+                                    <a href="/produkt/tuerschutzgitter-2732" class="product-button">
+                                        Zum Produkt
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Produkt 3 -->
+                        <div class="product-card">
+                            <a href="/produkt/easylock-plus-metall-4792" class="product-image">
+                                <img src="https://www.geuther.de/media/d8/56/8c/1705518400/4792-_we_1.webp" 
+                                     alt="Easylock Plus Metall">
+                            </a>
+                            <div class="product-info">
+                                <h2 class="product-title">
+                                    <a href="/produkt/easylock-plus-metall-4792">
+                                        Tür- und Treppenschutzgitter Easylock Plus zum Klemmen Metall (88,5 cm - 96,5 cm)
+                                    </a>
+                                </h2>
+                                <p class="product-description">Für Durchgänge von 76-232,5 cm</p>
+                                <div class="product-availability">
+                                    <div class="availability-status">
+                                        <i class="bi bi-check-circle-fill"></i>
+                                        Sofort verfügbar
+                                    </div>
+                                    <div class="delivery-time">
+                                        <i class="bi bi-truck"></i>
+                                        Lieferzeit: 1-3 Tage
+                                    </div>
+                                </div>
+                                <div class="product-price">Ab 59,99 €*</div>
+                                <div class="product-features-hover">
+                                    <div class="product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Montage ohne Bohren</span>
+                                    </div>
+                                    <div class="product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Öffnung in 2 Richtungen</span>
+                                    </div>
+                                    <a href="/produkt/easylock-plus-metall-4792" class="product-button">
+                                        Zum Produkt
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Produkt 4 -->
+                        <div class="product-card">
+                            <a href="/produkt/easylock-plus-metall-4793" class="product-image">
+                                <img src="https://www.geuther.de/media/e9/42/87/1705518432/4793-_we_1.webp" 
+                                     alt="Easylock Plus Metall">
+                            </a>
+                            <div class="product-info">
+                                <h2 class="product-title">
+                                    <a href="/produkt/easylock-plus-metall-4793">
+                                        Tür- und Treppenschutzgitter Easylock Plus zum Klemmen Metall (84,5 cm - 92,5 cm)
+                                    </a>
+                                </h2>
+                                <p class="product-description">Für Durchgänge von 84,5-124,5 cm</p>
+                                <div class="product-availability">
+                                    <div class="availability-status">
+                                        <i class="bi bi-check-circle-fill"></i>
+                                        Sofort verfügbar
+                                    </div>
+                                    <div class="delivery-time">
+                                        <i class="bi bi-truck"></i>
+                                        Lieferzeit: 1-3 Tage
+                                    </div>
+                                </div>
+                                <div class="product-price">Ab 99,99 €*</div>
+                                <div class="product-features-hover">
+                                    <div class="product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Montage ohne Bohren</span>
+                                    </div>
+                                    <div class="product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Öffnung in 2 Richtungen</span>
+                                    </div>
+                                    <a href="/produkt/easylock-plus-metall-4793" class="product-button">
+                                        Zum Produkt
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Produkt 5 -->
+                        <div class="product-card">
+                            <a href="/produkt/easylock-wood-plus-2793" class="product-image">
+                                <img src="https://www.geuther.de/media/d4/88/69/1705518537/2793-_02.webp" 
+                                     alt="Easylock Wood Plus">
+                            </a>
+                            <div class="product-info">
+                                <h2 class="product-title">
+                                    <a href="/produkt/easylock-wood-plus-2793">
+                                        Tür- und Treppenschutzgitter Easylock Wood Plus (Ohne Bohren) (84,5 cm - 92,5 cm)
+                                    </a>
+                                </h2>
+                                <p class="product-description">Für Durchgänge von 84-124,5 cm</p>
+                                <div class="product-availability">
+                                    <div class="availability-status">
+                                        <i class="bi bi-check-circle-fill"></i>
+                                        Sofort verfügbar
+                                    </div>
+                                    <div class="delivery-time">
+                                        <i class="bi bi-truck"></i>
+                                        Lieferzeit: 1-3 Tage
+                                    </div>
+                                </div>
+                                <div class="product-price">Ab 109,99 €*</div>
+                                <div class="product-features-hover">
+                                    <div class="product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Montage ohne Bohren</span>
+                                    </div>
+                                    <div class="product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Öffnung in 2 Richtungen</span>
+                                    </div>
+                                    <a href="/produkt/easylock-wood-plus-2793" class="product-button">
+                                        Zum Produkt
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Produkt 6 -->
+                        <div class="product-card">
+                            <a href="/produkt/easylock-wood-plus-2792" class="product-image">
+                                <img src="https://www.geuther.de/media/64/d7/4a/1705518505/2792-_02.webp" 
+                                     alt="Easylock Wood Plus">
+                            </a>
+                            <div class="product-info">
+                                <h2 class="product-title">
+                                    <a href="/produkt/easylock-wood-plus-2792">
+                                        Tür- und Treppenschutzgitter Easylock Wood Plus (Ohne Bohren) (96,5 cm - 104,5 cm)
+                                    </a>
+                                </h2>
+                                <p class="product-description">Extra Weit: für Durchgänge von 80,5 - 232 cm</p>
+                                <div class="product-availability">
+                                    <div class="availability-status">
+                                        <i class="bi bi-check-circle-fill"></i>
+                                        Sofort verfügbar
+                                    </div>
+                                    <div class="delivery-time">
+                                        <i class="bi bi-truck"></i>
+                                        Lieferzeit: 1-3 Tage
+                                    </div>
+                                </div>
+                                <div class="product-price">Ab 84,99 €*</div>
+                                <div class="product-features-hover">
+                                    <div class="product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Montage ohne Bohren</span>
+                                    </div>
+                                    <div class="product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Öffnung in 2 Richtungen</span>
+                                    </div>
+                                    <a href="/produkt/easylock-wood-plus-2792" class="product-button">
+                                        Zum Produkt
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <a href="#" class="pagination-item active">1</a>
+                        <a href="#" class="pagination-item">2</a>
+                        <a href="#" class="pagination-item">3</a>
+                        <span class="pagination-dots">...</span>
+                        <a href="#" class="pagination-item">8</a>
+                        <a href="#" class="pagination-next">
+                            <i class="bi bi-chevron-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kategorie-Beschreibung -->
+            <section class="category-description">
+                <div class="description-grid">
+                    <div class="description-content">
+                        <h2 class="description-title">Sicherheit für Ihre Kleinen</h2>
+                        <p class="description-highlight">
+                            Unsere Schutzgitter vereinen höchste Sicherheitsstandards mit durchdachtem Design.
+                        </p>
+                        <p class="description-text">
+                            Mit über 100 Jahren Erfahrung entwickeln wir Schutzgitter, die sich perfekt in Ihr Zuhause integrieren. 
+                            Ob Treppe, Tür oder Durchgang – unsere vielfältigen Modelle bieten für jede Situation die passende Lösung.
+                        </p>
+                        <div class="feature-list">
+                            <div class="feature-item">
+                                <i class="bi bi-shield-check"></i>
+                                <span>TÜV-geprüfte Sicherheit</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="bi bi-tools"></i>
+                                <span>Einfache Montage</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="bi bi-arrows-angle-expand"></i>
+                                <span>Flexible Größenanpassung</span>
+                            </div>
+                        </div>
+                    </div>
+                    <img src="https://www.geuther.de/media/ba/68/ae/1706262351/2273_NA_MB_10.webp" 
+                         alt="Geuther Schutzgitter" 
+                         class="description-image">
+                </div>
+
+                <div class="description-grid reversed">
+                    <div class="description-content">
+                        <h2 class="description-title">Qualität made in Germany</h2>
+                        <p class="description-text">
+                            Jedes Geuther Schutzgitter wird mit größter Sorgfalt in Deutschland hergestellt. 
+                            Dabei setzen wir auf hochwertige Materialien und nachhaltige Produktionsprozesse.
+                        </p>
+                        <div class="materials-list">
+                            <span class="material-badge">FSC-zertifiziertes Holz</span>
+                            <span class="material-badge">Hochwertiges Metall</span>
+                            <span class="material-badge">Kindersichere Materialien</span>
+                        </div>
+                    </div>
+                    <img src="https://www.geuther.de/thumbnail/62/f2/83/1705518704/1155_nest_in_the_clouds_005_800x800.webp" 
+                         alt="Geuther Qualität" 
+                         class="description-image">
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Filter Toggle
+            const filterHeaders = document.querySelectorAll('.filter-header');
+            
+            filterHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    const icon = this.querySelector('i');
+                    
+                    content.classList.toggle('active');
+                    icon.style.transform = content.classList.contains('active') 
+                        ? 'rotate(180deg)' 
+                        : 'rotate(0)';
+                });
+            });
+
+            // Color Selection
+            const colorOptions = document.querySelectorAll('.color-option');
+            
+            colorOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    this.classList.toggle('selected');
+                });
+            });
+
+            // Range Slider
+            const rangeSlider = document.querySelector('.range-slider input');
+            const rangeValues = document.querySelector('.range-values');
+            
+            rangeSlider.addEventListener('input', function() {
+                rangeValues.children[0].textContent = this.value + ' cm';
+            });
+        });
+    </script>
+</body>
+</html> 

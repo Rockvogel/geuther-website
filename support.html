@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support & Kontakt | Geuther</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --geuther-primary: #42584A;
+            --geuther-secondary: #D4C4B7;
+            --geuther-text: #333333;
+            --geuther-bg: #FFFFFF;
+            --geuther-accent: #F5F1ED;
+            --geuther-border: #E5E5E5;
+        }
+
+        .geuther-support {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--geuther-text);
+            padding: 0;
+        }
+
+        .geuther-support .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .geuther-support .hero-section {
+            text-align: center;
+            position: relative;
+            background-color: var(--geuther-accent);
+            padding: 4rem 0 8rem;
+            overflow: hidden;
+            margin-bottom: 0;
+        }
+
+        .geuther-support .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://www.geuther.de/media/8c/82/75/1705518661/1111ko_na_121_mb_3.webp') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .geuther-support .hero-section > .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .geuther-support .hero-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--geuther-primary);
+        }
+
+        .geuther-support .hero-subtitle {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+            color: var(--geuther-text);
+        }
+
+        .geuther-support .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: -4rem auto 4rem;
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            padding: 0 1rem;
+        }
+
+        .geuther-support .contact-card {
+            background: var(--geuther-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid var(--geuther-border);
+            transition: all 0.3s ease;
+            text-align: center;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .geuther-support .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .geuther-support .contact-icon {
+            font-size: 2.5rem;
+            color: var(--geuther-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .geuther-support .contact-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 1rem;
+        }
+
+        .geuther-support .contact-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--geuther-text);
+            margin-bottom: 1rem;
+        }
+
+        .geuther-support .contact-link {
+            color: var(--geuther-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-weight: 500;
+        }
+
+        .geuther-support .contact-link:hover {
+            color: var(--geuther-secondary);
+            transform: translateY(-2px);
+        }
+
+        .geuther-support .contact-hours {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--geuther-text);
+            padding-top: 1rem;
+            border-top: 1px solid var(--geuther-border);
+        }
+
+        .geuther-support .support-images {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 4rem auto;
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 1rem;
+        }
+
+        .geuther-support .support-image {
+            width: 100%;
+            height: 280px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            object-fit: cover;
+        }
+
+        .geuther-support .support-image:hover {
+            transform: translateY(-5px);
+        }
+
+        .geuther-support .form-section {
+            background-color: var(--geuther-accent);
+            padding: 4rem 0;
+            margin: 4rem 0 0 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .geuther-support .form-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://www.geuther.de/media/17/e2/ce/1706262480/2263_2261_NA_MB_03.webp') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .geuther-support .form-section > .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .geuther-support .form-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .geuther-support .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: var(--geuther-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .geuther-support .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .geuther-support .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--geuther-primary);
+            font-weight: 500;
+        }
+
+        .geuther-support .form-control {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--geuther-border);
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            background-color: var(--geuther-bg);
+        }
+
+        .geuther-support .form-control:focus {
+            outline: none;
+            border-color: var(--geuther-primary);
+            box-shadow: 0 0 0 2px rgba(66, 88, 74, 0.1);
+        }
+
+        .geuther-support .form-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2342584A' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 16px;
+        }
+
+        .geuther-support .form-textarea {
+            min-height: 250px;
+            resize: vertical;
+        }
+
+        .geuther-support .button-container {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .geuther-support .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--geuther-primary);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 250px;
+        }
+
+        .geuther-support .cta-button:hover {
+            background-color: var(--geuther-secondary);
+            color: var(--geuther-primary);
+            transform: translateY(-2px);
+        }
+
+        .geuther-support .required-hint {
+            font-size: 0.8rem;
+            color: var(--geuther-text);
+            margin-top: 1rem;
+            text-align: right;
+            grid-column: 1 / -1;
+        }
+
+        @media (max-width: 992px) {
+            .geuther-support .contact-grid,
+            .geuther-support .support-images {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .geuther-support {
+                padding: 2rem 0;
+            }
+
+            .geuther-support .contact-grid,
+            .geuther-support .support-images {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .geuther-support .hero-title {
+                font-size: 2rem;
+            }
+
+            .geuther-support .form-grid {
+                padding: 1rem;
+            }
+
+            .geuther-support .support-image {
+                max-width: 100%;
+            }
+
+            .geuther-support .hero-section {
+                padding: 3rem 0 6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="geuther-support">
+        <section class="hero-section">
+            <div class="container">
+                <h1 class="hero-title">Lassen Sie uns Ihnen weiterhelfen!</h1>
+                <p class="hero-subtitle">
+                    Wir sind für Sie da und unterstützen Sie gerne bei allen Fragen rund um unsere Produkte und Services.
+                </p>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <i class="bi bi-telephone contact-icon"></i>
+                    <h2 class="contact-title">Telefonischer Support</h2>
+                    <p class="contact-text">
+                        <a href="tel:+4959056799050" class="contact-link">+49 (0) 590 567 990 50</a>
+                    </p>
+                    <p class="contact-hours">
+                        Montag - Freitag<br>
+                        08:00 - 15:30 Uhr
+                    </p>
+                </div>
+
+                <div class="contact-card">
+                    <i class="bi bi-whatsapp contact-icon"></i>
+                    <h2 class="contact-title">WhatsApp Support</h2>
+                    <p class="contact-text">
+                        <a href="https://wa.me/491628385527" target="_blank" class="contact-link">+49 162 8385527</a>
+                    </p>
+                    <p class="contact-hours">
+                        Montag - Freitag<br>
+                        08:00 - 15:30 Uhr
+                    </p>
+                </div>
+
+                <div class="contact-card">
+                    <i class="bi bi-envelope contact-icon"></i>
+                    <h2 class="contact-title">Kontaktformular</h2>
+                    <p class="contact-text">
+                        Nutzen Sie unser Kontaktformular für eine schnelle und einfache Kontaktaufnahme.
+                    </p>
+                    <p class="contact-text">
+                        <a href="#kontaktformular" class="contact-link">Zum Kontaktformular <i class="bi bi-arrow-down"></i></a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="support-images">
+                <img src="https://www.geuther.de/media/6f/d3/46/1711107365/4871_MB_02.webp" 
+                     alt="Geuther Hochstuhl" 
+                     class="support-image"
+                     loading="lazy">
+                <img src="https://www.geuther.de/media/17/e2/ce/1706262480/2263_2261_NA_MB_03.webp" 
+                     alt="Geuther Kinderbett" 
+                     class="support-image"
+                     loading="lazy">
+                <img src="https://www.geuther.de/media/62/81/af/1705518720/1118bb_we_mb_33.webp" 
+                     alt="Geuther Spielmöbel" 
+                     class="support-image"
+                     loading="lazy">
+            </div>
+        </div>
+
+        <section class="form-section" id="kontaktformular">
+            <div class="container">
+                <h2 class="form-title">Kontaktformular</h2>
+                <form action="/submit-form" method="POST" class="form-grid">
+                    <div>
+                        <div class="form-group">
+                            <label class="form-label" for="anrede">Anrede *</label>
+                            <select class="form-control form-select" id="anrede" name="anrede" required>
+                                <option value="">Bitte wählen</option>
+                                <option value="herr">Herr</option>
+                                <option value="frau">Frau</option>
+                                <option value="divers">Divers</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="vorname">Vorname *</label>
+                            <input type="text" class="form-control" id="vorname" name="vorname" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="nachname">Nachname *</label>
+                            <input type="text" class="form-control" id="nachname" name="nachname" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="email">E-Mail *</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="telefon">Telefon</label>
+                            <input type="tel" class="form-control" id="telefon" name="telefon">
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="form-group">
+                            <label class="form-label" for="bestellnummer">Bestellnummer</label>
+                            <input type="text" class="form-control" id="bestellnummer" name="bestellnummer">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="grund">Grund *</label>
+                            <select class="form-control form-select" id="grund" name="grund" required>
+                                <option value="">Bitte wählen</option>
+                                <option value="beratung">Produktberatung</option>
+                                <option value="bestellung">Fragen zur Bestellung</option>
+                                <option value="reklamation">Reklamation</option>
+                                <option value="ersatzteile">Ersatzteile</option>
+                                <option value="sonstiges">Sonstiges</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="nachricht">Ihre Nachricht *</label>
+                            <textarea class="form-control form-textarea" id="nachricht" name="nachricht" required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="button-container">
+                        <button type="submit" class="cta-button">
+                            <i class="bi bi-send"></i>
+                            Nachricht senden
+                        </button>
+                    </div>
+                    <p class="required-hint">* Pflichtfelder</p>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 

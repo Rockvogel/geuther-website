@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footer | Geuther</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --geuther-primary: #42584A;
+            --geuther-secondary: #D4C4B7;
+            --geuther-text: #333333;
+            --geuther-bg: #FFFFFF;
+            --geuther-accent: #F5F1ED;
+            --geuther-border: #E5E5E5;
+        }
+
+        .geuther-footer {
+            background: var(--geuther-accent);
+            padding: 4rem 0 2rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .geuther-footer .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .geuther-footer .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--geuther-border);
+        }
+
+        .geuther-footer .footer-intro {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1.75fr 3fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--geuther-border);
+        }
+
+        .geuther-footer .nav-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .geuther-footer .footer-logo {
+            margin-bottom: 1.5rem;
+            background-color: transparent !important;
+            width: 150px !important;
+        }
+
+        .geuther-footer .footer-logo img {
+            height: 75px;
+            width: auto;
+            margin-bottom: 1.25rem;
+            display: block;
+        }
+
+        .geuther-footer .footer-about {
+            color: var(--geuther-text);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .geuther-footer .footer-column {
+            padding-right: 1rem;
+        }
+
+        .geuther-footer .footer-column h3 {
+            color: var(--geuther-primary);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .geuther-footer .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--geuther-secondary);
+        }
+
+        .geuther-footer .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .geuther-footer .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .geuther-footer .footer-links a {
+            color: var(--geuther-text);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .geuther-footer .footer-links a:hover {
+            color: var(--geuther-primary);
+        }
+
+        .geuther-footer .service-wrapper {
+            background: var(--geuther-bg);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+            position: relative;
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            margin-right: calc(-50vw + 50%);
+            padding: 3rem 0;
+        }
+
+        .geuther-footer .service-wrapper .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .geuther-footer .service-content {
+            display: grid;
+            grid-template-columns: 1.75fr 3fr;
+            gap: 3rem;
+        }
+
+        .geuther-footer .additional-links {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .geuther-footer .service-section {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .geuther-footer .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            position: relative;
+            padding-left: 2.5rem;
+        }
+
+        .geuther-footer .contact-item i {
+            font-size: 1.5rem;
+            color: var(--geuther-primary);
+            margin-bottom: 0;
+            position: absolute;
+            left: 0;
+            top: 0.25rem;
+        }
+
+        .geuther-footer .contact-item .details {
+            width: 100%;
+        }
+
+        .geuther-footer .contact-item h4 {
+            color: var(--geuther-primary);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0 0 1.25rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .geuther-footer .contact-item h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--geuther-secondary);
+        }
+
+        .geuther-footer .contact-item p {
+            color: var(--geuther-text);
+            font-size: 0.95rem;
+            margin: 0 0 0.25rem;
+            line-height: 1.5;
+        }
+
+        .geuther-footer .contact-number {
+            color: var(--geuther-text);
+            font-weight: 500;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            background: var(--geuther-accent);
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            margin: 0.5rem 0;
+            border: 1px solid var(--geuther-secondary);
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+
+        .geuther-footer .contact-number:hover {
+            background: var(--geuther-secondary);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .geuther-footer .contact-time {
+            color: var(--geuther-text);
+            font-size: 0.9rem;
+            opacity: 0.75;
+            display: block;
+            margin-top: 0.25rem;
+        }
+
+        .geuther-footer .contact-link {
+            color: var(--geuther-primary);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .geuther-footer .contact-link:hover {
+            color: var(--geuther-secondary);
+        }
+
+        .geuther-footer .contact-link i {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .geuther-footer .payment-shipping {
+            display: grid;
+            grid-template-columns: 1.75fr 3fr;
+            gap: 3rem;
+            margin-bottom: 0;
+            padding-bottom: 2rem;
+            border-bottom: none;
+        }
+
+        .geuther-footer .shipping-section,
+        .geuther-footer .payment-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .geuther-footer .section-title {
+            color: var(--geuther-primary);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .geuther-footer .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--geuther-secondary);
+        }
+
+        .geuther-footer .icons-list {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .geuther-footer .icon-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--geuther-text);
+            font-size: 0.9rem;
+        }
+
+        .geuther-footer .icon-item i {
+            font-size: 1.25rem;
+            color: var(--geuther-primary);
+        }
+
+        .geuther-footer .bottom-bar {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--geuther-text);
+            opacity: 0.8;
+            padding: 1rem 0;
+            margin-top: 0;
+        }
+
+        .geuther-footer .legal-info {
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--geuther-text);
+            opacity: 0.8;
+        }
+
+        .geuther-footer .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .geuther-footer .social-link {
+            color: var(--geuther-primary);
+            font-size: 1.5rem;
+            transition: transform 0.2s ease;
+        }
+
+        .geuther-footer .social-link:hover {
+            transform: translateY(-2px);
+            color: var(--geuther-secondary);
+        }
+
+        .geuther-footer .link-item p {
+            margin-bottom: 0px;
+        }
+
+        .geuther-footer .link-item h4 {
+            color: var(--geuther-primary);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0 0 1.25rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .geuther-footer .link-item h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--geuther-secondary);
+        }
+
+        @media (max-width: 992px) {
+            .geuther-footer .footer-intro {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .geuther-footer .nav-columns {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .geuther-footer .footer-about {
+                max-width: 100%;
+            }
+
+            .geuther-footer .footer-column {
+                padding-right: 0;
+            }
+
+            .geuther-footer .footer-grid,
+            .geuther-footer .service-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .geuther-footer .payment-shipping {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .geuther-footer .service-wrapper .container {
+                padding: 0 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .geuther-footer .nav-columns {
+                grid-template-columns: 1fr;
+            }
+
+            .geuther-footer .service-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <footer class="geuther-footer">
+        <div class="container">
+            <div class="footer-intro">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                        <img src="https://www.geuther.de/media/a7/ee/58/1705518033/logo-geuther.svg" alt="Geuther Logo">
+                    </div>
+                    <div class="footer-about">
+                        Seit 1881 steht Geuther für hochwertige Kindermöbel und Sicherheitsprodukte. Mit deutscher Handwerkskunst und Tradition fertigen wir Produkte, die Generationen von Familien begleitet haben.
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="bi bi-youtube"></i></a>
+                        <a href="#" class="social-link"><i class="bi bi-pinterest"></i></a>
+                        <a href="#" class="social-link"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="nav-columns">
+                    <div class="footer-column">
+                        <h3>Produkte</h3>
+                        <ul class="footer-links">
+                            <li><a href="/angebote">Angebote</a></li>
+                            <li><a href="/pflege">Pflege</a></li>
+                            <li><a href="/schlafen">Schlafen</a></li>
+                            <li><a href="/sicherheit">Sicherheit</a></li>
+                            <li><a href="/sitzen">Sitzen</a></li>
+                            <li><a href="/spielen">Spielen</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h3>Über uns</h3>
+                        <ul class="footer-links">
+                            <li><a href="/geschichte">Unsere Geschichte</a></li>
+                            <li><a href="/werte">Unsere Werte</a></li>
+                            <li><a href="/qualitaetsversprechen">Qualitätsversprechen</a></li>
+                            <li><a href="/stellenangebote">Stellenangebote</a></li>
+                            <li><a href="/faq">FAQ</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h3>Rechtliches</h3>
+                        <ul class="footer-links">
+                            <li><a href="/agb">AGB</a></li>
+                            <li><a href="/datenschutz">Datenschutzerklärung</a></li>
+                            <li><a href="/impressum">Impressum</a></li>
+                            <li><a href="/versand">Versand und Zahlung</a></li>
+                            <li><a href="/widerruf">Widerrufsrecht & Rückgabe</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="payment-shipping">
+                <div class="shipping-section">
+                    <h3 class="section-title">Unsere Versandpartner</h3>
+                    <div class="icons-list">
+                        <div class="icon-item">
+                            <i class="bi bi-truck"></i>
+                            <span>DPD</span>
+                        </div>
+                        <div class="icon-item">
+                            <i class="bi bi-box-seam"></i>
+                            <span>DHL</span>
+                        </div>
+                        <div class="icon-item">
+                            <i class="bi bi-box"></i>
+                            <span>Schenker</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="payment-section">
+                    <h3 class="section-title">Sichere Zahlungsarten</h3>
+                    <div class="icons-list">
+                        <div class="icon-item">
+                            <i class="bi bi-paypal"></i>
+                            <span>PayPal</span>
+                        </div>
+                        <div class="icon-item">
+                            <i class="bi bi-credit-card-2-front"></i>
+                            <span>Klarna</span>
+                        </div>
+                        <div class="icon-item">
+                            <i class="bi bi-credit-card"></i>
+                            <span>VISA</span>
+                        </div>
+                        <div class="icon-item">
+                            <i class="bi bi-credit-card-2-back"></i>
+                            <span>Mastercard</span>
+                        </div>
+                        <div class="icon-item">
+                            <i class="bi bi-bank"></i>
+                            <span>Sofort</span>
+                        </div>
+                        <div class="icon-item">
+                            <i class="bi bi-bank2"></i>
+                            <span>Vorkasse</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-wrapper">
+                <div class="container">
+                    <div class="service-content">
+                        <div class="additional-links">
+                            <div class="link-item">
+                                <h4>Retoure & Rückgabe</h4>
+                                <p>Einfache Rücksendung innerhalb von 14 Tagen</p>
+                                <a href="/retoure" class="contact-link">
+                                    Bestellung retournieren <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
+
+                            <div class="link-item">
+                                <h4>Kooperationspartner</h4>
+                                <p>Werden Sie Teil unseres Partnernetzwerks</p>
+                                <a href="/kooperation" class="contact-link">
+                                    Partner werden <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
+
+                            <div class="link-item">
+                                <h4>B2B Portal</h4>
+                                <p>Spezielle Konditionen für Geschäftskunden</p>
+                                <a href="/b2b" class="contact-link">
+                                    Händler werden <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="service-section">
+                            <div class="contact-item">
+                                <i class="bi bi-telephone"></i>
+                                <div class="details">
+                                    <h4>Telefonischer Support</h4>
+                                    <a href="tel:+4959056799050" class="contact-number">
+                                        +49 (0) 590 567 990 50
+                                    </a>
+                                    <span class="contact-time">Montag - Freitag, 08:00 - 15:30 Uhr</span>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <i class="bi bi-whatsapp"></i>
+                                <div class="details">
+                                    <h4>WhatsApp Service</h4>
+                                    <a href="tel:+491628385527" class="contact-number">
+                                        +49 162 8385527
+                                    </a>
+                                    <span class="contact-time">Antwort innerhalb von 24h</span>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <i class="bi bi-envelope"></i>
+                                <div class="details">
+                                    <h4>Kontaktformular</h4>
+                                    <p>Ausführliche Beratung über unser Kontaktformular</p>
+                                    <a href="/kundenservice#kontakt" class="contact-link">
+                                        Zum Kontaktformular <i class="bi bi-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <i class="bi bi-question-circle"></i>
+                                <div class="details">
+                                    <h4>FAQ & Hilfe</h4>
+                                    <p>Antworten auf häufig gestellte Fragen</p>
+                                    <a href="/faq" class="contact-link">
+                                        Zum Hilfebereich <i class="bi bi-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-bar">
+                <div class="legal-info">
+                    * Alle Preise inkl. gesetzl. Mehrwertsteuer zzgl. Versandkosten und ggf. Nachnahmegebühren, wenn nicht anders angegeben.
+                </div>
+                <p>Copyright © 2025 Geuther - Alle Rechte vorbehalten</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

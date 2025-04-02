@@ -1,0 +1,85 @@
+# Geuther Style Guide
+
+## Farbsystem
+```css
+:root {
+    --geuther-primary: #8B7355;     /* Hauptfarbe für Text und Buttons */
+    --geuther-secondary: #D4C4B7;   /* Beige für Akzente und Hover */
+    --geuther-text: #333333;        /* Standard Textfarbe */
+    --geuther-bg: #FFFFFF;          /* Hintergrundfarbe */
+    --geuther-accent: #c2d3c5;      /* Helles Grün für Sektionen */
+    --geuther-border: #E5E5E5;      /* Rahmenfarbe */
+    --geuther-highlight: #e8a87c;   /* Highlight-Farbe für Badges */
+}
+```
+
+## Layout & Container
+- Maximale Breite: 1200px
+- Zentrierte Container mit `margin: 0 auto`
+- Padding für Sektionen: 3rem 1rem (Desktop), 2rem 1rem (Mobile)
+- Grid-System: 3 Spalten (Desktop), 2 Spalten (Tablet), 1 Spalte (Mobile)
+- Grid-Gap: 2rem
+
+## Typografie
+- Font-Familie: 'Montserrat', sans-serif
+- Titel (h1): 2.5rem, 600 weight
+- Untertitel: 1.1-1.2rem
+- Standardtext: 1rem
+- Zeilenabstand: 1.5-1.6
+
+## Komponenten
+
+### Karten
+- Background: var(--geuther-bg)
+- Border: 1px solid var(--geuther-border)
+- Border-Radius: 8px
+- Padding: 1.5-2rem
+- Box-Shadow: 0 2px 4px rgba(0,0,0,0.05)
+- Hover-Effekt: translateY(-5px) + verstärkter Schatten
+
+### Icons
+- Font-Size: 2-2.5rem
+- Farbe: var(--geuther-primary)
+- Margin-Bottom: 1rem
+
+### Buttons
+- Padding: 1rem 2rem
+- Border-Radius: 4px
+- Text: Uppercase + Letter-Spacing
+- Hover: Background-Darken + translateY(-2px)
+
+### Highlight-Badges
+- Position: Absolute
+- Transform: rotate(45deg)
+- Background: var(--geuther-highlight)
+- Padding: 6px 0
+- Width: 200px
+- Font-Size: 0.75rem
+- Box-Shadow: 0 2px 4px rgba(0,0,0,0.1)
+
+## Responsive Breakpoints
+```css
+/* Tablet */
+@media (max-width: 992px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+    .title {
+        font-size: 1.5rem;
+    }
+}
+```
+
+## Best Practices
+1. Konsistente Verwendung der CSS-Variablen
+2. BEM-ähnliche Klassennamen (z.B. geuther-newsletter, benefit-item)
+3. Hover-Effekte für interaktive Elemente
+4. Responsive Images mit `loading="lazy"`
+5. Semantisches HTML mit korrekter Hierarchie 
