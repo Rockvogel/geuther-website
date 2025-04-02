@@ -23,18 +23,20 @@
             padding: 0;
         }
 
+        .geuther-category .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            flex-direction: column;
+        }
+
         /* Layout */
         .category-layout {
             display: grid;
             grid-template-columns: 280px 1fr;
             gap: 2rem;
             align-items: start;
-        }
-
-        .geuther-category .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 1rem;
         }
 
         /* Filter Sidebar */
@@ -456,18 +458,236 @@
             }
 
             .filter-sidebar {
-                position: static;
-                margin-bottom: 2rem;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 100%;
+                height: 100vh;
+                background: var(--geuther-bg);
+                z-index: 1000;
+                transition: right 0.3s ease;
+                display: flex;
+                flex-direction: column;
+                overflow: hidden;
+            }
+
+            .filter-sidebar.active {
+                right: 0;
+            }
+
+            /* Filter Header Mobile */
+            .filter-header-mobile {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 1rem;
+                background: var(--geuther-bg);
+                border-bottom: 1px solid var(--geuther-border);
+            }
+
+            .filter-header-mobile h2 {
+                margin: 0;
+                font-size: 1.2rem;
+                font-weight: 500;
+                color: var(--geuther-text);
+            }
+
+            .close-button {
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                color: var(--geuther-text);
+                cursor: pointer;
+                padding: 0.5rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .close-button:hover {
+                color: var(--geuther-primary);
+            }
+
+            /* Filter Content Container */
+            .filter-content-container {
+                flex: 1;
+                overflow-y: auto;
+                padding: 1rem;
+                padding-bottom: 80px; /* Platz für die fixen Buttons */
+            }
+
+            /* Filter Action Buttons */
+            .filter-actions {
+                display: flex;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                gap: 1rem;
+                padding: 1rem;
+                background: var(--geuther-bg);
+                border-top: 1px solid var(--geuther-border);
+                z-index: 1001;
+                transform: translateY(100%);
+                transition: transform 0.3s ease;
+            }
+
+            .filter-sidebar.active .filter-actions {
+                transform: translateY(0);
+            }
+
+            .filter-button {
+                flex: 1;
+                padding: 1rem;
+                border: none;
+                border-radius: 8px;
+                font-size: 1rem;
+                font-weight: 500;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            .filter-button.cancel {
+                background: var(--geuther-accent);
+                color: var(--geuther-text);
+            }
+
+            .filter-button.apply {
+                background: var(--geuther-primary);
+                color: white;
+            }
+
+            .filter-button:hover {
+                opacity: 0.9;
             }
 
             .product-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
+
+            .product-card {
+                margin-bottom: 0.75rem;
+            }
+
+            .product-info {
+                padding: 0.75rem;
+            }
+
+            .product-image {
+                height: 160px;
+                margin: 0.5rem 0.5rem 0;
+            }
+
+            .product-title {
+                font-size: 0.9rem;
+                line-height: 1.3;
+            }
+
+            .product-description {
+                font-size: 0.8rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .product-price {
+                font-size: 1.1rem;
+            }
+
+            /* Category Header auf Mobil */
+            .category-header {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .category-title {
+                margin: 0;
+                font-size: 1.3rem;
+            }
+
+            .sorting-select {
+                width: auto;
+                min-width: 150px;
+                margin: 0;
+                font-size: 0.9rem;
+            }
+
+            /* Mobile Filter Toggle Button */
+            .filter-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                padding: 0.75rem 1rem;
+                background: var(--geuther-primary);
+                color: white;
+                border: none;
+                border-radius: 8px;
+                font-size: 0.95rem;
+                font-weight: 500;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                margin-bottom: 1rem;
+            }
+
+            .filter-toggle-content {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .filter-toggle-divider {
+                height: 20px;
+                width: 1px;
+                background: rgba(255, 255, 255, 0.3);
+                margin-left: auto;
+                margin-right: 0.75rem;
+            }
+
+            .filter-toggle i.bi-chevron-right {
+                font-size: 0.9rem;
+                transition: transform 0.3s ease;
+            }
+
+            .filter-toggle.active i.bi-chevron-right {
+                transform: rotate(180deg);
+            }
+
+            .filter-toggle:hover {
+                background: #364b3d;
             }
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 576px) {
             .product-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .product-image {
+                height: 160px;
+            }
+
+            .product-title {
+                font-size: 1rem;
+            }
+
+            .product-description {
+                font-size: 0.85rem;
+            }
+
+            .product-price {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Desktop Layout bleibt unverändert */
+        @media (min-width: 993px) {
+            .filter-toggle {
+                display: none;
             }
         }
 
@@ -477,6 +697,7 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
             margin-bottom: 4rem;
+            order: 0;
         }
 
         .subcategory-box {
@@ -549,16 +770,65 @@
         }
 
         @media (max-width: 992px) {
-            .subcategory-title {
-                font-size: 1.2rem;
+            .geuther-category .container {
+                display: flex;
+                flex-direction: column;
             }
 
-            .subcategory-description {
-                font-size: 0.9rem;
+            .subcategory-grid {
+                order: 3; /* Nach den Produkten */
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                margin-top: 3rem;
+                margin-bottom: 2rem;
+            }
+
+            .subcategory-box {
+                aspect-ratio: 16/9;
+                margin-top: 0;
             }
 
             .subcategory-overlay {
-                padding: 1.75rem 1.25rem;
+                padding: 1.5rem;
+            }
+
+            .subcategory-title {
+                font-size: 1.3rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .subcategory-description {
+                font-size: 0.95rem;
+                max-width: 100%;
+            }
+
+            .category-layout {
+                order: 2; /* Produkte in der Mitte */
+            }
+
+            /* Category Header auf Mobil */
+            .category-header {
+                display: flex !important;
+                flex-direction: row !important;
+                align-items: center !important;
+                justify-content: space-between !important;
+                gap: 1rem !important;
+                margin-bottom: 2rem !important;
+            }
+
+            .category-title {
+                margin: 0;
+                font-size: 1.3rem;
+            }
+
+            .sorting-select {
+                width: auto;
+                min-width: 180px;
+                margin: 0;
+            }
+
+            .product-section {
+                width: 100%;
             }
         }
 
@@ -578,12 +848,13 @@
             }
         }
 
-        /* Sorting */
+        /* Category Header */
         .category-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 2rem;
+            width: 100%;
         }
 
         .category-title {
@@ -607,18 +878,25 @@
             background-repeat: no-repeat;
             background-position: right 0.5rem center;
             background-size: 16px;
+            min-width: 200px;
         }
 
-        .sorting-select:focus {
-            outline: none;
-            border-color: var(--geuther-primary);
-        }
-
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
             .category-header {
-                flex-direction: column;
-                gap: 1rem;
-                align-items: flex-start;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 1.5rem;
+            }
+
+            .category-title {
+                font-size: 1.3rem;
+                margin: 0;
+            }
+
+            .sorting-select {
+                min-width: 150px;
+                font-size: 0.9rem;
             }
         }
 
@@ -668,6 +946,7 @@
             margin: 4rem 0;
             padding: 2rem 0;
             background: var(--geuther-bg);
+            order: 0;
         }
 
         .description-grid {
@@ -756,9 +1035,32 @@
         }
 
         @media (max-width: 992px) {
+            .geuther-category .container {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .subcategory-grid {
+                order: 3; /* Nach den Produkten */
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                margin-top: 3rem;
+                margin-bottom: 2rem;
+            }
+
+            .category-layout {
+                order: 2; /* Produkte in der Mitte */
+            }
+
+            .category-description {
+                order: 4; /* Beschreibung ganz unten */
+                margin: 2rem 0;
+            }
+
             .description-grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
+                padding: 0;
             }
 
             .description-content {
@@ -769,8 +1071,16 @@
                 height: 300px;
             }
 
+            .description-title {
+                font-size: 1.5rem;
+            }
+
+            .description-highlight {
+                font-size: 1.1rem;
+            }
+
             .feature-list {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr;
             }
         }
 
@@ -789,6 +1099,94 @@
 
             .pagination {
                 flex-wrap: wrap;
+            }
+        }
+
+        /* Filter Header Mobile */
+        .filter-header-mobile {
+            display: none; /* Standardmäßig ausgeblendet */
+        }
+
+        /* Filter Action Buttons */
+        .filter-actions {
+            display: none; /* Standardmäßig ausgeblendet */
+        }
+
+        @media (max-width: 992px) {
+            .filter-header-mobile {
+                display: flex; /* Nur auf Mobile anzeigen */
+                align-items: center;
+                justify-content: space-between;
+                padding: 1rem;
+                background: var(--geuther-bg);
+                border-bottom: 1px solid var(--geuther-border);
+            }
+
+            .filter-actions {
+                display: flex; /* Nur auf Mobile anzeigen */
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                gap: 1rem;
+                padding: 1rem;
+                background: var(--geuther-bg);
+                border-top: 1px solid var(--geuther-border);
+                z-index: 1001;
+                transform: translateY(100%);
+                transition: transform 0.3s ease;
+            }
+
+            .filter-sidebar.active .filter-actions {
+                transform: translateY(0);
+            }
+
+            /* Mobile Filter Toggle Button */
+            .filter-toggle {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 0.75rem 1.25rem;
+                background: var(--geuther-primary);
+                color: white;
+                border: none;
+                border-radius: 8px;
+                font-size: 0.9rem;
+                font-weight: 500;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                margin-bottom: 0rem;
+            }
+
+            .filter-toggle:hover {
+                background: #364b3d;
+            }
+
+            .filter-toggle i {
+                font-size: 0.8rem;
+                transition: transform 0.3s ease;
+            }
+
+            .filter-toggle.active i {
+                transform: rotate(180deg);
+            }
+
+            /* Mobile Category Header */
+            .category-header {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                margin-bottom: 2rem;
+            }
+
+            .category-title {
+                margin: 0;
+            }
+
+            .sorting-select {
+                align-self: flex-end;
+                width: auto;
+                min-width: 200px;
             }
         }
     </style>
@@ -836,262 +1234,284 @@
             </div>
 
             <div class="category-layout">
+                <!-- Mobile Filter Toggle -->
+                <button class="filter-toggle" aria-label="Filter anzeigen/ausblenden">
+                    <span class="filter-toggle-content">
+                        <i class="bi bi-funnel"></i>
+                        Filter einblenden
+                    </span>
+                    <span class="filter-toggle-divider"></span>
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+
                 <!-- Filter Sidebar -->
                 <aside class="filter-sidebar">
-                    <div class="filter-group">
-                        <div class="filter-header">
-                            <h3>Befestigung</h3>
-                            <i class="bi bi-chevron-down"></i>
-                        </div>
-                        <div class="filter-content">
-                            <div class="filter-option">
-                                <input type="checkbox" id="mount-1" class="filter-checkbox">
-                                <label for="mount-1" class="filter-label">
-                                    <span class="filter-custom-checkbox"></span>
-                                    Klemmen/Schrauben (2in1)
-                                </label>
-                            </div>
-                            <div class="filter-option">
-                                <input type="checkbox" id="mount-2" class="filter-checkbox">
-                                <label for="mount-2" class="filter-label">
-                                    <span class="filter-custom-checkbox"></span>
-                                    Zum Klemmen
-                                </label>
-                            </div>
-                            <div class="filter-option">
-                                <input type="checkbox" id="mount-3" class="filter-checkbox">
-                                <label for="mount-3" class="filter-label">
-                                    <span class="filter-custom-checkbox"></span>
-                                    Zum Schrauben
-                                </label>
-                            </div>
-                        </div>
+                    <div class="filter-header-mobile">
+                        <h2>Filter</h2>
+                        <button class="close-button" aria-label="Filter schließen">
+                            <i class="bi bi-x-lg"></i>
+                        </button>
                     </div>
-
-                    <div class="filter-group">
-                        <div class="filter-header">
-                            <h3>Dekor</h3>
-                            <i class="bi bi-chevron-down"></i>
-                        </div>
-                        <div class="filter-content">
-                            <div class="filter-option">
-                                <input type="checkbox" id="decor-1" class="filter-checkbox">
-                                <label for="decor-1" class="filter-label">
-                                    <span class="filter-custom-checkbox"></span>
-                                    Circle
-                                </label>
+                    <div class="filter-content-container">
+                        <div class="filter-group">
+                            <div class="filter-header">
+                                <h3>Befestigung</h3>
+                                <i class="bi bi-chevron-down"></i>
                             </div>
-                            <div class="filter-option">
-                                <input type="checkbox" id="decor-2" class="filter-checkbox">
-                                <label for="decor-2" class="filter-label">
-                                    <span class="filter-custom-checkbox"></span>
-                                    Grau
-                                </label>
-                            </div>
-                            <div class="filter-option">
-                                <input type="checkbox" id="decor-3" class="filter-checkbox">
-                                <label for="decor-3" class="filter-label">
-                                    <span class="filter-custom-checkbox"></span>
-                                    Lama
-                                </label>
-                            </div>
-                            <div class="filter-option">
-                                <input type="checkbox" id="decor-4" class="filter-checkbox">
-                                <label for="decor-4" class="filter-label">
-                                    <span class="filter-custom-checkbox"></span>
-                                    Mint
-                                </label>
-                            </div>
-                            <div class="filter-option">
-                                <input type="checkbox" id="decor-5" class="filter-checkbox">
-                                <label for="decor-5" class="filter-label">
-                                    <span class="filter-custom-checkbox"></span>
-                                    Monster
-                                </label>
-                            </div>
-                            <div class="filter-option">
-                                <input type="checkbox" id="decor-6" class="filter-checkbox">
-                                <label for="decor-6" class="filter-label">
-                                    <span class="filter-custom-checkbox"></span>
-                                    Party Animals green
-                                </label>
-                            </div>
-                            <div class="filter-option">
-                                <input type="checkbox" id="decor-7" class="filter-checkbox">
-                                <label for="decor-7" class="filter-label">
-                                    <span class="filter-custom-checkbox"></span>
-                                    Punkte
-                                </label>
-                            </div>
-                            <div class="filter-option">
-                                <input type="checkbox" id="decor-8" class="filter-checkbox">
-                                <label for="decor-8" class="filter-label">
-                                    <span class="filter-custom-checkbox"></span>
-                                    Soft Swirl
-                                </label>
-                            </div>
-                            <div class="filter-option">
-                                <input type="checkbox" id="decor-9" class="filter-checkbox">
-                                <label for="decor-9" class="filter-label">
-                                    <span class="filter-custom-checkbox"></span>
-                                    Sprinkeled grey
-                                </label>
-                            </div>
-                            <div class="filter-option">
-                                <input type="checkbox" id="decor-10" class="filter-checkbox">
-                                <label for="decor-10" class="filter-label">
-                                    <span class="filter-custom-checkbox"></span>
-                                    Starry Night green
-                                </label>
-                            </div>
-                            <div class="filter-option">
-                                <input type="checkbox" id="decor-11" class="filter-checkbox">
-                                <label for="decor-11" class="filter-label">
-                                    <span class="filter-custom-checkbox"></span>
-                                    Starry Night pink
-                                </label>
-                            </div>
-                            <div class="filter-option">
-                                <input type="checkbox" id="decor-12" class="filter-checkbox">
-                                <label for="decor-12" class="filter-label">
-                                    <span class="filter-custom-checkbox"></span>
-                                    Stern
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="filter-group">
-                        <div class="filter-header">
-                            <h3>Faltbar</h3>
-                            <i class="bi bi-chevron-down"></i>
-                        </div>
-                        <div class="filter-content">
-                            <div class="filter-option">
-                                <input type="checkbox" id="foldable-1" class="filter-checkbox">
-                                <label for="foldable-1" class="filter-label">
-                                    <span class="filter-custom-checkbox"></span>
-                                    Ja
-                                </label>
-                            </div>
-                            <div class="filter-option">
-                                <input type="checkbox" id="foldable-2" class="filter-checkbox">
-                                <label for="foldable-2" class="filter-label">
-                                    <span class="filter-custom-checkbox"></span>
-                                    Nein - Fix
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="filter-group">
-                        <div class="filter-header">
-                            <h3>Model</h3>
-                            <i class="bi bi-chevron-down"></i>
-                        </div>
-                        <div class="filter-content">
-                            <div class="filter-option">
-                                <input type="checkbox" id="model-1" class="filter-checkbox">
-                                <label for="model-1" class="filter-label">
-                                    <span class="filter-custom-checkbox"></span>
-                                    2732+/2734+
-                                </label>
-                            </div>
-                            <div class="filter-option">
-                                <input type="checkbox" id="model-2" class="filter-checkbox">
-                                <label for="model-2" class="filter-label">
-                                    <span class="filter-custom-checkbox"></span>
-                                    2733+/2735+
-                                </label>
-                            </div>
-                            <div class="filter-option">
-                                <input type="checkbox" id="model-3" class="filter-checkbox">
-                                <label for="model-3" class="filter-label">
-                                    <span class="filter-custom-checkbox"></span>
-                                    2792+
-                                </label>
-                            </div>
-                            <div class="filter-option">
-                                <input type="checkbox" id="model-4" class="filter-checkbox">
-                                <label for="model-4" class="filter-label">
-                                    <span class="filter-custom-checkbox"></span>
-                                    4792+
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="filter-group">
-                        <div class="filter-header">
-                            <h3>Produktgruppe</h3>
-                            <i class="bi bi-chevron-down"></i>
-                        </div>
-                        <div class="filter-content">
-                            <div class="filter-option">
-                                <input type="checkbox" id="group-1" class="filter-checkbox">
-                                <label for="group-1" class="filter-label">
-                                    <span class="filter-custom-checkbox"></span>
-                                    Bettschutzgitter
-                                </label>
-                            </div>
-                            <div class="filter-option">
-                                <input type="checkbox" id="group-2" class="filter-checkbox">
-                                <label for="group-2" class="filter-label">
-                                    <span class="filter-custom-checkbox"></span>
-                                    Laufgitter
-                                </label>
-                            </div>
-                            <div class="filter-option">
-                                <input type="checkbox" id="group-3" class="filter-checkbox">
-                                <label for="group-3" class="filter-label">
-                                    <span class="filter-custom-checkbox"></span>
-                                    Sicherheitsgitter
-                                </label>
-                            </div>
-                            <div class="filter-option">
-                                <input type="checkbox" id="group-4" class="filter-checkbox">
-                                <label for="group-4" class="filter-label">
-                                    <span class="filter-custom-checkbox"></span>
-                                    Textil
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="filter-group">
-                        <div class="filter-header">
-                            <h3>Farbe</h3>
-                            <i class="bi bi-chevron-down"></i>
-                        </div>
-                        <div class="filter-content">
-                            <div class="color-options">
-                                <div class="color-option color-anthrazit" title="Anthrazit"></div>
-                                <div class="color-option color-schwarz" title="Gebeizt-Schwarz"></div>
-                                <div class="color-option color-grau" title="Grau"></div>
-                                <div class="color-option color-kolonial" title="Kolonial"></div>
-                                <div class="color-option color-lichtgrau" title="Lichtgrau"></div>
-                                <div class="color-option color-natur" title="Natur"></div>
-                                <div class="color-option color-weiss" title="Weiß"></div>
-                                <div class="color-option color-unbehandelt" title="Unbehandelt"></div>
-                                <div class="color-option color-weiss-natur" title="Weiß/Natur"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="filter-group">
-                        <div class="filter-header">
-                            <h3>Breite des Schutzgitters</h3>
-                            <i class="bi bi-chevron-down"></i>
-                        </div>
-                        <div class="filter-content">
-                            <div class="range-slider">
-                                <input type="range" min="57" max="233" value="57">
-                                <div class="range-values">
-                                    <span>57 cm</span>
-                                    <span>233 cm</span>
+                            <div class="filter-content">
+                                <div class="filter-option">
+                                    <input type="checkbox" id="mount-1" class="filter-checkbox">
+                                    <label for="mount-1" class="filter-label">
+                                        <span class="filter-custom-checkbox"></span>
+                                        Klemmen/Schrauben (2in1)
+                                    </label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="mount-2" class="filter-checkbox">
+                                    <label for="mount-2" class="filter-label">
+                                        <span class="filter-custom-checkbox"></span>
+                                        Zum Klemmen
+                                    </label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="mount-3" class="filter-checkbox">
+                                    <label for="mount-3" class="filter-label">
+                                        <span class="filter-custom-checkbox"></span>
+                                        Zum Schrauben
+                                    </label>
                                 </div>
                             </div>
                         </div>
+
+                        <div class="filter-group">
+                            <div class="filter-header">
+                                <h3>Dekor</h3>
+                                <i class="bi bi-chevron-down"></i>
+                            </div>
+                            <div class="filter-content">
+                                <div class="filter-option">
+                                    <input type="checkbox" id="decor-1" class="filter-checkbox">
+                                    <label for="decor-1" class="filter-label">
+                                        <span class="filter-custom-checkbox"></span>
+                                        Circle
+                                    </label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="decor-2" class="filter-checkbox">
+                                    <label for="decor-2" class="filter-label">
+                                        <span class="filter-custom-checkbox"></span>
+                                        Grau
+                                    </label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="decor-3" class="filter-checkbox">
+                                    <label for="decor-3" class="filter-label">
+                                        <span class="filter-custom-checkbox"></span>
+                                        Lama
+                                    </label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="decor-4" class="filter-checkbox">
+                                    <label for="decor-4" class="filter-label">
+                                        <span class="filter-custom-checkbox"></span>
+                                        Mint
+                                    </label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="decor-5" class="filter-checkbox">
+                                    <label for="decor-5" class="filter-label">
+                                        <span class="filter-custom-checkbox"></span>
+                                        Monster
+                                    </label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="decor-6" class="filter-checkbox">
+                                    <label for="decor-6" class="filter-label">
+                                        <span class="filter-custom-checkbox"></span>
+                                        Party Animals green
+                                    </label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="decor-7" class="filter-checkbox">
+                                    <label for="decor-7" class="filter-label">
+                                        <span class="filter-custom-checkbox"></span>
+                                        Punkte
+                                    </label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="decor-8" class="filter-checkbox">
+                                    <label for="decor-8" class="filter-label">
+                                        <span class="filter-custom-checkbox"></span>
+                                        Soft Swirl
+                                    </label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="decor-9" class="filter-checkbox">
+                                    <label for="decor-9" class="filter-label">
+                                        <span class="filter-custom-checkbox"></span>
+                                        Sprinkeled grey
+                                    </label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="decor-10" class="filter-checkbox">
+                                    <label for="decor-10" class="filter-label">
+                                        <span class="filter-custom-checkbox"></span>
+                                        Starry Night green
+                                    </label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="decor-11" class="filter-checkbox">
+                                    <label for="decor-11" class="filter-label">
+                                        <span class="filter-custom-checkbox"></span>
+                                        Starry Night pink
+                                    </label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="decor-12" class="filter-checkbox">
+                                    <label for="decor-12" class="filter-label">
+                                        <span class="filter-custom-checkbox"></span>
+                                        Stern
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <div class="filter-header">
+                                <h3>Faltbar</h3>
+                                <i class="bi bi-chevron-down"></i>
+                            </div>
+                            <div class="filter-content">
+                                <div class="filter-option">
+                                    <input type="checkbox" id="foldable-1" class="filter-checkbox">
+                                    <label for="foldable-1" class="filter-label">
+                                        <span class="filter-custom-checkbox"></span>
+                                        Ja
+                                    </label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="foldable-2" class="filter-checkbox">
+                                    <label for="foldable-2" class="filter-label">
+                                        <span class="filter-custom-checkbox"></span>
+                                        Nein - Fix
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <div class="filter-header">
+                                <h3>Model</h3>
+                                <i class="bi bi-chevron-down"></i>
+                            </div>
+                            <div class="filter-content">
+                                <div class="filter-option">
+                                    <input type="checkbox" id="model-1" class="filter-checkbox">
+                                    <label for="model-1" class="filter-label">
+                                        <span class="filter-custom-checkbox"></span>
+                                        2732+/2734+
+                                    </label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="model-2" class="filter-checkbox">
+                                    <label for="model-2" class="filter-label">
+                                        <span class="filter-custom-checkbox"></span>
+                                        2733+/2735+
+                                    </label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="model-3" class="filter-checkbox">
+                                    <label for="model-3" class="filter-label">
+                                        <span class="filter-custom-checkbox"></span>
+                                        2792+
+                                    </label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="model-4" class="filter-checkbox">
+                                    <label for="model-4" class="filter-label">
+                                        <span class="filter-custom-checkbox"></span>
+                                        4792+
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <div class="filter-header">
+                                <h3>Produktgruppe</h3>
+                                <i class="bi bi-chevron-down"></i>
+                            </div>
+                            <div class="filter-content">
+                                <div class="filter-option">
+                                    <input type="checkbox" id="group-1" class="filter-checkbox">
+                                    <label for="group-1" class="filter-label">
+                                        <span class="filter-custom-checkbox"></span>
+                                        Bettschutzgitter
+                                    </label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="group-2" class="filter-checkbox">
+                                    <label for="group-2" class="filter-label">
+                                        <span class="filter-custom-checkbox"></span>
+                                        Laufgitter
+                                    </label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="group-3" class="filter-checkbox">
+                                    <label for="group-3" class="filter-label">
+                                        <span class="filter-custom-checkbox"></span>
+                                        Sicherheitsgitter
+                                    </label>
+                                </div>
+                                <div class="filter-option">
+                                    <input type="checkbox" id="group-4" class="filter-checkbox">
+                                    <label for="group-4" class="filter-label">
+                                        <span class="filter-custom-checkbox"></span>
+                                        Textil
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <div class="filter-header">
+                                <h3>Farbe</h3>
+                                <i class="bi bi-chevron-down"></i>
+                            </div>
+                            <div class="filter-content">
+                                <div class="color-options">
+                                    <div class="color-option color-anthrazit" title="Anthrazit"></div>
+                                    <div class="color-option color-schwarz" title="Gebeizt-Schwarz"></div>
+                                    <div class="color-option color-grau" title="Grau"></div>
+                                    <div class="color-option color-kolonial" title="Kolonial"></div>
+                                    <div class="color-option color-lichtgrau" title="Lichtgrau"></div>
+                                    <div class="color-option color-natur" title="Natur"></div>
+                                    <div class="color-option color-weiss" title="Weiß"></div>
+                                    <div class="color-option color-unbehandelt" title="Unbehandelt"></div>
+                                    <div class="color-option color-weiss-natur" title="Weiß/Natur"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="filter-group">
+                            <div class="filter-header">
+                                <h3>Breite des Schutzgitters</h3>
+                                <i class="bi bi-chevron-down"></i>
+                            </div>
+                            <div class="filter-content">
+                                <div class="range-slider">
+                                    <input type="range" min="57" max="233" value="57">
+                                    <div class="range-values">
+                                        <span>57 cm</span>
+                                        <span>233 cm</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filter-actions">
+                        <button class="filter-button cancel">Abbrechen</button>
+                        <button class="filter-button apply">Filter anwenden</button>
                     </div>
                 </aside>
 
@@ -1431,6 +1851,50 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Filter Toggle
+            const filterToggle = document.querySelector('.filter-toggle');
+            const filterSidebar = document.querySelector('.filter-sidebar');
+            const cancelButton = document.querySelector('.filter-button.cancel');
+            const applyButton = document.querySelector('.filter-button.apply');
+            const closeButton = document.querySelector('.close-button');
+
+            function closeFilterSidebar() {
+                filterToggle.classList.remove('active');
+                filterSidebar.classList.remove('active');
+            }
+
+            if (filterToggle && filterSidebar) {
+                filterToggle.addEventListener('click', () => {
+                    filterToggle.classList.toggle('active');
+                    filterSidebar.classList.toggle('active');
+                });
+
+                // Schließe Filter wenn außerhalb geklickt wird
+                document.addEventListener('click', (e) => {
+                    if (!filterSidebar.contains(e.target) && !filterToggle.contains(e.target)) {
+                        closeFilterSidebar();
+                    }
+                });
+
+                // Close Button
+                if (closeButton) {
+                    closeButton.addEventListener('click', closeFilterSidebar);
+                }
+
+                // Cancel Button
+                if (cancelButton) {
+                    cancelButton.addEventListener('click', closeFilterSidebar);
+                }
+
+                // Apply Button
+                if (applyButton) {
+                    applyButton.addEventListener('click', () => {
+                        // Hier die Filter-Logik implementieren
+                        closeFilterSidebar();
+                    });
+                }
+            }
+
             // Filter Toggle
             const filterHeaders = document.querySelectorAll('.filter-header');
             
