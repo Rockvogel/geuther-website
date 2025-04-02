@@ -862,6 +862,20 @@
             font-weight: 600;
             color: var(--geuther-primary);
             margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .product-count {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--geuther-text);
+            opacity: 0.7;
+        }
+
+        .product-count-mobile {
+            display: none;
         }
 
         .sorting-select {
@@ -892,6 +906,16 @@
             .category-title {
                 font-size: 1.3rem;
                 margin: 0;
+            }
+
+            .product-count {
+                display: none;
+            }
+
+            .product-count-mobile {
+                display: inline;
+                font-weight: 400;
+                opacity: 0.7;
             }
 
             .sorting-select {
@@ -1518,7 +1542,11 @@
                 <!-- Produktbereich -->
                 <div class="product-section">
                     <div class="category-header">
-                        <h1 class="category-title">Schutzgitter</h1>
+                        <h1 class="category-title">
+                            Schutzgitter
+                            <span class="product-count">96 Produkte</span>
+                            <span class="product-count-mobile">(96)</span>
+                        </h1>
                         <select class="sorting-select">
                             <option value="recommended">Empfohlen</option>
                             <option value="price-asc">Preis aufsteigend</option>
