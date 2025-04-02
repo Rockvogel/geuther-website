@@ -866,34 +866,47 @@
                     // Update URL without reload
                     history.pushState({}, '', url);
 
-                    // Initialize Hero Slider after content is loaded
-                    const slides = document.querySelectorAll('.slide');
-                    const dots = document.querySelectorAll('.slider-dot');
-                    let currentSlide = 0;
-
-                    function showSlide(index) {
-                        slides.forEach(slide => slide.classList.remove('active'));
-                        dots.forEach(dot => dot.classList.remove('active'));
+                    // Initialize Hero Slider after content is loaded with a small delay
+                    setTimeout(() => {
+                        const slides = document.querySelectorAll('.slide');
+                        const dots = document.querySelectorAll('.slider-dot');
                         
-                        slides[index].classList.add('active');
-                        dots[index].classList.add('active');
-                    }
+                        if (slides.length > 0 && dots.length > 0) {
+                            let currentSlide = 0;
 
-                    function nextSlide() {
-                        currentSlide = (currentSlide + 1) % slides.length;
-                        showSlide(currentSlide);
-                    }
+                            function showSlide(index) {
+                                slides.forEach(slide => {
+                                    slide.classList.remove('active', 'previous');
+                                    if (slide.classList.contains('active')) {
+                                        slide.classList.add('previous');
+                                    }
+                                });
+                                dots.forEach(dot => dot.classList.remove('active'));
+                                
+                                slides[index].classList.add('active');
+                                dots[index].classList.add('active');
+                            }
 
-                    // Automatischer Slider
-                    setInterval(nextSlide, 5000);
+                            function nextSlide() {
+                                currentSlide = (currentSlide + 1) % slides.length;
+                                showSlide(currentSlide);
+                            }
 
-                    // Click-Events für Dots
-                    dots.forEach((dot, index) => {
-                        dot.addEventListener('click', () => {
-                            currentSlide = index;
-                            showSlide(currentSlide);
-                        });
-                    });
+                            // Automatischer Slider
+                            const sliderInterval = setInterval(nextSlide, 5000);
+
+                            // Click-Events für Dots
+                            dots.forEach((dot, index) => {
+                                dot.addEventListener('click', () => {
+                                    currentSlide = index;
+                                    showSlide(currentSlide);
+                                });
+                            });
+
+                            // Initialen Slide setzen
+                            showSlide(0);
+                        }
+                    }, 100);
 
                 } catch (error) {
                     console.error('Loading error:', error);
@@ -930,35 +943,6 @@
 
             // Initial Load
             loadContent('home.html');
-
-            // Hero Slider
-            const slides = document.querySelectorAll('.slide');
-            const dots = document.querySelectorAll('.slider-dot');
-            let currentSlide = 0;
-
-            function showSlide(index) {
-                slides.forEach(slide => slide.classList.remove('active'));
-                dots.forEach(dot => dot.classList.remove('active'));
-                
-                slides[index].classList.add('active');
-                dots[index].classList.add('active');
-            }
-
-            function nextSlide() {
-                currentSlide = (currentSlide + 1) % slides.length;
-                showSlide(currentSlide);
-            }
-
-            // Automatischer Slider
-            setInterval(nextSlide, 5000);
-
-            // Click-Events für Dots
-            dots.forEach((dot, index) => {
-                dot.addEventListener('click', () => {
-                    currentSlide = index;
-                    showSlide(currentSlide);
-                });
-            });
         });
     </script>
 </body>
