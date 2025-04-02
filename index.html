@@ -256,6 +256,126 @@
                 font-size: 1.5rem;
             }
         }
+
+        /* Vorher-Nachher Slider Styles */
+        .comparison-slider-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: white;
+            z-index: 999;
+            display: none;
+        }
+
+        .comparison-slider {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .comparison-before,
+        .comparison-after {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .comparison-before {
+            left: 0;
+            width: 50%;
+        }
+
+        .comparison-after {
+            right: 0;
+            width: 50%;
+        }
+
+        .comparison-handle {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 4px;
+            height: 100%;
+            background: var(--geuther-primary);
+            cursor: ew-resize;
+            transform: translateX(-50%);
+            transition: background-color 0.3s ease;
+        }
+
+        .comparison-handle::before,
+        .comparison-handle::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 24px;
+            height: 24px;
+            background: var(--geuther-primary);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .comparison-handle::before {
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .comparison-handle::after {
+            bottom: 50%;
+            transform: translate(-50%, 50%);
+        }
+
+        .comparison-handle:hover,
+        .comparison-handle.dragging {
+            background: var(--geuther-secondary);
+        }
+
+        .comparison-handle:hover::before,
+        .comparison-handle:hover::after,
+        .comparison-handle.dragging::before,
+        .comparison-handle.dragging::after {
+            transform: translate(-50%, -50%) scale(1.2);
+            background: var(--geuther-secondary);
+        }
+
+        .nav-menu .comparison-toggle {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            color: var(--geuther-text);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-menu .comparison-toggle:hover {
+            background: var(--geuther-accent);
+            color: var(--geuther-primary);
+        }
+
+        .nav-menu .comparison-toggle.active {
+            background: var(--geuther-accent);
+            color: var(--geuther-primary);
+        }
+
+        .nav-menu .comparison-toggle i {
+            margin-right: 0.75rem;
+            font-size: 1.1rem;
+            color: var(--geuther-primary);
+        }
+
+        @media (max-width: 768px) {
+            .comparison-handle::before,
+            .comparison-handle::after {
+                width: 20px;
+                height: 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -285,13 +405,135 @@
         </div>
     </nav>
 
+    <!-- Vorher-Nachher Slider -->
+    <div class="comparison-slider-container" style="display: none;">
+        <div class="comparison-slider">
+            <div class="comparison-before">
+                <img id="comparison-image" src="assets/images/home.png" alt="Alte Geuther Website" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div class="comparison-after">
+                <div id="comparison-content"></div>
+            </div>
+            <div class="comparison-handle"></div>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const content = document.getElementById('content');
+            const comparisonContent = document.getElementById('comparison-content');
+            const comparisonImage = document.getElementById('comparison-image');
             const loading = document.querySelector('.loading');
             const errorMessage = document.querySelector('.error-message');
             const navToggle = document.querySelector('.nav-toggle');
             const navMenu = document.querySelector('.nav-menu');
+            const comparisonContainer = document.querySelector('.comparison-slider-container');
+            const comparisonSlider = document.querySelector('.comparison-slider');
+            const comparisonHandle = document.querySelector('.comparison-handle');
+            const comparisonBefore = document.querySelector('.comparison-before');
+            const comparisonAfter = document.querySelector('.comparison-after');
+
+            // Mapping von Seiten zu Bildern
+            const pageToImageMap = {
+                'home.html': 'home.png',
+                'kategorie.html': 'kategorie.png',
+                'werte.html': 'werte.png',
+                'qualitaet.html': 'qualitaet.png',
+                'geschichte.html': 'geschichte.png',
+                'haendler.html': 'haendler.png',
+                'affiliate.html': 'affiliate.png',
+                'support.html': 'support.png',
+                'faq.html': 'faq.png',
+                'versand.html': 'versand.png',
+                'widerruf.html': 'widerruf.png'
+            };
+
+            // Funktion zum Aktualisieren des Vergleichsbilds
+            function updateComparisonImage(url) {
+                const pageName = url.split('/').pop() || 'home.html';
+                const imageName = pageToImageMap[pageName] || 'home.png';
+                comparisonImage.src = `assets/images/${imageName}`;
+            }
+
+            // Vergleichs-Slider Toggle
+            const comparisonToggle = document.createElement('li');
+            comparisonToggle.innerHTML = `
+                <a href="#" class="comparison-toggle">
+                    <i class="bi bi-arrows-angle-contract"></i>
+                    Vorher-Nachher Vergleich
+                </a>
+            `;
+            navMenu.querySelector('ul').appendChild(comparisonToggle);
+
+            comparisonToggle.querySelector('a').addEventListener('click', (e) => {
+                e.preventDefault();
+                comparisonContainer.style.display = comparisonContainer.style.display === 'none' ? 'block' : 'none';
+                comparisonToggle.querySelector('a').classList.toggle('active');
+                navMenu.classList.remove('active');
+                
+                // Kopiere den aktuellen Inhalt in den Vergleichs-Container
+                if (comparisonContainer.style.display === 'block') {
+                    comparisonContent.innerHTML = content.innerHTML;
+                }
+            });
+
+            // Slider Funktionalität
+            let isDragging = false;
+            let startX;
+            let sliderLeft;
+
+            comparisonHandle.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                startX = e.clientX;
+                sliderLeft = comparisonHandle.offsetLeft;
+                comparisonHandle.classList.add('dragging');
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+
+                const deltaX = e.clientX - startX;
+                const newLeft = sliderLeft + deltaX;
+                const maxLeft = comparisonSlider.offsetWidth;
+
+                if (newLeft >= 0 && newLeft <= maxLeft) {
+                    comparisonHandle.style.left = `${newLeft}px`;
+                    comparisonBefore.style.width = `${newLeft}px`;
+                    comparisonAfter.style.width = `${maxLeft - newLeft}px`;
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                isDragging = false;
+                comparisonHandle.classList.remove('dragging');
+            });
+
+            // Touch Events für mobile Geräte
+            comparisonHandle.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                startX = e.touches[0].clientX;
+                sliderLeft = comparisonHandle.offsetLeft;
+                comparisonHandle.classList.add('dragging');
+            });
+
+            document.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+
+                const deltaX = e.touches[0].clientX - startX;
+                const newLeft = sliderLeft + deltaX;
+                const maxLeft = comparisonSlider.offsetWidth;
+
+                if (newLeft >= 0 && newLeft <= maxLeft) {
+                    comparisonHandle.style.left = `${newLeft}px`;
+                    comparisonBefore.style.width = `${newLeft}px`;
+                    comparisonAfter.style.width = `${maxLeft - newLeft}px`;
+                }
+            });
+
+            document.addEventListener('touchend', () => {
+                isDragging = false;
+                comparisonHandle.classList.remove('dragging');
+            });
 
             // Navigation Toggle
             navToggle.addEventListener('click', () => {
@@ -794,6 +1036,11 @@
                         extractBodyContent(newsletterHtml) +
                         extractBodyContent(footerHtml);
 
+                    // Wenn der Vergleich aktiv ist, aktualisiere auch den Vergleichs-Inhalt
+                    if (comparisonContainer.style.display === 'block') {
+                        comparisonContent.innerHTML = content.innerHTML;
+                    }
+
                     // Extract and append styles from all documents
                     function appendStyles(sourceDoc, source) {
                         const styles = sourceDoc.getElementsByTagName('style');
@@ -907,6 +1154,9 @@
                             showSlide(0);
                         }
                     }, 100);
+
+                    // Update comparison image
+                    updateComparisonImage(url);
 
                 } catch (error) {
                     console.error('Loading error:', error);
