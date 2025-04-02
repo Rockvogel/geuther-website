@@ -579,6 +579,48 @@
             line-height: 1.5;
         }
 
+        @media (max-width: 992px) {
+            .usp-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .usp-card {
+                padding: 1.5rem;
+            }
+
+            .usp-icon {
+                font-size: 2rem;
+            }
+
+            .usp-title {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .usp-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .usp-card {
+                padding: 1.25rem;
+            }
+
+            .usp-icon {
+                font-size: 1.75rem;
+            }
+
+            .usp-title {
+                font-size: 1rem;
+            }
+
+            .usp-text {
+                font-size: 0.9rem;
+            }
+        }
+
         /* Blog Section */
         .blog-section {
             padding: 6rem 0;
