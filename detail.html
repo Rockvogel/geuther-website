@@ -435,10 +435,16 @@
             background: #364b3d;
         }
 
+        /* Mobile Gallery */
+        .mobile-gallery {
+            display: none;
+        }
+
         @media (max-width: 992px) {
             .product-hero {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: 1rem;
+                margin-top: 0;
             }
 
             .product-gallery {
@@ -446,14 +452,124 @@
                 top: 0;
             }
 
+            .manufacturer-badge span {
+                display: none;
+            }
+
+            .product-id {
+                font-size: 0.85rem;
+            }
+
+            .availability-section {
+                flex-direction: row;
+                flex-wrap: nowrap;
+                gap: 1rem;
+            }
+
+            .delivery-time {
+                white-space: nowrap;
+            }
+
+            .delivery-time span:first-child {
+                display: none;
+            }
+
+            .fixed-bottom-bar {
+                display: block;
+            }
+
+            .product-content {
+                margin-bottom: 120px;
+            }
+
             .trust-elements {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+            }
+
+            .trust-item {
+                padding: 0.75rem;
+            }
+
+            .trust-item i {
+                font-size: 1.1rem;
+            }
+
+            .trust-text {
+                font-size: 0.85rem;
+            }
+
+            .color-selection {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.5rem;
+            }
+
+            .color-label {
+                font-size: 0.9rem;
+            }
+
+            .color-options {
+                justify-content: flex-end;
             }
         }
 
         @media (max-width: 768px) {
             .gallery-thumbs {
-                grid-template-columns: repeat(4, 1fr);
+                display: none;
+            }
+
+            .gallery-main {
+                display: none;
+            }
+
+            .mobile-gallery {
+                display: block;
+                margin: 1rem 0;
+                position: relative;
+            }
+
+            .gallery-nav {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 40px;
+                height: 40px;
+                background: rgba(255, 255, 255, 0.9);
+                border: none;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                z-index: 2;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+
+            .gallery-nav.prev {
+                left: 10px;
+            }
+
+            .gallery-nav.next {
+                right: 10px;
+            }
+
+            .fixed-bottom-bar {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: var(--geuther-bg);
+                padding: 1rem;
+                box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+                z-index: 1000;
+            }
+
+            .fixed-bottom-bar .color-selection {
+                margin: 0 0 1rem;
+            }
+
+            .fixed-bottom-bar .add-to-cart-section {
+                margin: 0;
             }
 
             .product-title {
@@ -465,9 +581,52 @@
             }
 
             .availability-section {
-                flex-direction: column;
-                align-items: flex-start;
+                flex-direction: row;
+                align-items: center;
                 gap: 1rem;
+            }
+
+            .delivery-time span:first-child {
+                display: none;
+            }
+
+            .delivery-time span:last-child {
+                content: "In 2-3 Tagen bei dir";
+            }
+        }
+
+        /* Sticky Bottom Bar */
+        .sticky-bottom-bar {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--geuther-bg);
+            padding: 1rem;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .sticky-bottom-bar.visible {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 992px) {
+            .sticky-bottom-bar {
+                display: block;
+            }
+
+            .product-content {
+                margin-bottom: 120px;
+            }
+
+            /* Verstecke die nicht-scrollenden Elemente in der mobilen Ansicht */
+            .product-info .color-selection,
+            .product-info .add-to-cart-section {
+                display: none;
             }
         }
 
@@ -526,6 +685,17 @@
                         </div>
                     </div>
 
+                    <!-- Mobile Gallery -->
+                    <div class="mobile-gallery">
+                        <img src="https://www.geuther.de/media/04/21/bf/1705518517/4842we_1n6fjzbh6sb7gw-2.webp" alt="Wickelregal Clarissa Hauptbild">
+                        <button class="gallery-nav prev">
+                            <i class="bi bi-chevron-left"></i>
+                        </button>
+                        <button class="gallery-nav next">
+                            <i class="bi bi-chevron-right"></i>
+                        </button>
+                    </div>
+
                     <!-- Key Features -->
                     <div class="key-features">
                         <div class="key-feature">
@@ -551,7 +721,7 @@
                             <div class="price-shipping">
                                 <i class="bi bi-truck"></i>
                                 <div class="shipping-text">
-                                    <strong>Versandkostenfrei</strong>
+                                    <strong>Gratis Versand</strong>
                                 </div>
                             </div>
                         </div>
@@ -569,7 +739,7 @@
 
                     <!-- Color Selection -->
                     <div class="color-selection">
-                        <label class="color-label">Farbe auswählen:</label>
+                        <label class="color-label">Farbe:</label>
                         <div class="color-options">
                             <div class="color-option selected" style="background: #ffffff;" title="Weiß"></div>
                             <div class="color-option" style="background: #2c2c2c;" title="Schwarz"></div>
@@ -616,14 +786,11 @@
                         <div class="trust-item">
                             <i class="bi bi-arrow-return-left"></i>
                             <div class="trust-text">
-                                <strong>30 Tage Rückgabe</strong>
+                                <strong>30 Tage Retoure</strong>
                                 Kostenlos & einfach
                             </div>
                         </div>
                     </div>
-
-                    
-
                 </div>
             </section>
 
@@ -638,7 +805,7 @@
                                 Mit nur 56 cm Breite ist das Wickelregal Clarissa die ideale Lösung für kleine Räume.
                             </p>
                             <p class="feature-text">
-                                Platzsparend und doch mit viel Stauraum, mobil und trotzdem standfest: Das durchdachte Wickelregal Clarissa überzeugt in jeder Hinsicht. Perfekt überall da, wo die Platzverhältnisse begrenzt sind, wie beispielsweise im Badezimmer und auch ideal geeignet zur Einrichtung eines Wickelbereiches in gastronomischen Betrieben wie Hotels, Cafés oder Restaurants.
+                                Platzsparend und doch mit viel Stauraum, mobil und trotzdem standfest: Das durchdachte Wickelregal Clarissa überzeugt in jeder Hinsicht. Perfekt überall da, wo wenig Platz ist. Auch geeignet zur Einrichtung eines Wickelbereiches in gastronomischen Betrieben wie Hotels, Cafés oder Restaurants.
                             </p>
                             <ul class="feature-list">
                                 <li class="feature-item">
@@ -661,10 +828,6 @@
                                     <i class="bi bi-check-circle"></i>
                                     <span>Verletzungssicher abgerundete Ecken und Kanten</span>
                                 </li>
-                                <li class="feature-item">
-                                    <i class="bi bi-check-circle"></i>
-                                    <span>Passende Wickelauflagen separat erhältlich (Art.Nr. 5832)</span>
-                                </li>
                             </ul>
                         </div>
                         <img src="https://www.geuther.de/media/6c/3f/b8/1705518633/4842_mb_07.webp" 
@@ -686,7 +849,7 @@
                                     <i class="bi bi-shield-check"></i>
                                     <div class="safety-feature-text">
                                         <strong>TÜV/GS geprüft</strong>
-                                        <span>Entspricht allen Sicherheitsnormen</span>
+                                        <span>Entspricht Sicherheitsnormen</span>
                                     </div>
                                 </div>
                                 <div class="safety-feature">
@@ -707,7 +870,7 @@
                                     <i class="bi bi-tools"></i>
                                     <div class="safety-feature-text">
                                         <strong>Einfache Montage</strong>
-                                        <span>Schneller Aufbau mit beiliegender Anleitung</span>
+                                        <span>Dank beiliegender Anleitung</span>
                                     </div>
                                 </div>
                             </div>
@@ -925,7 +1088,8 @@
                     font-size: 2rem;
                     font-weight: 600;
                     color: var(--geuther-primary);
-                    margin-bottom: 1.5rem;
+                    margin-bottom: 1rem;
+                    margin-top: 1rem;
                 }
 
                 /* Feature Section */
@@ -965,12 +1129,12 @@
                 .materials-text {
                     font-size: 1rem;
                     line-height: 1.6;
-                    margin-bottom: 2rem;
+                    margin-bottom: 1rem;
                 }
 
                 .feature-list {
                     display: grid;
-                    gap: 1rem;
+                    gap: 0.3rem;
                 }
 
                 .feature-item {
@@ -995,6 +1159,7 @@
                 /* Safety Features */
                 .safety-features {
                     display: grid;
+                    grid-template-columns: repeat(2, 1fr);
                     gap: 1.5rem;
                     margin-top: 2rem;
                 }
@@ -1240,6 +1405,10 @@
                         gap: 2rem;
                     }
 
+                    .reviews-section {
+                    margin-bottom: 12rem;
+                    }
+
                     .downloads-grid {
                         grid-template-columns: 1fr;
                     }
@@ -1255,6 +1424,10 @@
 
                     .section-title {
                         font-size: 1.5rem;
+                    }
+
+                    .safety-features {
+                        grid-template-columns: 1fr;
                     }
                 }
 
@@ -1314,18 +1487,49 @@
 
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
-                    // Gallery Navigation
+                    // Gallery functionality
                     const mainImage = document.querySelector('.gallery-main img');
-                    const thumbs = document.querySelectorAll('.gallery-thumb');
-
-                    thumbs.forEach(thumb => {
-                        thumb.addEventListener('click', function() {
-                            // Update main image
-                            mainImage.src = thumb.querySelector('img').src;
-                            
-                            // Update active state
-                            thumbs.forEach(t => t.classList.remove('active'));
-                            thumb.classList.add('active');
+                    const mobileImage = document.querySelector('.mobile-gallery img');
+                    const prevBtn = document.querySelector('.gallery-nav.prev');
+                    const nextBtn = document.querySelector('.gallery-nav.next');
+                    const thumbnails = document.querySelectorAll('.gallery-thumb');
+                    
+                    const images = [
+                        'https://www.geuther.de/media/04/21/bf/1705518517/4842we_1n6fjzbh6sb7gw-2.webp',
+                        'https://www.geuther.de/media/23/f3/78/1705518553/4842we_2a5jhgjkznnw7k-2.webp',
+                        'https://www.geuther.de/media/d0/07/16/1705518556/4842_sw.webp',
+                        'https://www.geuther.de/media/6c/3f/b8/1705518633/4842_mb_07.webp',
+                        'https://www.geuther.de/media/ed/10/11/1705518720/4842_mb_08.webp'
+                    ];
+                    
+                    let currentIndex = 0;
+                    
+                    function updateImage() {
+                        if (mainImage) mainImage.src = images[currentIndex];
+                        if (mobileImage) mobileImage.src = images[currentIndex];
+                        thumbnails.forEach((thumb, index) => {
+                            thumb.classList.toggle('active', index === currentIndex);
+                        });
+                    }
+                    
+                    if (prevBtn) {
+                        prevBtn.addEventListener('click', () => {
+                            currentIndex = (currentIndex - 1 + images.length) % images.length;
+                            updateImage();
+                        });
+                    }
+                    
+                    if (nextBtn) {
+                        nextBtn.addEventListener('click', () => {
+                            currentIndex = (currentIndex + 1) % images.length;
+                            updateImage();
+                        });
+                    }
+                    
+                    thumbnails.forEach((thumb, index) => {
+                        thumb.addEventListener('click', () => {
+                            currentIndex = index;
+                            updateImage();
                         });
                     });
 
@@ -1357,6 +1561,79 @@
                             this.classList.add('selected');
                         });
                     });
+
+                    // Sticky Bottom Bar
+                    const stickyBar = document.createElement('div');
+                    stickyBar.className = 'sticky-bottom-bar';
+                    stickyBar.innerHTML = `
+                        <div class="color-selection">
+                            <label class="color-label">Farbe:</label>
+                            <div class="color-options">
+                                <div class="color-option selected" style="background: #ffffff;" title="Weiß"></div>
+                                <div class="color-option" style="background: #2c2c2c;" title="Schwarz"></div>
+                                <div class="color-option" style="background: #d4bc9c;" title="Natur"></div>
+                            </div>
+                        </div>
+                        <div class="add-to-cart-section">
+                            <div class="quantity-input">
+                                <button class="quantity-btn" type="button">-</button>
+                                <input type="number" class="quantity-value" value="1" min="1" max="99">
+                                <button class="quantity-btn" type="button">+</button>
+                            </div>
+                            <button class="add-to-cart-btn">
+                                <i class="bi bi-cart-plus"></i>
+                                In den Warenkorb
+                            </button>
+                        </div>
+                    `;
+                    document.body.appendChild(stickyBar);
+
+                    const originalBar = document.querySelector('.add-to-cart-section').parentElement;
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (!entry.isIntersecting) {
+                                stickyBar.classList.add('visible');
+                            } else {
+                                stickyBar.classList.remove('visible');
+                            }
+                        });
+                    }, { threshold: 1.0 });
+
+                    observer.observe(originalBar);
+
+                    // Sync color selection and quantity between original and sticky bar
+                    const syncElements = () => {
+                        const originalColorOptions = document.querySelectorAll('.color-option');
+                        const stickyColorOptions = stickyBar.querySelectorAll('.color-option');
+                        const originalQuantity = document.querySelector('.quantity-value');
+                        const stickyQuantity = stickyBar.querySelector('.quantity-value');
+
+                        stickyColorOptions.forEach((option, index) => {
+                            option.addEventListener('click', () => {
+                                stickyColorOptions.forEach(opt => opt.classList.remove('selected'));
+                                option.classList.add('selected');
+                                originalColorOptions[index].click();
+                            });
+                        });
+
+                        originalColorOptions.forEach((option, index) => {
+                            option.addEventListener('click', () => {
+                                originalColorOptions.forEach(opt => opt.classList.remove('selected'));
+                                option.classList.add('selected');
+                                stickyColorOptions[index].click();
+                            });
+                        });
+
+                        originalQuantity.addEventListener('change', () => {
+                            stickyQuantity.value = originalQuantity.value;
+                        });
+
+                        stickyQuantity.addEventListener('change', () => {
+                            originalQuantity.value = stickyQuantity.value;
+                        });
+                    };
+
+                    syncElements();
                 });
             </script>
         </div>
