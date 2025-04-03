@@ -1285,6 +1285,7 @@
                 <li><a href="geschichte.html"><i class="bi bi-clock-history"></i>Geschichte</a></li>
                 <li><a href="haendler.html"><i class="bi bi-shop"></i>Händler</a></li>
                 <li><a href="affiliate.html"><i class="bi bi-people"></i>Affiliate</a></li>
+                <li><a href="blogartikel.html"><i class="bi bi-book"></i>Blogartikel</a></li>
                 <li><a href="support.html"><i class="bi bi-headset"></i>Support</a></li>
                 <li><a href="faq.html"><i class="bi bi-question-circle"></i>FAQ</a></li>
                 <li><a href="versand.html"><i class="bi bi-truck"></i>Versand</a></li>
@@ -1334,14 +1335,23 @@
                 'faq.html': 'faq.png',
                 'versand.html': 'versand.png',
                 'widerruf.html': 'widerruf.png',
-                'detail.html': 'detail.png'
+                'detail.html': 'detail.png',
+                'blogartikel.html': 'blogartikel.png'
             };
 
-            // Funktion zum Aktualisieren des Vergleichsbilds
-            function updateComparisonImage(url) {
-                const pageName = url.split('/').pop() || 'home.html';
-                const imageName = pageToImageMap[pageName] || 'home.png';
-                comparisonImage.src = `assets/images/${imageName}`;
+            let lastLoadedPage = 'home.html';
+            let currentComparisonImage = null;
+            let isComparisonActive = false;
+
+            // Funktion zum Aktualisieren des Vergleichsbildes
+            function updateComparisonImage(page) {
+                if (!isComparisonActive) return;
+                
+                const imageName = pageToImageMap[page] || 'home.png';
+                if (currentComparisonImage !== imageName) {
+                    currentComparisonImage = imageName;
+                    comparisonImage.src = `assets/images/${currentComparisonImage}`;
+                }
             }
 
             // Vergleichs-Slider Toggle
@@ -1356,14 +1366,18 @@
 
             comparisonToggle.querySelector('a').addEventListener('click', (e) => {
                 e.preventDefault();
-                comparisonContainer.style.display = comparisonContainer.style.display === 'none' ? 'block' : 'none';
+                if (comparisonContainer.style.display === 'none') {
+                    isComparisonActive = true;
+                    updateComparisonImage(lastLoadedPage);
+                    comparisonContent.innerHTML = content.innerHTML;
+                    comparisonContainer.style.display = 'block';
+                } else {
+                    isComparisonActive = false;
+                    comparisonContainer.style.display = 'none';
+                }
+                
                 comparisonToggle.querySelector('a').classList.toggle('active');
                 navMenu.classList.remove('active');
-                
-                // Kopiere den aktuellen Inhalt in den Vergleichs-Container
-                if (comparisonContainer.style.display === 'block') {
-                    comparisonContent.innerHTML = content.innerHTML;
-                }
             });
 
             // Slider Funktionalität
@@ -2104,6 +2118,10 @@
                     // Extract main content (excluding header, footer, etc. if present)
                     const mainContent = doc.body.innerHTML;
 
+                    // Update lastLoadedPage
+                    const newPage = url.split('/').pop() || 'home.html';
+                    lastLoadedPage = newPage;
+
                     // Combine contents
                     content.innerHTML = 
                         extractBodyContent(headerHtml) +
@@ -2111,8 +2129,9 @@
                         extractBodyContent(newsletterHtml) +
                         extractBodyContent(footerHtml);
 
-                    // Wenn der Vergleich aktiv ist, aktualisiere auch den Vergleichs-Inhalt
-                    if (comparisonContainer.style.display === 'block') {
+                    // Update comparison content and image if active
+                    if (isComparisonActive) {
+                        updateComparisonImage(newPage);
                         comparisonContent.innerHTML = content.innerHTML;
                     }
 
@@ -2277,9 +2296,6 @@
                             showSlide(0);
                         }
                     }, 100);
-
-                    // Update comparison image
-                    updateComparisonImage(url);
 
                     // Initialize Sticky Bottom Bar if on product detail page
                     const existingStickyBar = document.querySelector('.sticky-bottom-bar');
