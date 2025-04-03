@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geuther Blog | Ratgeber & Tipps für Familien</title>
+    <meta name="description" content="Entdecken Sie hilfreiche Ratgeber und Tipps rund um Kindersicherheit, Produktnutzung und Familienleben. Der Geuther Blog - Ihr Magazin für Familien mit Kindern.">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --geuther-primary: #42584A;
+            --geuther-secondary: #D4C4B7;
+            --geuther-text: #333333;
+            --geuther-bg: #FFFFFF;
+            --geuther-accent: #F5F1ED;
+            --geuther-border: #E5E5E5;
+            --geuther-highlight: #e8a87c;
+        }
+
+        .blog-magazine {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--geuther-text);
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        .blog-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 1rem 2rem;
+            background: linear-gradient(135deg, var(--geuther-accent) 0%, #ffffff 100%);
+            border-radius: 0 0 12px 12px;
+        }
+
+        .blog-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--geuther-primary);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .blog-subtitle {
+            font-size: 1.2rem;
+            color: var(--geuther-text);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+
+        .blog-categories {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .category-tag {
+            padding: 0.5rem 1.25rem;
+            background: white;
+            border: 1px solid var(--geuther-border);
+            border-radius: 50px;
+            color: var(--geuther-text);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .category-tag:hover, .category-tag.active {
+            background: var(--geuther-primary);
+            color: white;
+            border-color: var(--geuther-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .featured-article {
+            position: relative;
+            margin-bottom: 4rem;
+            margin-top: 2rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .featured-image {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .featured-image:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        .featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .featured-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+            color: white;
+        }
+
+        .featured-category {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: var(--geuther-primary);
+            color: white;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .featured-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+            color: white;
+        }
+
+        .featured-excerpt {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .featured-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .featured-link:hover {
+            color: var(--geuther-secondary);
+            text-decoration: none;
+        }
+
+        .featured-link i {
+            transition: transform 0.3s ease;
+        }
+
+        .featured-link:hover i {
+            transform: translateX(5px);
+        }
+
+        .top-articles {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            height: 100%;
+        }
+
+        .top-article {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            height: calc((100% - 1.5rem) / 2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .top-article:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        .top-article .top-article-link {
+            display: none;
+        }
+
+        .top-article-image {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .top-article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .top-article-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+            color: white;
+        }
+
+        .top-article-category {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: var(--geuther-primary);
+            color: white;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .top-article-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+            color: white;
+        }
+
+        .top-article-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .top-article-link:hover {
+            color: var(--geuther-secondary);
+            text-decoration: none;
+        }
+
+        .top-article-link i {
+            transition: transform 0.3s ease;
+        }
+
+        .top-article-link:hover i {
+            transform: translateX(5px);
+        }
+
+        .top-articles-nav {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .top-articles-nav-item {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: var(--geuther-bg);
+            color: var(--geuther-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+        }
+
+        .top-articles-nav-item:hover, .top-articles-nav-item.active {
+            background: var(--geuther-primary);
+            color: white;
+        }
+
+        .blog-sections {
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .blog-section {
+            margin-bottom: 0;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--geuther-accent);
+        }
+
+        .section-title-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--geuther-accent);
+            color: var(--geuther-primary);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .section-link:hover {
+            background: var(--geuther-primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-decoration: none;
+        }
+
+        .section-link i {
+            transition: transform 0.3s ease;
+        }
+
+        .section-link:hover i {
+            transform: translateX(5px);
+        }
+
+        .section-icon {
+            font-size: 1.8rem;
+            color: var(--geuther-primary);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin: 0;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .blog-card {
+            background: var(--geuther-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            text-decoration: none;
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .blog-card .blog-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card .blog-link {
+            display: none;
+        }
+
+        .blog-card:hover .blog-image img {
+            transform: scale(1.05);
+        }
+
+        .blog-category {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: var(--geuther-accent);
+            color: var(--geuther-primary);
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .blog-card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .blog-excerpt {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--geuther-text);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .blog-date {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .blog-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--geuther-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .blog-link i {
+            transition: transform 0.3s ease;
+        }
+
+        .blog-link:hover {
+            color: #364b3d;
+            text-decoration: none;
+        }
+
+        .blog-link:hover i {
+            transform: translateX(5px);
+        }
+
+        .blog-newsletter {
+            background: linear-gradient(135deg, var(--geuther-primary) 0%, #364b3d 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 3rem 2rem;
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .newsletter-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+            gap: 1rem;
+        }
+
+        .newsletter-input {
+            flex-grow: 1;
+            padding: 0.75rem 1rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .newsletter-button {
+            padding: 0.75rem 1.5rem;
+            background: var(--geuther-highlight);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-button:hover {
+            background: #d89468;
+            transform: translateY(-2px);
+        }
+
+        .blog-pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 3rem 0;
+        }
+
+        .pagination-item {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: var(--geuther-bg);
+            color: var(--geuther-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .pagination-item:hover, .pagination-item.active {
+            background: var(--geuther-primary);
+            color: white;
+        }
+
+        .pagination-item i {
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 1200px) {
+            .blog-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .essential-guides {
+            margin: 4rem 0;
+            padding: 3rem;
+            background: linear-gradient(135deg, var(--geuther-accent) 0%, #ffffff 100%);
+            border-radius: 16px;
+        }
+
+        .essential-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .essential-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--geuther-primary);
+            margin-bottom: 1rem;
+        }
+
+        .essential-subtitle {
+            font-size: 1.1rem;
+            color: var(--geuther-text);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .essential-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .essential-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .essential-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            text-decoration: none;
+        }
+
+        .essential-card .essential-link {
+            display: none;
+        }
+
+        .essential-image {
+            width: 100%;
+            height: 240px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .essential-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .essential-card:hover .essential-image img {
+            transform: scale(1.05);
+        }
+
+        .essential-content {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .essential-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: var(--geuther-primary);
+            color: white;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .essential-card-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .essential-excerpt {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--geuther-text);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .essential-features {
+            margin-bottom: 1.5rem;
+        }
+
+        .essential-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--geuther-text);
+        }
+
+        .essential-feature i {
+            color: var(--geuther-primary);
+            font-size: 1rem;
+        }
+
+        .essential-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--geuther-primary);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-top: auto;
+        }
+
+        .essential-link:hover {
+            color: #364b3d;
+            text-decoration: none;
+        }
+
+        .essential-link i {
+            transition: transform 0.3s ease;
+        }
+
+        .essential-link:hover i {
+            transform: translateX(5px);
+        }
+
+        @media (max-width: 1200px) {
+            .essential-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .essential-guides {
+                padding: 2rem 1rem;
+                margin: 3rem 0;
+            }
+
+            .essential-title {
+                font-size: 1.8rem;
+            }
+
+            .essential-subtitle {
+                font-size: 1rem;
+            }
+
+            .essential-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .essential-image {
+                height: 200px;
+            }
+
+            .essential-card-title {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="blog-magazine">
+        <!-- <header class="blog-header">
+            <h1 class="blog-title">Geuther Blog</h1>
+            <p class="blog-subtitle">Ratgeber, Tipps und Inspirationen für Familien mit Kindern - von Sicherheit bis Einrichtung</p>
+            
+            <div class="blog-categories">
+                <a href="#sicherheit" class="category-tag active">Sicherheit</a>
+                <a href="#produkte" class="category-tag">Produkte</a>
+                <a href="#einrichtung" class="category-tag">Einrichtung</a>
+                <a href="#entwicklung" class="category-tag">Entwicklung</a>
+                <a href="#pflege" class="category-tag">Pflege</a>
+                <a href="#alltag" class="category-tag">Familienalltag</a>
+            </div>
+        </header> -->
+
+        <article class="featured-article">
+            <div class="featured-image">
+                <img src="https://www.geuther.de/thumbnail/62/f2/83/1705518704/1155_nest_in_the_clouds_005_800x800.webp" alt="Interior Design mit hochwertigen Tür- und Treppenschutzgittern">
+                <div class="featured-overlay">
+                    <span class="featured-category">Sicherheit</span>
+                    <h2 class="featured-title">Interior Design leicht gemacht mit hochwertigen Tür- und Treppenschutzgittern</h2>
+                    <p class="featured-excerpt">Entdecken Sie, wie Sie Sicherheit und Design perfekt vereinen können. Geuther präsentiert die neue 273er-Reihe mit modernen Farbvarianten für Ihr Zuhause.</p>
+                    <a href="/blog/interior-design-schutzgitter" class="featured-link">
+                        Weiterlesen <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="top-articles">
+                <div class="top-article">
+                    <div class="top-article-image">
+                        <img src="https://www.geuther.de/thumbnail/75/68/c6/1705518647/geuther-4-in-1-cozy-do-1118bb-37_800x800.webp" alt="Sicherer Schlaf für Ihr Baby">
+                    </div>
+                    <div class="top-article-overlay">
+                        <span class="top-article-category">Sicherheit</span>
+                        <h3 class="top-article-title">Sicherer Schlaf für Ihr Baby</h3>
+                        <a href="/blog/sicherer-schlaf" class="top-article-link">
+                            Weiterlesen <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="top-article">
+                    <div class="top-article-image">
+                        <img src="https://www.geuther.de/thumbnail/6a/48/f7/1705518642/geuther-wickelkommode-1155wkxl-31_800x800.webp" alt="Der große Hochstuhl-Guide">
+                    </div>
+                    <div class="top-article-overlay">
+                        <span class="top-article-category">Produkte</span>
+                        <h3 class="top-article-title">Der große Hochstuhl-Guide</h3>
+                        <a href="/blog/hochstuhl-guide" class="top-article-link">
+                            Weiterlesen <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <section class="essential-guides">
+            <div class="essential-header">
+                <h2 class="essential-title">Unsere wichtigsten Ratgeber</h2>
+                <p class="essential-subtitle">Entdecken Sie unsere ausführlichen Guides zu den wichtigsten Geuther Produkten und erhalten Sie wertvolle Tipps für die richtige Auswahl und Nutzung.</p>
+            </div>
+
+            <div class="essential-grid">
+                <a href="/blog/treppenschutzgitter-guide" class="essential-card">
+                    <div class="essential-image">
+                        <img src="https://www.geuther.de/media/ba/68/ae/1706262351/2273_NA_MB_10.webp" alt="Treppenschutzgitter-Guide">
+                    </div>
+                    <div class="essential-content">
+                        <span class="essential-tag">Ratgeber</span>
+                        <h3 class="essential-card-title">Der große Treppenschutzgitter-Guide</h3>
+                        <p class="essential-excerpt">Alles was Sie über Treppenschutzgitter wissen müssen: Von Montagearten über Sicherheitsstandards bis hin zur richtigen Auswahl für Ihr Zuhause.</p>
+                        <div class="essential-features">
+                            <div class="essential-feature">
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span>Bohren vs. Klemmmontage</span>
+                            </div>
+                            <div class="essential-feature">
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span>Mit und ohne Bodenschwelle</span>
+                            </div>
+                            <div class="essential-feature">
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span>Sicherheitsstandards im Vergleich</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/blog/hochstuhl-guide" class="essential-card">
+                    <div class="essential-image">
+                        <img src="https://www.geuther.de/thumbnail/f1/ca/7e/1705518703/geuther-hochstuhl-filou-up-2359-28_1920x1920.webp" alt="Hochstuhl-Guide">
+                    </div>
+                    <div class="essential-content">
+                        <span class="essential-tag">Ratgeber</span>
+                        <h3 class="essential-card-title">Der perfekte Hochstuhl für Ihr Kind</h3>
+                        <p class="essential-excerpt">Von der ersten Mahlzeit bis zum Schulkind: Erfahren Sie, welcher Hochstuhl zu welchem Alter passt und worauf Sie bei der Auswahl achten sollten.</p>
+                        <div class="essential-features">
+                            <div class="essential-feature">
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span>Altersgerechte Auswahl</span>
+                            </div>
+                            <div class="essential-feature">
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span>Sicherheitsaspekte</span>
+                            </div>
+                            <div class="essential-feature">
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span>Pflege und Reinigung</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/blog/babybett-guide" class="essential-card">
+                    <div class="essential-image">
+                        <img src="https://www.geuther.de/thumbnail/62/f2/83/1705518704/1155_nest_in_the_clouds_005_800x800.webp" alt="Babybett-Guide">
+                    </div>
+                    <div class="essential-content">
+                        <span class="essential-tag">Ratgeber</span>
+                        <h3 class="essential-card-title">Babybett & Wickelkommode: Die wichtigsten Kaufkriterien</h3>
+                        <p class="essential-excerpt">Von der ersten Ausstattung bis zur Umstellung: Alles Wichtige rund um Babybett und Wickelkommode für einen sicheren und praktischen Start.</p>
+                        <div class="essential-features">
+                            <div class="essential-feature">
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span>Größen und Maße</span>
+                            </div>
+                            <div class="essential-feature">
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span>Materialien und Verarbeitung</span>
+                            </div>
+                            <div class="essential-feature">
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span>Zusatzfunktionen</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <div class="blog-sections">
+            <section class="blog-section" id="sicherheit">
+                <div class="section-header">
+                    <div class="section-title-container">
+                        <i class="bi bi-shield-check section-icon"></i>
+                        <h2 class="section-title">Sicherheit & Kinderschutz</h2>
+                    </div>
+                    <a href="/blog/kategorie/sicherheit" class="section-link">
+                        Alle Artikel <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="blog-grid">
+                    <a href="/blog/sicherer-schlaf" class="blog-card">
+                        <div class="blog-image">
+                            <img src="https://www.geuther.de/thumbnail/75/68/c6/1705518647/geuther-4-in-1-cozy-do-1118bb-37_800x800.webp" alt="Sicherer Schlaf für Ihr Baby">
+                        </div>
+                        <div class="blog-content">
+                            <span class="blog-category">Sicherheit</span>
+                            <h3 class="blog-card-title">Sicherer Schlaf für Ihr Baby</h3>
+                            <p class="blog-excerpt">Erfahren Sie, worauf es bei der Einrichtung des Babyzimmers ankommt und wie Sie einen sicheren Schlafplatz gestalten.</p>
+                            <div class="blog-meta">
+                                <span class="blog-date"><i class="bi bi-calendar3"></i> 15. März 2023</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="/blog/kindersicherheit" class="blog-card">
+                        <div class="blog-image">
+                            <img src="https://www.geuther.de/thumbnail/6a/48/f7/1705518642/geuther-wickelkommode-1155wkxl-31_800x800.webp" alt="Kindersicherheit im Haus">
+                        </div>
+                        <div class="blog-content">
+                            <span class="blog-category">Sicherheit</span>
+                            <h3 class="blog-card-title">Kindersicherheit im Haus</h3>
+                            <p class="blog-excerpt">Die wichtigsten Tipps für ein kindersicheres Zuhause - von der Küche bis zum Kinderzimmer.</p>
+                            <div class="blog-meta">
+                                <span class="blog-date"><i class="bi bi-calendar3"></i> 22. Februar 2023</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="/blog/montage-guide" class="blog-card">
+                        <div class="blog-image">
+                            <img src="https://www.geuther.de/thumbnail/62/f2/83/1705518704/1155_nest_in_the_clouds_005_800x800.webp" alt="Montage-Guide für Schutzgitter">
+                        </div>
+                        <div class="blog-content">
+                            <span class="blog-category">Sicherheit</span>
+                            <h3 class="blog-card-title">Montage-Guide: Schutzgitter richtig anbringen</h3>
+                            <p class="blog-excerpt">Schritt-für-Schritt-Anleitung zur sicheren Montage von Tür- und Treppenschutzgittern für maximale Sicherheit.</p>
+                            <div class="blog-meta">
+                                <span class="blog-date"><i class="bi bi-calendar3"></i> 10. Januar 2023</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <section class="blog-section" id="produkte">
+                <div class="section-header">
+                    <div class="section-title-container">
+                        <i class="bi bi-box-seam section-icon"></i>
+                        <h2 class="section-title">Produkte & Nutzung</h2>
+                    </div>
+                    <a href="/blog/kategorie/produkte" class="section-link">
+                        Alle Artikel <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="blog-grid">
+                    <article class="blog-card">
+                        <div class="blog-image">
+                            <img src="https://www.geuther.de/thumbnail/6a/48/f7/1705518642/geuther-wickelkommode-1155wkxl-31_800x800.webp" alt="Der große Hochstuhl-Guide">
+                        </div>
+                        <div class="blog-content">
+                            <span class="blog-category">Produkte</span>
+                            <h3 class="blog-card-title">Der große Hochstuhl-Guide</h3>
+                            <p class="blog-excerpt">Welcher Hochstuhl ist der richtige für Ihr Kind? Wir zeigen Ihnen die wichtigsten Kriterien.</p>
+                            <div class="blog-meta">
+                                <span class="blog-date"><i class="bi bi-calendar3"></i> 18. März 2023</span>
+                                <a href="/blog/hochstuhl-guide" class="blog-link">Weiterlesen <i class="bi bi-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="blog-card">
+                        <div class="blog-image">
+                            <img src="https://www.geuther.de/thumbnail/75/68/c6/1705518647/geuther-4-in-1-cozy-do-1118bb-37_800x800.webp" alt="Türschutzgitter im Vergleich">
+                        </div>
+                        <div class="blog-content">
+                            <span class="blog-category">Produkte</span>
+                            <h3 class="blog-card-title">Türschutzgitter im Vergleich</h3>
+                            <p class="blog-excerpt">Welches Schutzgitter passt zu Ihren Bedürfnissen? Ein detaillierter Vergleich der verschiedenen Modelle.</p>
+                            <div class="blog-meta">
+                                <span class="blog-date"><i class="bi bi-calendar3"></i> 3. Februar 2023</span>
+                                <a href="/blog/schutzgitter-vergleich" class="blog-link">Weiterlesen <i class="bi bi-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="blog-card">
+                        <div class="blog-image">
+                            <img src="https://www.geuther.de/thumbnail/62/f2/83/1705518704/1155_nest_in_the_clouds_005_800x800.webp" alt="Pflege und Reinigung von Kindermöbeln">
+                        </div>
+                        <div class="blog-content">
+                            <span class="blog-category">Produkte</span>
+                            <h3 class="blog-card-title">Pflege und Reinigung von Kindermöbeln</h3>
+                            <p class="blog-excerpt">Tipps zur richtigen Pflege und Reinigung Ihrer Geuther Möbel für eine lange Lebensdauer.</p>
+                            <div class="blog-meta">
+                                <span class="blog-date"><i class="bi bi-calendar3"></i> 12. Januar 2023</span>
+                                <a href="/blog/moebel-pflege" class="blog-link">Weiterlesen <i class="bi bi-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="blog-section" id="einrichtung">
+                <div class="section-header">
+                    <div class="section-title-container">
+                        <i class="bi bi-house-heart section-icon"></i>
+                        <h2 class="section-title">Einrichtung & Design</h2>
+                    </div>
+                    <a href="/blog/kategorie/einrichtung" class="section-link">
+                        Alle Artikel <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="blog-grid">
+                    <article class="blog-card">
+                        <div class="blog-image">
+                            <img src="https://www.geuther.de/thumbnail/75/68/c6/1705518647/geuther-4-in-1-cozy-do-1118bb-37_800x800.webp" alt="Kinderzimmer einrichten">
+                        </div>
+                        <div class="blog-content">
+                            <span class="blog-category">Einrichtung</span>
+                            <h3 class="blog-card-title">Kinderzimmer einrichten: Tipps für eine harmonische Gestaltung</h3>
+                            <p class="blog-excerpt">Wie Sie ein Kinderzimmer gestalten, das sowohl funktional als auch ästhetisch ansprechend ist.</p>
+                            <div class="blog-meta">
+                                <span class="blog-date"><i class="bi bi-calendar3"></i> 25. März 2023</span>
+                                <a href="/blog/kinderzimmer-einrichten" class="blog-link">Weiterlesen <i class="bi bi-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </article>              
+
+                    <article class="blog-card">
+                        <div class="blog-image">
+                            <img src="https://www.geuther.de/thumbnail/6a/48/f7/1705518642/geuther-wickelkommode-1155wkxl-31_800x800.webp" alt="Platzsparende Lösungen">
+                        </div>
+                        <div class="blog-content">
+                            <span class="blog-category">Einrichtung</span>
+                            <h3 class="blog-card-title">Platzsparende Lösungen für kleine Wohnungen</h3>
+                            <p class="blog-excerpt">Wie Sie auch in einer kleinen Wohnung ein kindgerechtes Zuhause schaffen können.</p>
+                            <div class="blog-meta">
+                                <span class="blog-date"><i class="bi bi-calendar3"></i> 15. Januar 2023</span>
+                                <a href="/blog/platzsparende-loesungen" class="blog-link">Weiterlesen <i class="bi bi-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="blog-card">
+                        <div class="blog-image">
+                            <img src="https://www.geuther.de/thumbnail/62/f2/83/1705518704/1155_nest_in_the_clouds_005_800x800.webp" alt="Möbel mitwachsen lassen">
+                        </div>
+                        <div class="blog-content">
+                            <span class="blog-category">Einrichtung</span>
+                            <h3 class="blog-card-title">Möbel mitwachsen lassen: Investitionen für die Zukunft</h3>
+                            <p class="blog-excerpt">Welche Möbel sich lohnen, wenn Sie langfristig denken und mit Ihrem Kind mitwachsen sollen.</p>
+                            <div class="blog-meta">
+                                <span class="blog-date"><i class="bi bi-calendar3"></i> 2. Dezember 2022</span>
+                                <a href="/blog/moebel-mitwachsen" class="blog-link">Weiterlesen <i class="bi bi-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </div>
+
+        <div class="blog-pagination">
+            <a href="#" class="pagination-item"><i class="bi bi-chevron-left"></i></a>
+            <a href="#" class="pagination-item active">1</a>
+            <a href="#" class="pagination-item">2</a>
+            <a href="#" class="pagination-item">3</a>
+            <a href="#" class="pagination-item"><i class="bi bi-chevron-right"></i></a>
+        </div>
+    </div>
+</body>
+</html> 

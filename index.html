@@ -1263,6 +1263,62 @@
                 content: "In 2-3 Tagen bei dir";
             }
         }
+
+        /* Blog Styles */
+        .blog-tips {
+            padding: 4rem 2rem;
+            background-color: var(--light-bg);
+        }
+
+        .blog-tips h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .blog-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-content h3 {
+            margin: 0 0 1rem 0;
+            color: var(--primary-color);
+        }
+
+        .blog-content p {
+            margin: 0;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
     </style>
 </head>
 <body>
@@ -1285,6 +1341,7 @@
                 <li><a href="geschichte.html"><i class="bi bi-clock-history"></i>Geschichte</a></li>
                 <li><a href="haendler.html"><i class="bi bi-shop"></i>Händler</a></li>
                 <li><a href="affiliate.html"><i class="bi bi-people"></i>Affiliate</a></li>
+                <li><a href="blog.html"><i class="bi bi-journal-text"></i>Blog</a></li>
                 <li><a href="blogartikel.html"><i class="bi bi-book"></i>Blogartikel</a></li>
                 <li><a href="support.html"><i class="bi bi-headset"></i>Support</a></li>
                 <li><a href="faq.html"><i class="bi bi-question-circle"></i>FAQ</a></li>
@@ -2084,7 +2141,7 @@
                         tempDiv.innerHTML = htmlString;
                         // Find the first element with class 'geuther-header', 'geuther-newsletter', etc.
                         // or fall back to the body content
-                        const specificContent = tempDiv.querySelector('.geuther-header, .geuther-newsletter, .geuther-footer, main');
+                        const specificContent = tempDiv.querySelector('.geuther-header, .geuther-newsletter, .geuther-footer, main, .blog-magazine, .blog-article');
                         return specificContent ? specificContent.outerHTML : tempDiv.innerHTML;
                     }
 
