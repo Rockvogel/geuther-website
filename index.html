@@ -1195,6 +1195,74 @@
                 margin-bottom: 120px;
             }
         }
+
+        /* Mobile Gallery */
+        .mobile-gallery {
+            display: none;
+            margin: 1rem 0;
+            position: relative;
+        }
+
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 2;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .gallery-nav.prev {
+            left: 10px;
+        }
+
+        .gallery-nav.next {
+            right: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-thumbs {
+                display: none;
+            }
+
+            .gallery-main {
+                display: none;
+            }
+
+            .mobile-gallery {
+                display: block;
+            }
+
+            .product-title {
+                font-size: 1.5rem;
+            }
+
+            .price-main {
+                font-size: 1.5rem;
+            }
+
+            .availability-section {
+                flex-direction: row;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .delivery-time span:first-child {
+                display: none;
+            }
+
+            .delivery-time span:last-child {
+                content: "In 2-3 Tagen bei dir";
+            }
+        }
     </style>
 </head>
 <body>
@@ -1461,7 +1529,6 @@
 
                 // Initialize Color Selection
                 const colorOptions = document.querySelectorAll('.color-option');
-                
                 if (colorOptions.length > 0) {
                     colorOptions.forEach(option => {
                         // Remove existing event listeners
@@ -1630,13 +1697,94 @@
                 });
 
                 // Initialize Filter Toggle
+                const filterToggle = document.querySelector('.filter-toggle');
+                const filterSidebar = document.querySelector('.filter-sidebar');
+                const cancelButton = document.querySelector('.filter-button.cancel');
+                const applyButton = document.querySelector('.filter-button.apply');
+                const closeButton = document.querySelector('.close-button');
                 const filterHeaders = document.querySelectorAll('.filter-header');
+
+                function closeFilterSidebar() {
+                    if (filterToggle && filterSidebar) {
+                        filterToggle.classList.remove('active');
+                        filterSidebar.classList.remove('active');
+                    }
+                }
+
+                if (filterToggle && filterSidebar) {
+                    // Add touch event listeners for mobile
+                    filterToggle.addEventListener('touchstart', (e) => {
+                        e.preventDefault();
+                        filterToggle.classList.toggle('active');
+                        filterSidebar.classList.toggle('active');
+                    });
+
+                    // Add click event listener for desktop
+                    filterToggle.addEventListener('click', () => {
+                        filterToggle.classList.toggle('active');
+                        filterSidebar.classList.toggle('active');
+                    });
+
+                    // Schließe Filter wenn außerhalb geklickt wird
+                    document.addEventListener('click', (e) => {
+                        if (!filterSidebar.contains(e.target) && !filterToggle.contains(e.target)) {
+                            closeFilterSidebar();
+                        }
+                    });
+
+                    // Add touch event listener for outside clicks on mobile
+                    document.addEventListener('touchstart', (e) => {
+                        if (!filterSidebar.contains(e.target) && !filterToggle.contains(e.target)) {
+                            closeFilterSidebar();
+                        }
+                    });
+
+                    // Close Button
+                    if (closeButton) {
+                        closeButton.addEventListener('click', closeFilterSidebar);
+                        closeButton.addEventListener('touchstart', (e) => {
+                            e.preventDefault();
+                            closeFilterSidebar();
+                        });
+                    }
+
+                    // Cancel Button
+                    if (cancelButton) {
+                        cancelButton.addEventListener('click', closeFilterSidebar);
+                        cancelButton.addEventListener('touchstart', (e) => {
+                            e.preventDefault();
+                            closeFilterSidebar();
+                        });
+                    }
+
+                    // Apply Button
+                    if (applyButton) {
+                        applyButton.addEventListener('click', () => {
+                            closeFilterSidebar();
+                        });
+                        applyButton.addEventListener('touchstart', (e) => {
+                            e.preventDefault();
+                            closeFilterSidebar();
+                        });
+                    }
+                }
+
+                // Filter Toggle für einzelne Filter-Gruppen
                 filterHeaders.forEach(header => {
-                    // Remove existing event listeners
-                    const newHeader = header.cloneNode(true);
-                    header.parentNode.replaceChild(newHeader, header);
-                    
-                    newHeader.addEventListener('click', function() {
+                    // Add touch event listener for mobile
+                    header.addEventListener('touchstart', function(e) {
+                        e.preventDefault();
+                        const content = this.nextElementSibling;
+                        const icon = this.querySelector('i');
+                        
+                        content.classList.toggle('active');
+                        icon.style.transform = content.classList.contains('active') 
+                            ? 'rotate(180deg)' 
+                            : 'rotate(0)';
+                    });
+
+                    // Add click event listener for desktop
+                    header.addEventListener('click', function() {
                         const content = this.nextElementSibling;
                         const icon = this.querySelector('i');
                         
@@ -1647,112 +1795,160 @@
                     });
                 });
 
-                // Initialize Range Slider
+                // Range Slider
                 const rangeSlider = document.querySelector('.range-slider input');
                 const rangeValues = document.querySelector('.range-values');
+                
                 if (rangeSlider && rangeValues) {
-                    // Remove existing event listeners
-                    const newSlider = rangeSlider.cloneNode(true);
-                    rangeSlider.parentNode.replaceChild(newSlider, rangeSlider);
-                    
-                    newSlider.addEventListener('input', function() {
+                    rangeSlider.addEventListener('input', function() {
                         rangeValues.children[0].textContent = this.value + ' cm';
                     });
                 }
 
-                // Initialize Mega Menu
+                // Initialize Mega Menus
                 const navItems = document.querySelectorAll('.nav-item');
+                
                 navItems.forEach(item => {
                     const link = item.querySelector('.nav-link');
                     const megaMenu = item.querySelector('.mega-menu');
                     
                     if (megaMenu) {
-                        // Remove any existing event listeners
-                        item.removeEventListener('mouseenter', null);
-                        item.removeEventListener('mouseleave', null);
-                        
-                        // Show mega menu on hover for desktop
+                        // Show mega menu on hover
                         item.addEventListener('mouseenter', () => {
-                            if (window.innerWidth >= 992) {
-                                megaMenu.classList.add('show');
-                                link.classList.add('active');
-                            }
+                            megaMenu.classList.add('show');
+                            link.classList.add('active');
                         });
                         
-                        // Hide mega menu on mouse leave for desktop
+                        // Hide mega menu on mouse leave
                         item.addEventListener('mouseleave', () => {
-                            if (window.innerWidth >= 992) {
-                                megaMenu.classList.remove('show');
-                                if (!link.getAttribute('aria-current')) {
-                                    link.classList.remove('active');
-                                }
+                            megaMenu.classList.remove('show');
+                            if (!link.classList.contains('active')) {
+                                link.classList.remove('active');
                             }
                         });
                         
                         // Handle mobile touch
                         link.addEventListener('click', (e) => {
-                            if (window.innerWidth < 992) {
+                            if (window.innerWidth <= 992) {
                                 e.preventDefault();
+                                e.stopPropagation();
                                 megaMenu.classList.toggle('show');
                                 link.classList.toggle('active');
                             }
                         });
                     }
                 });
-
-                // Close mega menu when clicking outside
+                
+                // Close all dropdowns when clicking outside
                 document.addEventListener('click', (e) => {
+                    // Close mega menus
                     if (!e.target.closest('.nav-item')) {
                         document.querySelectorAll('.mega-menu').forEach(menu => {
                             menu.classList.remove('show');
                         });
                         document.querySelectorAll('.nav-link').forEach(link => {
-                            if (!link.getAttribute('aria-current')) {
+                            if (!link.classList.contains('active')) {
                                 link.classList.remove('active');
                             }
                         });
                     }
+                    
+                    // Close header dropdowns
+                    if (!e.target.closest('.header-action')) {
+                        closeAllDropdowns();
+                    }
+                    
+                    // Close mobile menu
+                    if (!e.target.closest('.mobile-nav-menu') && !e.target.closest('.mobile-nav-toggle')) {
+                        document.querySelectorAll('.mobile-nav-menu').forEach(menu => {
+                            menu.classList.remove('show');
+                        });
+                        document.querySelectorAll('.mobile-nav-toggle').forEach(toggle => {
+                            toggle.classList.remove('active');
+                        });
+                    }
                 });
 
-                // Mobile Search
-                const mobileSearchButton = document.querySelector('.mobile-search-button');
-                const mobileSearchOverlay = document.querySelector('.mobile-search-overlay');
-                const mobileSearchClose = document.querySelector('.mobile-search-close');
-                const mobileSearchInput = document.querySelector('.mobile-search-input');
+                // Initialize Support, Account und Language Dropdowns
+                const supportButton = document.querySelector('.header-action .support-selector-button:has(.bi-question-circle)');
+                const supportDropdown = supportButton?.closest('.header-action').querySelector('.support-dropdown');
+                const accountButton = document.querySelector('.header-action .support-selector-button:has(.bi-person)');
+                const accountDropdown = accountButton?.closest('.header-action').querySelector('.account-dropdown');
+                const languageButton = document.querySelector('.language-selector-button');
+                const languageDropdown = document.querySelector('.language-dropdown');
+                const allDropdowns = [supportDropdown, accountDropdown, languageDropdown];
+                const allButtons = [supportButton, accountButton, languageButton];
 
-                if (mobileSearchButton && mobileSearchOverlay && mobileSearchClose && mobileSearchInput) {
-                    // Remove existing event listeners
-                    mobileSearchButton.removeEventListener('click', null);
-                    mobileSearchClose.removeEventListener('click', null);
-                    
-                    mobileSearchButton.addEventListener('click', () => {
-                        mobileSearchOverlay.classList.add('show');
-                        mobileSearchInput.focus();
+                function closeAllDropdowns(exceptDropdown = null) {
+                    allDropdowns.forEach(dropdown => {
+                        if (dropdown && dropdown !== exceptDropdown) {
+                            dropdown.classList.remove('show');
+                        }
                     });
-
-                    mobileSearchClose.addEventListener('click', () => {
-                        mobileSearchOverlay.classList.remove('show');
-                    });
-
-                    mobileSearchInput.addEventListener('keydown', (e) => {
-                        if (e.key === 'Enter' || e.key === 'Escape') {
-                            mobileSearchOverlay.classList.remove('show');
+                    allButtons.forEach(button => {
+                        if (button) {
+                            button.classList.remove('active');
+                            button.setAttribute('aria-expanded', 'false');
                         }
                     });
                 }
 
-                // Mobile Menu Toggle
+                // Support Dropdown
+                if (supportButton && supportDropdown) {
+                    supportButton.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                        
+                        closeAllDropdowns(isExpanded ? null : supportDropdown);
+                        
+                        supportDropdown.classList.toggle('show');
+                        this.classList.toggle('active');
+                        this.setAttribute('aria-expanded', !isExpanded);
+                    });
+                }
+
+                // Account Dropdown
+                if (accountButton && accountDropdown) {
+                    accountButton.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                        
+                        closeAllDropdowns(isExpanded ? null : accountDropdown);
+                        
+                        accountDropdown.classList.toggle('show');
+                        this.classList.toggle('active');
+                        this.setAttribute('aria-expanded', !isExpanded);
+                    });
+                }
+
+                // Language Dropdown
+                if (languageButton && languageDropdown) {
+                    languageButton.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                        
+                        closeAllDropdowns(isExpanded ? null : languageDropdown);
+                        
+                        languageDropdown.classList.toggle('show');
+                        this.classList.toggle('active');
+                        this.setAttribute('aria-expanded', !isExpanded);
+                    });
+                }
+
+                // Close dropdowns when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!e.target.closest('.header-action')) {
+                        closeAllDropdowns();
+                    }
+                });
+
+                // Initialize Mobile Navigation
                 const mobileMenuButton = document.querySelector('.mobile-menu-button');
                 const sidepanel = document.querySelector('.sidepanel');
                 const sidepanelClose = document.querySelector('.sidepanel-close');
                 const mobileOverlay = document.querySelector('.mobile-overlay');
 
                 if (mobileMenuButton && sidepanel && sidepanelClose && mobileOverlay) {
-                    // Remove existing event listeners
-                    mobileMenuButton.removeEventListener('click', null);
-                    sidepanelClose.removeEventListener('click', null);
-                    mobileOverlay.removeEventListener('click', null);
-
                     function openSidepanel() {
                         sidepanel.classList.add('show');
                         mobileOverlay.classList.add('show');
@@ -1765,27 +1961,81 @@
                         document.body.style.overflow = '';
                     }
 
-                    mobileMenuButton.addEventListener('click', openSidepanel);
+                    // Remove existing event listeners
+                    const newMobileMenuButton = mobileMenuButton.cloneNode(true);
+                    mobileMenuButton.parentNode.replaceChild(newMobileMenuButton, mobileMenuButton);
+
+                    // Add click event listener for desktop
+                    newMobileMenuButton.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        openSidepanel();
+                    });
+
+                    // Add touch event listener for mobile
+                    newMobileMenuButton.addEventListener('touchstart', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        openSidepanel();
+                    });
+
+                    // Close menu when clicking close button
                     sidepanelClose.addEventListener('click', closeSidepanel);
+                    sidepanelClose.addEventListener('touchstart', function(e) {
+                        e.preventDefault();
+                        closeSidepanel();
+                    });
+
+                    // Close menu when clicking overlay
                     mobileOverlay.addEventListener('click', closeSidepanel);
+                    mobileOverlay.addEventListener('touchstart', function(e) {
+                        e.preventDefault();
+                        closeSidepanel();
+                    });
+
+                    // Close menu when clicking outside
+                    document.addEventListener('click', function(e) {
+                        if (sidepanel.classList.contains('show') && 
+                            !sidepanel.contains(e.target) && 
+                            !newMobileMenuButton.contains(e.target)) {
+                            closeSidepanel();
+                        }
+                    });
+
+                    // Close menu when touching outside
+                    document.addEventListener('touchstart', function(e) {
+                        if (sidepanel.classList.contains('show') && 
+                            !sidepanel.contains(e.target) && 
+                            !newMobileMenuButton.contains(e.target)) {
+                            e.preventDefault();
+                            closeSidepanel();
+                        }
+                    });
+
+                    // Close menu when clicking on a link
+                    sidepanel.querySelectorAll('a').forEach(link => {
+                        link.addEventListener('click', () => {
+                            closeSidepanel();
+                        });
+                        link.addEventListener('touchstart', (e) => {
+                            e.preventDefault();
+                            closeSidepanel();
+                        });
+                    });
                 }
 
-                // Mobile Navigation Categories
-                const categoryTitles = document.querySelectorAll('.mobile-nav-category-title[data-category]');
-                categoryTitles.forEach(title => {
-                    // Remove existing event listeners
-                    title.removeEventListener('click', null);
-                    
-                    title.addEventListener('click', function() {
-                        const category = this.dataset.category;
-                        const subcategories = document.getElementById(category + '-sub');
+                // Initialize Mobile Navigation Categories
+                const mobileNavCategories = document.querySelectorAll('.mobile-nav-category-title');
+                mobileNavCategories.forEach(category => {
+                    category.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const subcategories = this.nextElementSibling;
+                        const icon = this.querySelector('.toggle-icon');
                         
-                        // Close all other categories
-                        categoryTitles.forEach(otherTitle => {
-                            if (otherTitle !== this) {
-                                otherTitle.classList.remove('active');
-                                const otherCategory = otherTitle.dataset.category;
-                                const otherSubcategories = document.getElementById(otherCategory + '-sub');
+                        // Close other categories
+                        mobileNavCategories.forEach(otherCategory => {
+                            if (otherCategory !== this) {
+                                otherCategory.classList.remove('active');
+                                const otherSubcategories = otherCategory.nextElementSibling;
                                 if (otherSubcategories) {
                                     otherSubcategories.classList.remove('show');
                                 }
@@ -1798,63 +2048,6 @@
                             subcategories.classList.toggle('show');
                         }
                     });
-                });
-
-                // Dropdowns (Sprache, Service/Hilfe, Konto)
-                const dropdownButtons = {
-                    language: document.querySelector('.language-selector-button'),
-                    support: document.querySelector('.support-selector-button:has(.bi-question-circle)'),
-                    account: document.querySelector('.support-selector-button:has(.bi-person)')
-                };
-
-                const dropdownMenus = {
-                    language: document.querySelector('.language-dropdown'),
-                    support: document.querySelector('.support-dropdown'),
-                    account: document.querySelector('.account-dropdown')
-                };
-
-                // Function to close all dropdowns except the specified one
-                function closeDropdownsExcept(exceptDropdown) {
-                    Object.entries(dropdownMenus).forEach(([key, menu]) => {
-                        if (menu && menu !== exceptDropdown) {
-                            menu.classList.remove('show');
-                            const button = dropdownButtons[key];
-                            if (button) {
-                                button.classList.remove('active');
-                                button.setAttribute('aria-expanded', 'false');
-                            }
-                        }
-                    });
-                }
-
-                // Add click handlers for each dropdown button
-                Object.entries(dropdownButtons).forEach(([key, button]) => {
-                    if (button && dropdownMenus[key]) {
-                        button.addEventListener('click', (e) => {
-                            e.stopPropagation();
-                            const isExpanded = button.getAttribute('aria-expanded') === 'true';
-                            
-                            closeDropdownsExcept(isExpanded ? null : dropdownMenus[key]);
-                            
-                            dropdownMenus[key].classList.toggle('show');
-                            button.classList.toggle('active');
-                            button.setAttribute('aria-expanded', !isExpanded);
-                        });
-                    }
-                });
-
-                // Close dropdowns when clicking outside
-                document.addEventListener('click', (e) => {
-                    if (!e.target.closest('.header-action')) {
-                        closeDropdownsExcept(null);
-                    }
-                });
-
-                // Close dropdowns on ESC key
-                document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape') {
-                        closeDropdownsExcept(null);
-                    }
                 });
             }
 
@@ -1965,6 +2158,54 @@
                     executeScripts(doc);
                     executeScripts(newsletterDoc);
                     executeScripts(footerDoc);
+
+                    // Initialize Mega Menus
+                    const navItems = document.querySelectorAll('.nav-item');
+                    
+                    navItems.forEach(item => {
+                        const link = item.querySelector('.nav-link');
+                        const megaMenu = item.querySelector('.mega-menu');
+                        
+                        if (megaMenu) {
+                            // Show mega menu on hover
+                            item.addEventListener('mouseenter', () => {
+                                megaMenu.classList.add('show');
+                                link.classList.add('active');
+                            });
+                            
+                            // Hide mega menu on mouse leave
+                            item.addEventListener('mouseleave', () => {
+                                megaMenu.classList.remove('show');
+                                if (!link.classList.contains('active')) {
+                                    link.classList.remove('active');
+                                }
+                            });
+                            
+                            // Handle mobile touch
+                            link.addEventListener('click', (e) => {
+                                if (window.innerWidth <= 992) {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    megaMenu.classList.toggle('show');
+                                    link.classList.toggle('active');
+                                }
+                            });
+                        }
+                    });
+                    
+                    // Close mega menu when clicking outside
+                    document.addEventListener('click', (e) => {
+                        if (!e.target.closest('.nav-item')) {
+                            document.querySelectorAll('.mega-menu').forEach(menu => {
+                                menu.classList.remove('show');
+                            });
+                            document.querySelectorAll('.nav-link').forEach(link => {
+                                if (!link.classList.contains('active')) {
+                                    link.classList.remove('active');
+                                }
+                            });
+                        }
+                    });
 
                     // Add Bootstrap CSS if not present
                     if (!document.querySelector('link[href*="bootstrap"]')) {
@@ -2158,4 +2399,4 @@
         });
     </script>
 </body>
-</html> 
+</html>

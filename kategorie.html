@@ -1887,8 +1887,10 @@
             const closeButton = document.querySelector('.close-button');
 
             function closeFilterSidebar() {
-                filterToggle.classList.remove('active');
-                filterSidebar.classList.remove('active');
+                if (filterToggle && filterSidebar) {
+                    filterToggle.classList.remove('active');
+                    filterSidebar.classList.remove('active');
+                }
             }
 
             if (filterToggle && filterSidebar) {
@@ -1923,9 +1925,8 @@
                 }
             }
 
-            // Filter Toggle
+            // Filter Toggle für einzelne Filter-Gruppen
             const filterHeaders = document.querySelectorAll('.filter-header');
-            
             filterHeaders.forEach(header => {
                 header.addEventListener('click', function() {
                     const content = this.nextElementSibling;
@@ -1940,7 +1941,6 @@
 
             // Color Selection
             const colorOptions = document.querySelectorAll('.color-option');
-            
             colorOptions.forEach(option => {
                 option.addEventListener('click', function() {
                     this.classList.toggle('selected');
@@ -1951,9 +1951,11 @@
             const rangeSlider = document.querySelector('.range-slider input');
             const rangeValues = document.querySelector('.range-values');
             
-            rangeSlider.addEventListener('input', function() {
-                rangeValues.children[0].textContent = this.value + ' cm';
-            });
+            if (rangeSlider && rangeValues) {
+                rangeSlider.addEventListener('input', function() {
+                    rangeValues.children[0].textContent = this.value + ' cm';
+                });
+            }
         });
     </script>
 </body>
