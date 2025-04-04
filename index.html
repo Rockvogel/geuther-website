@@ -1336,6 +1336,7 @@
                 <li><a href="home.html"><i class="bi bi-house"></i>Startseite</a></li>
                 <li><a href="kategorie.html"><i class="bi bi-grid"></i>Kategorien</a></li>
                 <li><a href="detail.html"><i class="bi bi-box"></i>Produktdetail</a></li>
+                <li><a href="sale.html"><i class="bi bi-tag"></i>Oster-Angebote</a></li>
                 <li><a href="werte.html"><i class="bi bi-heart"></i>Unsere Werte</a></li>
                 <li><a href="qualitaet.html"><i class="bi bi-shield-check"></i>Qualität</a></li>
                 <li><a href="geschichte.html"><i class="bi bi-clock-history"></i>Geschichte</a></li>
@@ -1393,7 +1394,8 @@
                 'versand.html': 'versand.png',
                 'widerruf.html': 'widerruf.png',
                 'detail.html': 'detail.png',
-                'blogartikel.html': 'blogartikel.png'
+                'blogartikel.html': 'blogartikel.png',
+                'sale.html': 'sale.png'
             };
 
             let lastLoadedPage = 'home.html';
@@ -2470,6 +2472,42 @@
             // Initial Load
             loadContent('home.html');
         });
+
+        // Countdown Timer für die Sale-Seite
+        function updateCountdown() {
+            const endDate = new Date('2025-04-22T23:59:59').getTime();
+            
+            function update() {
+                const now = new Date().getTime();
+                const distance = endDate - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Prüfen, ob die Elemente existieren (für die sale.html)
+                const hoursElement = document.getElementById('hours');
+                const minutesElement = document.getElementById('minutes');
+                const secondsElement = document.getElementById('seconds');
+                const timerElement = document.querySelector('.flash-sale-timer');
+
+                if (hoursElement) hoursElement.textContent = String(hours).padStart(2, '0');
+                if (minutesElement) minutesElement.textContent = String(minutes).padStart(2, '0');
+                if (secondsElement) secondsElement.textContent = String(seconds).padStart(2, '0');
+
+                if (distance < 0 && timerElement) {
+                    clearInterval(timer);
+                    timerElement.innerHTML = "Angebot beendet!";
+                }
+            }
+
+            update();
+            const timer = setInterval(update, 1000);
+        }
+
+        // Countdown starten, wenn die Seite geladen ist
+        document.addEventListener('DOMContentLoaded', updateCountdown);
     </script>
 </body>
 </html>

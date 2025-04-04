@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geuther - Oster-Sparaktion | Bis zu 40% Rabatt</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --geuther-primary: #42584A;
+            --geuther-secondary: #D4C4B7;
+            --geuther-text: #333333;
+            --geuther-bg: #FFFFFF;
+            --geuther-accent: #F5F1ED;
+            --geuther-border: #E5E5E5;
+            --geuther-highlight: #e8a87c;
+            --easter-pink: #ff8fb1;
+            --easter-yellow: #ffd93d;
+            --easter-purple: #b088f9;
+            --easter-green: #98d8aa;
+            --easter-blue: #8ec3eb;
+            --flash-red: #ff4757;
+        }
+
+        .geuther-sale {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--geuther-text);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Hero Section mit Flash Sale */
+        .hero-section {
+            position: relative;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .hero-image-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, 
+                rgba(255, 255, 255, 0.98) 0%,
+                rgba(255, 255, 255, 0.85) 25%,
+                rgba(255, 255, 255, 0.4) 35%,
+                rgba(255, 255, 255, 0) 50%);
+        }
+
+        .hero-container {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 1rem;
+            display: grid;
+            grid-template-columns: 2.5fr 1fr;
+            gap: 1rem;
+        }
+
+        .hero-content {
+            padding: 2rem 0;
+            color: var(--geuther-text);
+            max-width: 800px;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: var(--geuther-primary);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .hero-title i {
+            color: var(--easter-yellow);
+            font-size: 2.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+            color: var(--geuther-text);
+        }
+
+        .hero-features {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 6rem;
+            max-width: 400px;
+        }
+
+        .hero-feature {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.95) 0%,
+            rgba(255, 255, 255, 0.85) 70%,
+            rgba(255, 255, 255, 0) 100%
+            );
+            padding: 1.2rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border: 0px solid var(--geuther-border);
+        }
+
+        .hero-feature i {
+            font-size: 1.5rem;
+            color: var(--geuther-primary);
+        }
+
+        .hero-feature-text {
+            font-size: 1.1rem;
+            line-height: 1.4;
+            color: var(--geuther-text);
+        }
+
+        .hero-cta {
+            display: inline-block;
+            background: var(--geuther-primary);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-cta:hover {
+            background: #2d3f30;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Flash Sale Produkt */
+        .flash-sale-product {
+            position: absolute;
+            z-index: 1000;
+            right: 0;
+            top: -3rem;
+            width: 400px;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        }
+
+        .flash-sale-header {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe3e3 100%);
+            padding: 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid var(--geuther-border);
+        }
+
+        .flash-sale-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            color: var(--flash-red);
+        }
+
+        .flash-sale-title i {
+            font-size: 2rem;
+            animation: pulse 2s infinite;
+        }
+
+        .flash-sale-timer {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 0rem;
+        }
+
+        .timer-item {
+            background: white;
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            text-align: center;
+            min-width: 80px;
+            border: 1px solid var(--geuther-border);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .timer-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--flash-red);
+        }
+
+        .timer-label {
+            font-size: 0.9rem;
+            color: var(--geuther-text);
+        }
+
+        .flash-sale-container {
+            position: relative;
+            width: 1400px;
+            margin: 0 auto;
+        }
+
+        .flash-product-image {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+            background: transparent;
+            margin: 0rem;
+            display: block;
+            text-decoration: none;
+        }
+
+        .flash-product-image img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: auto;
+            height: auto;
+            max-width: 85%;
+            max-height: 220px;
+            object-fit: contain;
+        }
+
+        .flash-product-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--flash-red);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            z-index: 2;
+            box-shadow: 0 4px 12px rgba(255, 46, 67, 0.3);
+        }
+
+        .flash-product-info {
+            padding: 0rem 2rem 2rem 2rem;
+        }
+
+        .flash-product-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0rem;
+            line-height: 1.4;
+        }
+
+        .flash-product-title a {
+            color: var(--geuther-text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .flash-product-title a:hover {
+            color: var(--geuther-primary);
+        }
+
+        .flash-product-description {
+            font-size: 1.1rem;
+            color: var(--geuther-text);
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+
+        .stock-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stock-bar {
+            flex: 1;
+            height: 8px;
+            background: #eee;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .stock-progress {
+            height: 100%;
+            background: var(--flash-red);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .stock-text {
+            font-size: 0.9rem;
+            color: var(--flash-red);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .flash-product-price {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .flash-product-button {
+            display: inline-block;
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background: var(--flash-red);
+            color: white;
+            text-align: center;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            box-shadow: 0 4px 12px rgba(255, 46, 67, 0.3);
+        }
+
+        .flash-product-button:hover {
+            background: #ff2e43;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(255, 46, 67, 0.4);
+        }
+
+        /* Sale Products Section */
+        .sale-products {
+            margin-bottom: 4rem;
+        }
+
+        .sale-products .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--geuther-text);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: var(--geuther-bg);
+            border: 1px solid var(--geuther-border);
+            border-radius: 8px;
+            overflow: visible;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+            z-index: 2;
+        }
+
+        .product-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+            background: transparent;
+            margin: 0.5rem;
+            display: block;
+            text-decoration: none;
+        }
+
+        .product-image img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: auto;
+            height: auto;
+            max-width: 80%;
+            max-height: 180px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--flash-red);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            z-index: 2;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .product-title a {
+            color: var(--geuther-text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .product-title a:hover {
+            color: var(--geuther-primary);
+        }
+
+        .product-description {
+            font-size: 0.9rem;
+            color: var(--geuther-text);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .product-availability {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .availability-status,
+        .delivery-time {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--geuther-text);
+        }
+
+        .availability-status i {
+            color: #2da73c;
+        }
+
+        .delivery-time i {
+            color: var(--geuther-primary);
+        }
+
+        .price-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .original-price {
+            font-size: 1.2rem;
+            color: var(--geuther-text);
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+
+        .sale-price {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--flash-red);
+        }
+
+        .product-colors {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .color-variant {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            border: 1px solid var(--geuther-border);
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .color-variant:hover {
+            transform: translateY(-2px);
+        }
+
+        .color-variant.white {
+            background: #ffffff;
+        }
+
+        .color-variant.black {
+            background: #2c2c2c;
+        }
+
+        .color-variant.natural {
+            background: #d4bc9c;
+        }
+
+        .color-variant.more {
+            background: var(--geuther-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            color: var(--geuther-primary);
+            font-weight: 600;
+        }
+
+        .color-variant.selected {
+            border: 2px solid var(--geuther-primary);
+        }
+
+        .product-button {
+            display: inline-block;
+            width: 100%;
+            padding: 0.75rem 1.5rem;
+            background: var(--geuther-primary);
+            color: white;
+            text-align: center;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .product-button:hover {
+            background: #2d3f30;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Success Numbers Section */
+        .success-numbers {
+            padding: 2rem 0;
+            background: var(--geuther-bg);
+        }
+
+        .numbers-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .number-card {
+            background: white;
+            border: 1px solid var(--geuther-border);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .number-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .number-icon {
+            font-size: 2rem;
+            color: var(--geuther-primary);
+            margin-bottom: 1rem;
+        }
+
+        .number-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--geuther-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .number-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--geuther-text);
+            margin-bottom: 1rem;
+        }
+
+        .number-description {
+            font-size: 0.9rem;
+            color: var(--geuther-text);
+            line-height: 1.4;
+        }
+
+        /* Category Sections */
+        .category-sections {
+            padding: 4rem 0;
+            background: var(--geuther-accent);
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .category-card {
+            background: white;
+            border: 1px solid var(--geuther-border);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .category-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .category-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .category-card:hover .category-image img {
+            transform: scale(1.05);
+        }
+
+        .category-content {
+            padding: 1.5rem;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .category-discount {
+            position: absolute;
+            top: -15px;
+            right: 1rem;
+            background: var(--flash-red);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: 0 2px 8px rgba(255, 71, 87, 0.3);
+            z-index: 2;
+        }
+
+        .category-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 0.75rem;
+            padding-right: 4rem;
+        }
+
+        .category-description {
+            font-size: 0.9rem;
+            color: var(--geuther-text);
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+            flex: 1;
+        }
+
+        .category-button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: var(--geuther-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .category-button:hover {
+            background: #364b3d;
+            transform: translateY(-2px);
+        }
+
+        /* Media Queries */
+        @media (max-width: 1200px) {
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .numbers-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero-section {
+                min-height: auto;
+            }
+
+            .hero-image-container {
+                position: relative;
+                height: 300px;
+            }
+            
+            .hero-container {
+                min-height: auto;
+                grid-template-columns: 1fr;
+                padding-top: 2rem;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            .numbers-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="geuther-sale">
+        <!-- Hero Section mit Flash Sale -->
+        <div class="flash-sale-container">
+            <div class="flash-sale-product">
+                <div class="flash-sale-header">
+                    <h2 class="flash-sale-title">
+                        <i class="bi bi-lightning-charge-fill"></i>
+                        Blitz-Angebot
+                    </h2>
+                    <div class="flash-sale-timer">
+                        <div class="timer-item">
+                            <div class="timer-value" id="hours">23</div>
+                            <div class="timer-label">Stunden</div>
+                        </div>
+                        <div class="timer-item">
+                            <div class="timer-value" id="minutes">45</div>
+                            <div class="timer-label">Minuten</div>
+                        </div>
+                        <div class="timer-item">
+                            <div class="timer-value" id="seconds">60</div>
+                            <div class="timer-label">Sekunden</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="/produkt/treppenschutzgitter-2733" class="flash-product-image">
+                    <img src="https://www.geuther.de/media/dc/1d/16/1708101600/2733_WE_01.webp" 
+                        alt="Treppenschutzgitter 2733+">
+                    <div class="flash-product-badge">-50%</div>
+                </a>
+                <div class="flash-product-info">
+                    <h3 class="flash-product-title">
+                        <a href="/produkt/treppenschutzgitter-2733">
+                            Treppenschutzgitter 2733+ Premium
+                        </a>
+                    </h3>
+                    <p class="flash-product-description">
+                        Unser Bestseller mit extrahoher Ausführung für maximale Sicherheit
+                    </p>
+                    <div class="flash-product-availability">
+                        <div class="stock-info">
+                            <div class="stock-bar">
+                                <div class="stock-progress" style="width: 35%;"></div>
+                            </div>
+                            <span class="stock-text">Noch 35% verfügbar</span>
+                        </div>
+                    </div>
+                    <div class="flash-product-price">
+                        <span class="original-price">89,99 €</span>
+                        <span class="sale-price">44,99 €</span>
+                    </div>
+                    <a href="/produkt/treppenschutzgitter-2733" class="flash-product-button">
+                        Jetzt sichern
+                    </a>
+                </div>
+            </div>
+        </div>
+        <section class="hero-section">
+            <div class="hero-image-container">
+                <img src="https://www.geuther.de/media/62/81/af/1705518720/1118bb_we_mb_33.webp" 
+                     alt="Geuther Oster-Aktion" 
+                     class="hero-image">
+                <div class="hero-overlay"></div>
+            </div>
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        <i class="bi bi-egg-fill"></i>
+                        Oster-Sparaktion 2025
+                    </h1>
+                    <p class="hero-subtitle">
+                        Entdecken Sie unsere exklusiven Oster-Angebote und sichern Sie sich bis zu 50% Rabatt auf ausgewählte Kinderschutzgitter.
+                    </p>
+                    <a href="#sale-products" class="hero-cta">Zu allen Oster-Angeboten</a>
+                    <div class="hero-features">
+                        <div class="hero-feature">
+                            <i class="bi bi-shield-check"></i>
+                            <span class="hero-feature-text">100% Sicherheit durch <br />TÜV-geprüfte Qualität</span>
+                        </div>
+                        <div class="hero-feature">
+                            <i class="bi bi-truck"></i>
+                            <span class="hero-feature-text">Kostenloser Versand ab 80€</span>
+                        </div>
+                        <div class="hero-feature">
+                            <i class="bi bi-arrow-repeat"></i>
+                            <span class="hero-feature-text">30 Tage Rückgaberecht</span>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- Sale Products Section -->
+        <section id="sale-products" class="sale-products">
+            <div class="container">
+                <h2 class="section-title">Unsere Oster-Angebote</h2>
+                <div class="product-grid">
+                    <!-- Produkt 1 -->
+                    <div class="product-card">
+                        <a href="/produkt/treppenschutzgitter-2733" class="product-image">
+                            <img src="https://www.geuther.de/media/dc/1d/16/1708101600/2733_WE_01.webp" 
+                                 alt="Treppenschutzgitter 2733+">
+                        </a>
+                        <div class="product-badge">-30%</div>
+                        <div class="product-info">
+                            <h3 class="product-title">
+                                <a href="/produkt/treppenschutzgitter-2733">
+                                    Treppenschutzgitter 2733+ für Öffnungen von 67 cm - 95 cm aus Holz
+                                </a>
+                            </h3>
+                            <p class="product-description">Absolut sicher durch Wandbefestigung</p>
+                            <div class="product-availability">
+                                <div class="availability-status">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    Sofort verfügbar
+                                </div>
+                                <div class="delivery-time">
+                                    <i class="bi bi-truck"></i>
+                                    Lieferzeit: 1-3 Tage
+                                </div>
+                            </div>
+                            <div class="price-container">
+                                <span class="original-price">89,99 €</span>
+                                <span class="sale-price">62,99 €</span>
+                            </div>
+                            <div class="product-colors">
+                                <div class="color-variant white selected" title="Weiß"></div>
+                                <div class="color-variant black" title="Gebeizt-Schwarz"></div>
+                                <div class="color-variant natural" title="Natur"></div>
+                                <div class="color-variant more" title="Weitere Farben">+1</div>
+                            </div>
+                            <a href="/produkt/treppenschutzgitter-2733" class="product-button">
+                                Zum Produkt
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Produkt 2 -->
+                    <div class="product-card">
+                        <a href="/produkt/tuerschutzgitter-2732" class="product-image">
+                            <img src="https://www.geuther.de/media/dc/4b/51/1724842241/2732_NA_01.jpg" 
+                                 alt="Türschutzgitter 2732+">
+                        </a>
+                        <div class="product-badge">-25%</div>
+                        <div class="product-info">
+                            <h3 class="product-title">
+                                <a href="/produkt/tuerschutzgitter-2732">
+                                    Türschutzgitter 2732+ für Öffnungen von 58 cm - 93 cm aus Holz
+                                </a>
+                            </h3>
+                            <p class="product-description">Absolut sicher durch Wandbefestigung</p>
+                            <div class="product-availability">
+                                <div class="availability-status">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    Sofort verfügbar
+                                </div>
+                                <div class="delivery-time">
+                                    <i class="bi bi-truck"></i>
+                                    Lieferzeit: 1-3 Tage
+                                </div>
+                            </div>
+                            <div class="price-container">
+                                <span class="original-price">59,99 €</span>
+                                <span class="sale-price">44,99 €</span>
+                            </div>
+                            <div class="product-colors">
+                                <div class="color-variant natural selected" title="Natur"></div>
+                                <div class="color-variant black" title="Schwarz"></div>
+                                <div class="color-variant natural" title="Unbehandelt"></div>
+                            </div>
+                            <a href="/produkt/tuerschutzgitter-2732" class="product-button">
+                                Zum Produkt
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Produkt 3 -->
+                    <div class="product-card">
+                        <a href="/produkt/easylock-plus-metall-4792" class="product-image">
+                            <img src="https://www.geuther.de/media/d8/56/8c/1705518400/4792-_we_1.webp" 
+                                 alt="Easylock Plus Metall">
+                        </a>
+                        <div class="product-badge">-20%</div>
+                        <div class="product-info">
+                            <h3 class="product-title">
+                                <a href="/produkt/easylock-plus-metall-4792">
+                                    Tür- und Treppenschutzgitter Easylock Plus zum Klemmen Metall
+                                </a>
+                            </h3>
+                            <p class="product-description">Für Durchgänge von 76-232,5 cm</p>
+                            <div class="product-availability">
+                                <div class="availability-status">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    Sofort verfügbar
+                                </div>
+                                <div class="delivery-time">
+                                    <i class="bi bi-truck"></i>
+                                    Lieferzeit: 1-3 Tage
+                                </div>
+                            </div>
+                            <div class="price-container">
+                                <span class="original-price">59,99 €</span>
+                                <span class="sale-price">47,99 €</span>
+                            </div>
+                            <div class="product-colors">
+                                <div class="color-variant white selected" title="Weiß"></div>
+                                <div class="color-variant black" title="Schwarz"></div>
+                            </div>
+                            <a href="/produkt/easylock-plus-metall-4792" class="product-button">
+                                Zum Produkt
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Produkt 4 -->
+                    <div class="product-card">
+                        <a href="/produkt/treppenschutzgitter-2273" class="product-image">
+                            <img src="https://www.geuther.de/media/ba/68/ae/1706262351/2273_NA_MB_10.webp" 
+                                 alt="Treppenschutzgitter 2273+">
+                        </a>
+                        <div class="product-badge">-35%</div>
+                        <div class="product-info">
+                            <h3 class="product-title">
+                                <a href="/produkt/treppenschutzgitter-2273">
+                                    Treppenschutzgitter 2273+ für Öffnungen von 67 cm - 95 cm aus Holz
+                                </a>
+                            </h3>
+                            <p class="product-description">Maximale Sicherheit durch robuste Konstruktion</p>
+                            <div class="product-availability">
+                                <div class="availability-status">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    Sofort verfügbar
+                                </div>
+                                <div class="delivery-time">
+                                    <i class="bi bi-truck"></i>
+                                    Lieferzeit: 1-3 Tage
+                                </div>
+                            </div>
+                            <div class="price-container">
+                                <span class="original-price">79,99 €</span>
+                                <span class="sale-price">51,99 €</span>
+                            </div>
+                            <div class="product-colors">
+                                <div class="color-variant white selected" title="Weiß"></div>
+                                <div class="color-variant black" title="Schwarz"></div>
+                                <div class="color-variant natural" title="Natur"></div>
+                            </div>
+                            <a href="/produkt/treppenschutzgitter-2273" class="product-button">
+                                Zum Produkt
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Produkt 5 -->
+                    <div class="product-card">
+                        <a href="/produkt/treppenschutzgitter-2733" class="product-image">
+                            <img src="https://www.geuther.de/media/dc/1d/16/1708101600/2733_WE_01.webp" 
+                                 alt="Treppenschutzgitter 2733+">
+                        </a>
+                        <div class="product-badge">-25%</div>
+                        <div class="product-info">
+                            <h3 class="product-title">
+                                <a href="/produkt/treppenschutzgitter-2733">
+                                    Treppenschutzgitter 2733+ Premium
+                                </a>
+                            </h3>
+                            <p class="product-description">
+                                Unser Bestseller mit extrahoher Ausführung für maximale Sicherheit
+                            </p>
+                            <div class="product-availability">
+                                <div class="availability-status">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    Sofort verfügbar
+                                </div>
+                                <div class="delivery-time">
+                                    <i class="bi bi-truck"></i>
+                                    Lieferzeit: 1-3 Tage
+                                </div>
+                            </div>
+                            <div class="price-container">
+                                <span class="original-price">89,99 €</span>
+                                <span class="sale-price">67,49 €</span>
+                            </div>
+                            <div class="product-colors">
+                                <div class="color-variant white selected" title="Weiß"></div>
+                                <div class="color-variant black" title="Schwarz"></div>
+                                <div class="color-variant natural" title="Natur"></div>
+                            </div>
+                            <a href="/produkt/treppenschutzgitter-2733" class="product-button">
+                                Zum Produkt
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Produkt 6 -->
+                    <div class="product-card">
+                        <a href="/produkt/tuerschutzgitter-2732" class="product-image">
+                            <img src="https://www.geuther.de/media/dc/4b/51/1724842241/2732_NA_01.jpg" 
+                                 alt="Türschutzgitter 2732+">
+                        </a>
+                        <div class="product-badge">-30%</div>
+                        <div class="product-info">
+                            <h3 class="product-title">
+                                <a href="/produkt/tuerschutzgitter-2732">
+                                    Türschutzgitter 2732+ für Öffnungen von 58 cm - 93 cm aus Holz
+                                </a>
+                            </h3>
+                            <p class="product-description">Absolut sicher durch Wandbefestigung</p>
+                            <div class="product-availability">
+                                <div class="availability-status">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    Sofort verfügbar
+                                </div>
+                                <div class="delivery-time">
+                                    <i class="bi bi-truck"></i>
+                                    Lieferzeit: 1-3 Tage
+                                </div>
+                            </div>
+                            <div class="price-container">
+                                <span class="original-price">59,99 €</span>
+                                <span class="sale-price">41,99 €</span>
+                            </div>
+                            <div class="product-colors">
+                                <div class="color-variant natural selected" title="Natur"></div>
+                                <div class="color-variant black" title="Schwarz"></div>
+                                <div class="color-variant natural" title="Unbehandelt"></div>
+                            </div>
+                            <a href="/produkt/tuerschutzgitter-2732" class="product-button">
+                                Zum Produkt
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Produkt 7 -->
+                    <div class="product-card">
+                        <a href="/produkt/easylock-plus-metall-4792" class="product-image">
+                            <img src="https://www.geuther.de/media/d8/56/8c/1705518400/4792-_we_1.webp" 
+                                 alt="Easylock Plus Metall">
+                        </a>
+                        <div class="product-badge">-40%</div>
+                        <div class="product-info">
+                            <h3 class="product-title">
+                                <a href="/produkt/easylock-plus-metall-4792">
+                                    Tür- und Treppenschutzgitter Easylock Plus zum Klemmen Metall
+                                </a>
+                            </h3>
+                            <p class="product-description">Für Durchgänge von 76-232,5 cm</p>
+                            <div class="product-availability">
+                                <div class="availability-status">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    Sofort verfügbar
+                                </div>
+                                <div class="delivery-time">
+                                    <i class="bi bi-truck"></i>
+                                    Lieferzeit: 1-3 Tage
+                                </div>
+                            </div>
+                            <div class="price-container">
+                                <span class="original-price">59,99 €</span>
+                                <span class="sale-price">35,99 €</span>
+                            </div>
+                            <div class="product-colors">
+                                <div class="color-variant white selected" title="Weiß"></div>
+                                <div class="color-variant black" title="Schwarz"></div>
+                            </div>
+                            <a href="/produkt/easylock-plus-metall-4792" class="product-button">
+                                Zum Produkt
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Produkt 8 -->
+                    <div class="product-card">
+                        <a href="/produkt/easylock-wood-plus-2793" class="product-image">
+                            <img src="https://www.geuther.de/media/d4/88/69/1705518537/2793-_02.webp" 
+                                 alt="Easylock Wood Plus">
+                        </a>
+                        <div class="product-badge">-35%</div>
+                        <div class="product-info">
+                            <h3 class="product-title">
+                                <a href="/produkt/easylock-wood-plus-2793">
+                                    Tür- und Treppenschutzgitter Easylock Wood Plus zum Klemmen
+                                </a>
+                            </h3>
+                            <p class="product-description">Extrahohe Ausführung für maximale Sicherheit</p>
+                            <div class="product-availability">
+                                <div class="availability-status">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    Sofort verfügbar
+                                </div>
+                                <div class="delivery-time">
+                                    <i class="bi bi-truck"></i>
+                                    Lieferzeit: 1-3 Tage
+                                </div>
+                            </div>
+                            <div class="price-container">
+                                <span class="original-price">109,99 €</span>
+                                <span class="sale-price">71,49 €</span>
+                            </div>
+                            <div class="product-colors">
+                                <div class="color-variant natural selected" title="Natur"></div>
+                                <div class="color-variant black" title="Schwarz"></div>
+                                <div class="color-variant white" title="Weiß"></div>
+                            </div>
+                            <a href="/produkt/easylock-wood-plus-2793" class="product-button">
+                                Zum Produkt
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Kategorie-Sektionen -->
+        <section class="category-sections">
+            <div class="container">
+                <h2 class="section-title">Unsere Kategorien im Angebot</h2>
+                <div class="category-grid">
+                    <!-- Kategorie 1 -->
+                    <div class="category-card">
+                        <div class="category-image">
+                            <img src="https://www.geuther.de/media/ba/68/ae/1706262351/2273_NA_MB_10.webp" 
+                                 alt="Treppenschutzgitter">
+                        </div>
+                        <div class="category-content">
+                            <div class="category-discount">-30%</div>
+                            <h3 class="category-title">Treppenschutzgitter</h3>
+                            <p class="category-description">
+                                Maximale Sicherheit für Ihre Treppe mit unseren hochwertigen Schutzgittern
+                            </p>
+                            <a href="/kategorie/treppenschutzgitter" class="category-button">
+                                Zur Kategorie
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Kategorie 2 -->
+                    <div class="category-card">
+                        <div class="category-image">
+                            <img src="https://www.geuther.de/thumbnail/62/f2/83/1705518704/1155_nest_in_the_clouds_005_800x800.webp" 
+                                 alt="Türschutzgitter">
+                        </div>
+                        <div class="category-content">
+                            <div class="category-discount">-25%</div>
+                            <h3 class="category-title">Türschutzgitter</h3>
+                            <p class="category-description">
+                                Sichern Sie Ihre Türen mit unseren zuverlässigen Schutzgittern
+                            </p>
+                            <a href="/kategorie/tuerschutzgitter" class="category-button">
+                                Zur Kategorie
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Kategorie 3 -->
+                    <div class="category-card">
+                        <div class="category-image">
+                            <img src="https://www.geuther.de/thumbnail/6a/48/f7/1705518642/geuther-wickelkommode-1155wkxl-31_800x800.webp" 
+                                 alt="Easylock Plus">
+                        </div>
+                        <div class="category-content">
+                            <div class="category-discount">-20%</div>
+                            <h3 class="category-title">Easylock Plus</h3>
+                            <p class="category-description">
+                                Flexible Lösungen für Ihre Sicherheitsanforderungen
+                            </p>
+                            <a href="/kategorie/easylock-plus" class="category-button">
+                                Zur Kategorie
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Erfolgszahlen -->
+        <section class="success-numbers">
+            <div class="container">
+                <div class="numbers-grid">
+                    <div class="number-card">
+                        <div class="number-icon">
+                            <i class="bi bi-clock-history"></i>
+                        </div>
+                        <div class="number-value">100+</div>
+                        <div class="number-label">Jahre Erfahrung</div>
+                        <div class="number-description">Seit über einem Jahrhundert entwickeln wir hochwertige Kindermöbel mit Leidenschaft.</div>
+                    </div>
+                    <div class="number-card">
+                        <div class="number-icon">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+                        <div class="number-value">100%</div>
+                        <div class="number-label">Sicherheit</div>
+                        <div class="number-description">Kompromisslose Sicherheit durch strenge Tests und unabhängige Prüfinstitute.</div>
+                    </div>
+                    <div class="number-card">
+                        <div class="number-icon">
+                            <i class="bi bi-tree"></i>
+                        </div>
+                        <div class="number-value">FSC</div>
+                        <div class="number-label">Zertifiziert</div>
+                        <div class="number-description">Holz aus verantwortungsvoll bewirtschafteten Wäldern für nachhaltiges Wirtschaften.</div>
+                    </div>
+                    <div class="number-card">
+                        <div class="number-icon">
+                            <i class="bi bi-stars"></i>
+                        </div>
+                        <div class="number-value">TÜV</div>
+                        <div class="number-label">Geprüfte Qualität</div>
+                        <div class="number-description">Regelmäßige Qualitätskontrollen für maximale Sicherheit und Langlebigkeit.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Weitere Angebote Section -->
+        <section class="weitere-angebote">
+            <div class="container">
+                <h2 class="section-title">Weitere Angebote</h2>
+                <div class="product-grid">
+                    <!-- Produkt 1 -->
+                    <div class="product-card">
+                        <a href="/produkt/treppenschutzgitter-2733" class="product-image">
+                            <img src="https://www.geuther.de/media/dc/1d/16/1708101600/2733_WE_01.webp" 
+                                 alt="Treppenschutzgitter 2733+">
+                        </a>
+                        <div class="product-badge">-20%</div>
+                        <div class="product-info">
+                            <h3 class="product-title">
+                                <a href="/produkt/treppenschutzgitter-2733">
+                                    Treppenschutzgitter 2733+ für Öffnungen von 67 cm - 95 cm
+                                </a>
+                            </h3>
+                            <p class="product-description">Moderne Sicherheit für Ihr Zuhause</p>
+                            <div class="product-availability">
+                                <div class="availability-status">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    Sofort verfügbar
+                                </div>
+                                <div class="delivery-time">
+                                    <i class="bi bi-truck"></i>
+                                    Lieferzeit: 1-3 Tage
+                                </div>
+                            </div>
+                            <div class="price-container">
+                                <span class="original-price">89,99 €</span>
+                                <span class="sale-price">71,99 €</span>
+                            </div>
+                            <a href="/produkt/treppenschutzgitter-2733" class="product-button">
+                                Zum Produkt
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Produkt 2 -->
+                    <div class="product-card">
+                        <a href="/produkt/tuerschutzgitter-2732" class="product-image">
+                            <img src="https://www.geuther.de/media/dc/4b/51/1724842241/2732_NA_01.jpg" 
+                                 alt="Türschutzgitter 2732+">
+                        </a>
+                        <div class="product-badge">-25%</div>
+                        <div class="product-info">
+                            <h3 class="product-title">
+                                <a href="/produkt/tuerschutzgitter-2732">
+                                    Türschutzgitter 2732+ für Öffnungen von 58 cm - 93 cm
+                                </a>
+                            </h3>
+                            <p class="product-description">Sicherheit und Stil vereint</p>
+                            <div class="product-availability">
+                                <div class="availability-status">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    Sofort verfügbar
+                                </div>
+                                <div class="delivery-time">
+                                    <i class="bi bi-truck"></i>
+                                    Lieferzeit: 1-3 Tage
+                                </div>
+                            </div>
+                            <div class="price-container">
+                                <span class="original-price">79,99 €</span>
+                                <span class="sale-price">59,99 €</span>
+                            </div>
+                            <a href="/produkt/tuerschutzgitter-2732" class="product-button">
+                                Zum Produkt
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Produkt 3 -->
+                    <div class="product-card">
+                        <a href="/produkt/easylock-plus-metall-4792" class="product-image">
+                            <img src="https://www.geuther.de/media/d8/56/8c/1705518400/4792-_we_1.webp" 
+                                 alt="Easylock Plus Metall">
+                        </a>
+                        <div class="product-badge">-30%</div>
+                        <div class="product-info">
+                            <h3 class="product-title">
+                                <a href="/produkt/easylock-plus-metall-4792">
+                                    Tür- und Treppenschutzgitter Easylock Plus zum Klemmen Metall
+                                </a>
+                            </h3>
+                            <p class="product-description">Für Durchgänge von 76-232,5 cm</p>
+                            <div class="product-availability">
+                                <div class="availability-status">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    Sofort verfügbar
+                                </div>
+                                <div class="delivery-time">
+                                    <i class="bi bi-truck"></i>
+                                    Lieferzeit: 1-3 Tage
+                                </div>
+                            </div>
+                            <div class="price-container">
+                                <span class="original-price">79,99 €</span>
+                                <span class="sale-price">55,99 €</span>
+                            </div>
+                            <a href="/produkt/easylock-plus-metall-4792" class="product-button">
+                                Zum Produkt
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Produkt 4 -->
+                    <div class="product-card">
+                        <a href="/produkt/easylock-wood-plus-2793" class="product-image">
+                            <img src="https://www.geuther.de/media/d4/88/69/1705518537/2793-_02.webp" 
+                                 alt="Easylock Wood Plus">
+                        </a>
+                        <div class="product-badge">-35%</div>
+                        <div class="product-info">
+                            <h3 class="product-title">
+                                <a href="/produkt/easylock-wood-plus-2793">
+                                    Tür- und Treppenschutzgitter Easylock Wood Plus zum Klemmen
+                                </a>
+                            </h3>
+                            <p class="product-description">Extrahohe Ausführung für maximale Sicherheit</p>
+                            <div class="product-availability">
+                                <div class="availability-status">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    Sofort verfügbar
+                                </div>
+                                <div class="delivery-time">
+                                    <i class="bi bi-truck"></i>
+                                    Lieferzeit: 1-3 Tage
+                                </div>
+                            </div>
+                            <div class="price-container">
+                                <span class="original-price">109,99 €</span>
+                                <span class="sale-price">71,49 €</span>
+                            </div>
+                            <a href="/produkt/easylock-wood-plus-2793" class="product-button">
+                                Zum Produkt
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            const endDate = new Date('2025-04-22T23:59:59').getTime();
+            
+            function update() {
+                const now = new Date().getTime();
+                const distance = endDate - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+
+                if (distance < 0) {
+                    clearInterval(timer);
+                    document.querySelector('.flash-sale-timer').innerHTML = "Angebot beendet!";
+                }
+            }
+
+            update();
+            const timer = setInterval(update, 1000);
+        }
+
+        document.addEventListener('DOMContentLoaded', updateCountdown);
+    </script>
+</body>
+</html> 
