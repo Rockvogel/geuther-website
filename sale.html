@@ -64,7 +64,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(180deg, 
+            background: linear-gradient(0deg, 
                 rgba(255, 255, 255, 0.98) 0%,
                 rgba(255, 255, 255, 0.85) 25%,
                 rgba(255, 255, 255, 0.4) 35%,
@@ -750,7 +750,7 @@
             .hero-container {
                 min-height: auto;
                 grid-template-columns: 1fr;
-                padding-top: 2rem;
+                padding-top: 0rem;
             }
             
             .hero-title {
@@ -761,6 +761,22 @@
                 font-size: 1.2rem;
             }
             
+            .hero-features {
+                margin-top: 2rem;
+                max-width: 100%;
+            }
+
+            .flash-sale-product {
+                position: relative;
+                top: 0;
+                width: 100%;
+                margin-top: 2rem;
+            }
+
+            .flash-sale-container {
+                width: 100%;
+                padding: 0 1rem;
+            }
 
             .product-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -774,66 +790,95 @@
             .numbers-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .hero-features {
+                display: none; /* Features auf mobilen Geräten ausblenden */
+            }
+            
+            .hero-title {
+                font-size: 1.8rem;
+                margin-top: -2rem; /* Überschrift näher ans Bild rücken */
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .flash-sale-timer {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            
+            .timer-item {
+                min-width: 70px;
+                padding: 0.5rem;
+            }
+            
+            .timer-value {
+                font-size: 1.2rem;
+            }
+            
+            .timer-label {
+                font-size: 0.8rem;
+            }
+            
+            .flash-product-image {
+                height: 200px;
+            }
+            
+            .flash-product-info {
+                padding: 1rem;
+            }
+            
+            .flash-product-title {
+                font-size: 1.1rem;
+            }
+            
+            .flash-product-description {
+                font-size: 0.9rem;
+                margin-bottom: 1rem;
+            }
+            
+            .flash-product-button {
+                padding: 0.8rem 1rem;
+                font-size: 1rem;
+            }
+            
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            /* Blitz-Angebot unter die andere Spalte verschieben */
+            .hero-container {
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .hero-content {
+                order: 1;
+            }
+            
+            .flash-sale-product {
+                order: 2;
+                margin-top: 2rem;
+            }
+            
+            /* Verlauf auf dem Hero-Bild für mobile Geräte anpassen */
+            .hero-overlay {
+                background: linear-gradient(0deg, 
+                    #f3f4f6 0%,
+                    rgba(248, 249, 250, 0.9) 20%,
+                    rgba(248, 249, 250, 0.7) 40%,
+                    rgba(248, 249, 250, 0.3) 60%,
+                    rgba(248, 249, 250, 0) 100%);
+            }
         }
     </style>
 </head>
 <body>
     <div class="geuther-sale">
         <!-- Hero Section mit Flash Sale -->
-        <div class="flash-sale-container">
-            <div class="flash-sale-product">
-                <div class="flash-sale-header">
-                    <h2 class="flash-sale-title">
-                        <i class="bi bi-lightning-charge-fill"></i>
-                        Blitz-Angebot
-                    </h2>
-                    <div class="flash-sale-timer">
-                        <div class="timer-item">
-                            <div class="timer-value" id="hours">23</div>
-                            <div class="timer-label">Stunden</div>
-                        </div>
-                        <div class="timer-item">
-                            <div class="timer-value" id="minutes">45</div>
-                            <div class="timer-label">Minuten</div>
-                        </div>
-                        <div class="timer-item">
-                            <div class="timer-value" id="seconds">60</div>
-                            <div class="timer-label">Sekunden</div>
-                        </div>
-                    </div>
-                </div>
-                <a href="/produkt/treppenschutzgitter-2733" class="flash-product-image">
-                    <img src="https://www.geuther.de/media/dc/1d/16/1708101600/2733_WE_01.webp" 
-                        alt="Treppenschutzgitter 2733+">
-                    <div class="flash-product-badge">-50%</div>
-                </a>
-                <div class="flash-product-info">
-                    <h3 class="flash-product-title">
-                        <a href="/produkt/treppenschutzgitter-2733">
-                            Treppenschutzgitter 2733+ Premium
-                        </a>
-                    </h3>
-                    <p class="flash-product-description">
-                        Unser Bestseller mit extrahoher Ausführung für maximale Sicherheit
-                    </p>
-                    <div class="flash-product-availability">
-                        <div class="stock-info">
-                            <div class="stock-bar">
-                                <div class="stock-progress" style="width: 35%;"></div>
-                            </div>
-                            <span class="stock-text">Noch 35% verfügbar</span>
-                        </div>
-                    </div>
-                    <div class="flash-product-price">
-                        <span class="original-price">89,99 €</span>
-                        <span class="sale-price">44,99 €</span>
-                    </div>
-                    <a href="/produkt/treppenschutzgitter-2733" class="flash-product-button">
-                        Jetzt sichern
-                    </a>
-                </div>
-            </div>
-        </div>
         <section class="hero-section">
             <div class="hero-image-container">
                 <img src="https://www.geuther.de/media/62/81/af/1705518720/1118bb_we_mb_33.webp" 
@@ -865,7 +910,60 @@
                             <span class="hero-feature-text">30 Tage Rückgaberecht</span>
                         </div>
                     </div>
-                    
+                </div>
+                
+                <!-- Flash Sale Produkt hier verschoben -->
+                <div class="flash-sale-product">
+                    <div class="flash-sale-header">
+                        <h2 class="flash-sale-title">
+                            <i class="bi bi-lightning-charge-fill"></i>
+                            Blitz-Angebot
+                        </h2>
+                        <div class="flash-sale-timer">
+                            <div class="timer-item">
+                                <div class="timer-value" id="hours">23</div>
+                                <div class="timer-label">Stunden</div>
+                            </div>
+                            <div class="timer-item">
+                                <div class="timer-value" id="minutes">45</div>
+                                <div class="timer-label">Minuten</div>
+                            </div>
+                            <div class="timer-item">
+                                <div class="timer-value" id="seconds">60</div>
+                                <div class="timer-label">Sekunden</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="/produkt/treppenschutzgitter-2733" class="flash-product-image">
+                        <img src="https://www.geuther.de/media/dc/1d/16/1708101600/2733_WE_01.webp" 
+                            alt="Treppenschutzgitter 2733+">
+                        <div class="flash-product-badge">-50%</div>
+                    </a>
+                    <div class="flash-product-info">
+                        <h3 class="flash-product-title">
+                            <a href="/produkt/treppenschutzgitter-2733">
+                                Treppenschutzgitter 2733+ Premium
+                            </a>
+                        </h3>
+                        <p class="flash-product-description">
+                            Unser Bestseller mit extrahoher Ausführung für maximale Sicherheit
+                        </p>
+                        <div class="flash-product-availability">
+                            <div class="stock-info">
+                                <div class="stock-bar">
+                                    <div class="stock-progress" style="width: 35%;"></div>
+                                </div>
+                                <span class="stock-text">Noch 35% verfügbar</span>
+                            </div>
+                        </div>
+                        <div class="flash-product-price">
+                            <span class="original-price">89,99 €</span>
+                            <span class="sale-price">44,99 €</span>
+                        </div>
+                        <a href="/produkt/treppenschutzgitter-2733" class="flash-product-button">
+                            Jetzt sichern
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
