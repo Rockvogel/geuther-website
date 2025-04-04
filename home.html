@@ -801,6 +801,139 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Company Values Section */
+        .values-section {
+            padding: 6rem 0;
+            background: var(--geuther-accent);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .value-card {
+            background: var(--geuther-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            text-decoration: none;
+            color: var(--geuther-text);
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        .value-image {
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .value-card:hover .value-image img {
+            transform: scale(1.05);
+        }
+
+        .value-content {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .value-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 1rem;
+        }
+
+        .value-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .value-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--geuther-primary);
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .value-link i {
+            transition: transform 0.3s ease;
+        }
+
+        .value-card:hover .value-link i {
+            transform: translateX(5px);
+        }
+
+        @media (max-width: 992px) {
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+            .value-image {
+                height: 200px;
+            }
+        }
+
+        /* Blog Section Anpassungen */
+        .blog-section {
+            padding: 6rem 0;
+            background: var(--geuther-bg);
+        }
+
+        .blog-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        .blog-subtitle {
+            font-size: 1.2rem;
+            color: var(--geuther-text);
+            margin: 1rem 0 2rem;
+            line-height: 1.6;
+        }
+
+        .blog-main-link {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--geuther-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+        }
+
+        .blog-main-link:hover {
+            background: #364b3d;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
     </style>
 </head>
 <body>
@@ -1516,10 +1649,69 @@
             </div>
         </section>
 
-        <!-- Blog Section -->
+        <!-- Company Values Section -->
+        <section class="values-section">
+            <div class="container">
+                <h2 class="section-title">Entdecken Sie Geuther</h2>
+                <div class="values-grid">
+                    <a href="/geschichte.html" class="value-card">
+                        <div class="value-image">
+                            <img src="https://www.geuther.de/thumbnail/f1/d4/86/1710529191/2420_MB_800x800.webp" 
+                                 alt="Geuther Geschichte">
+                        </div>
+                        <div class="value-content">
+                            <h3 class="value-title">Unsere Geschichte</h3>
+                            <p class="value-text">
+                                Seit 1881 entwickeln wir mit Leidenschaft hochwertige Kindermöbel, die Generationen begleiten.
+                            </p>
+                            <span class="value-link">
+                                Mehr erfahren <i class="bi bi-arrow-right"></i>
+                            </span>
+                        </div>
+                    </a>
+                    <a href="/werte.html" class="value-card">
+                        <div class="value-image">
+                            <img src="https://www.geuther.de/thumbnail/75/68/c6/1705518647/geuther-4-in-1-cozy-do-1118bb-37_800x800.webp" 
+                                 alt="Geuther Werte">
+                        </div>
+                        <div class="value-content">
+                            <h3 class="value-title">Unsere Werte</h3>
+                            <p class="value-text">
+                                Nachhaltigkeit, Sicherheit und Innovation - entdecken Sie, wofür wir stehen.
+                            </p>
+                            <span class="value-link">
+                                Mehr erfahren <i class="bi bi-arrow-right"></i>
+                            </span>
+                        </div>
+                    </a>
+                    <a href="/qualitaet.html" class="value-card">
+                        <div class="value-image">
+                            <img src="https://www.geuther.de/media/67/04/ee/1705518697/1150_ia_4123_4124_4125_118_mb_03.webp" 
+                                 alt="Geuther Qualität">
+                        </div>
+                        <div class="value-content">
+                            <h3 class="value-title">Unser Qualitätsversprechen</h3>
+                            <p class="value-text">
+                                Erfahren Sie mehr über unsere hohen Standards und sorgfältig ausgewählten Materialien.
+                            </p>
+                            <span class="value-link">
+                                Mehr erfahren <i class="bi bi-arrow-right"></i>
+                            </span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section mit Magazin-Link -->
         <section class="blog-section">
             <div class="container">
-                <h2 class="section-title">Tipps & Inspiration</h2>
+                <div class="blog-header">
+                    <h2 class="section-title">Geuther Magazin</h2>
+                    <p class="blog-subtitle">
+                        Entdecken Sie spannende Einblicke, hilfreiche Tipps und inspirierende Geschichten rund um das Leben mit Kindern in unserem Magazin.
+                    </p>
+                </div>
                 <div class="blog-grid">
                     <article class="blog-card">
                         <div class="blog-image">
@@ -1531,7 +1723,7 @@
                             <p class="blog-excerpt">
                                 Erfahren Sie, worauf es bei der Einrichtung des Babyzimmers ankommt.
                             </p>
-                            <a href="/blog/sicherer-schlaf" class="blog-link">
+                            <a href="/magazin/sicherer-schlaf" class="blog-link">
                                 Weiterlesen <i class="bi bi-arrow-right"></i>
                             </a>
                         </div>
@@ -1546,7 +1738,7 @@
                             <p class="blog-excerpt">
                                 Die wichtigsten Tipps für ein kindersicheres Zuhause.
                             </p>
-                            <a href="/blog/kindersicherheit" class="blog-link">
+                            <a href="/magazin/kindersicherheit" class="blog-link">
                                 Weiterlesen <i class="bi bi-arrow-right"></i>
                             </a>
                         </div>
@@ -1561,11 +1753,16 @@
                             <p class="blog-excerpt">
                                 Welcher Hochstuhl ist der richtige für Ihr Kind?
                             </p>
-                            <a href="/blog/hochstuhl-guide" class="blog-link">
+                            <a href="/magazin/hochstuhl-guide" class="blog-link">
                                 Weiterlesen <i class="bi bi-arrow-right"></i>
                             </a>
                         </div>
                     </article>
+                </div>
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="/magazin" class="blog-main-link">
+                        Zum Magazin
+                    </a>
                 </div>
             </div>
         </section>
