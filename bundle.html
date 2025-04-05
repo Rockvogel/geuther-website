@@ -296,7 +296,7 @@
             padding: 2rem;
             background: white;
             border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         .bundle-row:last-child {
@@ -611,12 +611,12 @@
         .bundle-total {
             text-align: center;
             margin-bottom: 2rem;
+            position: relative;
         }
 
         .bundle-total-label {
             font-size: 1.4rem;
             font-weight: 600;
-            
             display: block;
             color: white;
         }
@@ -627,6 +627,28 @@
             justify-content: center;
             gap: 1.5rem;
             margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        .bundle-savings-badge {
+            position: absolute;
+            top: -74px;
+            right: 0px;
+            background: var(--bundle-discount);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0px 0px 15px 15px;
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: 0 4px 12px rgba(255, 71, 87, 0.3);
+            
+            z-index: 2;
+        }
+
+        .bundle-savings-badge span {
+            display: block;
+            font-size: 0.8rem;
+            opacity: 0.9;
         }
 
         .bundle-total-original {
@@ -838,6 +860,15 @@
             /* Verstecke das leere vierte Produkt im Activity Bundle */
             .bundle-product[style*="visibility: hidden"] {
                 display: none;
+            }
+
+            .bundle-savings-badge {
+                font-size: 0.9rem;
+                padding: 0.4rem 0.8rem;
+            }
+            
+            .bundle-savings-badge span {
+                font-size: 0.7rem;
             }
         }
 
@@ -1092,6 +1123,10 @@
                                 <div class="bundle-total-price">
                                     <span class="bundle-total-original">499,95 €</span>
                                     <span class="bundle-total-sale">374,95 €</span>
+                                    <div class="bundle-savings-badge">
+                                        125 € sparen
+                                        <span>25% Rabatt</span>
+                                    </div>
                                 </div>
                             </div>
                             <a href="/bundle/baby-betty" class="bundle-summary-button">
@@ -1303,6 +1338,10 @@
                                 <div class="bundle-total-price">
                                     <span class="bundle-total-original">479,95 €</span>
                                     <span class="bundle-total-sale">359,95 €</span>
+                                    <div class="bundle-savings-badge">
+                                        120 € sparen
+                                        <span>25% Rabatt</span>
+                                    </div>
                                 </div>
                             </div>
                             <a href="/bundle/baby-mayla" class="bundle-summary-button">
@@ -1513,6 +1552,10 @@
                                 <div class="bundle-total-price">
                                     <span class="bundle-total-original">529,95 €</span>
                                     <span class="bundle-total-sale">397,45 €</span>
+                                    <div class="bundle-savings-badge">
+                                        132,50 € sparen
+                                        <span>25% Rabatt</span>
+                                    </div>
                                 </div>
                             </div>
                             <a href="/bundle/baby-moses" class="bundle-summary-button">
@@ -1704,6 +1747,10 @@
                                 <div class="bundle-total-price">
                                     <span class="bundle-total-original">399,95 €</span>
                                     <span class="bundle-total-sale">319,95 €</span>
+                                    <div class="bundle-savings-badge">
+                                        80 € sparen
+                                        <span>20% Rabatt</span>
+                                    </div>
                                 </div>
                             </div>
                             <a href="/bundle/activity" class="bundle-summary-button">
@@ -1882,6 +1929,10 @@
                                 <div class="bundle-total-price">
                                     <span class="bundle-total-original">418,90 €</span>
                                     <span class="bundle-total-sale">335,12 €</span>
+                                    <div class="bundle-savings-badge">
+                                        83,78 € sparen
+                                        <span>20% Rabatt</span>
+                                    </div>
                                 </div>
                             </div>
                             <a href="/bundle/bambino" class="bundle-summary-button">
