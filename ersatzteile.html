@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geuther Ersatzteile-Finder</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --geuther-primary: #42584A;
+            --geuther-secondary: #D4C4B7;
+            --geuther-text: #333333;
+            --geuther-bg: #FFFFFF;
+            --geuther-accent: #F5F1ED;
+            --geuther-border: #E5E5E5;
+            --geuther-highlight: #e8a87c;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            padding: 2rem 0;
+            background: var(--geuther-accent);
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://www.geuther.de/thumbnail/62/f2/83/1705518704/1155_nest_in_the_clouds_005_800x800.webp') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--geuther-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--geuther-text);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        /* Finder Section */
+        .finder-section {
+            padding: 4rem 0;
+            background: var(--geuther-bg);
+        }
+
+        .finder-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: var(--geuther-accent);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .finder-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0rem;
+            position: relative;
+        }
+
+        .finder-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            padding: 0 1rem;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: var(--geuther-primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-weight: 600;
+        }
+
+        .step-title {
+            font-size: 1.1rem;
+            color: var(--geuther-primary);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .step-description {
+            font-size: 0.9rem;
+            color: var(--geuther-text);
+            line-height: 1.4;
+        }
+
+        .finder-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+
+        .finder-group {
+            margin-bottom: 2rem;
+        }
+
+        .finder-group-title {
+            font-size: 1.2rem;
+            color: var(--geuther-primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .finder-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 280px));
+            gap: 1rem;
+            justify-content: center;
+            margin: 0 auto;
+            max-width: 1400px;
+        }
+
+        .finder-option {
+            background: var(--geuther-accent);
+            padding: 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            text-align: center;
+        }
+
+        .finder-option:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .finder-option.selected {
+            border-color: var(--geuther-primary);
+            background: white;
+        }
+
+        .finder-option-title {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .finder-option-description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0;
+        }
+
+        .finder-navigation {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--geuther-border);
+            gap: 2rem;
+        }
+
+        .finder-button {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 120px;
+        }
+
+        .finder-button.primary {
+            background: var(--geuther-primary);
+            color: white;
+        }
+
+        .finder-button.primary:disabled {
+            background: #cccccc;
+            color: #666666;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .finder-button.secondary {
+            background: var(--geuther-accent);
+            color: var(--geuther-primary);
+        }
+
+        .finder-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Product Grid */
+        .product-section {
+            padding: 0;
+            background: var(--geuther-bg);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .product-card {
+            background: var(--geuther-bg);
+            border: 1px solid var(--geuther-border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+
+        .product-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+            background: transparent;
+            margin: 0.5rem;
+            display: block;
+            text-decoration: none;
+        }
+
+        .product-image img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: auto;
+            height: auto;
+            max-width: 80%;
+            max-height: 180px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .product-info {
+            padding: 1rem;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+            min-height: 2.6em;
+        }
+
+        .product-details {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+            color: var(--geuther-text);
+            min-height: 2.8em;
+        }
+
+        .product-availability {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            margin: 0.5rem 0;
+            font-size: 0.85rem;
+        }
+
+        .availability-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #2da73c;
+        }
+
+        .delivery-time {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--geuther-text);
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-button {
+            display: block;
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--geuther-primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        /* Pagination Styles */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 3rem 0;
+            gap: 0.5rem;
+        }
+
+        .pagination-item {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--geuther-border);
+            border-radius: 4px;
+            color: var(--geuther-text);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .pagination-item:hover,
+        .pagination-item.active {
+            background: var(--geuther-primary);
+            color: white;
+            border-color: var(--geuther-primary);
+        }
+
+        /* Support Section Styles */
+        .support-section {
+            background: var(--geuther-accent);
+            padding: 4rem 0;
+            margin-top: 2rem;
+        }
+
+        .support-title {
+            text-align: center;
+            color: var(--geuther-primary);
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .support-card {
+            background: var(--geuther-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid var(--geuther-border);
+            transition: all 0.3s ease;
+            text-align: center;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .support-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .support-icon {
+            font-size: 2.5rem;
+            color: var(--geuther-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .support-card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 1rem;
+        }
+
+        .support-card-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--geuther-text);
+            margin-bottom: 1rem;
+        }
+
+        .support-link {
+            color: var(--geuther-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-weight: 500;
+        }
+
+        .support-link:hover {
+            color: var(--geuther-secondary);
+            transform: translateY(-2px);
+        }
+
+        .support-hours {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--geuther-text);
+            padding-top: 1rem;
+            border-top: 1px solid var(--geuther-border);
+        }
+
+        /* Media Queries */
+        @media (max-width: 992px) {
+            .support-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .support-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .finder-steps {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .finder-step {
+                padding: 0;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .product-image {
+                height: 150px;
+            }
+        }
+
+       
+    </style>
+</head>
+<body>
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Ersatzteile-Finder</h1>
+                <p class="hero-subtitle">
+                    Mit den Ersatzteilen von Geuther bringen Sie im Handumdrehen Ihre Geuther Produkte wieder zum Leben. 
+                    Finden Sie schnell und einfach das passende Ersatzteil für Ihr Produkt.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="finder-section">
+        <div class="container">
+            <div class="finder-container">
+                <div class="finder-steps">
+                    <div class="finder-step">
+                        <div class="step-number">1</div>
+                        <h3 class="step-title">Produktgruppe wählen</h3>
+                        <p class="step-description">Wählen Sie die Kategorie Ihres Produkts</p>
+                    </div>
+                    <div class="finder-step">
+                        <div class="step-number">2</div>
+                        <h3 class="step-title">Serie auswählen</h3>
+                        <p class="step-description">Wählen Sie die passende Produktserie</p>
+                    </div>
+                    <div class="finder-step">
+                        <div class="step-number">3</div>
+                        <h3 class="step-title">Modell bestimmen</h3>
+                        <p class="step-description">Geben Sie die Modellnummer ein</p>
+                    </div>
+                </div>
+
+                <div class="finder-content">
+                    <div class="finder-group active" id="step1">
+                        <h3 class="finder-group-title">Wählen Sie Ihre Produktgruppe:</h3>
+                        <div class="finder-options">
+                            <div class="finder-option">
+                                <h4 class="finder-option-title">Hochstuhl</h4>
+                                <p class="finder-option-description">Hochstühle und Zubehör</p>
+                            </div>
+                            <div class="finder-option">
+                                <h4 class="finder-option-title">Sicherheitsgitter</h4>
+                                <p class="finder-option-description">Tür- und Treppenschutzgitter</p>
+                            </div>
+                            <div class="finder-option">
+                                <h4 class="finder-option-title">Laufgitter</h4>
+                                <p class="finder-option-description">Laufgitter und Zubehör</p>
+                            </div>
+                            <div class="finder-option">
+                                <h4 class="finder-option-title">Kinderbett</h4>
+                                <p class="finder-option-description">Kinderbetten und Zubehör</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="finder-group" id="step2" style="display: none;">
+                        <h3 class="finder-group-title">Wählen Sie Ihre Serie:</h3>
+                        <div class="finder-options">
+                            <!-- Wird dynamisch basierend auf der Produktgruppe gefüllt -->
+                        </div>
+                    </div>
+
+                    <div class="finder-group" id="step3" style="display: none;">
+                        <h3 class="finder-group-title">Wählen Sie Ihr Modell:</h3>
+                        <div class="finder-options">
+                            <!-- Wird dynamisch basierend auf der Serie gefüllt -->
+                        </div>
+                    </div>
+
+                    <div class="finder-navigation">
+                        <button class="finder-button secondary" id="prevStep" style="display: none;">Zurück</button>
+                        <button class="finder-button primary" id="nextStep">Weiter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Hier kommt die JavaScript-Logik für die Navigation und Filterung
+        document.addEventListener('DOMContentLoaded', function() {
+            const finderOptions = document.querySelectorAll('.finder-option');
+            const nextButton = document.getElementById('nextStep');
+            const prevButton = document.getElementById('prevStep');
+            let currentStep = 1;
+            
+            // Initial button state
+            nextButton.disabled = true;
+
+            // Funktion zum Überprüfen der Auswahl
+            function checkSelection() {
+                const currentGroup = document.getElementById(`step${currentStep}`);
+                const hasSelection = currentGroup.querySelector('.finder-option.selected') !== null;
+                nextButton.disabled = !hasSelection;
+            }
+            
+            // Produktserien-Daten
+            const productSeries = {
+                'Hochstuhl': [
+                    { title: 'Swing', description: 'Der moderne Hochstuhl' },
+                    { title: 'Family', description: 'Der klassische Hochstuhl' },
+                    { title: 'Tamino', description: 'Der kompakte Hochstuhl' }
+                ],
+                'Sicherheitsgitter': [
+                    { title: 'Easylock', description: 'Das klassische Türschutzgitter' },
+                    { title: 'Vario Safe', description: 'Das flexible Schutzgitter' },
+                    { title: 'Plus', description: 'Das erweiterte Schutzgitter' }
+                ],
+                'Laufgitter': [
+                    { title: 'Octo-Park', description: 'Das achteckige Laufgitter' },
+                    { title: 'Euro-Parc', description: 'Das variable Laufgitter' },
+                    { title: 'Playpen', description: 'Das große Laufgitter' }
+                ],
+                'Kinderbett': [
+                    { title: 'Safari', description: 'Das moderne Kinderbett' },
+                    { title: 'Dream', description: 'Das klassische Kinderbett' },
+                    { title: 'Cottage', description: 'Das gemütliche Kinderbett' }
+                ]
+            };
+
+            // Modell-Daten
+            const productModels = {
+                'Swing': [
+                    { model: '2360', description: 'Swing Weiß/Natur' },
+                    { model: '2361', description: 'Swing Buche/Natur' },
+                    { model: '2362', description: 'Swing Grau/Weiß' }
+                ],
+                'Family': [
+                    { model: '2510', description: 'Family Classic Buche' },
+                    { model: '2511', description: 'Family Plus Weiß' },
+                    { model: '2512', description: 'Family XL Natur' }
+                ],
+                'Tamino': [
+                    { model: '2420', description: 'Tamino Basic Weiß' },
+                    { model: '2421', description: 'Tamino Plus Buche' }
+                ],
+                'Easylock': [
+                    { model: '4792', description: 'Easylock Wood 84.5-92.5 cm' },
+                    { model: '4793', description: 'Easylock Metal 84.5-92.5 cm' }
+                ],
+                'Vario Safe': [
+                    { model: '2785', description: 'Vario Safe 74-113 cm' },
+                    { model: '2786', description: 'Vario Safe Plus 74-113 cm' }
+                ],
+                'Plus': [
+                    { model: '2733', description: 'Plus Weiß 95-135 cm' },
+                    { model: '2734', description: 'Plus Silber 95-135 cm' }
+                ],
+                'Octo-Park': [
+                    { model: '2235', description: 'Octo-Park Classic Natur' },
+                    { model: '2236', description: 'Octo-Park Plus Weiß' }
+                ],
+                'Euro-Parc': [
+                    { model: '2244', description: 'Euro-Parc 97x97 cm Natur' },
+                    { model: '2245', description: 'Euro-Parc 97x97 cm Weiß' }
+                ],
+                'Playpen': [
+                    { model: '2256', description: 'Playpen XL 102x102 cm' },
+                    { model: '2257', description: 'Playpen XXL 122x122 cm' }
+                ],
+                'Safari': [
+                    { model: '1175', description: 'Safari 70x140 cm Weiß' },
+                    { model: '1176', description: 'Safari 70x140 cm Natur' }
+                ],
+                'Dream': [
+                    { model: '1162', description: 'Dream 70x140 cm Buche' },
+                    { model: '1163', description: 'Dream 70x140 cm Weiß' }
+                ],
+                'Cottage': [
+                    { model: '1185', description: 'Cottage 70x140 cm Weiß' },
+                    { model: '1186', description: 'Cottage 70x140 cm Grau' }
+                ]
+            };
+
+            finderOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove selected class from all options in the same group
+                    const parentGroup = this.closest('.finder-group');
+                    parentGroup.querySelectorAll('.finder-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    // Add selected class to clicked option
+                    this.classList.add('selected');
+                    // Check selection after click
+                    checkSelection();
+                });
+            });
+
+            // Funktion zum Aktualisieren der Serien basierend auf der Produktgruppe
+            function updateSeries() {
+                const selectedProduct = document.querySelector('#step1 .finder-option.selected');
+                if (!selectedProduct) return;
+
+                const productType = selectedProduct.querySelector('.finder-option-title').textContent;
+                const seriesContainer = document.querySelector('#step2 .finder-options');
+                seriesContainer.innerHTML = ''; // Leere den Container
+
+                const series = productSeries[productType] || [];
+                series.forEach(item => {
+                    const seriesElement = document.createElement('div');
+                    seriesElement.className = 'finder-option';
+                    seriesElement.innerHTML = `
+                        <h4 class="finder-option-title">${item.title}</h4>
+                        <p class="finder-option-description">${item.description}</p>
+                    `;
+                    seriesContainer.appendChild(seriesElement);
+                });
+
+                // Neue Event-Listener für die neuen Serien-Optionen
+                const newSeriesOptions = seriesContainer.querySelectorAll('.finder-option');
+                newSeriesOptions.forEach(option => {
+                    option.addEventListener('click', function() {
+                        newSeriesOptions.forEach(opt => opt.classList.remove('selected'));
+                        this.classList.add('selected');
+                        // Check selection after click
+                        checkSelection();
+                    });
+                });
+                
+                // Reset button state for new step
+                nextButton.disabled = true;
+            }
+
+            // Funktion zum Aktualisieren der Modelle basierend auf der Serie
+            function updateModels() {
+                const selectedSeries = document.querySelector('#step2 .finder-option.selected');
+                if (!selectedSeries) return;
+
+                const seriesType = selectedSeries.querySelector('.finder-option-title').textContent;
+                const modelsContainer = document.querySelector('#step3 .finder-options');
+                modelsContainer.innerHTML = ''; // Leere den Container
+
+                const models = productModels[seriesType] || [];
+                models.forEach(item => {
+                    const modelElement = document.createElement('div');
+                    modelElement.className = 'finder-option';
+                    modelElement.innerHTML = `
+                        <h4 class="finder-option-title">${item.model}</h4>
+                        <p class="finder-option-description">${item.description}</p>
+                    `;
+                    modelsContainer.appendChild(modelElement);
+                });
+
+                // Neue Event-Listener für die Modell-Optionen
+                const newModelOptions = modelsContainer.querySelectorAll('.finder-option');
+                newModelOptions.forEach(option => {
+                    option.addEventListener('click', function() {
+                        newModelOptions.forEach(opt => opt.classList.remove('selected'));
+                        this.classList.add('selected');
+                        // Check selection after click
+                        checkSelection();
+                    });
+                });
+                
+                // Reset button state for new step
+                nextButton.disabled = true;
+            }
+
+            nextButton.addEventListener('click', function() {
+                const currentGroup = document.getElementById(`step${currentStep}`);
+                const nextGroup = document.getElementById(`step${currentStep + 1}`);
+                
+                if (nextGroup) {
+                    // Aktualisiere Serien beim Übergang zu Schritt 2
+                    if (currentStep === 1) {
+                        updateSeries();
+                    }
+                    // Aktualisiere Modelle beim Übergang zu Schritt 3
+                    else if (currentStep === 2) {
+                        updateModels();
+                    }
+                    
+                    currentGroup.style.display = 'none';
+                    nextGroup.style.display = 'block';
+                    currentStep++;
+                    prevButton.style.display = 'block';
+                    
+                    if (currentStep === 3) {
+                        nextButton.textContent = 'Ersatzteile anzeigen';
+                    }
+                }
+            });
+
+            prevButton.addEventListener('click', function() {
+                const currentGroup = document.getElementById(`step${currentStep}`);
+                const prevGroup = document.getElementById(`step${currentStep - 1}`);
+                
+                if (prevGroup) {
+                    currentGroup.style.display = 'none';
+                    prevGroup.style.display = 'block';
+                    currentStep--;
+                    
+                    if (currentStep === 1) {
+                        prevButton.style.display = 'none';
+                    }
+                    
+                    nextButton.textContent = 'Weiter';
+                }
+            });
+        });
+    </script>
+
+    <!-- Produktgrid Section -->
+    <section class="product-section">
+        <div class="container">
+            <h2 style="text-align: center; color: var(--geuther-primary); margin-bottom: 2rem;">Häufig nachgefragte Ersatzteile</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://www.geuther.de/thumbnail/75/08/ab/1705518265/w024010001_600x600.webp" alt="Bodenträger verzinkt">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Ersatzteil Bodenträger verzinkt</h3>
+                        <p class="product-details">Art.No. W024010001</p>
+                        <div class="product-availability">
+                            <div class="availability-status">
+                                <i class="bi bi-check-circle-fill"></i>
+                                Sofort verfügbar
+                            </div>
+                            <div class="delivery-time">
+                                <i class="bi bi-truck"></i>
+                                Lieferzeit: 2-5 Tage
+                            </div>
+                        </div>
+                        <div class="product-price">Ab 4,49 €*</div>
+                        <button class="product-button">In den Warenkorb</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://www.geuther.de/thumbnail/fc/9b/11/1705518312/205500065ofatt1izjeir0_600x600.webp" alt="Buchse Laufgitter für DR 50">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Ersatzteil Buchse Laufgitter für DR 50</h3>
+                        <p class="product-details">Art.No. 205500065</p>
+                        <div class="product-availability">
+                            <div class="availability-status">
+                                <i class="bi bi-check-circle-fill"></i>
+                                Sofort verfügbar
+                            </div>
+                            <div class="delivery-time">
+                                <i class="bi bi-truck"></i>
+                                Lieferzeit: 2-5 Tage
+                            </div>
+                        </div>
+                        <div class="product-price">2,29 €*</div>
+                        <button class="product-button">In den Warenkorb</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://www.geuther.de/thumbnail/cf/81/b9/1705518339/300000984d_600x600.webp" alt="Mechanismus 273X Serie">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Ersatzteil Mechanismus 273X Serie</h3>
+                        <p class="product-details">Art.No. 300000984D</p>
+                        <div class="product-availability">
+                            <div class="availability-status">
+                                <i class="bi bi-check-circle-fill"></i>
+                                Sofort verfügbar
+                            </div>
+                            <div class="delivery-time">
+                                <i class="bi bi-truck"></i>
+                                Lieferzeit: 2-5 Tage
+                            </div>
+                        </div>
+                        <div class="product-price">8,95 €*</div>
+                        <button class="product-button">In den Warenkorb</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://www.geuther.de/thumbnail/6f/39/54/1705518094/300000013_600x600.webp" alt="Tellerschrauben M10x80">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Ersatzteil Tellerschrauben M10x80</h3>
+                        <p class="product-details">Art.No. 300000013</p>
+                        <div class="product-availability">
+                            <div class="availability-status">
+                                <i class="bi bi-check-circle-fill"></i>
+                                Sofort verfügbar
+                            </div>
+                            <div class="delivery-time">
+                                <i class="bi bi-truck"></i>
+                                Lieferzeit: 2-5 Tage
+                            </div>
+                        </div>
+                        <div class="product-price">Ab 6,95 €*</div>
+                        <button class="product-button">In den Warenkorb</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://www.geuther.de/thumbnail/fe/ae/89/1705518089/befestigungsteller-300000002_600x600.webp" alt="Befestigungsteller 4758/4791">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Ersatzteil Befestigungsteller 4758/4791</h3>
+                        <p class="product-details">Art.No. 300000002</p>
+                        <div class="product-availability">
+                            <div class="availability-status">
+                                <i class="bi bi-check-circle-fill"></i>
+                                Sofort verfügbar
+                            </div>
+                            <div class="delivery-time">
+                                <i class="bi bi-truck"></i>
+                                Lieferzeit: 2-5 Tage
+                            </div>
+                        </div>
+                        <div class="product-price">1,95 €*</div>
+                        <button class="product-button">In den Warenkorb</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://www.geuther.de/thumbnail/96/94/b1/1705518275/300000009front_1280x1280.webp" alt="Hülse Easylock 20x20">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Ersatzteil Hülse Easylock 20x20</h3>
+                        <p class="product-details">Art.No. 300000009</p>
+                        <div class="product-availability">
+                            <div class="availability-status">
+                                <i class="bi bi-check-circle-fill"></i>
+                                Sofort verfügbar
+                            </div>
+                            <div class="delivery-time">
+                                <i class="bi bi-truck"></i>
+                                Lieferzeit: 2-5 Tage
+                            </div>
+                        </div>
+                        <div class="product-price">0,95 €*</div>
+                        <button class="product-button">In den Warenkorb</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://www.geuther.de/thumbnail/67/2a/69/1705518307/300000179front_1280x1280.webp" alt="Hülse für Easylock 30x20">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Ersatzteil Hülse für Easylock 30x20</h3>
+                        <p class="product-details">Art.No. 300000179</p>
+                        <div class="product-availability">
+                            <div class="availability-status">
+                                <i class="bi bi-check-circle-fill"></i>
+                                Sofort verfügbar
+                            </div>
+                            <div class="delivery-time">
+                                <i class="bi bi-truck"></i>
+                                Lieferzeit: 2-5 Tage
+                            </div>
+                        </div>
+                        <div class="product-price">0,95 €*</div>
+                        <button class="product-button">In den Warenkorb</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://www.geuther.de/thumbnail/5e/e3/cd/1705518209/300000984f_600x600.webp" alt="Standfuß">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Ersatzteil Standfuß</h3>
+                        <p class="product-details">Art.No. 205010522SI<br>Farbe: Lichtgrau</p>
+                        <div class="product-availability">
+                            <div class="availability-status">
+                                <i class="bi bi-check-circle-fill"></i>
+                                Sofort verfügbar
+                            </div>
+                            <div class="delivery-time">
+                                <i class="bi bi-truck"></i>
+                                Lieferzeit: 1-3 Tage
+                            </div>
+                        </div>
+                        <div class="product-price">3,95 €*</div>
+                        <button class="product-button">In den Warenkorb</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Pagination -->
+            <div class="pagination">
+                <a href="#" class="pagination-item active">1</a>
+                <a href="#" class="pagination-item">2</a>
+                <a href="#" class="pagination-item">3</a>
+                <a href="#" class="pagination-item">4</a>
+                <a href="#" class="pagination-item">5</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Section -->
+    <section class="support-section">
+        <div class="container">
+            <h2 class="support-title">Du kannst dein Produkt nicht finden oder hast Fragen?</h2>
+            <div class="support-grid">
+                <div class="support-card">
+                    <i class="bi bi-telephone support-icon"></i>
+                    <h3 class="support-card-title">Telefonischer Support</h3>
+                    <p class="support-card-text">
+                        <a href="tel:+4959056799050" class="support-link">+49 (0) 590 567 990 50</a>
+                    </p>
+                    <p class="support-hours">
+                        Montag - Freitag<br>
+                        08:00 - 15:30 Uhr
+                    </p>
+                </div>
+
+                <div class="support-card">
+                    <i class="bi bi-whatsapp support-icon"></i>
+                    <h3 class="support-card-title">WhatsApp Support</h3>
+                    <p class="support-card-text">
+                        <a href="https://wa.me/491628385527" target="_blank" class="support-link">+49 162 8385527</a>
+                    </p>
+                    <p class="support-hours">
+                        Montag - Freitag<br>
+                        08:00 - 15:30 Uhr
+                    </p>
+                </div>
+
+                <div class="support-card">
+                    <i class="bi bi-envelope support-icon"></i>
+                    <h3 class="support-card-title">Kontaktformular</h3>
+                    <p class="support-card-text">
+                        Nutzen Sie unser Kontaktformular für eine schnelle und einfache Kontaktaufnahme.
+                    </p>
+                    <p class="support-card-text">
+                        <a href="support.html#kontaktformular" class="support-link">Zum Kontaktformular <i class="bi bi-arrow-right"></i></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html> 
