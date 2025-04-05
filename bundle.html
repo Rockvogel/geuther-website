@@ -1,0 +1,1929 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geuther - Sparsets & Bundles</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --geuther-primary: #42584A;
+            --geuther-secondary: #D4C4B7;
+            --geuther-text: #333333;
+            --geuther-bg: #FFFFFF;
+            --geuther-accent: #F5F1ED;
+            --geuther-border: #E5E5E5;
+            --geuther-highlight: #e8a87c;
+            --bundle-discount: #ff4757;
+        }
+
+        .geuther-bundle {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--geuther-text);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            padding: 3rem 0;
+            background: var(--geuther-accent);
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://www.geuther.de/thumbnail/62/f2/83/1705518704/1155_nest_in_the_clouds_005_800x800.webp') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--geuther-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--geuther-text);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        /* Bundle Section */
+        .bundle-section {
+            padding: 6rem 0;
+            background: var(--geuther-bg);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--geuther-text);
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .bundle-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .bundle-card {
+            background: var(--geuther-bg);
+            border: 1px solid var(--geuther-border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .bundle-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+
+        .bundle-image {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+            background: var(--geuther-accent);
+        }
+
+        .bundle-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .bundle-card:hover .bundle-image img {
+            transform: scale(1.05);
+        }
+
+        .bundle-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--bundle-discount);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            z-index: 2;
+            box-shadow: 0 4px 12px rgba(255, 71, 87, 0.3);
+        }
+
+        .bundle-content {
+            padding: 2rem;
+        }
+
+        .bundle-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 1rem;
+        }
+
+        .bundle-items {
+            margin-bottom: 1.5rem;
+        }
+
+        .bundle-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+
+        .bundle-item i {
+            color: var(--geuther-primary);
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .bundle-price {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .original-price {
+            font-size: 1.2rem;
+            color: var(--geuther-text);
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+
+        .bundle-sale-price {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--bundle-discount);
+        }
+
+        .bundle-button {
+            display: inline-block;
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background: var(--geuther-primary);
+            color: white;
+            text-align: center;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .bundle-button:hover {
+            background: #364b3d;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        /* USP Section */
+        .usp-section {
+            padding: 0;
+            background: var(--geuther-accent);
+        }
+
+        .usp-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .usp-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .usp-icon {
+            font-size: 2.5rem;
+            color: var(--geuther-primary);
+            margin-bottom: 1rem;
+        }
+
+        .usp-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .usp-text {
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Mobile Optimierung */
+        @media (max-width: 1200px) {
+            .bundle-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .usp-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .bundle-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .bundle-image {
+                height: 250px;
+            }
+
+            .usp-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Bundle Products Row */
+        .bundle-row {
+            margin-bottom: 4rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .bundle-row:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Bundle Header Styling */
+        .bundle-header {
+            position: relative;
+            height: 400px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .bundle-header-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .bundle-header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom, 
+                rgba(0, 0, 0, 0) 0%, 
+                rgba(0, 0, 0, 0.5) 60%, 
+                rgba(0, 0, 0, 0.8) 100%);
+            z-index: 2;
+        }
+
+        .bundle-header-content {
+            position: relative;
+            z-index: 3;
+            padding: 2rem;
+            width: 100%;
+            color: white;
+        }
+
+        .bundle-header-top {
+            display: flex;
+            justify-content: start;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .bundle-header-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin: 0;
+            color: white;
+        }
+
+        .bundle-header-badge {
+            background: var(--bundle-discount);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            margin-left: 1rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 12px rgba(255, 71, 87, 0.3);
+        }
+
+        .bundle-header-description {
+            font-size: 1.1rem;
+            max-width: 800px;
+            line-height: 1.5;
+            margin: 0;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        @media (max-width: 768px) {
+            .bundle-header {
+                height: 400px;
+            }
+
+            .bundle-header-title {
+                font-size: 1.8rem;
+            }
+
+            .bundle-header-description {
+                font-size: 1rem;
+            }
+        }
+
+        .bundle-products {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .bundle-product {
+            background: var(--geuther-bg);
+            border: 1px solid var(--geuther-border);
+            border-radius: 8px;
+            overflow: visible;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .bundle-product:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+            z-index: 2;
+        }
+
+        .bundle-product-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+            background: transparent;
+            margin: 0.5rem;
+            display: block;
+            text-decoration: none;
+        }
+
+        .bundle-product-image img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: auto;
+            height: auto;
+            max-width: 80%;
+            max-height: 180px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .bundle-product:hover .bundle-product-image img {
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+
+        .bundle-product-content {
+            padding: 1rem;
+            position: relative;
+        }
+
+        .bundle-product-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .bundle-product-description {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+            color: var(--geuther-text);
+        }
+
+        .bundle-product-availability {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            margin: 0.5rem 0;
+            font-size: 0.85rem;
+        }
+
+        .availability-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #2da73c;
+        }
+
+        .delivery-time {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--geuther-text);
+        }
+
+        .bundle-product-price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-top: 0.5rem;
+        }
+
+        .bundle-product-features {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--geuther-border);
+        }
+
+        .bundle-product-feature {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+            line-height: 1.3;
+        }
+
+        .bundle-product-feature i {
+            color: var(--geuther-primary);
+            font-size: 0.8rem;
+            margin-top: 0.2rem;
+            flex-shrink: 0;
+        }
+
+        .bundle-product-feature:last-child {
+            margin-bottom: 0;
+        }
+
+        .bundle-product-colors {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .color-variant {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            border: 1px solid var(--geuther-border);
+            transition: all 0.2s ease;
+        }
+
+        .color-variant:hover {
+            transform: translateY(-2px);
+        }
+
+        .color-variant.white {
+            background: #ffffff;
+        }
+
+        .color-variant.natural {
+            background: #d4bc9c;
+        }
+
+        .color-variant.grey {
+            background: #808080;
+        }
+
+        .color-variant.selected {
+            border: 2px solid var(--geuther-primary);
+        }
+
+        /* Bundle Summary Styling */
+        .bundle-summary {
+            background: var(--geuther-primary);
+            padding: 2.5rem;
+            border-radius: 12px;
+            color: white;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .bundle-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .bundle-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.25rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .bundle-feature:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .bundle-feature i {
+            font-size: 1.5rem;
+            color: var(--geuther-secondary);
+            flex-shrink: 0;
+        }
+
+        .bundle-feature-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .bundle-feature-text strong {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .bundle-feature-text span {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+
+        .bundle-total {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .bundle-total-label {
+            font-size: 1.4rem;
+            font-weight: 600;
+            
+            display: block;
+            color: white;
+        }
+
+        .bundle-total-price {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .bundle-total-original {
+            font-size: 1.6rem;
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+
+        .bundle-total-sale {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .bundle-summary-button {
+            display: block;
+            width: 100%;
+            padding: 1.25rem;
+            background: var(--bundle-discount);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 1rem;
+        }
+
+        .bundle-summary-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
+            background: #ff3344;
+        }
+
+        .bundle-summary-info {
+            text-align: center;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.9);
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .bundle-summary-info span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .bundle-summary-info i {
+            font-size: 1.1rem;
+            color: var(--geuther-secondary);
+        }
+
+        @media (max-width: 992px) {
+            .bundle-summary {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 2rem;
+            }
+
+            .bundle-features {
+                grid-template-columns: 1fr;
+            }
+
+            .bundle-total-sale {
+                font-size: 2.2rem;
+            }
+
+            .bundle-summary-info {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+        }
+
+        /* Media Queries am Ende der CSS-Definitionen */
+        @media (max-width: 1200px) {
+            .bundle-products {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .bundle-product-image {
+                height: 180px;
+            }
+
+            .bundle-product-image img {
+                max-height: 160px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 0.5rem;
+            }
+
+            .bundle-row {
+                padding: 1rem;
+                margin-bottom: 2rem;
+            }
+
+            .bundle-header {
+                height: auto;
+                flex-direction: column;
+                min-height: unset;
+            }
+
+            .bundle-header-image {
+                position: relative;
+                height: 200px;
+                border-radius: 8px 8px 0 0;
+            }
+
+            .bundle-header-overlay {
+                background: none;
+            }
+
+            .bundle-header-content {
+                position: relative;
+                background: var(--geuther-bg);
+                color: var(--geuther-primary);
+                padding: 1.5rem 1rem;
+            }
+
+            .bundle-header-top {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 1rem;
+            }
+
+            .bundle-header-title {
+                color: var(--geuther-primary);
+                font-size: 1.6rem;
+                margin: 0;
+            }
+
+            .bundle-header-badge {
+                margin: 0;
+            }
+
+            .bundle-header-description {
+                color: var(--geuther-text);
+                font-size: 0.95rem;
+                margin: 0;
+            }
+
+            .bundle-products {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .bundle-product {
+                display: grid;
+                grid-template-columns: 100px 1fr;
+                gap: 1rem;
+                padding: 0.75rem;
+            }
+
+            .bundle-product-image {
+                height: 100px;
+                margin: 0;
+            }
+
+            .bundle-product-image img {
+                max-width: 90%;
+                max-height: 80px;
+            }
+
+            .bundle-product-content {
+                padding: 0;
+            }
+
+            .bundle-product-description {
+                margin-bottom: 0.5rem;
+                font-size: 0.85rem;
+            }
+
+            .bundle-product-features {
+                margin-top: 0.5rem;
+                padding-top: 0.5rem;
+            }
+
+            .bundle-summary {
+                padding: 1.5rem;
+                gap: 1.5rem;
+            }
+
+            .bundle-features {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+
+            .bundle-feature {
+                padding: 1rem;
+            }
+
+            .bundle-total-sale {
+                font-size: 2rem;
+            }
+
+            .bundle-summary-info {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            /* Verstecke das leere vierte Produkt im Activity Bundle */
+            .bundle-product[style*="visibility: hidden"] {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 0.5rem;
+            }
+
+            .bundle-product {
+                grid-template-columns: 1fr;
+            }
+
+            .bundle-product-image {
+                height: 140px;
+                margin-bottom: 0.5rem;
+            }
+
+            .bundle-product-image img {
+                max-height: 120px;
+            }
+
+            .bundle-header-title {
+                font-size: 1.4rem;
+            }
+
+            .bundle-header-badge {
+                padding: 0.5rem 1rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="geuther-bundle">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Sparsets & Bundles</h1>
+                    <p class="hero-subtitle">
+                        Entdecken Sie unsere sorgfältig zusammengestellten Produktsets für Baby und Kleinkind. 
+                        Sparen Sie bis zu 25% beim Kauf unserer Bundles und profitieren Sie von perfekt aufeinander abgestimmten Produktkombinationen.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Baby Bundles -->
+        <section class="bundle-section">
+            <div class="container">
+                <h2 class="section-title">Baby Bundles</h2>
+                <p class="section-subtitle">
+                    Alles was Sie für einen perfekten Start ins Familienleben brauchen. 
+                    Unsere Baby Bundles bieten Ihnen durchdachte Kombinationen aus Schlaf- und Pflegemöbeln.
+                </p>
+
+                <!-- Bundle Betty -->
+                <div class="bundle-row">
+                    <div class="bundle-header">
+                        <img src="https://www.geuther.de/media/17/e2/ce/1706262480/2263_2261_NA_MB_03.webp" 
+                             alt="Baby Bundle Betty" 
+                             class="bundle-header-image">
+                        <div class="bundle-header-overlay"></div>
+                        <div class="bundle-header-content">
+                            <div class="bundle-header-top">
+                                <h3 class="bundle-header-title">Baby Bundle Betty</h3>
+                                <span class="bundle-header-badge">-25%</span>
+                            </div>
+                            <p class="bundle-header-description">
+                                Das perfekte Starter-Set für die ersten Monate: Kombiniert unser beliebtes Beistellbett Betty mit einem praktischen Wickelregal. Ideal für Eltern, die Wert auf Nähe zum Baby und durchdachte Funktionalität legen. Besonders geeignet für kleine Räume und Schlafzimmer.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="bundle-products">
+                        <div class="bundle-product">
+                            <div class="bundle-product-image">
+                                <img src="https://www.geuther.de/media/3b/72/8e/1724231515/1123OM_NAWE_1.webp" 
+                                     alt="Beistellbett Betty">
+                            </div>
+                            <div class="bundle-product-content">
+                                <h4 class="bundle-product-title">Beistellbett Betty</h4>
+                                <p class="bundle-product-description">
+                                    Höhenverstellbares Beistellbett mit 6 Positionen
+                                </p>
+                                <div class="bundle-product-availability">
+                                    <div class="availability-status">
+                                        <i class="bi bi-check-circle-fill"></i>
+                                        Sofort verfügbar
+                                    </div>
+                                    <div class="delivery-time">
+                                        <i class="bi bi-truck"></i>
+                                        Lieferzeit: 2-3 Werktage
+                                    </div>
+                                </div>
+                                <div class="bundle-product-price">249,95 €</div>
+                                <div class="bundle-product-colors">
+                                    <div class="color-variant white selected" title="Weiß"></div>
+                                    <div class="color-variant natural" title="Natur"></div>
+                                    <div class="color-variant grey" title="Grau"></div>
+                                </div>
+                                <div class="bundle-product-features">
+                                    <div class="bundle-product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Inklusive Matratze und Nestchen</span>
+                                    </div>
+                                    <div class="bundle-product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Beidseitig absenkbare Seitenwand</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bundle-product">
+                            <div class="bundle-product-image">
+                                <img src="https://www.geuther.de/media/90/d4/94/1724233998/4844XL_NAWE_01.jpg" 
+                                     alt="Wickelregal Clarissa">
+                            </div>
+                            <div class="bundle-product-content">
+                                <h4 class="bundle-product-title">Wickelregal Clarissa</h4>
+                                <p class="bundle-product-description">
+                                    Praktisches Wandregal mit integrierter Wickelfläche
+                                </p>
+                                <div class="bundle-product-availability">
+                                    <div class="availability-status">
+                                        <i class="bi bi-check-circle-fill"></i>
+                                        Sofort verfügbar
+                                    </div>
+                                    <div class="delivery-time">
+                                        <i class="bi bi-truck"></i>
+                                        Lieferzeit: 2-3 Werktage
+                                    </div>
+                                </div>
+                                <div class="bundle-product-price">129,95 €</div>
+                                <div class="bundle-product-colors">
+                                    <div class="color-variant white selected" title="Weiß"></div>
+                                    <div class="color-variant natural" title="Natur"></div>
+                                </div>
+                                <div class="bundle-product-features">
+                                    <div class="bundle-product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Platzsparende Wandmontage</span>
+                                    </div>
+                                    <div class="bundle-product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Integrierte Aufbewahrungsfächer</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bundle-product">
+                            <div class="bundle-product-image">
+                                <img src="https://www.geuther.de/thumbnail/e7/50/38/1705518469/4123_174_vorderseite_1280x1280.webp" 
+                                     alt="Baby Schlafsack">
+                            </div>
+                            <div class="bundle-product-content">
+                                <h4 class="bundle-product-title">Baby Schlafsack</h4>
+                                <p class="bundle-product-description">
+                                    Kuscheliger Schlafsack aus Bio-Baumwolle
+                                </p>
+                                <div class="bundle-product-availability">
+                                    <div class="availability-status">
+                                        <i class="bi bi-check-circle-fill"></i>
+                                        Sofort verfügbar
+                                    </div>
+                                    <div class="delivery-time">
+                                        <i class="bi bi-truck"></i>
+                                        Lieferzeit: 1-2 Werktage
+                                    </div>
+                                </div>
+                                <div class="bundle-product-price">39,95 €</div>
+                                <div class="bundle-product-features">
+                                    <div class="bundle-product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Atmungsaktives Material</span>
+                                    </div>
+                                    <div class="bundle-product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Größenverstellbar</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bundle-product">
+                            <div class="bundle-product-image">
+                                <img src="https://www.geuther.de/media/db/b9/48/1705518550/5835_060.webp" 
+                                     alt="Bundle Betty Komplett">
+                            </div>
+                            <div class="bundle-product-content">
+                                <h4 class="bundle-product-title">Nestchen & Wickelauflage</h4>
+                                <p class="bundle-product-description">
+                                    Passende Textilien für Bett und Wickelregal
+                                </p>
+                                <div class="bundle-product-availability">
+                                    <div class="availability-status">
+                                        <i class="bi bi-check-circle-fill"></i>
+                                        Sofort verfügbar
+                                    </div>
+                                    <div class="delivery-time">
+                                        <i class="bi bi-truck"></i>
+                                        Lieferzeit: 1-2 Werktage
+                                    </div>
+                                </div>
+                                <div class="bundle-product-price">80,10 €</div>
+                                <div class="bundle-product-features">
+                                    <div class="bundle-product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Waschbar bei 30°C</span>
+                                    </div>
+                                    <div class="bundle-product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Schadstoffgeprüft</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bundle-summary">
+                        <div class="bundle-features">
+                            <div class="bundle-feature">
+                                <i class="bi bi-shield-check"></i>
+                                <div class="bundle-feature-text">
+                                    <strong>TÜV-geprüfte Qualität</strong>
+                                    <span>Nach höchsten Standards der Sicherheit gefertigt</span>
+                                </div>
+                            </div>
+                            <div class="bundle-feature">
+                                <i class="bi bi-award"></i>
+                                <div class="bundle-feature-text">
+                                    <strong>Made in Germany</strong>
+                                    <span>Handgefertigt in unserer Manufaktur</span>
+                                </div>
+                            </div>
+                            <div class="bundle-feature">
+                                <i class="bi bi-tree"></i>
+                                <div class="bundle-feature-text">
+                                    <strong>FSC-zertifiziertes Holz</strong>
+                                    <span>Nachhaltig produziert aus besten Materialien</span>
+                                </div>
+                            </div>
+                            <div class="bundle-feature">
+                                <i class="bi bi-patch-check"></i>
+                                <div class="bundle-feature-text">
+                                    <strong>2 Jahre Garantie</strong>
+                                    <span>Qualitätsversprechen für Ihr Vertrauen</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bundle-checkout">
+                            <div class="bundle-total">
+                                <span class="bundle-total-label">Ihr Bundle-Preis:</span>
+                                <div class="bundle-total-price">
+                                    <span class="bundle-total-original">499,95 €</span>
+                                    <span class="bundle-total-sale">374,95 €</span>
+                                </div>
+                            </div>
+                            <a href="/bundle/baby-betty" class="bundle-summary-button">
+                                Bundle jetzt bestellen
+                            </a>
+                            <div class="bundle-summary-info">
+                                <span><i class="bi bi-truck"></i> Kostenfreie Lieferung</span>
+                                <span><i class="bi bi-box-seam"></i> In 2-3 Tagen bei dir</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bundle Mayla -->
+                <div class="bundle-row">
+                    <div class="bundle-header">
+                        <img src="https://www.geuther.de/thumbnail/62/f2/83/1705518704/1155_nest_in_the_clouds_005_800x800.webp" 
+                             alt="Baby Bundle Mayla" 
+                             class="bundle-header-image">
+                        <div class="bundle-header-overlay"></div>
+                        <div class="bundle-header-content">
+                            <div class="bundle-header-top">
+                                <h3 class="bundle-header-title">Baby Bundle Mayla</h3>
+                                <span class="bundle-header-badge">-25%</span>
+                            </div>
+                            <p class="bundle-header-description">
+                                Die flexible Lösung für moderne Familien: Mit dem platzsparenden Klappbett Mayla und dem wandmontierten Wickelregal schaffen Sie eine kompakte Babyecke, die sich perfekt in Ihr Zuhause integriert. Optimal für Eltern, die Wert auf Funktionalität und cleveres Design legen.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="bundle-products">
+                        <div class="bundle-product">
+                            <div class="bundle-product-image">
+                                <img src="https://www.geuther.de/media/12/8d/66/1705518394/gross-1102bblw_na_01.webp" 
+                                     alt="Kinderklappbett Mayla">
+                            </div>
+                            <div class="bundle-product-content">
+                                <h4 class="bundle-product-title">Kinderklappbett Mayla</h4>
+                                <p class="bundle-product-description">
+                                    Platzsparendes Klappbett mit integriertem Fallschutz
+                                </p>
+                                <div class="bundle-product-availability">
+                                    <div class="availability-status">
+                                        <i class="bi bi-check-circle-fill"></i>
+                                        Sofort verfügbar
+                                    </div>
+                                    <div class="delivery-time">
+                                        <i class="bi bi-truck"></i>
+                                        Lieferzeit: 2-3 Werktage
+                                    </div>
+                                </div>
+                                <div class="bundle-product-price">229,95 €</div>
+                                <div class="bundle-product-colors">
+                                    <div class="color-variant white selected" title="Weiß"></div>
+                                    <div class="color-variant natural" title="Natur"></div>
+                                    <div class="color-variant grey" title="Grau"></div>
+                                </div>
+                                <div class="bundle-product-features">
+                                    <div class="bundle-product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Einfacher Klappmechanismus</span>
+                                    </div>
+                                    <div class="bundle-product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Inklusive Komfortmatratze</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bundle-product">
+                            <div class="bundle-product-image">
+                                <img src="https://www.geuther.de/media/90/d4/94/1724233998/4844XL_NAWE_01.jpg" 
+                                     alt="Wickelregal Clarissa">
+                            </div>
+                            <div class="bundle-product-content">
+                                <h4 class="bundle-product-title">Wickelregal Clarissa</h4>
+                                <p class="bundle-product-description">
+                                    Wandmontiertes Wickelregal mit viel Stauraum
+                                </p>
+                                <div class="bundle-product-availability">
+                                    <div class="availability-status">
+                                        <i class="bi bi-check-circle-fill"></i>
+                                        Sofort verfügbar
+                                    </div>
+                                    <div class="delivery-time">
+                                        <i class="bi bi-truck"></i>
+                                        Lieferzeit: 2-3 Werktage
+                                    </div>
+                                </div>
+                                <div class="bundle-product-price">129,95 €</div>
+                                <div class="bundle-product-colors">
+                                    <div class="color-variant white selected" title="Weiß"></div>
+                                    <div class="color-variant natural" title="Natur"></div>
+                                </div>
+                                <div class="bundle-product-features">
+                                    <div class="bundle-product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Sicheres Wickeln an der Wand</span>
+                                    </div>
+                                    <div class="bundle-product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Praktische Aufbewahrung</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bundle-product">
+                            <div class="bundle-product-image">
+                                <img src="https://www.geuther.de/thumbnail/e7/50/38/1705518469/4123_174_vorderseite_1280x1280.webp" 
+                                     alt="Baby Schlafsack">
+                            </div>
+                            <div class="bundle-product-content">
+                                <h4 class="bundle-product-title">Baby Schlafsack</h4>
+                                <p class="bundle-product-description">
+                                    Hochwertiger Schlafsack aus Bio-Baumwolle
+                                </p>
+                                <div class="bundle-product-availability">
+                                    <div class="availability-status">
+                                        <i class="bi bi-check-circle-fill"></i>
+                                        Sofort verfügbar
+                                    </div>
+                                    <div class="delivery-time">
+                                        <i class="bi bi-truck"></i>
+                                        Lieferzeit: 1-2 Werktage
+                                    </div>
+                                </div>
+                                <div class="bundle-product-price">39,95 €</div>
+                                <div class="bundle-product-features">
+                                    <div class="bundle-product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Hautfreundliches Material</span>
+                                    </div>
+                                    <div class="bundle-product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Optimale Temperaturregulierung</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bundle-product">
+                            <div class="bundle-product-image">
+                                <img src="https://www.geuther.de/media/db/b9/48/1705518550/5835_060.webp" 
+                                     alt="Bundle Mayla Komplett">
+                            </div>
+                            <div class="bundle-product-content">
+                                <h4 class="bundle-product-title">Nestchen & Wickelauflage</h4>
+                                <p class="bundle-product-description">
+                                    Passende Textilien für maximalen Komfort
+                                </p>
+                                <div class="bundle-product-availability">
+                                    <div class="availability-status">
+                                        <i class="bi bi-check-circle-fill"></i>
+                                        Sofort verfügbar
+                                    </div>
+                                    <div class="delivery-time">
+                                        <i class="bi bi-truck"></i>
+                                        Lieferzeit: 1-2 Werktage
+                                    </div>
+                                </div>
+                                <div class="bundle-product-price">80,10 €</div>
+                                <div class="bundle-product-features">
+                                    <div class="bundle-product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Pflegeleichte Materialien</span>
+                                    </div>
+                                    <div class="bundle-product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Perfekt abgestimmt</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bundle-summary">
+                        <div class="bundle-features">
+                            <div class="bundle-feature">
+                                <i class="bi bi-shield-check"></i>
+                                <div class="bundle-feature-text">
+                                    <strong>TÜV-geprüfte Qualität</strong>
+                                    <span>Nach höchsten Standards der Sicherheit gefertigt</span>
+                                </div>
+                            </div>
+                            <div class="bundle-feature">
+                                <i class="bi bi-award"></i>
+                                <div class="bundle-feature-text">
+                                    <strong>Made in Germany</strong>
+                                    <span>Handgefertigt in unserer Manufaktur</span>
+                                </div>
+                            </div>
+                            <div class="bundle-feature">
+                                <i class="bi bi-tree"></i>
+                                <div class="bundle-feature-text">
+                                    <strong>FSC-zertifiziertes Holz</strong>
+                                    <span>Nachhaltig produziert aus besten Materialien</span>
+                                </div>
+                            </div>
+                            <div class="bundle-feature">
+                                <i class="bi bi-patch-check"></i>
+                                <div class="bundle-feature-text">
+                                    <strong>2 Jahre Garantie</strong>
+                                    <span>Qualitätsversprechen für Ihr Vertrauen</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bundle-checkout">
+                            <div class="bundle-total">
+                                <span class="bundle-total-label">Ihr Bundle-Preis:</span>
+                                <div class="bundle-total-price">
+                                    <span class="bundle-total-original">479,95 €</span>
+                                    <span class="bundle-total-sale">359,95 €</span>
+                                </div>
+                            </div>
+                            <a href="/bundle/baby-mayla" class="bundle-summary-button">
+                                Bundle jetzt bestellen
+                            </a>
+                            <div class="bundle-summary-info">
+                                <span><i class="bi bi-truck"></i> Kostenfreie Lieferung</span>
+                                <span><i class="bi bi-box-seam"></i> In 2-3 Tagen bei dir</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bundle Moses -->
+                <div class="bundle-row">
+                    <div class="bundle-header">
+                        <img src="https://www.geuther.de/media/8c/82/75/1705518661/1111ko_na_121_mb_3.webp" 
+                             alt="Baby Bundle Moses" 
+                             class="bundle-header-image">
+                        <div class="bundle-header-overlay"></div>
+                        <div class="bundle-header-content">
+                            <div class="bundle-header-top">
+                                <h3 class="bundle-header-title">Baby Bundle Moses</h3>
+                                <span class="bundle-header-badge">-25%</span>
+                            </div>
+                            <p class="bundle-header-description">
+                                Traditionelle Babypflege modern interpretiert: Der klassische Moseskorb bietet Ihrem Neugeborenen einen geborgenen Schlafplatz, während das Wickelregal für praktische Organisation sorgt. Perfekt für Eltern, die Wert auf Tradition und Mobilität legen – der Korb lässt sich überall mit hinnehmen.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="bundle-products">
+                        <div class="bundle-product">
+                            <div class="bundle-product-image">
+                                <img src="https://www.geuther.de/media/e8/d0/8a/1705518655/setmoses_121.webp" 
+                                     alt="Moses Set">
+                            </div>
+                            <div class="bundle-product-content">
+                                <h4 class="bundle-product-title">Moses Set: Korb & Untergestell</h4>
+                                <p class="bundle-product-description">
+                                    Traditioneller Babykorb mit stabilem Gestell
+                                </p>
+                                <div class="bundle-product-availability">
+                                    <div class="availability-status">
+                                        <i class="bi bi-check-circle-fill"></i>
+                                        Sofort verfügbar
+                                    </div>
+                                    <div class="delivery-time">
+                                        <i class="bi bi-truck"></i>
+                                        Lieferzeit: 2-3 Werktage
+                                    </div>
+                                </div>
+                                <div class="bundle-product-price">299,95 €</div>
+                                <div class="bundle-product-colors">
+                                    <div class="color-variant white selected" title="Weiß"></div>
+                                    <div class="color-variant natural" title="Natur"></div>
+                                </div>
+                                <div class="bundle-product-features">
+                                    <div class="bundle-product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Sanftes Schaukeln möglich</span>
+                                    </div>
+                                    <div class="bundle-product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Inklusive Matratze</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bundle-product">
+                            <div class="bundle-product-image">
+                                <img src="https://www.geuther.de/media/90/d4/94/1724233998/4844XL_NAWE_01.jpg" 
+                                     alt="Wickelregal Clarissa">
+                            </div>
+                            <div class="bundle-product-content">
+                                <h4 class="bundle-product-title">Wickelregal Clarissa</h4>
+                                <p class="bundle-product-description">
+                                    Kompaktes Wickelregal für kleine Räume
+                                </p>
+                                <div class="bundle-product-availability">
+                                    <div class="availability-status">
+                                        <i class="bi bi-check-circle-fill"></i>
+                                        Sofort verfügbar
+                                    </div>
+                                    <div class="delivery-time">
+                                        <i class="bi bi-truck"></i>
+                                        Lieferzeit: 2-3 Werktage
+                                    </div>
+                                </div>
+                                <div class="bundle-product-price">129,95 €</div>
+                                <div class="bundle-product-colors">
+                                    <div class="color-variant white selected" title="Weiß"></div>
+                                    <div class="color-variant natural" title="Natur"></div>
+                                </div>
+                                <div class="bundle-product-features">
+                                    <div class="bundle-product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Maximale Stabilität</span>
+                                    </div>
+                                    <div class="bundle-product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Clevere Raumnutzung</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bundle-product">
+                            <div class="bundle-product-image">
+                                <img src="https://www.geuther.de/thumbnail/e7/50/38/1705518469/4123_174_vorderseite_1280x1280.webp" 
+                                     alt="Baby Schlafsack">
+                            </div>
+                            <div class="bundle-product-content">
+                                <h4 class="bundle-product-title">Baby Schlafsack</h4>
+                                <p class="bundle-product-description">
+                                    Weicher Schlafsack für erholsamen Schlaf
+                                </p>
+                                <div class="bundle-product-availability">
+                                    <div class="availability-status">
+                                        <i class="bi bi-check-circle-fill"></i>
+                                        Sofort verfügbar
+                                    </div>
+                                    <div class="delivery-time">
+                                        <i class="bi bi-truck"></i>
+                                        Lieferzeit: 1-2 Werktage
+                                    </div>
+                                </div>
+                                <div class="bundle-product-price">39,95 €</div>
+                                <div class="bundle-product-features">
+                                    <div class="bundle-product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Atmungsaktiv & sicher</span>
+                                    </div>
+                                    <div class="bundle-product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>OEKO-TEX® Standard 100</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bundle-product">
+                            <div class="bundle-product-image">
+                                <img src="https://www.geuther.de/media/db/b9/48/1705518550/5835_060.webp" 
+                                     alt="Bundle Moses Komplett">
+                            </div>
+                            <div class="bundle-product-content">
+                                <h4 class="bundle-product-title">Wickelauflage</h4>
+                                <p class="bundle-product-description">
+                                    Hochwertige Wickelauflage mit Bezug
+                                </p>
+                                <div class="bundle-product-availability">
+                                    <div class="availability-status">
+                                        <i class="bi bi-check-circle-fill"></i>
+                                        Sofort verfügbar
+                                    </div>
+                                    <div class="delivery-time">
+                                        <i class="bi bi-truck"></i>
+                                        Lieferzeit: 1-2 Werktage
+                                    </div>
+                                </div>
+                                <div class="bundle-product-price">60,10 €</div>
+                                <div class="bundle-product-features">
+                                    <div class="bundle-product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Abwaschbare Oberfläche</span>
+                                    </div>
+                                    <div class="bundle-product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Extra dick gepolstert</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bundle-summary">
+                        <div class="bundle-features">
+                            <div class="bundle-feature">
+                                <i class="bi bi-shield-check"></i>
+                                <div class="bundle-feature-text">
+                                    <strong>TÜV-geprüfte Qualität</strong>
+                                    <span>Nach höchsten Standards der Sicherheit gefertigt</span>
+                                </div>
+                            </div>
+                            <div class="bundle-feature">
+                                <i class="bi bi-award"></i>
+                                <div class="bundle-feature-text">
+                                    <strong>Made in Germany</strong>
+                                    <span>Handgefertigt in unserer Manufaktur</span>
+                                </div>
+                            </div>
+                            <div class="bundle-feature">
+                                <i class="bi bi-tree"></i>
+                                <div class="bundle-feature-text">
+                                    <strong>FSC-zertifiziertes Holz</strong>
+                                    <span>Nachhaltig produziert aus besten Materialien</span>
+                                </div>
+                            </div>
+                            <div class="bundle-feature">
+                                <i class="bi bi-patch-check"></i>
+                                <div class="bundle-feature-text">
+                                    <strong>2 Jahre Garantie</strong>
+                                    <span>Qualitätsversprechen für Ihr Vertrauen</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bundle-checkout">
+                            <div class="bundle-total">
+                                <span class="bundle-total-label">Ihr Bundle-Preis:</span>
+                                <div class="bundle-total-price">
+                                    <span class="bundle-total-original">529,95 €</span>
+                                    <span class="bundle-total-sale">397,45 €</span>
+                                </div>
+                            </div>
+                            <a href="/bundle/baby-moses" class="bundle-summary-button">
+                                Bundle jetzt bestellen
+                            </a>
+                            <div class="bundle-summary-info">
+                                <span><i class="bi bi-truck"></i> Kostenfreie Lieferung</span>
+                                <span><i class="bi bi-box-seam"></i> In 2-3 Tagen bei dir</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Kleinkind Bundles -->
+        <section class="bundle-section" style="background: var(--geuther-accent);">
+            <div class="container">
+                <h2 class="section-title">Kleinkind Bundles</h2>
+                <p class="section-subtitle">
+                    Die perfekten Sets für die aktive Entdeckungsphase Ihres Kindes. 
+                    Kombinieren Sie unsere beliebten Möbel für Spiel, Spaß und gemeinsame Mahlzeiten.
+                </p>
+
+                <!-- Activity Bundle -->
+                <div class="bundle-row">
+                    <div class="bundle-header">
+                        <img src="https://www.geuther.de/thumbnail/f1/d4/86/1710529191/2420_MB_800x800.webp" 
+                             alt="Kleinkind Activity Bundle" 
+                             class="bundle-header-image">
+                        <div class="bundle-header-overlay"></div>
+                        <div class="bundle-header-content">
+                            <div class="bundle-header-top">
+                                <h3 class="bundle-header-title">Activity Bundle</h3>
+                                <span class="bundle-header-badge">-20%</span>
+                            </div>
+                            <p class="bundle-header-description">
+                                Das ultimative Set für aktive Kleinkinder: Kombiniert eine kindgerechte Sitzgruppe mit unserem mitwachsenden Hochstuhl Syt. Ideal für Kinder ab 2 Jahren, die selbstständig spielen, malen und essen möchten. Perfekt für Familien, die einen gemeinsamen Essplatz und Spielbereich schaffen wollen.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="bundle-products">
+                        <div class="bundle-product">
+                            <div class="bundle-product-image">
+                                <img src="https://www.geuther.de/thumbnail/7f/eb/6f/1716986261/2413SET_WENA_1920x1920.webp" 
+                                     alt="Sitzgruppe Activity">
+                            </div>
+                            <div class="bundle-product-content">
+                                <h4 class="bundle-product-title">Sitzgruppe Activity</h4>
+                                <p class="bundle-product-description">
+                                    Kindgerechte Sitzgruppe mit Tisch und zwei Stühlen
+                                </p>
+                                <div class="bundle-product-availability">
+                                    <div class="availability-status">
+                                        <i class="bi bi-check-circle-fill"></i>
+                                        Sofort verfügbar
+                                    </div>
+                                    <div class="delivery-time">
+                                        <i class="bi bi-truck"></i>
+                                        Lieferzeit: 2-3 Werktage
+                                    </div>
+                                </div>
+                                <div class="bundle-product-price">199,95 €</div>
+                                <div class="bundle-product-colors">
+                                    <div class="color-variant white selected" title="Weiß"></div>
+                                    <div class="color-variant natural" title="Natur"></div>
+                                    <div class="color-variant grey" title="Grau"></div>
+                                </div>
+                                <div class="bundle-product-features">
+                                    <div class="bundle-product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Robuste Massivholz-Konstruktion</span>
+                                    </div>
+                                    <div class="bundle-product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Kindgerechte Sitzhöhe</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bundle-product">
+                            <div class="bundle-product-image">
+                                <img src="https://www.geuther.de/thumbnail/76/c8/12/1724320601/2337_NA_02_1920x1920.jpg?ts=1724394167" 
+                                     alt="Hochstuhl Syt">
+                            </div>
+                            <div class="bundle-product-content">
+                                <h4 class="bundle-product-title">Mitwachsender Hochstuhl Syt</h4>
+                                <p class="bundle-product-description">
+                                    Höhenverstellbarer Hochstuhl, der mit Ihrem Kind mitwächst
+                                </p>
+                                <div class="bundle-product-availability">
+                                    <div class="availability-status">
+                                        <i class="bi bi-check-circle-fill"></i>
+                                        Sofort verfügbar
+                                    </div>
+                                    <div class="delivery-time">
+                                        <i class="bi bi-truck"></i>
+                                        Lieferzeit: 2-3 Werktage
+                                    </div>
+                                </div>
+                                <div class="bundle-product-price">159,95 €</div>
+                                <div class="bundle-product-colors">
+                                    <div class="color-variant white selected" title="Weiß"></div>
+                                    <div class="color-variant natural" title="Natur"></div>
+                                </div>
+                                <div class="bundle-product-features">
+                                    <div class="bundle-product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>5-Punkt-Sicherheitsgurt</span>
+                                    </div>
+                                    <div class="bundle-product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Verstellbarer Fußstütze</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bundle-product">
+                            <div class="bundle-product-image">
+                                <img src="https://www.geuther.de/media/8c/82/75/1705518661/1111ko_na_121_mb_3.webp" 
+                                     alt="Schaukelpferd HALLA">
+                            </div>
+                            <div class="bundle-product-content">
+                                <h4 class="bundle-product-title">Schaukelpferd HALLA</h4>
+                                <p class="bundle-product-description">
+                                    Klassisches Schaukelpferd aus Massivholz
+                                </p>
+                                <div class="bundle-product-availability">
+                                    <div class="availability-status">
+                                        <i class="bi bi-check-circle-fill"></i>
+                                        Sofort verfügbar
+                                    </div>
+                                    <div class="delivery-time">
+                                        <i class="bi bi-truck"></i>
+                                        Lieferzeit: 1-2 Werktage
+                                    </div>
+                                </div>
+                                <div class="bundle-product-price">89,95 €</div>
+                                <div class="bundle-product-features">
+                                    <div class="bundle-product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Sicherer Stand durch breite Kufen</span>
+                                    </div>
+                                    <div class="bundle-product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Fördert die motorische Entwicklung</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bundle-product" style="visibility: hidden;">
+                        </div>
+                    </div>
+                    <div class="bundle-summary">
+                        <div class="bundle-features">
+                            <div class="bundle-feature">
+                                <i class="bi bi-shield-check"></i>
+                                <div class="bundle-feature-text">
+                                    <strong>TÜV-geprüfte Qualität</strong>
+                                    <span>Nach höchsten Standards der Sicherheit gefertigt</span>
+                                </div>
+                            </div>
+                            <div class="bundle-feature">
+                                <i class="bi bi-award"></i>
+                                <div class="bundle-feature-text">
+                                    <strong>Made in Germany</strong>
+                                    <span>Handgefertigt in unserer Manufaktur</span>
+                                </div>
+                            </div>
+                            <div class="bundle-feature">
+                                <i class="bi bi-tree"></i>
+                                <div class="bundle-feature-text">
+                                    <strong>FSC-zertifiziertes Holz</strong>
+                                    <span>Nachhaltig produziert aus besten Materialien</span>
+                                </div>
+                            </div>
+                            <div class="bundle-feature">
+                                <i class="bi bi-patch-check"></i>
+                                <div class="bundle-feature-text">
+                                    <strong>2 Jahre Garantie</strong>
+                                    <span>Qualitätsversprechen für Ihr Vertrauen</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bundle-checkout">
+                            <div class="bundle-total">
+                                <span class="bundle-total-label">Ihr Bundle-Preis:</span>
+                                <div class="bundle-total-price">
+                                    <span class="bundle-total-original">399,95 €</span>
+                                    <span class="bundle-total-sale">319,95 €</span>
+                                </div>
+                            </div>
+                            <a href="/bundle/activity" class="bundle-summary-button">
+                                Bundle jetzt bestellen
+                            </a>
+                            <div class="bundle-summary-info">
+                                <span><i class="bi bi-truck"></i> Kostenfreie Lieferung</span>
+                                <span><i class="bi bi-box-seam"></i> In 2-3 Tagen bei dir</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bambino Bundle -->
+                <div class="bundle-row">
+                    <div class="bundle-header">
+                        <img src="https://www.geuther.de/media/62/81/af/1705518720/1118bb_we_mb_33.webp" 
+                             alt="Kleinkind Bambino Bundle" 
+                             class="bundle-header-image">
+                        <div class="bundle-header-overlay"></div>
+                        <div class="bundle-header-content">
+                            <div class="bundle-header-top">
+                                <h3 class="bundle-header-title">Bambino Bundle</h3>
+                                <span class="bundle-header-badge">-20%</span>
+                            </div>
+                            <p class="bundle-header-description">
+                                Das komplette Einrichtungsset für aktive Kleinkinder: Die Bambino Sitzgruppe bietet den perfekten Platz zum Spielen und Basteln, während der Emma Hochstuhl für gemeinsame Mahlzeiten sorgt. Das Schaukelpferd HALLA rundet das Set für aktive Bewegung ab. Ideal für Kinder ab 2 Jahren, die ihre eigene kleine Welt erschaffen möchten.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="bundle-products">
+                        <div class="bundle-product">
+                            <div class="bundle-product-image">
+                                <img src="https://www.geuther.de/media/17/e2/ce/1706262480/2263_2261_NA_MB_03.webp" 
+                                     alt="Bambino Sitzecke">
+                            </div>
+                            <div class="bundle-product-content">
+                                <h4 class="bundle-product-title">Bambino Sitzecke - Set</h4>
+                                <p class="bundle-product-description">
+                                    Komplette Sitzgruppe mit Tisch, Stühlen und Truhenbank
+                                </p>
+                                <div class="bundle-product-availability">
+                                    <div class="availability-status">
+                                        <i class="bi bi-check-circle-fill"></i>
+                                        Sofort verfügbar
+                                    </div>
+                                    <div class="delivery-time">
+                                        <i class="bi bi-truck"></i>
+                                        Lieferzeit: 2-3 Werktage
+                                    </div>
+                                </div>
+                                <div class="bundle-product-price">199,00 €</div>
+                                <div class="bundle-product-colors">
+                                    <div class="color-variant white selected" title="Weiß"></div>
+                                    <div class="color-variant natural" title="Natur"></div>
+                                </div>
+                                <div class="bundle-product-features">
+                                    <div class="bundle-product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Integrierter Stauraum in der Bank</span>
+                                    </div>
+                                    <div class="bundle-product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Kindgerechte Sitzhöhe (32 cm)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bundle-product">
+                            <div class="bundle-product-image">
+                                <img src="https://www.geuther.de/thumbnail/76/c8/12/1724320601/2337_NA_02_1920x1920.jpg" 
+                                     alt="Emma Hochstuhl">
+                            </div>
+                            <div class="bundle-product-content">
+                                <h4 class="bundle-product-title">Emma Hochstuhl</h4>
+                                <p class="bundle-product-description">
+                                    Stapelbarer Hochstuhl aus massivem Buchenholz
+                                </p>
+                                <div class="bundle-product-availability">
+                                    <div class="availability-status">
+                                        <i class="bi bi-check-circle-fill"></i>
+                                        Sofort verfügbar
+                                    </div>
+                                    <div class="delivery-time">
+                                        <i class="bi bi-truck"></i>
+                                        Lieferzeit: 2-3 Werktage
+                                    </div>
+                                </div>
+                                <div class="bundle-product-price">129,95 €</div>
+                                <div class="bundle-product-colors">
+                                    <div class="color-variant natural selected" title="Natur"></div>
+                                </div>
+                                <div class="bundle-product-features">
+                                    <div class="bundle-product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Platzsparend stapelbar</span>
+                                    </div>
+                                    <div class="bundle-product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Sicherheitsbügel inklusive</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bundle-product">
+                            <div class="bundle-product-image">
+                                <img src="https://www.geuther.de/media/8c/82/75/1705518661/1111ko_na_121_mb_3.webp" 
+                                     alt="Schaukelpferd HALLA">
+                            </div>
+                            <div class="bundle-product-content">
+                                <h4 class="bundle-product-title">Schaukelpferd HALLA</h4>
+                                <p class="bundle-product-description">
+                                    Klassisches Schaukelpferd aus Massivholz
+                                </p>
+                                <div class="bundle-product-availability">
+                                    <div class="availability-status">
+                                        <i class="bi bi-check-circle-fill"></i>
+                                        Sofort verfügbar
+                                    </div>
+                                    <div class="delivery-time">
+                                        <i class="bi bi-truck"></i>
+                                        Lieferzeit: 1-2 Werktage
+                                    </div>
+                                </div>
+                                <div class="bundle-product-price">89,95 €</div>
+                                <div class="bundle-product-features">
+                                    <div class="bundle-product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Sicherer Stand durch breite Kufen</span>
+                                    </div>
+                                    <div class="bundle-product-feature">
+                                        <i class="bi bi-check-circle"></i>
+                                        <span>Fördert die motorische Entwicklung</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bundle-product" style="visibility: hidden;">
+                        </div>
+                    </div>
+                    <div class="bundle-summary">
+                        <div class="bundle-features">
+                            <div class="bundle-feature">
+                                <i class="bi bi-shield-check"></i>
+                                <div class="bundle-feature-text">
+                                    <strong>TÜV-geprüfte Qualität</strong>
+                                    <span>Nach höchsten Standards der Sicherheit gefertigt</span>
+                                </div>
+                            </div>
+                            <div class="bundle-feature">
+                                <i class="bi bi-award"></i>
+                                <div class="bundle-feature-text">
+                                    <strong>Made in Germany</strong>
+                                    <span>Handgefertigt in unserer Manufaktur</span>
+                                </div>
+                            </div>
+                            <div class="bundle-feature">
+                                <i class="bi bi-tree"></i>
+                                <div class="bundle-feature-text">
+                                    <strong>FSC-zertifiziertes Holz</strong>
+                                    <span>Nachhaltig produziert aus besten Materialien</span>
+                                </div>
+                            </div>
+                            <div class="bundle-feature">
+                                <i class="bi bi-patch-check"></i>
+                                <div class="bundle-feature-text">
+                                    <strong>2 Jahre Garantie</strong>
+                                    <span>Qualitätsversprechen für Ihr Vertrauen</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bundle-checkout">
+                            <div class="bundle-total">
+                                <span class="bundle-total-label">Ihr Bundle-Preis:</span>
+                                <div class="bundle-total-price">
+                                    <span class="bundle-total-original">418,90 €</span>
+                                    <span class="bundle-total-sale">335,12 €</span>
+                                </div>
+                            </div>
+                            <a href="/bundle/bambino" class="bundle-summary-button">
+                                Bundle jetzt bestellen
+                            </a>
+                            <div class="bundle-summary-info">
+                                <span><i class="bi bi-truck"></i> Kostenfreie Lieferung</span>
+                                <span><i class="bi bi-box-seam"></i> In 2-3 Tagen bei dir</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- USP Section -->
+        <section class="usp-section">
+            <div class="container">
+                <div class="usp-grid">
+                    <div class="usp-card">
+                        <i class="bi bi-percent usp-icon"></i>
+                        <h3 class="usp-title">Bis zu 25% sparen</h3>
+                        <p class="usp-text">Attraktive Preisvorteile bei unseren Produktbundles</p>
+                    </div>
+                    <div class="usp-card">
+                        <i class="bi bi-box-seam usp-icon"></i>
+                        <h3 class="usp-title">Alles aus einer Hand</h3>
+                        <p class="usp-text">Perfekt aufeinander abgestimmte Produktkombinationen</p>
+                    </div>
+                    <div class="usp-card">
+                        <i class="bi bi-truck usp-icon"></i>
+                        <h3 class="usp-title">Kostenloser Versand</h3>
+                        <p class="usp-text">Lieferung aller Bundle-Produkte in einer Sendung</p>
+                    </div>
+                    <div class="usp-card">
+                        <i class="bi bi-shield-check usp-icon"></i>
+                        <h3 class="usp-title">Geprüfte Qualität</h3>
+                        <p class="usp-text">Alle Produkte TÜV-geprüft und nach EN-Norm zertifiziert</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html> 
