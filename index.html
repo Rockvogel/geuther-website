@@ -747,6 +747,10 @@
             align-items: start;
         }
 
+        .versandinfo {
+            margin-left: 9rem;
+        }
+
         /* Gallery Section */
         .product-gallery {
             position: sticky;
@@ -802,6 +806,9 @@
         }
 
         @media (max-width: 992px) {
+            .versandinfo {
+                margin-left: 0rem;
+            }
             .product-hero {
                 grid-template-columns: 1fr;
                 gap: 1rem;
@@ -1319,6 +1326,85 @@
             color: var(--text-color);
             line-height: 1.6;
         }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1000;
+        }
+
+        .modal.active {
+            display: block;
+        }
+
+        .modal .modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+        }
+
+        .modal .modal-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90vw;
+            max-width: 1000px;
+            height: 80vh;
+            background: #FFFFFF;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .modal .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: #F5F1ED;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .modal .modal-close:hover {
+            background: #D4C4B7;
+        }
+
+        .modal .modal-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .modal .modal-container {
+                width: 100vw;
+                height: 100vh;
+                border-radius: 0;
+            }
+
+            .modal .modal-close {
+                top: 1.5rem;
+                right: 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1337,6 +1423,7 @@
                 <li><a href="kategorie.html"><i class="bi bi-grid"></i>Kategorien</a></li>
                 <li><a href="detail.html"><i class="bi bi-box"></i>Produktdetail</a></li>
                 <li><a href="sale.html"><i class="bi bi-tag"></i>Oster-Angebote</a></li>
+                <li><a href="bundle.html"><i class="bi bi-box-seam"></i>Bundles</a></li>
                 <li><a href="werte.html"><i class="bi bi-heart"></i>Unsere Werte</a></li>
                 <li><a href="qualitaet.html"><i class="bi bi-shield-check"></i>Qualität</a></li>
                 <li><a href="geschichte.html"><i class="bi bi-clock-history"></i>Geschichte</a></li>
@@ -1395,7 +1482,8 @@
                 'widerruf.html': 'widerruf.png',
                 'detail.html': 'detail.png',
                 'blogartikel.html': 'blogartikel.png',
-                'sale.html': 'sale.png'
+                'sale.html': 'sale.png',
+                'bundle.html': 'bundle.png'
             };
 
             let lastLoadedPage = 'home.html';
@@ -2508,6 +2596,57 @@
 
         // Countdown starten, wenn die Seite geladen ist
         document.addEventListener('DOMContentLoaded', updateCountdown);
+        
+        // Versandinfo Modal im übergeordneten Fenster
+        const versandinfoModal = document.getElementById('versandinfo-modal');
+        
+        // Höre auf Nachrichten vom iframe
+        window.addEventListener('message', (event) => {
+            if (event.data.action === 'openVersandinfoModal' && versandinfoModal) {
+                versandinfoModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            } else if (event.data.action === 'closeVersandinfoModal' && versandinfoModal) {
+                versandinfoModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+        
+        // Schließen-Button für das Modal
+        const closeModalBtn = document.querySelector('.modal-close');
+        const modalOverlay = document.querySelector('.modal-overlay');
+        
+        if (closeModalBtn) {
+            closeModalBtn.addEventListener('click', () => {
+                if (versandinfoModal) {
+                    versandinfoModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                    
+                    // Sende Nachricht an alle iframes, dass das Modal geschlossen wurde
+                    const iframes = document.querySelectorAll('iframe');
+                    iframes.forEach(iframe => {
+                        try {
+                            iframe.contentWindow.postMessage({ action: 'closeVersandinfoModal' }, '*');
+                        } catch (e) {
+                            console.error('Fehler beim Senden der Nachricht an iframe:', e);
+                        }
+                    });
+                }
+            });
+        }
+        
+        if (modalOverlay) {
+        };
     </script>
+    
+    <!-- Versandinfo Modal -->
+    <div id="versandinfo-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <button class="modal-close">
+                <i class="bi bi-x-lg"></i>
+            </button>
+            <iframe src="versandinfo.html" frameborder="0"></iframe>
+        </div>
+    </div>
 </body>
 </html>

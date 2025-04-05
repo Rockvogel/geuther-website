@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Versand- und Zahlungsinformationen | Geuther</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <style>
+        .versandinfo-popup {
+            font-family: 'Montserrat', sans-serif;
+            max-width: 1000px;
+            width: 100vw;
+            height: 100vh;
+            margin: 0rem auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .versandinfo-popup .content {
+            padding: 2rem;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .versandinfo-popup .section {
+            margin-bottom: 2.5rem;
+        }
+
+        .versandinfo-popup .section:last-child {
+            margin-bottom: 0;
+        }
+
+        .versandinfo-popup h2 {
+            color: var(--geuther-primary);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--geuther-accent);
+            position: relative;
+        }
+
+        .versandinfo-popup .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .versandinfo-popup .info-card {
+            background: var(--geuther-accent);
+            padding: 1.25rem;
+            border-radius: 8px;
+            border: 1px solid var(--geuther-border);
+            height: fit-content;
+        }
+
+        .versandinfo-popup .info-card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .versandinfo-popup .info-card-header i {
+            font-size: 1.25rem;
+            color: var(--geuther-primary);
+        }
+
+        .versandinfo-popup .info-card-header h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0;
+            color: var(--geuther-primary);
+        }
+
+        .versandinfo-popup .info-card-content {
+            font-size: 0.95rem;
+            color: var(--geuther-text);
+        }
+
+        .versandinfo-popup .info-card-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .versandinfo-popup .info-card-content li {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .versandinfo-popup .info-card-content li:last-child {
+            margin-bottom: 0;
+        }
+
+        .versandinfo-popup .info-card-content li::before {
+            content: "•";
+            color: var(--geuther-primary);
+            font-weight: bold;
+        }
+
+        .versandinfo-popup .highlight {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 0.75rem 1rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .versandinfo-popup .highlight i {
+            font-size: 1.25rem;
+        }
+
+        .versandinfo-popup .country-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .versandinfo-popup .country-badge {
+            background: var(--geuther-accent);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--geuther-primary);
+            border: 1px solid var(--geuther-border);
+        }
+
+        @media (max-width: 768px) {
+            .versandinfo-popup {
+                width: 100vw;
+                height: 100vh;
+                border-radius: 0;
+            }
+
+            .versandinfo-popup .content {
+                padding: 1.5rem;
+            }
+
+            .versandinfo-popup .info-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+
+        /* Scrollbar Styling */
+        .versandinfo-popup .content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .versandinfo-popup .content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .versandinfo-popup .content::-webkit-scrollbar-thumb {
+            background: var(--geuther-secondary);
+            border-radius: 4px;
+        }
+
+        .versandinfo-popup .content::-webkit-scrollbar-thumb:hover {
+            background: var(--geuther-primary);
+        }
+    </style>
+</head>
+<body>
+    <div class="versandinfo-popup">
+        <div class="content">
+            <div class="section">
+                <h2>Versandkosten Deutschland</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-card-header">
+                            <i class="bi bi-box-seam"></i>
+                            <h3>Standardversand</h3>
+                        </div>
+                        <div class="info-card-content">
+                            <ul>
+                                <li>Bestellwert unter 80 €: 4,95 €</li>
+                                <li>Bestellwert über 80 €: Kostenlos</li>
+                                <li>Lieferzeit: 1-3 Werktage</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-header">
+                            <i class="bi bi-truck"></i>
+                            <h3>Speditionsversand</h3>
+                        </div>
+                        <div class="info-card-content">
+                            <ul>
+                                <li>Ab 59,99 € je nach Gewicht</li>
+                                <li>Lieferung bis Bordsteinkante</li>
+                                <li>Avisierung per Telefon</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="highlight">
+                    <i class="bi bi-info-circle"></i>
+                    <span>Kostenfreier Versand ab 80 € Bestellwert innerhalb Deutschlands</span>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Zahlungsoptionen Deutschland</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-card-header">
+                            <i class="bi bi-credit-card"></i>
+                            <h3>Sofort verfügbar</h3>
+                        </div>
+                        <div class="info-card-content">
+                            <ul>
+                                <li>PayPal</li>
+                                <li>Kreditkarte (über PayPal)</li>
+                                <li>Sofortüberweisung</li>
+                                <li>SEPA-Lastschrift</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-header">
+                            <i class="bi bi-wallet2"></i>
+                            <h3>Weitere Optionen</h3>
+                        </div>
+                        <div class="info-card-content">
+                            <ul>
+                                <li>Klarna Rechnung (14 Tage)</li>
+                                <li>Vorkasse (3% Rabatt)</li>
+                                <li>Rechnung (nur für Firmenkunden)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Versandkosten EU-Ausland</h2>
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <i class="bi bi-globe-europe-africa"></i>
+                        <h3>Lieferung in die EU</h3>
+                    </div>
+                    <div class="info-card-content">
+                        <p>Wir versenden in folgende europäische Länder:</p>
+                        <ul style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.5rem; margin-top: 0.75rem;">
+                            <li>Österreich</li>
+                            <li>Belgien</li>
+                            <li>Dänemark</li>
+                            <li>Frankreich</li>
+                            <li>Italien</li>
+                            <li>Luxemburg</li>
+                            <li>Niederlande</li>
+                            <li>Polen</li>
+                            <li>Tschechien</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-card-header">
+                            <i class="bi bi-box-seam"></i>
+                            <h3>Paketversand EU</h3>
+                        </div>
+                        <div class="info-card-content">
+                            <ul>
+                                <li>AT, BE, LU, NL, FR: ab 4,95 €</li>
+                                <li>DK, IT, PL, CZ: ab 9,95 €</li>
+                                <li>Lieferzeit: 2-5 Werktage</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-header">
+                            <i class="bi bi-truck"></i>
+                            <h3>Speditionsversand EU</h3>
+                        </div>
+                        <div class="info-card-content">
+                            <ul>
+                                <li>LU, PL, CZ: ab 74,99 €</li>
+                                <li>BE, IT, AT, NL: ab 79,99 €</li>
+                                <li>DK, FR: ab 97,99 €</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Zahlungsoptionen EU-Ausland</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-card-header">
+                            <i class="bi bi-credit-card"></i>
+                            <h3>Internationale Zahlungen</h3>
+                        </div>
+                        <div class="info-card-content">
+                            <ul>
+                                <li>PayPal</li>
+                                <li>Kreditkarte</li>
+                                <li>Sofortüberweisung</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-card-header">
+                            <i class="bi bi-wallet2"></i>
+                            <h3>Länderspezifische Optionen</h3>
+                        </div>
+                        <div class="info-card-content">
+                            <ul>
+                                <li>iDEAL (Niederlande)</li>
+                                <li>Klarna (ausgewählte Länder)</li>
+                                <li>Vorkasse (3% Rabatt)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

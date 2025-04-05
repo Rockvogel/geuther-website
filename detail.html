@@ -7,6 +7,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="all.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <script>
+        // Globale Funktion zum Öffnen des Versandinfo-Modals
+        function openVersandinfoModal() {
+            const modal = document.getElementById('versandinfo-modal');
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                // Wenn wir in einem iframe sind, öffne das Modal im übergeordneten Fenster
+                if (window.parent !== window) {
+                    window.parent.postMessage({ action: 'openVersandinfoModal' }, '*');
+                }
+            }
+            return false;
+        }
+    </script>
     <style>
         :root {
             --geuther-primary: #42584A;
@@ -189,6 +205,9 @@
             opacity: 0.6;
             margin: 0;
             white-space: nowrap;
+        }
+        .versandinfo {
+            margin-left: 10rem;
         }
 
         /* Key Features */
@@ -512,6 +531,10 @@
             .color-options {
                 justify-content: flex-end;
             }
+
+            .versandinfo {
+                margin-left: 0rem;
+            }
         }
 
         @media (max-width: 768px) {
@@ -582,7 +605,8 @@
             }
 
             .availability-section {
-                flex-direction: row;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
                 align-items: center;
                 gap: 1rem;
             }
@@ -603,9 +627,9 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: var(--geuther-bg);
+            background: rgba(245,241,237,0.95);
             padding: 1rem;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
             z-index: 1000;
             transform: translateY(100%);
             transition: transform 0.3s ease;
@@ -632,6 +656,85 @@
         }
 
         /* Weitere Styles folgen... */
+
+        /* Modal Styles */
+        #versandinfo-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1000;
+        }
+
+        #versandinfo-modal.active {
+            display: block;
+        }
+
+        #versandinfo-modal .modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+        }
+
+        #versandinfo-modal .modal-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90vw;
+            max-width: 900px;
+            height: 80vh;
+            background: var(--geuther-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        #versandinfo-modal .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: var(--geuther-accent);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        #versandinfo-modal .modal-close:hover {
+            background: var(--geuther-secondary);
+        }
+
+        #versandinfo-modal .modal-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 12px;
+        }
+
+        @media (max-width: 768px) {
+            #versandinfo-modal .modal-container {
+                width: 100vw;
+                height: 100vh;
+                border-radius: 0;
+            }
+
+            #versandinfo-modal .modal-close {
+                top: 1.5rem;
+                right: 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -735,8 +838,23 @@
                                 <i class="bi bi-truck-front"></i>
                                 In ca. 2-3 Tagen bei dir
                             </div>
+                            <div class="versandinfo">
+                                <i class="bi bi-info-circle"></i>
+                                <a href="javascript:void(0)" class="open-versandinfo" onclick="openVersandinfoModal()">Versandinfo</a>
+                            </div>
                         </div>
                     </div>                      
+
+                    <!-- Versandinfo Modal -->
+                    <div id="versandinfo-modal" class="modal">
+                        <div class="modal-overlay"></div>
+                        <div class="modal-container">
+                            <button class="modal-close">
+                                <i class="bi bi-x-lg"></i>
+                            </button>
+                            <iframe src="versandinfo.html" frameborder="0"></iframe>
+                        </div>
+                    </div>
 
                     <!-- Color Selection -->
                     <div class="color-selection">
@@ -1635,6 +1753,70 @@
                     };
 
                     syncElements();
+
+                    // Versandinfo Modal
+                    const modal = document.getElementById('versandinfo-modal');
+                    const openModalBtn = document.querySelector('.open-versandinfo');
+                    const closeModalBtn = document.querySelector('.modal-close');
+                    const modalOverlay = document.querySelector('.modal-overlay');
+
+                    // Funktion zum Öffnen des Modals
+                    function openVersandinfoModal() {
+                        if (modal) {
+                            modal.classList.add('active');
+                            document.body.style.overflow = 'hidden';
+                            
+                            // Wenn wir in einem iframe sind, öffne das Modal im übergeordneten Fenster
+                            if (window.parent !== window) {
+                                window.parent.postMessage({ action: 'openVersandinfoModal' }, '*');
+                            }
+                        }
+                    }
+
+                    if (openModalBtn) {
+                        openModalBtn.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            openVersandinfoModal();
+                        });
+                    }
+
+                    const closeModal = () => {
+                        if (modal) {
+                            modal.classList.remove('active');
+                            document.body.style.overflow = '';
+                            
+                            // Wenn wir in einem iframe sind, schließe das Modal im übergeordneten Fenster
+                            if (window.parent !== window) {
+                                window.parent.postMessage({ action: 'closeVersandinfoModal' }, '*');
+                            }
+                        }
+                    };
+
+                    if (closeModalBtn) {
+                        closeModalBtn.addEventListener('click', closeModal);
+                    }
+
+                    if (modalOverlay) {
+                        modalOverlay.addEventListener('click', closeModal);
+                    }
+
+                    // Schließen mit Escape-Taste
+                    document.addEventListener('keydown', (e) => {
+                        if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
+                            closeModal();
+                        }
+                    });
+                    
+                    // Höre auf Nachrichten vom übergeordneten Fenster
+                    window.addEventListener('message', (event) => {
+                        if (event.data.action === 'openVersandinfoModal' && modal) {
+                            modal.classList.add('active');
+                            document.body.style.overflow = 'hidden';
+                        } else if (event.data.action === 'closeVersandinfoModal' && modal) {
+                            modal.classList.remove('active');
+                            document.body.style.overflow = '';
+                        }
+                    });
                 });
             </script>
         </div>
