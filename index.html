@@ -1633,6 +1633,228 @@
                     });
                 }
 
+                // Initialize Product Finder
+                const finderOptions = document.querySelectorAll('.finder-option');
+                const nextButton = document.getElementById('nextStep');
+                const prevButton = document.getElementById('prevStep');
+                let currentStep = 1;
+
+                if (finderOptions.length > 0 && nextButton && prevButton) {
+                    // Initial button state
+                    nextButton.disabled = true;
+
+                    // Funktion zum Überprüfen der Auswahl
+                    function checkSelection() {
+                        const currentGroup = document.getElementById(`step${currentStep}`);
+                        const hasSelection = currentGroup.querySelector('.finder-option.selected') !== null;
+                        nextButton.disabled = !hasSelection;
+                    }
+
+                    // Produktserien-Daten
+                    const productSeries = {
+                        'Hochstuhl': [
+                            { title: 'Swing', description: 'Der moderne Hochstuhl' },
+                            { title: 'Family', description: 'Der klassische Hochstuhl' },
+                            { title: 'Tamino', description: 'Der kompakte Hochstuhl' }
+                        ],
+                        'Sicherheitsgitter': [
+                            { title: 'Easylock', description: 'Das klassische Türschutzgitter' },
+                            { title: 'Vario Safe', description: 'Das flexible Schutzgitter' },
+                            { title: 'Plus', description: 'Das erweiterte Schutzgitter' }
+                        ],
+                        'Laufgitter': [
+                            { title: 'Octo-Park', description: 'Das achteckige Laufgitter' },
+                            { title: 'Euro-Parc', description: 'Das variable Laufgitter' },
+                            { title: 'Playpen', description: 'Das große Laufgitter' }
+                        ],
+                        'Kinderbett': [
+                            { title: 'Safari', description: 'Das moderne Kinderbett' },
+                            { title: 'Dream', description: 'Das klassische Kinderbett' },
+                            { title: 'Cottage', description: 'Das gemütliche Kinderbett' }
+                        ]
+                    };
+
+                    // Modell-Daten
+                    const productModels = {
+                        'Swing': [
+                            { model: '2360', description: 'Swing Weiß/Natur' },
+                            { model: '2361', description: 'Swing Buche/Natur' },
+                            { model: '2362', description: 'Swing Grau/Weiß' }
+                        ],
+                        'Family': [
+                            { model: '2510', description: 'Family Classic Buche' },
+                            { model: '2511', description: 'Family Plus Weiß' },
+                            { model: '2512', description: 'Family XL Natur' }
+                        ],
+                        'Tamino': [
+                            { model: '2420', description: 'Tamino Basic Weiß' },
+                            { model: '2421', description: 'Tamino Plus Buche' }
+                        ],
+                        'Easylock': [
+                            { model: '4792', description: 'Easylock Wood 84.5-92.5 cm' },
+                            { model: '4793', description: 'Easylock Metal 84.5-92.5 cm' }
+                        ],
+                        'Vario Safe': [
+                            { model: '2785', description: 'Vario Safe 74-113 cm' },
+                            { model: '2786', description: 'Vario Safe Plus 74-113 cm' }
+                        ],
+                        'Plus': [
+                            { model: '2733', description: 'Plus Weiß 95-135 cm' },
+                            { model: '2734', description: 'Plus Silber 95-135 cm' }
+                        ],
+                        'Octo-Park': [
+                            { model: '2235', description: 'Octo-Park Classic Natur' },
+                            { model: '2236', description: 'Octo-Park Plus Weiß' }
+                        ],
+                        'Euro-Parc': [
+                            { model: '2244', description: 'Euro-Parc 97x97 cm Natur' },
+                            { model: '2245', description: 'Euro-Parc 97x97 cm Weiß' }
+                        ],
+                        'Playpen': [
+                            { model: '2256', description: 'Playpen XL 102x102 cm' },
+                            { model: '2257', description: 'Playpen XXL 122x122 cm' }
+                        ],
+                        'Safari': [
+                            { model: '1175', description: 'Safari 70x140 cm Weiß' },
+                            { model: '1176', description: 'Safari 70x140 cm Natur' }
+                        ],
+                        'Dream': [
+                            { model: '1162', description: 'Dream 70x140 cm Buche' },
+                            { model: '1163', description: 'Dream 70x140 cm Weiß' }
+                        ],
+                        'Cottage': [
+                            { model: '1185', description: 'Cottage 70x140 cm Weiß' },
+                            { model: '1186', description: 'Cottage 70x140 cm Grau' }
+                        ]
+                    };
+
+                    finderOptions.forEach(option => {
+                        option.addEventListener('click', function() {
+                            // Remove selected class from all options in the same group
+                            const parentGroup = this.closest('.finder-group');
+                            parentGroup.querySelectorAll('.finder-option').forEach(opt => {
+                                opt.classList.remove('selected');
+                            });
+                            // Add selected class to clicked option
+                            this.classList.add('selected');
+                            // Check selection after click
+                            checkSelection();
+                        });
+                    });
+
+                    // Funktion zum Aktualisieren der Serien basierend auf der Produktgruppe
+                    function updateSeries() {
+                        const selectedProduct = document.querySelector('#step1 .finder-option.selected');
+                        if (!selectedProduct) return;
+
+                        const productType = selectedProduct.querySelector('.finder-option-title').textContent;
+                        const seriesContainer = document.querySelector('#step2 .finder-options');
+                        seriesContainer.innerHTML = ''; // Leere den Container
+
+                        const series = productSeries[productType] || [];
+                        series.forEach(item => {
+                            const seriesElement = document.createElement('div');
+                            seriesElement.className = 'finder-option';
+                            seriesElement.innerHTML = `
+                                <h4 class="finder-option-title">${item.title}</h4>
+                                <p class="finder-option-description">${item.description}</p>
+                            `;
+                            seriesContainer.appendChild(seriesElement);
+                        });
+
+                        // Neue Event-Listener für die neuen Serien-Optionen
+                        const newSeriesOptions = seriesContainer.querySelectorAll('.finder-option');
+                        newSeriesOptions.forEach(option => {
+                            option.addEventListener('click', function() {
+                                newSeriesOptions.forEach(opt => opt.classList.remove('selected'));
+                                this.classList.add('selected');
+                                // Check selection after click
+                                checkSelection();
+                            });
+                        });
+                        
+                        // Reset button state for new step
+                        nextButton.disabled = true;
+                    }
+
+                    // Funktion zum Aktualisieren der Modelle basierend auf der Serie
+                    function updateModels() {
+                        const selectedSeries = document.querySelector('#step2 .finder-option.selected');
+                        if (!selectedSeries) return;
+
+                        const seriesType = selectedSeries.querySelector('.finder-option-title').textContent;
+                        const modelsContainer = document.querySelector('#step3 .finder-options');
+                        modelsContainer.innerHTML = ''; // Leere den Container
+
+                        const models = productModels[seriesType] || [];
+                        models.forEach(item => {
+                            const modelElement = document.createElement('div');
+                            modelElement.className = 'finder-option';
+                            modelElement.innerHTML = `
+                                <h4 class="finder-option-title">${item.model}</h4>
+                                <p class="finder-option-description">${item.description}</p>
+                            `;
+                            modelsContainer.appendChild(modelElement);
+                        });
+
+                        // Neue Event-Listener für die Modell-Optionen
+                        const newModelOptions = modelsContainer.querySelectorAll('.finder-option');
+                        newModelOptions.forEach(option => {
+                            option.addEventListener('click', function() {
+                                newModelOptions.forEach(opt => opt.classList.remove('selected'));
+                                this.classList.add('selected');
+                                // Check selection after click
+                                checkSelection();
+                            });
+                        });
+                        
+                        // Reset button state for new step
+                        nextButton.disabled = true;
+                    }
+
+                    nextButton.addEventListener('click', function() {
+                        const currentGroup = document.getElementById(`step${currentStep}`);
+                        const nextGroup = document.getElementById(`step${currentStep + 1}`);
+                        
+                        if (nextGroup) {
+                            // Aktualisiere Serien beim Übergang zu Schritt 2
+                            if (currentStep === 1) {
+                                updateSeries();
+                            }
+                            // Aktualisiere Modelle beim Übergang zu Schritt 3
+                            else if (currentStep === 2) {
+                                updateModels();
+                            }
+                            
+                            currentGroup.style.display = 'none';
+                            nextGroup.style.display = 'block';
+                            currentStep++;
+                            prevButton.style.display = 'block';
+                            
+                            if (currentStep === 3) {
+                                nextButton.textContent = 'Ersatzteile anzeigen';
+                            }
+                        }
+                    });
+
+                    prevButton.addEventListener('click', function() {
+                        const currentGroup = document.getElementById(`step${currentStep}`);
+                        const prevGroup = document.getElementById(`step${currentStep - 1}`);
+                        
+                        if (prevGroup) {
+                            currentGroup.style.display = 'none';
+                            prevGroup.style.display = 'block';
+                            currentStep--;
+                            
+                            if (currentStep === 1) {
+                                prevButton.style.display = 'none';
+                            }
+                            
+                            nextButton.textContent = 'Weiter';
+                        }
+                    });
+                }
+
                 // Initialize Product Gallery
                 function initializeProductGallery() {
                     const mainImage = document.querySelector('.gallery-main img');
