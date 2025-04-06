@@ -2863,8 +2863,96 @@
         
         if (modalOverlay) {
         };
+
+        // Produktfinder Funktionalität
+        document.addEventListener('DOMContentLoaded', function() {
+            // Produktfinder Formular
+            const productFinderForm = document.getElementById('productFinderForm');
+            if (productFinderForm) {
+                productFinderForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Sammle die ausgewählten Werte
+                    const location = document.querySelector('input[name="location"]:checked')?.value;
+                    const mounting = document.querySelector('input[name="mounting"]:checked')?.value;
+                    const material = document.querySelector('input[name="material"]:checked')?.value;
+                    
+                    // Hier können Sie die Logik für die Produktempfehlung implementieren
+                    let recommendedProduct = determineRecommendedProduct(location, mounting, material);
+                    
+                    // Zeige das Ergebnis an
+                    displayRecommendation(recommendedProduct);
+                });
+            }
+
+            // Funktion zur Bestimmung des empfohlenen Produkts
+            function determineRecommendedProduct(location, mounting, material) {
+                // Beispiel-Logik für Produktempfehlungen
+                if (location === 'door' && mounting === 'screw' && material === 'wood') {
+                    return {
+                        name: 'Türschutzgitter 2732+',
+                        description: 'Perfekt für Türöffnungen, mit Schraubbefestigung aus hochwertigem Holz',
+                        price: '89,99 €',
+                        image: 'path/to/image.jpg',
+                        link: '/produkt/tuerschutzgitter-2732'
+                    };
+                } else if (location === 'stairs' && mounting === 'clamp' && material === 'metal') {
+                    return {
+                        name: 'Treppenschutzgitter Easylock Plus',
+                        description: 'Ideal für Treppen, mit Klemmbefestigung aus stabilem Metall',
+                        price: '99,99 €',
+                        image: 'path/to/image.jpg',
+                        link: '/produkt/treppenschutzgitter-easylock-plus'
+                    };
+                }
+                // Weitere Kombinationen hier...
+                
+                return {
+                    name: 'Easylock Wood Plus',
+                    description: 'Universelles Schutzgitter für verschiedene Einsatzbereiche',
+                    price: '79,99 €',
+                    image: 'path/to/image.jpg',
+                    link: '/produkt/easylock-wood-plus'
+                };
+            }
+
+            // Funktion zum Anzeigen der Empfehlung
+            function displayRecommendation(product) {
+                const resultContainer = document.getElementById('productFinderResult');
+                if (resultContainer) {
+                    resultContainer.innerHTML = `
+                        <div class="recommended-product">
+                            <h3>${product.name}</h3>
+                            <p>${product.description}</p>
+                            <p class="price">${product.price}</p>
+                            <a href="${product.link}" class="product-button">Zum Produkt</a>
+                        </div>
+                    `;
+                    resultContainer.style.display = 'block';
+                    resultContainer.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+
+            // Radio Button Gruppen Funktionalität
+            const radioGroups = document.querySelectorAll('.radio-group');
+            radioGroups.forEach(group => {
+                const radioButtons = group.querySelectorAll('input[type="radio"]');
+                radioButtons.forEach(radio => {
+                    radio.addEventListener('change', function() {
+                        // Entferne die aktive Klasse von allen Labels in der Gruppe
+                        group.querySelectorAll('label').forEach(label => {
+                            label.classList.remove('active');
+                        });
+                        // Füge die aktive Klasse zum ausgewählten Label hinzu
+                        if (this.checked) {
+                            this.parentElement.classList.add('active');
+                        }
+                    });
+                });
+            });
+        });
     </script>
-    
+
     <!-- Versandinfo Modal -->
     <div id="versandinfo-modal" class="modal">
         <div class="modal-overlay"></div>
