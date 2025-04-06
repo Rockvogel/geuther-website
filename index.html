@@ -2775,123 +2775,124 @@
             const prevButton = document.getElementById('prevStep');
             let currentStep = 1;
             
-            // Initial button state
-            nextButton.disabled = true;
+            if (wizardOptions.length > 0 && nextButton && prevButton) {
+                // Initial button state
+                nextButton.disabled = true;
 
-            // Funktion zum Überprüfen der Auswahl
-            function checkSelection() {
-                const currentGroup = document.getElementById(`step${currentStep}`);
-                const hasSelection = currentGroup.querySelector('.wizard-option.selected') !== null;
-                nextButton.disabled = !hasSelection;
-            }
+                // Funktion zum Überprüfen der Auswahl
+                function checkSelection() {
+                    const currentGroup = document.getElementById(`step${currentStep}`);
+                    const hasSelection = currentGroup.querySelector('.wizard-option.selected') !== null;
+                    nextButton.disabled = !hasSelection;
+                }
 
-            wizardOptions.forEach(option => {
-                option.addEventListener('click', function() {
-                    // Remove selected class from all options in the same group
-                    const parentGroup = this.closest('.wizard-group');
-                    parentGroup.querySelectorAll('.wizard-option').forEach(opt => {
-                        opt.classList.remove('selected');
+                wizardOptions.forEach(option => {
+                    option.addEventListener('click', function() {
+                        // Remove selected class from all options in the same group
+                        const parentGroup = this.closest('.wizard-group');
+                        parentGroup.querySelectorAll('.wizard-option').forEach(opt => {
+                            opt.classList.remove('selected');
+                        });
+                        // Add selected class to clicked option
+                        this.classList.add('selected');
+                        // Check selection after click
+                        checkSelection();
                     });
-                    // Add selected class to clicked option
-                    this.classList.add('selected');
-                    // Check selection after click
-                    checkSelection();
                 });
-            });
 
-            nextButton.addEventListener('click', function() {
-                const currentGroup = document.getElementById(`step${currentStep}`);
-                const nextGroup = document.getElementById(`step${currentStep + 1}`);
-                
-                if (nextGroup) {
-                    currentGroup.style.display = 'none';
-                    nextGroup.style.display = 'block';
-                    currentStep++;
-                    prevButton.style.display = 'block';
+                nextButton.addEventListener('click', function() {
+                    const currentGroup = document.getElementById(`step${currentStep}`);
+                    const nextGroup = document.getElementById(`step${currentStep + 1}`);
                     
-                    if (currentStep === 4) {
-                        nextButton.textContent = 'Empfehlungen anzeigen';
+                    if (nextGroup) {
+                        currentGroup.style.display = 'none';
+                        nextGroup.style.display = 'block';
+                        currentStep++;
+                        prevButton.style.display = 'block';
+                        
+                        if (currentStep === 4) {
+                            nextButton.textContent = 'Empfehlungen anzeigen';
+                        }
+
+                        // Reset button state for new step
+                        nextButton.disabled = true;
+                    } else {
+                        // Wenn es keine weitere Gruppe gibt, zeige das Ergebnis
+                        showResult();
+                    }
+                });
+
+                prevButton.addEventListener('click', function() {
+                    const currentGroup = document.getElementById(`step${currentStep}`);
+                    const prevGroup = document.getElementById(`step${currentStep - 1}`);
+                    
+                    if (prevGroup) {
+                        currentGroup.style.display = 'none';
+                        prevGroup.style.display = 'block';
+                        currentStep--;
+                        
+                        if (currentStep === 1) {
+                            prevButton.style.display = 'none';
+                        }
+                        
+                        nextButton.textContent = 'Weiter';
+                        // Reset selection check for new step
+                        checkSelection();
+                    }
+                });
+
+                function showResult() {
+                    // Sammle die ausgewählten Optionen
+                    const location = document.querySelector('#step1 .wizard-option.selected .wizard-option-title')?.textContent;
+                    const mounting = document.querySelector('#step2 .wizard-option.selected .wizard-option-title')?.textContent;
+                    const width = document.querySelector('#step3 .wizard-option.selected .wizard-option-title')?.textContent;
+                    const material = document.querySelector('#step4 .wizard-option.selected .wizard-option-title')?.textContent;
+
+                    // Bestimme das empfohlene Produkt
+                    let recommendedProduct;
+                    if (location === 'Türdurchgang' && mounting === 'Schrauben (mit Bohren)' && material === 'Holz') {
+                        recommendedProduct = {
+                            name: 'Türschutzgitter 2732+',
+                            description: 'Perfekt für Türöffnungen, mit Schraubbefestigung aus hochwertigem Holz',
+                            price: '89,99 €',
+                            image: 'https://www.geuther.de/media/dc/4b/51/1724842241/2732_NA_01.jpg',
+                            link: '/produkt/tuerschutzgitter-2732'
+                        };
+                    } else if (location === 'Treppe' && mounting === 'Klemmen (ohne Bohren)' && material === 'Metall') {
+                        recommendedProduct = {
+                            name: 'Treppenschutzgitter Easylock Plus',
+                            description: 'Ideal für Treppen, mit Klemmbefestigung aus stabilem Metall',
+                            price: '99,99 €',
+                            image: 'https://www.geuther.de/media/d8/56/8c/1705518400/4792-_we_1.webp',
+                            link: '/produkt/easylock-plus-metall-4792'
+                        };
+                    } else {
+                        recommendedProduct = {
+                            name: 'Easylock Wood Plus',
+                            description: 'Universelles Schutzgitter für verschiedene Einsatzbereiche',
+                            price: '79,99 €',
+                            image: 'https://www.geuther.de/media/d4/88/69/1705518537/2793-_02.webp',
+                            link: '/produkt/easylock-wood-plus-2793'
+                        };
                     }
 
-                    // Reset button state for new step
-                    nextButton.disabled = true;
-                } else {
-                    // Hier können wir später die Empfehlungen anzeigen
-                    showResult();
-                }
-            });
-
-            prevButton.addEventListener('click', function() {
-                const currentGroup = document.getElementById(`step${currentStep}`);
-                const prevGroup = document.getElementById(`step${currentStep - 1}`);
-                
-                if (prevGroup) {
-                    currentGroup.style.display = 'none';
-                    prevGroup.style.display = 'block';
-                    currentStep--;
-                    
-                    if (currentStep === 1) {
-                        prevButton.style.display = 'none';
-                    }
-                    
-                    nextButton.textContent = 'Weiter';
-                    
-                    // Überprüfe die Auswahl im vorherigen Schritt
-                    checkSelection();
-                }
-            });
-
-            function showResult() {
-                // Sammle die ausgewählten Optionen
-                const location = document.querySelector('#step1 .wizard-option.selected .wizard-option-title')?.textContent;
-                const mounting = document.querySelector('#step2 .wizard-option.selected .wizard-option-title')?.textContent;
-                const width = document.querySelector('#step3 .wizard-option.selected .wizard-option-title')?.textContent;
-                const material = document.querySelector('#step4 .wizard-option.selected .wizard-option-title')?.textContent;
-
-                // Bestimme das empfohlene Produkt
-                let recommendedProduct;
-                if (location === 'Türdurchgang' && mounting === 'Schrauben (mit Bohren)' && material === 'Holz') {
-                    recommendedProduct = {
-                        name: 'Türschutzgitter 2732+',
-                        description: 'Perfekt für Türöffnungen, mit Schraubbefestigung aus hochwertigem Holz',
-                        price: '89,99 €',
-                        image: 'https://www.geuther.de/media/dc/4b/51/1724842241/2732_NA_01.jpg',
-                        link: '/produkt/tuerschutzgitter-2732'
-                    };
-                } else if (location === 'Treppe' && mounting === 'Klemmen (ohne Bohren)' && material === 'Metall') {
-                    recommendedProduct = {
-                        name: 'Treppenschutzgitter Easylock Plus',
-                        description: 'Ideal für Treppen, mit Klemmbefestigung aus stabilem Metall',
-                        price: '99,99 €',
-                        image: 'https://www.geuther.de/media/d8/56/8c/1705518400/4792-_we_1.webp',
-                        link: '/produkt/easylock-plus-metall-4792'
-                    };
-                } else {
-                    recommendedProduct = {
-                        name: 'Easylock Wood Plus',
-                        description: 'Universelles Schutzgitter für verschiedene Einsatzbereiche',
-                        price: '79,99 €',
-                        image: 'https://www.geuther.de/media/d4/88/69/1705518537/2793-_02.webp',
-                        link: '/produkt/easylock-wood-plus-2793'
-                    };
-                }
-
-                // Zeige das Ergebnis an
-                const resultContainer = document.getElementById('productFinderResult');
-                if (resultContainer) {
-                    resultContainer.innerHTML = `
-                        <div class="recommended-product">
-                            <img src="${recommendedProduct.image}" alt="${recommendedProduct.name}" class="product-image">
-                            <div class="product-info">
-                                <h3>${recommendedProduct.name}</h3>
-                                <p>${recommendedProduct.description}</p>
-                                <p class="price">${recommendedProduct.price}</p>
-                                <a href="${recommendedProduct.link}" class="product-button">Zum Produkt</a>
+                    // Zeige das Ergebnis an
+                    const resultContainer = document.getElementById('productFinderResult');
+                    if (resultContainer) {
+                        resultContainer.innerHTML = `
+                            <div class="recommended-product">
+                                <img src="${recommendedProduct.image}" alt="${recommendedProduct.name}" class="product-image">
+                                <div class="product-info">
+                                    <h3>${recommendedProduct.name}</h3>
+                                    <p>${recommendedProduct.description}</p>
+                                    <p class="price">${recommendedProduct.price}</p>
+                                    <a href="${recommendedProduct.link}" class="product-button">Zum Produkt</a>
+                                </div>
                             </div>
-                        </div>
-                    `;
-                    resultContainer.style.display = 'block';
-                    resultContainer.scrollIntoView({ behavior: 'smooth' });
+                        `;
+                        resultContainer.style.display = 'block';
+                        resultContainer.scrollIntoView({ behavior: 'smooth' });
+                    }
                 }
             }
         });
