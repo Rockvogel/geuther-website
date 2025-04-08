@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tür- und Treppenschutzgitter für Kleinkinder | Geuther</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --geuther-primary: #42584A;
+            --geuther-secondary: #D4C4B7;
+            --geuther-text: #333333;
+            --geuther-bg: #FFFFFF;
+            --geuther-accent: #F5F1ED;
+            --geuther-border: #E5E5E5;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--geuther-text);
+            background-color: var(--geuther-bg);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .development-section {
+            padding: 4rem 0;
+            background-color: var(--geuther-bg);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--geuther-text);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 2rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .milestones-container {
+            flex-grow: 1;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--geuther-primary);
+            opacity: 0.2;
+        }
+
+        .milestone {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        .milestone::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 8px;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            background-color: var(--geuther-primary);
+            border: 2px solid var(--geuther-bg);
+            box-shadow: 0 0 0 2px var(--geuther-primary);
+        }
+
+        .milestone-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .milestone-text {
+            color: var(--geuther-text);
+            line-height: 1.6;
+        }
+
+        .info-boxes-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 2rem;
+        }
+
+        .info-box, .safety-box {
+            padding: 2rem;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-box {
+            background-color: var(--geuther-primary);
+            border: 1px solid var(--geuther-border);
+            color: var(--geuther-bg);
+        }
+
+        .safety-box {
+            background-color: #FBE9E7;
+            border: 1px solid #FFCCBC;
+        }
+
+        .info-box-title, .safety-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-box-title {
+            color: var(--geuther-bg);
+        }
+
+        .safety-title {
+            color: #D84315;
+        }
+
+        .info-box ul, .safety-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .info-box li, .safety-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .info-box li i {
+            color: var(--geuther-bg);
+            font-size: 1.25rem;
+            margin-top: 0.25rem;
+        }
+
+        .safety-item i {
+            color: #D84315;
+            font-size: 1.25rem;
+            margin-top: 0.25rem;
+        }
+
+        .safety-item p {
+            color: #333333;
+            margin: 0;
+        }
+
+        .visual-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .feature-image {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            aspect-ratio: 16/9;
+        }
+
+        .feature-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        @media (max-width: 992px) {
+            .timeline-grid,
+            .info-boxes-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .development-section {
+                padding: 3rem 0;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .timeline {
+                padding-left: 1.5rem;
+            }
+
+            .milestone::before {
+                left: -1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="development-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Wann werden Schutzgitter benötigt?</h2>
+                <p class="section-subtitle">Meilensteine in der Entwicklung Ihres Kindes und der richtige Zeitpunkt für Schutzmaßnahmen</p>
+            </div>
+
+            <div class="timeline-grid">
+                <div class="timeline">
+                    <div class="milestones-container">
+                        <div class="milestone">
+                            <h3 class="milestone-title">6-9 Monate</h3>
+                            <p class="milestone-text">
+                                Sobald Ihr Kind anfängt zu krabbeln, wird die Welt zum Entdeckungsort. 
+                                In dieser Phase wird die Sicherung gefährlicher Bereiche wichtig.
+                            </p>
+                        </div>
+
+                        <div class="milestone">
+                            <h3 class="milestone-title">9-12 Monate</h3>
+                            <p class="milestone-text">
+                                Mit dem Hochziehen und ersten Stehversuchen werden Treppen, Kamine 
+                                und andere erhöhte Bereiche zur potenziellen Gefahr.
+                            </p>
+                        </div>
+
+                        <div class="milestone">
+                            <h3 class="milestone-title">12-24 Monate</h3>
+                            <p class="milestone-text">
+                                Mit den ersten Schritten und zunehmender Mobilität ist ein umfassender 
+                                Schutz durch Tür- und Treppengitter unerlässlich.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="visual-content">
+                    <div class="feature-image">
+                        <img src="https://www.geuther.de/media/ba/68/ae/1706262351/2273_NA_MB_10.webp" 
+                             alt="Kind am Schutzgitter">
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-boxes-grid">
+                <div class="info-box">
+                    <h4 class="info-box-title">Wichtig zu wissen:</h4>
+                    <ul>
+                        <li>
+                            <i class="bi bi-exclamation-triangle"></i>
+                            <span>Schutzgitter sind für Kinder bis 24 Monate konzipiert - danach können sie meist darüber klettern</span>
+                        </li>
+                        <li>
+                            <i class="bi bi-rulers"></i>
+                            <span>Die richtige Höhe des Schutzgitters sollte mindestens 65 cm betragen</span>
+                        </li>
+                        <li>
+                            <i class="bi bi-tools"></i>
+                            <span>Achten Sie auf die korrekte Montage gemäß der Montageanleitung</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="safety-box">
+                    <h3 class="safety-title">Unfallprävention ist wichtig:</h3>
+                    <div class="safety-list">
+                        <div class="safety-item">
+                            <i class="bi bi-check-circle"></i>
+                            <p>Stürze gehören zu den häufigsten Unfallursachen bei Kleinkindern</p>
+                        </div>
+                        <div class="safety-item">
+                            <i class="bi bi-check-circle"></i>
+                            <p>Treppen und ungesicherte Räume stellen ein besonderes Risiko dar</p>
+                        </div>
+                        <div class="safety-item">
+                            <i class="bi bi-check-circle"></i>
+                            <p>Schutzgitter ergänzen die Aufsicht durch Erwachsene</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

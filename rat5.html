@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Montagemethoden im Vergleich | Geuther</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --geuther-primary: #42584A;
+            --geuther-secondary: #D4C4B7;
+            --geuther-text: #333333;
+            --geuther-bg: #FFFFFF;
+            --geuther-accent: #F5F1ED;
+            --geuther-border: #E5E5E5;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--geuther-text);
+            background-color: var(--geuther-bg);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-wrapper {
+            background: transparent;
+            box-shadow: none;
+            border-radius: 0;
+            overflow: visible;
+            margin: 0;
+        }
+
+        .comparison-section {
+            background-color: var(--geuther-accent);
+            padding: 2rem 0;
+        }
+
+        .third-section-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            background-color: var(--geuther-accent);
+            padding: 2rem 0;
+        }
+
+        .third-section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 1rem;
+        }
+
+        .third-section-subtitle {
+            font-size: 1.1rem;
+            color: var(--geuther-text);
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 5rem;
+            margin-bottom: 3rem;
+            padding: 0 2rem;
+        }
+
+        .comparison-box {
+            background: var(--geuther-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .screw-box {
+            background: var(--geuther-bg);
+        }
+
+        .clamp-box {
+            background: var(--geuther-bg);
+        }
+
+        .comparison-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .comparison-box:hover .header-icon {
+            box-shadow: 0 4px 12px rgba(66, 88, 74, 0.12);
+            border-color: rgba(66, 88, 74, 0.12);
+        }
+
+        .comparison-header {
+            background: var(--geuther-bg);
+            padding: 2rem;
+            text-align: left;
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .comparison-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--geuther-primary), transparent);
+            opacity: 0.03;
+            z-index: 0;
+        }
+
+        .comparison-header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--geuther-primary);
+            opacity: 0.15;
+        }
+
+        .header-icon {
+            position: relative;
+            z-index: 1;
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--geuther-bg);
+            border-radius: 12px;
+            padding: 0.75rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border: 1px solid rgba(66, 88, 74, 0.08);
+        }
+
+        .header-icon svg {
+            color: var(--geuther-primary);
+            opacity: 0.9;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            flex-grow: 1;
+        }
+
+        .header-title {
+            font-size: 1.4rem;
+            color: var(--geuther-primary);
+            margin: 0 0 0.75rem 0;
+            font-weight: 600;
+        }
+
+        .header-description {
+            font-size: 1rem;
+            color: var(--geuther-text);
+            line-height: 1.5;
+            margin: 0;
+            font-weight: normal;
+            opacity: 0.9;
+        }
+
+        .comparison-content {
+            padding: 2rem;
+        }
+
+        .image-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            aspect-ratio: 3/1;
+        }
+
+        .product-image {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.05);
+            background: var(--geuther-bg);
+        }
+
+        .product-image img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 1rem;
+        }
+
+        .advantages-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--geuther-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .advantages-title::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 16px;
+            background-color: #2da73c;
+            border-radius: 2px;
+        }
+
+        .disadvantages-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--geuther-primary);
+            margin-top: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .disadvantages-title::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 16px;
+            background-color: #d63031;
+            border-radius: 2px;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .feature-list i {
+            margin-top: 0.2rem;
+            font-size: 0.9rem;
+        }
+
+        .feature-list .bi-check-circle-fill {
+            color: #2da73c;
+        }
+
+        .feature-list .bi-x-circle-fill {
+            color: #d63031;
+        }
+
+        .info-section {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 5rem;
+            padding: 0 2rem 3rem 2rem;
+        }
+
+        .info-box {
+            padding: 2rem;
+            border-radius: 16px;
+            position: relative;
+            background: var(--geuther-bg);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+            border: none;
+        }
+
+        .combo-box::before, .tips-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            border-radius: 4px 4px 0 0;
+            background: var(--geuther-primary);
+            opacity: 0.1;
+        }
+
+        .info-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .info-title i {
+            color: var(--geuther-primary);
+            opacity: 0.9;
+        }
+
+        .tip-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: var(--geuther-accent);
+            color: var(--geuther-primary);
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-right: 0.5rem;
+        }
+
+        .tips-list {
+            list-style: none;
+            padding: 0.5rem 0;
+            margin: 0;
+        }
+
+        .tips-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        @media (max-width: 992px) {
+            .comparison-grid,
+            .info-section {
+                grid-template-columns: 1fr;
+                padding: 2rem;
+            }
+
+            .third-section-header {
+                padding: 2rem;
+            }
+
+            .third-section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="comparison-section">
+        <div class="third-section-header">
+            <div class="container">
+                <h2 class="third-section-title">Montagemethoden im Vergleich</h2>
+                <p class="third-section-subtitle">Schrauben oder Klemmen - die richtige Wahl für jede Situation</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="comparison-grid">
+                <!-- Schraub-Montage -->
+                <div class="comparison-box screw-box">
+                    <div class="comparison-header">
+                        <div class="header-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 4v16M12 4l2 2M12 4l-2 2M12 20l2-2M12 20l-2-2M8 8h8M7 12h10M8 16h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div class="header-content">
+                            <h3 class="header-title">Zum Schrauben</h3>
+                            <p class="header-description">Maximale Sicherheit durch feste Wandmontage</p>
+                        </div>
+                    </div>
+                    <div class="comparison-content">
+                        <div class="image-container">
+                            <div class="product-image">
+                                <img src="https://www.geuther.de/media/dc/1d/16/1708101600/2733_WE_01.webp" alt="Treppenschutzgitter zum Schrauben - Frontansicht">
+                            </div>
+                            <div class="product-image">
+                                <img src="https://www.geuther.de/media/dc/4b/51/1724842241/2732_NA_01.jpg" alt="Treppenschutzgitter zum Schrauben - Detailansicht">
+                            </div>
+                        </div>
+                        
+                        <h4 class="advantages-title">Vorteile:</h4>
+                        <ul class="feature-list">
+                            <li>
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span>Maximale Stabilität und Sicherheit</span>
+                            </li>
+                            <li>
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span>Ideal für stark frequentierte Bereiche</span>
+                            </li>
+                            <li>
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span>Keine Stolperfallen durch Bodenleisten</span>
+                            </li>
+                            <li>
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span>Empfohlen für obere Treppenenden</span>
+                            </li>
+                        </ul>
+
+                        <h4 class="disadvantages-title">Nachteile:</h4>
+                        <ul class="feature-list">
+                            <li>
+                                <i class="bi bi-x-circle-fill"></i>
+                                <span>Bohrlöcher in Wänden oder Türrahmen</span>
+                            </li>
+                            <li>
+                                <i class="bi bi-x-circle-fill"></i>
+                                <span>Nicht für Mietwohnungen ideal</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Klemm-Montage -->
+                <div class="comparison-box clamp-box">
+                    <div class="comparison-header">
+                        <div class="header-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 4v16M18 4v16M6 12h12M4 6h4M16 6h4M4 18h4M16 18h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div class="header-content">
+                            <h3 class="header-title">Zum Klemmen</h3>
+                            <p class="header-description">Schnelle & flexible Montage ohne Bohren</p>
+                        </div>
+                    </div>
+                    <div class="comparison-content">
+                        <div class="image-container">
+                            <div class="product-image">
+                                <img src="https://www.geuther.de/media/d8/56/8c/1705518400/4792-_we_1.webp" alt="Treppenschutzgitter zum Klemmen - Frontansicht">
+                            </div>
+                            <div class="product-image">
+                                <img src="https://www.geuther.de/media/e9/42/87/1705518432/4793-_we_1.webp" alt="Treppenschutzgitter zum Klemmen - Detailansicht">
+                            </div>
+                        </div>
+                        
+                        <h4 class="advantages-title">Vorteile:</h4>
+                        <ul class="feature-list">
+                            <li>
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span>Keine Bohrlöcher notwendig</span>
+                            </li>
+                            <li>
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span>Rückstandslose Entfernung möglich</span>
+                            </li>
+                            <li>
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span>Ideal für Mietwohnungen</span>
+                            </li>
+                            <li>
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span>Flexible Positionierung</span>
+                            </li>
+                        </ul>
+
+                        <h4 class="disadvantages-title">Nachteile:</h4>
+                        <ul class="feature-list">
+                            <li>
+                                <i class="bi bi-x-circle-fill"></i>
+                                <span>Potentielle Stolpergefahr durch Bodenleiste</span>
+                            </li>
+                            <li>
+                                <i class="bi bi-x-circle-fill"></i>
+                                <span>Weniger stabil bei starker Belastung</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <!-- 2in1 Kombination -->
+                <div class="info-box combo-box">
+                    <h3 class="info-title">
+                        <i class="bi bi-tools"></i>
+                        2in1 Kombinationslösung
+                    </h3>
+                    <p>Einige Geuther-Modelle bieten die Möglichkeit, zwischen Klemm- und Schraubmontage zu wählen oder diese zu kombinieren. Diese flexiblen Modelle sind besonders praktisch:</p>
+                    <ul class="tips-list">
+                        <li>
+                            <i class="bi bi-check-circle"></i>
+                            <span>Maximale Flexibilität bei der Installation</span>
+                        </li>
+                        <li>
+                            <i class="bi bi-check-circle"></i>
+                            <span>Anpassbar an verschiedene Wohnsituationen</span>
+                        </li>
+                        <li>
+                            <i class="bi bi-check-circle"></i>
+                            <span>Ideal bei späterem Umzug oder Änderungen</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Empfehlungen -->
+                <div class="info-box tips-box">
+                    <h3 class="info-title">
+                        <i class="bi bi-lightbulb"></i>
+                        Empfehlungen
+                    </h3>
+                    <ul class="tips-list">
+                        <li>
+                            <span class="tip-tag">Tipp</span>
+                            <span>Für obere Treppenenden: <strong>immer Schraubmontage</strong> für höchste Sicherheit</span>
+                        </li>
+                        <li>
+                            <span class="tip-tag">Tipp</span>
+                            <span>Für Türdurchgänge: Klemmgitter sind meist ausreichend</span>
+                        </li>
+                        <li>
+                            <span class="tip-tag">Tipp</span>
+                            <span>Bei Mietwohnungen: Klemmgitter verwenden oder Genehmigung einholen</span>
+                        </li>
+                        <li>
+                            <span class="tip-tag">Tipp</span>
+                            <span>Bei häufiger Nutzung: Stabilere Schraubmontage bevorzugen</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

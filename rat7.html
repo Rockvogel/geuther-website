@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empfehlungen für spezifische Anwendungsfälle | Geuther</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --geuther-primary: #42584A;
+            --geuther-secondary: #D4C4B7;
+            --geuther-text: #333333;
+            --geuther-bg: #FFFFFF;
+            --geuther-accent: #F5F1ED;
+            --geuther-border: #E5E5E5;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--geuther-text);
+            background-color: var(--geuther-bg);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .rat7-section-wrapper {
+            background-color: var(--geuther-accent);
+            padding: 4rem 0;
+        }
+
+        .rat7-section-header {
+            text-align: center;
+            padding: 0 0 3rem 0;
+            margin: 0;
+            position: relative;
+        }
+
+        .rat7-section-title {
+            font-size: 2.5rem;
+            color: var(--geuther-primary);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .rat7-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--geuther-secondary);
+        }
+
+        .rat7-section-subtitle {
+            font-size: 1.2rem;
+            color: var(--geuther-text);
+            opacity: 0.8;
+            font-weight: 400;
+            max-width: 800px;
+            margin: 1.5rem auto 0;
+        }
+
+        .recommendations-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .recommendation-card {
+            background: var(--geuther-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--geuther-border);
+        }
+
+        .recommendation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .recommendation-header {
+            padding: 1.5rem;
+            color: var(--geuther-primary);
+            font-weight: 600;
+            font-size: 1.2rem;
+            position: relative;
+            background-color: var(--geuther-bg);
+            border-bottom: 1px solid var(--geuther-border);
+        }
+
+        .recommendation-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+        }
+
+        .recommendation-card.blue .recommendation-header::before {
+            background-color: #4A90E2;
+        }
+
+        .recommendation-card.pink .recommendation-header::before {
+            background-color: #E27D9E;
+        }
+
+        .recommendation-card.green .recommendation-header::before {
+            background-color: #2da73c;
+        }
+
+        .recommendation-card.purple .recommendation-header::before {
+            background-color: #9B6B9E;
+        }
+
+        .recommendation-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            flex: 1;
+        }
+
+        .recommendation-image-container {
+            border-right: 1px solid var(--geuther-border);
+            overflow: hidden;
+            position: relative;
+            padding: 1rem;
+            background-color: var(--geuther-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .recommendation-image {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .recommendation-card:hover .recommendation-image {
+            transform: scale(1.05);
+        }
+
+        .recommendation-details {
+            padding: 1.5rem;
+        }
+
+        .recommendation-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--geuther-primary);
+        }
+
+        .recommendation-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1rem 0;
+        }
+
+        .recommendation-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .recommendation-list i {
+            color: #2da73c;
+            font-size: 0.9rem;
+            margin-top: 0.2rem;
+            flex-shrink: 0;
+        }
+
+        .recommendation-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .recommendation-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.4rem 0.8rem;
+            border-radius: 999px;
+            font-weight: 500;
+            font-size: 0.8rem;
+        }
+
+        .recommendation-card.blue .recommendation-badge {
+            background-color: rgba(74, 144, 226, 0.1);
+            color: #4A90E2;
+        }
+
+        .recommendation-card.pink .recommendation-badge {
+            background-color: rgba(226, 125, 158, 0.1);
+            color: #E27D9E;
+        }
+
+        .recommendation-card.green .recommendation-badge {
+            background-color: rgba(45, 167, 60, 0.1);
+            color: #2da73c;
+        }
+
+        .recommendation-card.purple .recommendation-badge {
+            background-color: rgba(155, 107, 158, 0.1);
+            color: #9B6B9E;
+        }
+
+        .recommendation-note {
+            font-size: 0.85rem;
+            color: var(--geuther-text);
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+
+        .recommendation-note.warning {
+            color: #e6a23c;
+            font-weight: 500;
+        }
+
+        @media (max-width: 992px) {
+            .recommendations-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .recommendation-content {
+                grid-template-columns: 1fr;
+            }
+
+            .recommendation-image-container {
+                border-right: none;
+                border-bottom: 1px solid var(--geuther-border);
+                height: auto;
+                padding: 1.5rem;
+            }
+
+            .rat7-section-header {
+                padding: 0 0 2rem 0;
+            }
+
+            .rat7-section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="rat7-section-wrapper">
+        <div class="container">
+            <div class="rat7-section-header">
+                <h2 class="rat7-section-title">Empfehlungen für spezifische Anwendungsfälle</h2>
+                <p class="rat7-section-subtitle">Die richtige Lösung für jede Situation</p>
+            </div>
+
+            <div class="recommendations-grid">
+                <!-- Für Türöffnungen -->
+                <div class="recommendation-card blue">
+                    <div class="recommendation-header">
+                        Für Türöffnungen
+                    </div>
+                    <div class="recommendation-content">
+                        <div class="recommendation-image-container">
+                            <img src="https://www.geuther.de/media/1f/45/31/1705518660/2734_na.webp" alt="Türschutzgitter" class="recommendation-image">
+                        </div>
+                        <div class="recommendation-details">
+                            <h4 class="recommendation-title">Empfohlene Modelle:</h4>
+                            <ul class="recommendation-list">
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span><strong>Geuther 2732/2734</strong> (Holz, 58-133 cm)</span>
+                                </li>
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span><strong>Easylock Plus</strong> (Metall, 68-232,5 cm)</span>
+                                </li>
+                            </ul>
+                            
+                            <div class="recommendation-badges">
+                                <span class="recommendation-badge">
+                                    Leichte Montage
+                                </span>
+                                <span class="recommendation-badge">
+                                    Standarddurchgänge
+                                </span>
+                            </div>
+                            
+                            <p class="recommendation-note">Bei häufigem Durchgang empfehlen sich Modelle mit barrierefreiem Durchgang und einfach bedienbarem Öffnungsmechanismus.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Für Treppenaufgänge -->
+                <div class="recommendation-card pink">
+                    <div class="recommendation-header">
+                        Für Treppenaufgänge
+                    </div>
+                    <div class="recommendation-content">
+                        <div class="recommendation-image-container">
+                            <img src="https://www.geuther.de/media/dc/1d/16/1708101600/2733_WE_01.webp" alt="Treppenschutzgitter" class="recommendation-image">
+                        </div>
+                        <div class="recommendation-details">
+                            <h4 class="recommendation-title">Empfohlene Modelle:</h4>
+                            <ul class="recommendation-list">
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span><strong>Modell 2733/2735</strong> (67-135 cm, extra hoch)</span>
+                                </li>
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span><strong>Easylock Plus</strong> mit Treppenadapter 0049ZK+</span>
+                                </li>
+                            </ul>
+                            
+                            <div class="recommendation-badges">
+                                <span class="recommendation-badge">
+                                    Schraubmontage
+                                </span>
+                                <span class="recommendation-badge">
+                                    Höchste Sicherheit
+                                </span>
+                            </div>
+                            
+                            <p class="recommendation-note warning">Sicherheitshinweis: Für obere Treppenenden immer Schraubmontage verwenden und sicherstellen, dass das Gitter nicht in Richtung Treppe öffnet.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Für besonders breite Durchgänge -->
+                <div class="recommendation-card green">
+                    <div class="recommendation-header">
+                        Für breite Durchgänge
+                    </div>
+                    <div class="recommendation-content">
+                        <div class="recommendation-image-container">
+                            <img src="https://www.geuther.de/media/82/56/e0/1705518629/2768.webp" alt="Variables Konfigurationsgitter" class="recommendation-image">
+                        </div>
+                        <div class="recommendation-details">
+                            <h4 class="recommendation-title">Empfohlene Modelle:</h4>
+                            <ul class="recommendation-list">
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span><strong>Yoko</strong> (95-260 cm, erweiterbar)</span>
+                                </li>
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span><strong>Easylock Plus</strong> mit Erweiterungen (bis 232,5 cm)</span>
+                                </li>
+                            </ul>
+                            
+                            <div class="recommendation-badges">
+                                <span class="recommendation-badge">
+                                    Erweiterbar
+                                </span>
+                                <span class="recommendation-badge">
+                                    Modulare Systeme
+                                </span>
+                            </div>
+                            
+                            <p class="recommendation-note">Die modularen Systeme eignen sich hervorragend für offene Wohnbereiche und besonders breite Durchgänge wie Raumteiler oder Spielbereiche.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Für Mietwohnungen -->
+                <div class="recommendation-card purple">
+                    <div class="recommendation-header">
+                        Für Mietwohnungen
+                    </div>
+                    <div class="recommendation-content">
+                        <div class="recommendation-image-container">
+                            <img src="https://www.geuther.de/media/d4/88/69/1705518537/2793-_02.webp" alt="Easylock Wood Plus" class="recommendation-image">
+                        </div>
+                        <div class="recommendation-details">
+                            <h4 class="recommendation-title">Empfohlene Modelle:</h4>
+                            <ul class="recommendation-list">
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span><strong>Easylock Wood Plus</strong> (ohne Bohren)</span>
+                                </li>
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span><strong>Easylock Plus</strong> Metallvariante (Klemmen)</span>
+                                </li>
+                            </ul>
+                            
+                            <div class="recommendation-badges">
+                                <span class="recommendation-badge">
+                                    Ohne Bohren
+                                </span>
+                                <span class="recommendation-badge">
+                                    Rückstandslos
+                                </span>
+                            </div>
+                            
+                            <p class="recommendation-note">Diese Modelle können ohne dauerhafte Veränderungen an Wänden oder Türrahmen angebracht werden - ideal für Mietwohnungen oder temporäre Installation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

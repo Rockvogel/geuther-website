@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fazit: Sicherheit geht vor | Geuther</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --geuther-primary: #42584A;
+            --geuther-secondary: #D4C4B7;
+            --geuther-text: #333333;
+            --geuther-bg: #FFFFFF;
+            --geuther-accent: #F5F1ED;
+            --geuther-border: #E5E5E5;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--geuther-text);
+            background-color: var(--geuther-bg);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .rat9-section {
+            padding: 4rem 0;
+        }
+
+        .rat9-section.accent {
+            background-color: var(--geuther-accent);
+        }
+
+        .rat9-section-header {
+            text-align: center;
+            padding: 0 0 3rem 0;
+            margin: 0;
+            position: relative;
+        }
+
+        .rat9-section-title {
+            font-size: 2.5rem;
+            color: var(--geuther-primary);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .rat9-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--geuther-secondary);
+        }
+
+        .rat9-section-subtitle {
+            font-size: 1.2rem;
+            color: var(--geuther-text);
+            opacity: 0.8;
+            font-weight: 400;
+            max-width: 800px;
+            margin: 1.5rem auto 0;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .summary-item {
+            background: var(--geuther-bg);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            transition: all 0.3s ease;
+            border: 1px solid var(--geuther-border);
+        }
+
+        .summary-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .summary-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 50%;
+            background-color: var(--geuther-primary);
+            color: white;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .summary-item:hover .summary-icon {
+            transform: scale(1.1);
+        }
+
+        .summary-content h3 {
+            font-size: 1.2rem;
+            color: var(--geuther-primary);
+            margin: 0 0 0.5rem 0;
+        }
+
+        .summary-content p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        .rat9-product-grid {
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin: 0 auto;
+            max-width: 1400px;
+        }
+
+        .rat9-product-card {
+            background: var(--geuther-bg);
+            border: 1px solid var(--geuther-border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .rat9-product-header {
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border-bottom: 1px solid var(--geuther-border);
+        }
+
+        .rat9-product-header i {
+            font-size: 1.2rem;
+        }
+
+        .rat9-product-header-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .header-bestseller {
+            background: linear-gradient(to right, rgba(45, 167, 60, 0.1), rgba(45, 167, 60, 0.05));
+            color: #2da73c;
+        }
+
+        .header-mietwohnung {
+            background: linear-gradient(to right, rgba(74, 144, 226, 0.1), rgba(74, 144, 226, 0.05));
+            color: #4A90E2;
+        }
+
+        .header-flexibel {
+            background: linear-gradient(to right, rgba(230, 162, 60, 0.1), rgba(230, 162, 60, 0.05));
+            color: #e6a23c;
+        }
+
+        .header-design {
+            background: linear-gradient(to right, rgba(155, 107, 158, 0.1), rgba(155, 107, 158, 0.05));
+            color: #9B6B9E;
+        }
+
+        .rat9-product-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+            z-index: 2;
+        }
+
+        .rat9-product-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+            background: transparent;
+            margin: 0.5rem;
+            display: block;
+            text-decoration: none;
+        }
+
+        .rat9-product-image img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: auto;
+            height: auto;
+            max-width: 80%;
+            max-height: 180px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .rat9-product-card:hover .rat9-product-image img {
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+
+        .rat9-product-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            z-index: 10;
+        }
+
+        .badge-bestseller {
+            background-color: rgba(45, 167, 60, 0.1);
+            color: #2da73c;
+        }
+
+        .badge-mietwohnung {
+            background-color: rgba(74, 144, 226, 0.1);
+            color: #4A90E2;
+        }
+
+        .badge-design {
+            background-color: rgba(155, 107, 158, 0.1);
+            color: #9B6B9E;
+        }
+
+        .badge-flexibel {
+            background-color: rgba(230, 162, 60, 0.1);
+            color: #e6a23c;
+        }
+
+        .rat9-product-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .rat9-product-badges .rat9-product-badge {
+            position: static;
+            background: #F8F6F3;
+            color: var(--geuther-primary);
+        }
+
+        .rat9-product-badges .rat9-product-badge.size {
+            background: #F8F6F3;
+        }
+
+        .rat9-product-badges .rat9-product-badge.type {
+            background: #F3F8F6;
+        }
+
+        .rat9-product-badges .rat9-product-badge.feature {
+            background: #F6F3F8;
+        }
+
+        .rat9-product-availability {
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .availability-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #2da73c;
+            font-size: 0.9rem;
+        }
+
+        .delivery-time {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--geuther-text);
+            font-size: 0.9rem;
+        }
+
+        .rat9-product-price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin: 1rem 0;
+        }
+
+        .rat9-product-colors {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .color-variant {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            border: 1px solid var(--geuther-border);
+            transition: all 0.2s ease;
+        }
+
+        .color-variant:hover {
+            transform: translateY(-2px);
+        }
+
+        .color-variant.selected {
+            border: 2px solid var(--geuther-primary);
+        }
+
+        .color-variant.white { background: #ffffff; }
+        .color-variant.black { background: #2c2c2c; }
+        .color-variant.natural { background: #d4bc9c; }
+        .color-variant.more {
+            background: var(--geuther-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            color: var(--geuther-primary);
+            font-weight: 600;
+        }
+
+        .rat9-product-content {
+            padding: 1rem;
+            position: relative;
+        }
+
+        .rat9-product-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .rat9-product-description {
+            font-size: 0.9rem;
+            color: var(--geuther-text);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .rat9-product-features-hover {
+            position: absolute;
+            left: -1px;
+            right: -1px;
+            top: 100%;
+            background: white;
+            border: 1px solid var(--geuther-border);
+            border-radius: 0 0 8px 8px;
+            padding: 1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 3;
+        }
+
+        .rat9-product-card:hover .rat9-product-features-hover {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .rat9-product-feature {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+            line-height: 1.3;
+        }
+
+        .rat9-product-feature i {
+            color: var(--geuther-primary);
+            font-size: 0.8rem;
+            margin-top: 0.2rem;
+            flex-shrink: 0;
+        }
+
+        .rat9-product-button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            margin-top: 1rem;
+            background: var(--geuther-primary);
+            color: white;
+            text-align: center;
+            border: none;
+            border-radius: 4px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .rat9-product-button:hover {
+            background: #364b3d;
+        }
+
+        .rat9-support-rat9-section {
+            background: var(--geuther-accent);
+            padding: 4rem 0;
+        }
+
+        .rat9-support-title {
+            text-align: center;
+            color: var(--geuther-primary);
+            margin-bottom: 3rem;
+            font-size: 1.8rem;
+        }
+
+        .rat9-support-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .rat9-support-card {
+            background: var(--geuther-bg);
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid var(--geuther-border);
+            transition: all 0.3s ease;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .rat9-support-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .rat9-support-icon {
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 50%;
+            background-color: var(--geuther-primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .rat9-support-card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 0.75rem;
+            width: 100%;
+        }
+
+        .rat9-support-card-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--geuther-text);
+            margin: 0;
+            width: 100%;
+        }
+
+        .rat9-support-link {
+            color: var(--geuther-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-weight: 500;
+        }
+
+        .rat9-support-link:hover {
+            color: var(--geuther-secondary);
+            transform: translateY(-2px);
+        }
+
+        .rat9-support-hours {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--geuther-border);
+            font-size: 0.9rem;
+            color: var(--geuther-text);
+            width: 100%;
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 1200px) {
+            .rat9-product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .rat9-product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .rat9-product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Das Wichtigste auf einen Blick -->
+    <section class="rat9-section accent">
+        <div class="container">
+            <div class="rat9-section-header">
+                <h2 class="rat9-section-title">Das Wichtigste auf einen Blick</h2>
+                <p class="rat9-section-subtitle">Die wichtigsten Erkenntnisse zusammengefasst</p>
+            </div>
+
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <div class="summary-icon">
+                        <i class="bi bi-shield-check"></i>
+                    </div>
+                    <div class="summary-content">
+                        <h3>Sicherheit steht an erster Stelle</h3>
+                        <p>Wählen Sie ein Modell, das den EN 1930:2011 und EN71 Normen entspricht. Stabile Befestigung ist besonders an Treppen unerlässlich.</p>
+                    </div>
+                </div>
+
+                <div class="summary-item">
+                    <div class="summary-icon">
+                        <i class="bi bi-rulers"></i>
+                    </div>
+                    <div class="summary-content">
+                        <h3>Auf die richtigen Maße achten</h3>
+                        <p>Mindesthöhe 65 cm, Sprossenabstand maximal 6,5 cm. Messen Sie Ihre Türrahmen und Durchgänge vor dem Kauf genau aus.</p>
+                    </div>
+                </div>
+
+                <div class="summary-item">
+                    <div class="summary-icon">
+                        <i class="bi bi-tools"></i>
+                    </div>
+                    <div class="summary-content">
+                        <h3>Montage nach Einsatzort wählen</h3>
+                        <p>Für obere Treppenabsätze immer Schraubmontage verwenden. Für Türen oder bei Mietwohnungen sind Klemmgitter meist ausreichend.</p>
+                    </div>
+                </div>
+
+                <div class="summary-item">
+                    <div class="summary-icon">
+                        <i class="bi bi-person-check"></i>
+                    </div>
+                    <div class="summary-content">
+                        <h3>Altersbegrenzung beachten</h3>
+                        <p>Schutzgitter sind für Kinder bis 24 Monate konzipiert. Danach können Kinder oft darüber klettern, was neue Gefahren schafft.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Unsere Empfehlungen -->
+    <section class="rat9-section">
+        <div class="container">
+            <div class="rat9-section-header">
+                <h2 class="rat9-section-title">Unsere Empfehlungen</h2>
+                <p class="rat9-section-subtitle">Die passende Lösung für Ihre Anforderungen</p>
+            </div>
+
+            <div class="rat9-product-grid">
+                <div class="rat9-product-card">
+                    <div class="rat9-product-header header-bestseller">
+                        <i class="bi bi-star-fill"></i>
+                        <h4 class="rat9-product-header-title">Bestseller</h4>
+                    </div>
+                    <a href="#" class="rat9-product-image">
+                        <img src="https://www.geuther.de/media/dc/1d/16/1708101600/2733_WE_01.webp" alt="Treppenschutzgitter 2733">
+                    </a>
+                    <div class="rat9-product-content">
+                        <h3 class="rat9-product-title">Modell 2733</h3>
+                        <p class="rat9-product-description">Treppenschutzgitter aus Holz, extra hoch. Ideal für obere Treppenenden durch stabile Schraubmontage.</p>
+                        <div class="rat9-product-badges">
+                            <span class="rat9-product-badge size">67-95 cm</span>
+                            <span class="rat9-product-badge type">Bohren</span>
+                            <span class="rat9-product-badge feature">Extrahoch</span>
+                        </div>
+                        <div class="rat9-product-availability">
+                            <div class="availability-status">
+                                <i class="bi bi-check-circle-fill"></i>
+                                Sofort verfügbar
+                            </div>
+                            <div class="delivery-time">
+                                <i class="bi bi-truck"></i>
+                                Lieferzeit: 1-3 Tage
+                            </div>
+                        </div>
+                        <div class="rat9-product-price">99,99 €*</div>
+                        <div class="rat9-product-colors">
+                            <div class="color-variant white selected" title="Weiß"></div>
+                            <div class="color-variant natural" title="Natur"></div>
+                            <div class="color-variant more" title="Weitere Farben">+1</div>
+                        </div>
+                        <div class="rat9-product-features-hover">
+                            <div class="rat9-product-feature">
+                                <i class="bi bi-check-circle"></i>
+                                <span>Stabile Schraubmontage</span>
+                            </div>
+                            <div class="rat9-product-feature">
+                                <i class="bi bi-check-circle"></i>
+                                <span>83 cm Höhe für extra Sicherheit</span>
+                            </div>
+                            <a href="#" class="rat9-product-button">Mehr erfahren</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rat9-product-card">
+                    <div class="rat9-product-header header-mietwohnung">
+                        <i class="bi bi-house-heart"></i>
+                        <h4 class="rat9-product-header-title">Ideal für Mietwohnungen</h4>
+                    </div>
+                    <a href="#" class="rat9-product-image">
+                        <img src="https://www.geuther.de/media/d8/56/8c/1705518400/4792-_we_1.webp" alt="Easylock Plus">
+                    </a>
+                    <div class="rat9-product-content">
+                        <h3 class="rat9-product-title">Easylock Plus</h3>
+                        <p class="rat9-product-description">Klemmgitter ohne Bohren, perfekt für Mietwohnungen. Einfache Installation und rückstandslose Entfernung.</p>
+                        <div class="rat9-product-badges">
+                            <span class="rat9-product-badge size">68-232,5 cm</span>
+                            <span class="rat9-product-badge type">Klemmen</span>
+                            <span class="rat9-product-badge feature">Erweiterbar</span>
+                        </div>
+                        <div class="rat9-product-availability">
+                            <div class="availability-status">
+                                <i class="bi bi-check-circle-fill"></i>
+                                Sofort verfügbar
+                            </div>
+                            <div class="delivery-time">
+                                <i class="bi bi-truck"></i>
+                                Lieferzeit: 1-3 Tage
+                            </div>
+                        </div>
+                        <div class="rat9-product-price">129,99 €*</div>
+                        <div class="rat9-product-colors">
+                            <div class="color-variant white selected" title="Weiß"></div>
+                            <div class="color-variant black" title="Schwarz"></div>
+                        </div>
+                        <div class="rat9-product-features-hover">
+                            <div class="rat9-product-feature">
+                                <i class="bi bi-check-circle"></i>
+                                <span>Keine Bohrlöcher nötig</span>
+                            </div>
+                            <div class="rat9-product-feature">
+                                <i class="bi bi-check-circle"></i>
+                                <span>Flexibel erweiterbar</span>
+                            </div>
+                            <a href="#" class="rat9-product-button">Mehr erfahren</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rat9-product-card">
+                    <div class="rat9-product-header header-flexibel">
+                        <i class="bi bi-arrows-angle-expand"></i>
+                        <h4 class="rat9-product-header-title">Maximale Flexibilität</h4>
+                    </div>
+                    <a href="#" class="rat9-product-image">
+                        <img src="https://www.geuther.de/media/82/56/e0/1705518629/2768.webp" alt="Yoko">
+                    </a>
+                    <div class="rat9-product-content">
+                        <h3 class="rat9-product-title">Yoko</h3>
+                        <p class="rat9-product-description">Variables Schutzgitter für breite Öffnungen bis 260 cm. Ideal für große Durchgänge und flexible Absicherung.</p>
+                        <div class="rat9-product-badges">
+                            <span class="rat9-product-badge size">bis 260 cm</span>
+                            <span class="rat9-product-badge type">Klemmen</span>
+                            <span class="rat9-product-badge feature">Extra breit</span>
+                        </div>
+                        <div class="rat9-product-availability">
+                            <div class="availability-status">
+                                <i class="bi bi-check-circle-fill"></i>
+                                Sofort verfügbar
+                            </div>
+                            <div class="delivery-time">
+                                <i class="bi bi-truck"></i>
+                                Lieferzeit: 1-3 Tage
+                            </div>
+                        </div>
+                        <div class="rat9-product-price">149,99 €*</div>
+                        <div class="rat9-product-colors">
+                            <div class="color-variant white selected" title="Weiß"></div>
+                            <div class="color-variant black" title="Schwarz"></div>
+                            <div class="color-variant more" title="Weitere Farben">+2</div>
+                        </div>
+                        <div class="rat9-product-features-hover">
+                            <div class="rat9-product-feature">
+                                <i class="bi bi-check-circle"></i>
+                                <span>Maximale Flexibilität</span>
+                            </div>
+                            <div class="rat9-product-feature">
+                                <i class="bi bi-check-circle"></i>
+                                <span>Für große Öffnungen</span>
+                            </div>
+                            <a href="#" class="rat9-product-button">Mehr erfahren</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rat9-product-card">
+                    <div class="rat9-product-header header-design">
+                        <i class="bi bi-palette"></i>
+                        <h4 class="rat9-product-header-title">Edles Design</h4>
+                    </div>
+                    <a href="#" class="rat9-product-image">
+                        <img src="https://www.geuther.de/media/1f/45/31/1705518660/2734_na.webp" alt="Türschutzgitter 2734">
+                    </a>
+                    <div class="rat9-product-content">
+                        <h3 class="rat9-product-title">Modell 2734</h3>
+                        <p class="rat9-product-description">Hochwertiges Türschutzgitter in zeitlosem Holz-Design. Vereint Sicherheit mit natürlicher Ästhetik.</p>
+                        <div class="rat9-product-badges">
+                            <span class="rat9-product-badge size">95-135 cm</span>
+                            <span class="rat9-product-badge type">Klemmen</span>
+                            <span class="rat9-product-badge feature">Extrahoch</span>
+                        </div>
+                        <div class="rat9-product-availability">
+                            <div class="availability-status">
+                                <i class="bi bi-check-circle-fill"></i>
+                                Sofort verfügbar
+                            </div>
+                            <div class="delivery-time">
+                                <i class="bi bi-truck"></i>
+                                Lieferzeit: 1-3 Tage
+                            </div>
+                        </div>
+                        <div class="rat9-product-price">109,99 €*</div>
+                        <div class="rat9-product-colors">
+                            <div class="color-variant natural selected" title="Natur"></div>
+                            <div class="color-variant white" title="Weiß"></div>
+                            <div class="color-variant black" title="Gebeizt-Schwarz"></div>
+                        </div>
+                        <div class="rat9-product-features-hover">
+                            <div class="rat9-product-feature">
+                                <i class="bi bi-check-circle"></i>
+                                <span>Edles Holz-Design</span>
+                            </div>
+                            <div class="rat9-product-feature">
+                                <i class="bi bi-check-circle"></i>
+                                <span>Hohe Stabilität</span>
+                            </div>
+                            <a href="#" class="rat9-product-button">Mehr erfahren</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- rat9-support-Möglichkeiten -->
+    <section class="rat9-support-rat9-section">
+        <div class="container">
+            <h2 class="rat9-support-title">Sie können Ihr Produkt nicht finden oder haben Fragen?</h2>
+            <div class="rat9-support-grid">
+                <div class="rat9-support-card">
+                    <i class="bi bi-telephone rat9-support-icon"></i>
+                    <h3 class="rat9-support-card-title">Telefonischer Support</h3>
+                    <p class="rat9-support-card-text">
+                        <a href="tel:+4959056799050" class="rat9-support-link">+49 (0) 590 567 990 50</a>
+                    </p>
+                    <p class="rat9-support-hours">
+                        Montag - Freitag<br>
+                        08:00 - 15:30 Uhr
+                    </p>
+                </div>
+
+                <div class="rat9-support-card">
+                    <i class="bi bi-whatsapp rat9-support-icon"></i>
+                    <h3 class="rat9-support-card-title">WhatsApp Support</h3>
+                    <p class="rat9-support-card-text">
+                        <a href="https://wa.me/491628385527" target="_blank" class="rat9-support-link">+49 162 8385527</a>
+                    </p>
+                    <p class="rat9-support-hours">
+                        Montag - Freitag<br>
+                        08:00 - 15:30 Uhr
+                    </p>
+                </div>
+
+                <div class="rat9-support-card">
+                    <i class="bi bi-envelope rat9-support-icon"></i>
+                    <h3 class="rat9-support-card-title">Kontaktformular</h3>
+                    <p class="rat9-support-card-text">
+                        Nutzen Sie unser Kontaktformular für eine schnelle und einfache Kontaktaufnahme.
+                    </p>
+                    <p class="rat9-support-card-text" style="margin-top: 1rem;">
+                        <a href="rat9-support.html#kontaktformular" class="rat9-support-link">Zum Kontaktformular <i class="bi bi-arrow-right"></i></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

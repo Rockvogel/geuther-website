@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sicherheitsmerkmale im Überblick | Geuther</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --geuther-primary: #42584A;
+            --geuther-secondary: #D4C4B7;
+            --geuther-text: #333333;
+            --geuther-bg: #FFFFFF;
+            --geuther-accent: #F5F1ED;
+            --geuther-border: #E5E5E5;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--geuther-text);
+            background-color: var(--geuther-bg);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .rat6-section-header {
+            text-align: center;
+            padding: 4rem 0 2rem 0;
+            margin: 0;
+            position: relative;
+        }
+
+        .rat6-section-title {
+            font-size: 2.5rem;
+            color: var(--geuther-primary);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .rat6-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--geuther-secondary);
+        }
+
+        .rat6-section-subtitle {
+            font-size: 1.2rem;
+            color: var(--geuther-text);
+            opacity: 0.8;
+            font-weight: 400;
+            max-width: 800px;
+            margin: 1.5rem auto 0;
+        }
+
+        .rat6-features-grid {
+            padding: 3rem 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .rat6-feature-box {
+            background: var(--geuther-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+        }
+
+        .rat6-feature-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .rat6-feature-header {
+            padding: 2rem;
+            position: relative;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .rat6-feature-box.blue .rat6-feature-header {
+            background: linear-gradient(135deg, #E8F0F8 0%, #FFFFFF 100%);
+        }
+
+        .rat6-feature-box.green .rat6-feature-header {
+            background: linear-gradient(135deg, #E8F5ED 0%, #FFFFFF 100%);
+        }
+
+        .rat6-feature-box.purple .rat6-feature-header {
+            background: linear-gradient(135deg, #F2E8F5 0%, #FFFFFF 100%);
+        }
+
+        .rat6-feature-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--geuther-bg);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            flex-shrink: 0;
+        }
+
+        .rat6-feature-box.blue .rat6-feature-icon {
+            color: #4A90E2;
+        }
+
+        .rat6-feature-box.green .rat6-feature-icon {
+            color: #2da73c;
+        }
+
+        .rat6-feature-box.purple .rat6-feature-icon {
+            color: #9B6B9E;
+        }
+
+        .rat6-feature-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0;
+            color: var(--geuther-primary);
+        }
+
+        .rat6-feature-content {
+            padding: 2rem;
+        }
+
+        .rat6-feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .rat6-feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .rat6-feature-list i {
+            color: #2da73c;
+            font-size: 0.9rem;
+            margin-top: 0.2rem;
+            flex-shrink: 0;
+        }
+
+        .rat6-feature-list i.warning {
+            color: #e6a23c;
+        }
+
+        .rat6-info-grid {
+            padding: 0 0 3rem 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+        }
+
+        .rat6-info-box {
+            background: var(--geuther-bg);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+        }
+
+        .rat6-info-box.position {
+            background: linear-gradient(135deg, #E8F0F8 0%, #FFFFFF 100%);
+        }
+
+        .rat6-info-box.certification {
+            background: linear-gradient(135deg, #F8F8F8 0%, #FFFFFF 100%);
+        }
+
+        .rat6-info-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .rat6-info-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--geuther-bg);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .rat6-info-box.position .rat6-info-icon {
+            color: #4A90E2;
+        }
+
+        .rat6-info-box.certification .rat6-info-icon {
+            color: #9B6B9E;
+        }
+
+        .rat6-info-title h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0;
+            color: var(--geuther-primary);
+        }
+
+        .certification-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .certification-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1rem;
+            border-radius: 999px;
+            background: var(--geuther-accent);
+            color: var(--geuther-primary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .certification-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            background: #E8E2D9;
+        }
+
+        .certification-badge i {
+            font-size: 1rem;
+            color: var(--geuther-primary);
+        }
+
+        .rat6-info-note {
+            background: rgba(230, 162, 60, 0.1);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .rat6-info-note h5 {
+            color: #b88230;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin: 0 0 0.5rem 0;
+        }
+
+        .rat6-info-note p {
+            font-size: 0.875rem;
+            margin: 0;
+            color: var(--geuther-text);
+        }
+
+        @media (max-width: 992px) {
+            .rat6-features-grid {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 2rem 0;
+            }
+
+            .rat6-info-grid {
+                grid-template-columns: 1fr;
+                padding: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .rat6-features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .rat6-section-header {
+                padding: 3rem 0 1.5rem 0;
+            }
+
+            .rat6-section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="rat6-features-section">
+        <div class="container">
+            <div class="rat6-section-header">
+                <h2 class="rat6-section-title">Wichtige Sicherheitsmerkmale</h2>
+                <p class="rat6-section-subtitle">Worauf Sie bei Tür- und Treppenschutzgittern achten sollten</p>
+            </div>
+
+            <div class="rat6-features-grid">
+                <!-- Höhe und Abstände -->
+                <div class="rat6-feature-box blue">
+                    <div class="rat6-feature-header">
+                        <div class="rat6-feature-icon">
+                            <i class="bi bi-rulers"></i>
+                        </div>
+                        <h3 class="rat6-feature-title">Höhe und Abstände</h3>
+                    </div>
+                    <div class="rat6-feature-content">
+                        <ul class="rat6-feature-list">
+                            <li>
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span>Mindesthöhe von 65 cm (Geuther bis zu 83 cm)</span>
+                            </li>
+                            <li>
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span>Sprossenabstand maximal 6,5 cm (bei Geuther oft nur 5,4 cm)</span>
+                            </li>
+                            <li>
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span>Keine Zwischenräume zwischen Gitter und Wand/Boden</span>
+                            </li>
+                            <li>
+                                <i class="bi bi-exclamation-triangle-fill warning"></i>
+                                <span>Kinder sollten nicht darüber klettern können</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Verschluss und Materialien -->
+                <div class="rat6-feature-box green">
+                    <div class="rat6-feature-header">
+                        <div class="rat6-feature-icon">
+                            <i class="bi bi-shield-lock"></i>
+                        </div>
+                        <h3 class="rat6-feature-title">Verschluss & Materialien</h3>
+                    </div>
+                    <div class="rat6-feature-content">
+                        <ul class="rat6-feature-list">
+                            <li>
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span>2-Aktionen-Sicherheitsverschluss für Erwachsene</span>
+                            </li>
+                            <li>
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span>Gerundete Kanten und Ecken, keine scharfen Teile</span>
+                            </li>
+                            <li>
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span>Speichel- und schweißfeste, schadstofffreie Farben</span>
+                            </li>
+                            <li>
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span>Hochwertige, stabile Materialien (Buche/Metall)</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Installation und Wartung -->
+                <div class="rat6-feature-box purple">
+                    <div class="rat6-feature-header">
+                        <div class="rat6-feature-icon">
+                            <i class="bi bi-tools"></i>
+                        </div>
+                        <h3 class="rat6-feature-title">Installation & Wartung</h3>
+                    </div>
+                    <div class="rat6-feature-content">
+                        <ul class="rat6-feature-list">
+                            <li>
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span>Regelmäßige Kontrolle der Befestigungen</span>
+                            </li>
+                            <li>
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span>Fachgerechte Montage nach Anleitung</span>
+                            </li>
+                            <li>
+                                <i class="bi bi-exclamation-triangle-fill warning"></i>
+                                <span>Bei Klemmgittern: Nie ohne Wandbefestigungsteller</span>
+                            </li>
+                            <li>
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span>Mindestabstand zu Hitzequellen: 80 cm</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rat6-info-grid">
+                <!-- Wichtige Positionierung -->
+                <div class="rat6-info-box position">
+                    <div class="rat6-info-title">
+                        <div class="rat6-info-icon">
+                            <i class="bi bi-geo-alt"></i>
+                        </div>
+                        <h4>Richtige Positionierung</h4>
+                    </div>
+                    <ul class="rat6-feature-list">
+                        <li>
+                            <i class="bi bi-check-circle-fill"></i>
+                            <span>Am oberen Treppenende: Auf der obersten Stufe</span>
+                        </li>
+                        <li>
+                            <i class="bi bi-check-circle-fill"></i>
+                            <span>Am unteren Treppenende: Vor der ersten Stufe</span>
+                        </li>
+                        <li>
+                            <i class="bi bi-exclamation-triangle-fill warning"></i>
+                            <span>Am oberen Ende: Nie in Treppenrichtung öffnend</span>
+                        </li>
+                        <li>
+                            <i class="bi bi-check-circle-fill"></i>
+                            <span>Keine Steighilfen (Stühle/Hocker) in der Nähe</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Zertifizierung und Normen -->
+                <div class="rat6-info-box certification">
+                    <div class="rat6-info-title">
+                        <div class="rat6-info-icon">
+                            <i class="bi bi-patch-check"></i>
+                        </div>
+                        <h4>Normen und Zertifizierungen</h4>
+                    </div>
+                    
+                    <div class="certification-badges">
+                        <span class="certification-badge">
+                            <i class="bi bi-award"></i>
+                            EN 1930:2011
+                        </span>
+                        <span class="certification-badge">
+                            <i class="bi bi-award"></i>
+                            EN71
+                        </span>
+                        <span class="certification-badge">
+                            <i class="bi bi-award"></i>
+                            CE-Kennzeichen
+                        </span>
+                    </div>
+                    
+                    <p class="text-sm">Geuther erhöht bei allen Tests freiwillig die Anforderungen in Bezug auf Gewicht, Dauer oder Geschwindigkeit um 10%.</p>
+                    
+                    <div class="rat6-info-note">
+                        <h5>Wichtig:</h5>
+                        <p>Schutzgitter sind für Kinder bis maximal 24 Monate konzipiert. Ab diesem Alter können Kinder häufig über das Gitter klettern, was eine neue Gefahrenquelle darstellt.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

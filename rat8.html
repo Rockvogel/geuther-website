@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Das richtige Schutzgitter auswählen | Geuther</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --geuther-primary: #42584A;
+            --geuther-secondary: #D4C4B7;
+            --geuther-text: #333333;
+            --geuther-bg: #FFFFFF;
+            --geuther-accent: #F5F1ED;
+            --geuther-border: #E5E5E5;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--geuther-text);
+            background-color: var(--geuther-bg);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .rat8-section-wrapper {
+            background-color: var(--geuther-bg);
+            padding: 4rem 0;
+        }
+
+        .rat8-section-header {
+            text-align: center;
+            padding: 0 0 3rem 0;
+            margin: 0;
+            position: relative;
+        }
+
+        .rat8-section-title {
+            font-size: 2.5rem;
+            color: var(--geuther-primary);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .rat8-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--geuther-secondary);
+        }
+
+        .rat8-section-subtitle {
+            font-size: 1.2rem;
+            color: var(--geuther-text);
+            opacity: 0.8;
+            font-weight: 400;
+            max-width: 800px;
+            margin: 1.5rem auto 0;
+        }
+
+        .scenarios-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .scenario-card {
+            background: var(--geuther-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+            border: 1px solid var(--geuther-border);
+            padding: 1.5rem;
+        }
+
+        .scenario-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .scenario-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .scenario-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+        }
+
+        .scenario-icon svg {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+
+        .scenario-icon i {
+            font-size: 1.5rem;
+        }
+
+        .scenario-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--geuther-primary);
+        }
+
+        .scenario-card.green .scenario-icon {
+            background-color: rgba(45, 167, 60, 0.1);
+            color: #2da73c;
+        }
+
+        .scenario-card.red .scenario-icon {
+            background-color: rgba(226, 125, 158, 0.1);
+            color: #E27D9E;
+        }
+
+        .scenario-card.yellow .scenario-icon {
+            background-color: rgba(230, 162, 60, 0.1);
+            color: #e6a23c;
+        }
+
+        .scenario-card.green .scenario-title,
+        .scenario-card.red .scenario-title,
+        .scenario-card.yellow .scenario-title {
+            color: var(--geuther-primary);
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            background-color: var(--geuther-bg);
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border: 1px solid var(--geuther-border);
+        }
+
+        .option-icon {
+            margin-right: 0.75rem;
+            font-size: 1rem;
+        }
+
+        .option-text {
+            flex: 1;
+            font-size: 0.95rem;
+        }
+
+        .option-model {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .requirements-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .requirements-card {
+            background: var(--geuther-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+            border: 1px solid var(--geuther-border);
+            padding: 1.5rem;
+        }
+
+        .requirements-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .requirements-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--geuther-border);
+        }
+
+        .requirements-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            margin-right: 1rem;
+        }
+
+        .requirements-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .requirements-card.blue .requirements-icon {
+            background-color: rgba(74, 144, 226, 0.1);
+            color: #4A90E2;
+        }
+
+        .requirements-card.blue .requirements-title {
+            color: var(--geuther-primary);
+        }
+
+        .requirements-card.purple .requirements-icon {
+            background-color: rgba(155, 107, 158, 0.1);
+            color: #9B6B9E;
+        }
+
+        .requirements-card.purple .requirements-title {
+            color: var(--geuther-primary);
+        }
+
+        .requirements-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .requirement-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            background-color: var(--geuther-bg);
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border: 1px solid var(--geuther-border);
+        }
+
+        .requirement-icon {
+            margin-right: 0.75rem;
+            font-size: 1rem;
+        }
+
+        .requirement-text {
+            flex: 1;
+            font-size: 0.9rem;
+        }
+
+        .requirement-model {
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .montage-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .montage-item {
+            padding: 1rem;
+            background-color: var(--geuther-bg);
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border: 1px solid var(--geuther-border);
+        }
+
+        .montage-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .montage-icon {
+            margin-right: 0.75rem;
+            font-size: 1rem;
+        }
+
+        .montage-title {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .montage-description {
+            font-size: 0.85rem;
+            color: var(--geuther-text);
+            opacity: 0.8;
+            line-height: 1.3;
+            margin-bottom: 0;
+        }
+
+        .rat8-tip-box {
+            background-color: rgba(230, 162, 60, 0.1);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border: 1px solid rgba(230, 162, 60, 0.2);
+        }
+
+        .rat8-tip-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .rat8-tip-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background-color: rgba(230, 162, 60, 0.2);
+            color: #e6a23c;
+            margin-right: 1rem;
+        }
+
+        .rat8-tip-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #e6a23c;
+            margin: 0;
+        }
+
+        .rat8-tip-content {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .rat8-tip-phone {
+            font-weight: 600;
+        }
+
+        @media (max-width: 992px) {
+            .scenarios-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .requirements-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .scenarios-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .requirements-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .rat8-section-header {
+                padding: 0 0 2rem 0;
+            }
+
+            .rat8-section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="rat8-section-wrapper">
+        <div class="container">
+            <div class="rat8-section-header">
+                <h2 class="rat8-section-title">Das richtige Schutzgitter auswählen</h2>
+                <p class="rat8-section-subtitle">Entscheidungshilfe für die optimale Sicherheitslösung</p>
+            </div>
+
+            <div class="scenarios-grid">
+                <!-- Tür / Durchgang -->
+                <div class="scenario-card green">
+                    <div class="scenario-header">
+                        <div class="scenario-icon">
+                            <i class="bi bi-door-open"></i>
+                        </div>
+                        <h4 class="scenario-title">Tür / Durchgang</h4>
+                        </div>
+                        
+                    <div class="option-item">
+                        <i class="bi bi-rulers option-icon" style="color: #2da73c;"></i>
+                        <span class="option-text"><strong>Standard (bis 105 cm):</strong></span>
+                        <span class="option-model">Modell 2710</span>
+                                    </div>
+                    
+                    <div class="option-item">
+                        <i class="bi bi-arrows-angle-expand option-icon" style="color: #2da73c;"></i>
+                        <span class="option-text"><strong>Breit (bis 133 cm):</strong></span>
+                        <span class="option-model">Modell 2732/2734</span>
+                                </div>
+                                
+                    <div class="option-item">
+                        <i class="bi bi-rulers option-icon" style="color: #2da73c;"></i>
+                        <span class="option-text"><strong>Extra breit:</strong></span>
+                        <span class="option-model">Easylock Plus</span>
+                                </div>
+                            </div>
+                            
+                <!-- Treppe -->
+                <div class="scenario-card red">
+                    <div class="scenario-header">
+                        <div class="scenario-icon">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 4h-4v4h-4v4h-4v4h-4v4h16V4z" stroke="currentColor" stroke-width="1" fill="none"/>
+                                <path d="M4 20h16 M20 4h-4 M16 8h-4 M12 12h-4 M8 16h-4" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+                            </svg>
+                                    </div>
+                        <h4 class="scenario-title">Treppe</h4>
+                                </div>
+                                
+                    <div class="option-item">
+                        <i class="bi bi-arrow-up option-icon" style="color: #E27D9E;"></i>
+                        <span class="option-text"><strong>Oberes Ende:</strong></span>
+                        <span class="option-model">Modell 2733/2735</span>
+                                    </div>
+                    
+                    <div class="option-item">
+                        <i class="bi bi-arrow-down option-icon" style="color: #E27D9E;"></i>
+                        <span class="option-text"><strong>Unteres Ende:</strong></span>
+                        <span class="option-model">Modell 2710/2713</span>
+                                    </div>
+                    
+                    <div class="option-item">
+                        <i class="bi bi-diagram-3 option-icon" style="color: #E27D9E;"></i>
+                        <span class="option-text"><strong>Mit Geländer:</strong></span>
+                        <span class="option-model">2733 + Zubehör</span>
+                                </div>
+                            </div>
+                            
+                <!-- Gefahrenzonen -->
+                <div class="scenario-card yellow">
+                    <div class="scenario-header">
+                        <div class="scenario-icon">
+                            <i class="bi bi-exclamation-triangle"></i>
+                                    </div>
+                        <h4 class="scenario-title">Gefahrenzonen</h4>
+                                </div>
+                                
+                    <div class="option-item">
+                        <i class="bi bi-house option-icon" style="color: #e6a23c;"></i>
+                        <span class="option-text"><strong>Kamin/Ofen:</strong></span>
+                        <span class="option-model">Yoko / Modilok</span>
+                                    </div>
+                    
+                    <div class="option-item">
+                        <i class="bi bi-puzzle option-icon" style="color: #e6a23c;"></i>
+                        <span class="option-text"><strong>Spielbereich:</strong></span>
+                        <span class="option-model">Konfigurationsgitter</span>
+                                    </div>
+                    
+                    <div class="option-item">
+                        <i class="bi bi-tools option-icon" style="color: #e6a23c;"></i>
+                        <span class="option-text"><strong>Flexible Zonen:</strong></span>
+                        <span class="option-model">Yoko (95-260 cm)</span>
+                                    </div>
+                                </div>
+                            </div>
+
+            <div class="requirements-grid">
+                <!-- Besondere Anforderungen -->
+                <div class="requirements-card blue">
+                    <div class="requirements-header">
+                        <div class="requirements-icon">
+                            <i class="bi bi-gear"></i>
+                        </div>
+                        <h4 class="requirements-title">Besondere Anforderungen</h4>
+                    </div>
+                    
+                    <div class="requirements-options">
+                        <div class="requirement-item">
+                            <i class="bi bi-house requirement-icon" style="color: #4A90E2;"></i>
+                            <span class="requirement-text"><strong>Mietwohnung:</strong></span>
+                            <span class="requirement-model">Klemmmodelle</span>
+                </div>
+
+                        <div class="requirement-item">
+                            <i class="bi bi-palette requirement-icon" style="color: #4A90E2;"></i>
+                            <span class="requirement-text"><strong>Holzoptik:</strong></span>
+                            <span class="requirement-model">2700er Serie</span>
+                        </div>
+                        
+                        <div class="requirement-item">
+                            <i class="bi bi-shield-check requirement-icon" style="color: #4A90E2;"></i>
+                            <span class="requirement-text"><strong>Hohe Stabilität:</strong></span>
+                            <span class="requirement-model">Schraubmodelle</span>
+                            </div>
+                        
+                        <div class="requirement-item">
+                            <i class="bi bi-brush requirement-icon" style="color: #4A90E2;"></i>
+                            <span class="requirement-text"><strong>Pflegeleicht:</strong></span>
+                            <span class="requirement-model">Metallmodelle</span>
+                        </div>
+                    </div>
+                    
+                    <div class="rat8-tip-box">
+                <div class="rat8-tip-header">
+                    <div class="rat8-tip-icon">
+                        <i class="bi bi-lightbulb"></i>
+                    </div>
+                    <h4 class="rat8-tip-title">rat8-tipp zur Entscheidungsfindung</h4>
+                </div>
+                <p class="rat8-tip-content">Achten Sie bei der Auswahl auf Ihre individuellen Gegebenheiten und priorisieren Sie stets die Sicherheit. Für eine persönliche Beratung steht Ihnen der Geuther Kundenservice gerne zur Verfügung: 
+                <br /><span class="rat8-tip-phone">+49 (0) 590 567 990 50</span> (Mo-Fr, 8:00-15:30 Uhr).</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Montageart wählen -->
+                <div class="requirements-card purple">
+                    <div class="requirements-header">
+                        <div class="requirements-icon">
+                            <i class="bi bi-wrench"></i>
+                                </div>
+                        <h4 class="requirements-title">Montageart wählen</h4>
+                            </div>
+                    
+                    <div class="montage-options">
+                        <div class="montage-item">
+                            <div class="montage-header">
+                                <i class="bi bi-screwdriver montage-icon" style="color: #9B6B9E;"></i>
+                                <span class="montage-title">Schraubmontage</span>
+                            </div>
+                            <p class="montage-description">Die sicherste Lösung, besonders für obere Treppenenden empfohlen.</p>
+                                </div>
+                        
+                        <div class="montage-item">
+                            <div class="montage-header">
+                                <i class="bi bi-arrows-collapse montage-icon" style="color: #9B6B9E;"></i>
+                                <span class="montage-title">Klemmmontage</span>
+                            </div>
+                            <p class="montage-description">Ohne Bohren, ideal für Mietwohnungen. Leichte Installation und Entfernung.</p>
+                        </div>
+                        
+                        <div class="montage-item">
+                            <div class="montage-header">
+                                <i class="bi bi-arrow-left-right montage-icon" style="color: #9B6B9E;"></i>
+                                <span class="montage-title">Kombinationslösung (2in1)</span>
+                    </div>
+                            <p class="montage-description">Flexible Modelle, die sowohl geklemmt als auch geschraubt werden können.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
