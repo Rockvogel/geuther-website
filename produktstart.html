@@ -3,1452 +3,832 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Geuther Neuheiten 2025 - Innovative Kindermöbel für die Zukunft</title>
+    <title>Produktneuheiten | Geuther</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="all.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <!-- <link rel="stylesheet" href="all.css"> Annahme: Styles sind hier inline oder global verfügbar -->
     <style>
         :root {
-            --geuther-primary: #42584A;
-            --geuther-secondary: #D4C4B7;
-            --geuther-text: #333333;
-            --geuther-bg: #FFFFFF;
-            --geuther-accent: #F5F1ED;
-            --geuther-border: #E5E5E5;
-            --geuther-highlight: #e8a87c;
-            --geuther-success: #2da73c;
-            --geuther-warning: #ffa726;
-            --geuther-error: #ef5350;
+            --geuther-primary: #42584A;    /* Hauptfarbe, für wichtige Elemente */
+            --geuther-secondary: #D4C4B7;  /* Beige Akzentfarbe */
+            --geuther-text: #333333;       /* Textfarbe */
+            --geuther-bg: #FFFFFF;         /* Hintergrundfarbe */
+            --geuther-accent: #F5F1ED;     /* Heller Beige Hintergrund */
+            --geuther-border: #E5E5E5;     /* Rahmenfarbe */
+            --geuther-highlight: #e8a87c;   /* Highlight-Farbe */
         }
 
         body {
             font-family: 'Montserrat', sans-serif;
             color: var(--geuther-text);
+            line-height: 1.6;
+            background-color: var(--geuther-bg);
             margin: 0;
             padding: 0;
-            line-height: 1.6;
+        }
+
+        .geuther-produktstart {
+            padding-bottom: 4rem; /* Platz am Ende */
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1rem;
         }
 
-        /* Hero Section Styles */
-        .hero-new-products {
-            background: linear-gradient(135deg, #C5D6CD 0%, #A7BFB4 100%);
-            padding: 6rem 0;
+        /* --- Hero Section --- */
+        .hero-section-produktstart {
+            background-color: var(--geuther-accent);
+            padding: 4rem 0;
             text-align: center;
-            position: relative;
-            overflow: hidden;
+            margin-bottom: 4rem;
         }
 
-        .hero-new-products::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('https://www.geuther.de/media/dc/4b/51/1724842241/2732_NA_01.jpg') center/cover;
-            opacity: 0.1;
-            z-index: 0;
-        }
-
-        .hero-new-products h1 {
-            font-size: 3.5rem;
-            color: var(--geuther-primary);
-            margin-bottom: 1.5rem;
+        .hero-title-produktstart {
+            font-size: 2.8rem;
             font-weight: 700;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-new-products p {
-            font-size: 1.4rem;
             color: var(--geuther-primary);
-            max-width: 800px;
-            margin: 0 auto 2rem;
-            line-height: 1.6;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Product Section Styles */
-        .new-product-section {
-            padding: 0;
-            background: white;
-        }
-
-        .product-row {
-            padding: 6rem 0;
-        }
-
-        .product-row:nth-child(even) {
-            background: var(--geuther-accent);
-        }
-
-        .new-product-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .product-hero {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            margin: 2rem 0 4rem;
-            align-items: start;
-            position: relative;
-        }
-
-        .product-gallery {
-            position: sticky;
-            top: 2rem;
-        }
-
-        .gallery-main {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 4/3;
-            max-height: 500px;
-            background: var(--geuther-bg);
-            border-radius: 12px;
-            overflow: hidden;
             margin-bottom: 1rem;
         }
 
-        .gallery-main img {
+        .hero-subtitle-produktstart {
+            font-size: 1.3rem;
+            color: var(--geuther-text);
+            max-width: 700px;
+            margin: 0 auto 2rem auto;
+        }
+
+        /* --- Product Section --- */
+        .product-section {
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--geuther-border);
+        }
+        .product-section:last-of-type {
+            border-bottom: none;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: flex-start; /* Align items to the top */
+            margin-bottom: 3rem; /* Add margin below the main grid */
+        }
+
+        /* Adjust grid layout for alternating sections (HATO) */
+        .product-section.hato .product-grid {
+             grid-template-columns: 1fr 1fr; /* HATO: Text links, Bild rechts */
+        }
+        /* Ensure text is on the left for HATO */
+         .product-section.hato .product-grid .product-content {
+            order: 1;
+        }
+        .product-section.hato .product-grid .product-image-container {
+            order: 2;
+        }
+
+        .product-image-container {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: relative;
+            margin-bottom: 1rem; /* Add space below main image for gallery */
+        }
+
+        .product-image {
             width: 100%;
-            height: 100%;
-            object-fit: contain;
+            height: auto; /* Maintain aspect ratio */
+            display: block;
+            border-radius: 0; /* Image fills container, so no radius needed here */
+            object-fit: cover;
+             aspect-ratio: 4 / 3; /* Less tall aspect ratio */
+        }
+
+        .product-content {
+            padding: 0; /* Remove padding, handled by grid gap */
+        }
+
+        .product-name {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 1rem;
+        }
+
+        .product-tagline {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--geuther-text);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .product-description {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .product-highlights {
+            margin-bottom: 2rem;
+        }
+
+        .highlights-title {
+            padding-bottom: 0; /* Reset padding */
+            margin-bottom: 1.5rem; /* Consistent margin */
+            display: block; /* Make it block for full width */
+        }
+
+        .highlights-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            margin-bottom: 2rem; /* Add space below highlights list inside the box */
+        }
+
+        .highlights-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .highlights-list i {
+            color: var(--geuther-primary);
+            margin-top: 4px; /* Adjust icon vertical alignment */
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        /* Moved Sections Styling */
+        .product-additional-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem; /* Increase gap */
+            border-top: none; /* Remove top border, now handled by cards */
+            padding: 0; /* Remove padding, handled by cards */
+            margin-top: 0; /* Reset margin */
+        }
+
+        .product-details,
+        .product-usp {
+            background-color: var(--geuther-accent);
+            padding: 2rem; /* Add padding inside the card */
+            border-radius: 12px;
+            margin-top: 0; /* Ensure no extra margin */
+            border: 1px solid var(--geuther-border);
+        }
+
+        .details-title,
+        .usp-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 1.5rem; /* Increase bottom margin */
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .details-list {
+             font-size: 1rem; /* Slightly larger font */
+             list-style: none;
+             padding: 0;
+             margin: 0;
+        }
+
+        .details-list li {
+            margin-bottom: 1rem; /* Increase spacing */
+            padding-left: 0; /* Reset padding, icon handles spacing */
+            position: relative;
+            display: flex; /* Use flex for icon alignment */
+            align-items: flex-start;
+            gap: 0.75rem; /* Gap between icon and text */
+        }
+        .details-list li::before {
+           content: ""; /* Remove pseudo-element checkmark */
+        }
+        .details-list li i {
+            color: var(--geuther-primary);
+            font-size: 1.1rem; /* Adjust icon size */
+            margin-top: 3px; /* Fine-tune vertical alignment */
+            flex-shrink: 0;
+        }
+
+        .product-usp {
+            background-color: var(--geuther-accent); /* Unified background for combined box */
+            border-left: none; /* Remove left border, use card style */
             padding: 2rem;
         }
 
-        .gallery-thumbs {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 1rem;
+        .usp-title {
+            /* Styles largely remain */
         }
 
-        .gallery-thumb {
-            aspect-ratio: 1;
+        .usp-text {
+            font-size: 1.05rem; /* Slightly larger */
+            line-height: 1.7; /* Increased line height */
+            color: var(--geuther-text); /* Ensure text color */
+        }
+
+        /* Styles for Purchase Options remain largely the same */
+        .product-purchase-options {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--geuther-border);
+        }
+
+        .product-availability {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            margin-bottom: 1rem; /* Increased margin */
+            font-size: 0.9rem; /* Adjusted font size */
+        }
+
+        .availability-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #2da73c; /* Green for available */
+            font-weight: 500;
+        }
+         .availability-status.unavailable {
+             color: #dc3545; /* Red for unavailable */
+         }
+
+        .delivery-time {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--geuther-text);
+        }
+
+        .product-price {
+            font-size: 1.5rem; /* Larger price */
+            font-weight: 700; /* Bolder price */
+            color: var(--geuther-primary);
+            margin-bottom: 1rem;
+        }
+
+        .product-colors {
+            display: flex;
+            gap: 0.75rem; /* Slightly larger gap */
+            margin-bottom: 1.5rem; /* Increased margin */
+            align-items: center;
+        }
+         .colors-label {
+             font-size: 0.95rem;
+             font-weight: 500;
+             margin-right: 0.5rem;
+         }
+
+        .color-variant {
+            width: 28px; /* Larger variants */
+            height: 28px;
+            border-radius: 4px;
+            cursor: pointer;
+            border: 1px solid var(--geuther-border);
+            transition: all 0.2s ease;
+            position: relative;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .color-variant:hover {
+            transform: translateY(-2px);
+             box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+        }
+
+        .color-variant.white { background: #ffffff; }
+        .color-variant.black { background: #2c2c2c; }
+        .color-variant.natural { background: #d4bc9c; }
+        .color-variant.grey { background: #a9a9a9; } /* Example color */
+        .color-variant.anthracite { background: #343a40; } /* Example color */
+
+        .color-variant.more {
+            background: var(--geuther-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            color: var(--geuther-primary);
+            font-weight: 600;
+            border: 1px dashed var(--geuther-secondary);
+        }
+
+        .color-variant.selected {
+            border: 3px solid var(--geuther-primary);
+             box-shadow: 0 0 0 2px var(--geuther-bg), 0 0 0 4px var(--geuther-primary); /* Highlight effect */
+        }
+
+        .product-button {
+            display: inline-block; /* Changed to inline-block */
+            padding: 0.9rem 2.2rem; /* Adjusted padding */
+            margin-top: 0; /* Removed margin-top */
+            background: var(--geuther-primary);
+            color: white;
+            text-align: center;
+            border: none;
+            border-radius: 8px; /* Match hero button */
+            font-weight: 600; /* Match hero button */
+            text-decoration: none;
+            transition: all 0.3s ease;
+             cursor: pointer;
+             font-size: 1rem;
+             text-transform: uppercase; /* Optional: Uppercase text */
+             letter-spacing: 0.5px; /* Optional: Letter spacing */
+        }
+
+        .product-button:hover {
+            background: #364b3d; /* Darker shade from hero button hover */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 992px) {
+            .product-grid {
+                grid-template-columns: 1fr; /* Stack on tablet */
+                gap: 2rem;
+                margin-bottom: 2rem;
+            }
+            /* Ensure correct order on stack for HATO */
+             .product-section.hato .product-grid .product-content {
+                order: 2; /* Text below image */
+            }
+            .product-section.hato .product-grid .product-image-container {
+                order: 1; /* Image on top */
+            }
+
+             .product-additional-info {
+                 grid-template-columns: 1fr; /* Stack additional info */
+                 gap: 2rem;
+             }
+
+             .product-image {
+                 aspect-ratio: 1/1; /* Square on tablet now */
+             }
+
+            .hero-title-produktstart {
+                font-size: 2.2rem;
+            }
+            .hero-subtitle-produktstart {
+                font-size: 1.1rem;
+            }
+            .product-name {
+                font-size: 1.8rem;
+            }
+            .product-tagline {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section-produktstart {
+                padding: 3rem 0;
+            }
+             .product-section {
+                 padding: 3rem 0;
+             }
+            .hero-title-produktstart {
+                font-size: 1.8rem;
+            }
+            .hero-subtitle-produktstart {
+                font-size: 1rem;
+            }
+            .product-name {
+                font-size: 1.6rem;
+            }
+            .product-image {
+                 aspect-ratio: 1 / 1; /* Square on mobile */
+             }
+             .product-additional-info {
+                 padding: 1.5rem 0;
+             }
+             .details-title,
+             .usp-title {
+                 font-size: 1.1rem;
+             }
+        }
+
+        /* --- Image Gallery --- */
+        .image-gallery {
+            position: relative;
+            margin-bottom: 1rem; /* Space below gallery */
+            overflow: hidden; /* Hide thumbnails that don't fit */
+        }
+
+        .gallery-track {
+            display: flex;
+            gap: 0.75rem;
+            padding: 0.25rem; /* Small padding around track */
+            transition: transform 0.3s ease; /* For potential JS scrolling */
+            width: max-content; /* Allow track to exceed container width */
+        }
+
+        .gallery-thumbnail {
+            width: 80px; /* Adjust size as needed */
+            height: 80px;
+            border-radius: 6px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.2s ease;
+            flex-shrink: 0; /* Prevent thumbnails from shrinking */
+        }
+
+        .gallery-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-thumbnail:hover,
+        .gallery-thumbnail.active {
+            border-color: var(--geuther-primary);
+        }
+
+        .gallery-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid var(--geuther-border);
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: background-color 0.2s ease, color 0.2s ease;
+            color: var(--geuther-primary);
+        }
+
+        .gallery-arrow:hover {
+            background-color: var(--geuther-primary);
+            color: white;
+        }
+
+        .gallery-arrow.prev {
+            left: 10px;
+        }
+
+        .gallery-arrow.next {
+            right: 10px;
+        }
+        .gallery-arrow i {
+            font-size: 1.2rem;
+        }
+
+        .product-main-image {
+            width: 100%;
+            margin-bottom: 1rem;
             border-radius: 8px;
             overflow: hidden;
+        }
+
+        .product-main-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            display: block;
+        }
+
+        .product-gallery {
+            margin-top: 1rem;
+        }
+
+        .gallery-thumbnails {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 4px;
             cursor: pointer;
             border: 2px solid transparent;
             transition: all 0.3s ease;
         }
 
-        .gallery-thumb:hover {
+        .thumbnail:hover {
             transform: translateY(-2px);
         }
 
-        .gallery-thumb.active {
+        .thumbnail.active {
             border-color: var(--geuther-primary);
-        }
-
-        .gallery-thumb img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            padding: 0.5rem;
-        }
-
-        /* Manufacturer Badge */
-        .manufacturer-badge {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 0;
-            padding: 0.5rem;
-            background: var(--geuther-accent);
-            border-radius: 8px;
-            width: fit-content;
-        }
-
-        .manufacturer-badge img {
-            height: 20px;
-            width: auto;
-        }
-
-        .manufacturer-badge span {
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--geuther-primary);
-        }
-
-        /* Product Info Section */
-        .product-info {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-            position: relative;
-        }
-
-        .product-header {
-            border-bottom: 1px solid var(--geuther-border);
-            padding-bottom: 0.25rem;
-            margin-bottom: 0;
-        }
-
-        .header-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.5rem;
-        }
-
-        .product-detail-title {
-            font-size: 2rem;
-            font-weight: 600;
-            color: var(--geuther-primary);
-            margin: 0.25rem 0;
-        }
-
-        .product-rating-box {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .rating-stars {
-            color: #FFD700;
-            font-size: 1.1rem;
-            letter-spacing: -1px;
-            line-height: 1;
-        }
-
-        .rating-count {
-            font-size: 0.9rem;
-            color: var(--geuther-text);
-            opacity: 0.7;
-            padding-left: 0.5rem;
-            text-decoration: none;
-            white-space: nowrap;
-        }
-
-        .rating-count:hover {
-            text-decoration: underline;
-            color: var(--geuther-primary);
-        }
-
-        .product-subtitle {
-            font-size: 1.1rem;
-            color: var(--geuther-text);
-            opacity: 0.8;
-        }
-
-        .product-id {
-            font-size: 0.9rem;
-            color: var(--geuther-text);
-            opacity: 0.6;
-            margin: 0;
-            white-space: nowrap;
-        }
-
-        .versandinfo {
-            margin-left: 10rem;
-        }
-
-        /* Key Features */
-        .key-features {
-            display: grid;
-            gap: 0.5rem;
-            margin: 0.25rem 0;
-        }
-
-        .key-feature {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 1rem;
-            color: var(--geuther-primary);
-        }
-
-        .key-feature i {
-            font-size: 1.25rem;
-            color: var(--geuther-primary);
-            flex-shrink: 0;
-        }
-
-        /* Trust Elements */
-        .trust-elements {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0.75rem;
-            margin: 0.5rem 0;
-        }
-
-        .trust-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.75rem;
-            background: var(--geuther-accent);
-            border-radius: 8px;
-        }
-
-        .trust-item i {
-            font-size: 1.25rem;
-            color: var(--geuther-primary);
-        }
-
-        .trust-text {
-            font-size: 0.85rem;
-            line-height: 1.3;
-        }
-
-        .trust-text strong {
-            display: block;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        /* Price Section */
-        .product-price-section {
-            background: var(--geuther-accent);
-            padding: 1rem;
-            border-radius: 12px;
-            margin-bottom: 1rem;
-        }
-
-        .price-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0;
-        }
-
-        .price-main {
-            display: flex;
-            align-items: baseline;
-            gap: 0.5rem;
-            font-size: 2rem;
-            font-weight: 600;
-            color: var(--geuther-primary);
-        }
-
-        .price-tax {
-            font-size: 0.9rem;
-            opacity: 0.7;
-            white-space: nowrap;
-        }
-
-        .price-shipping {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--geuther-success);
-            background: #2da73c15;
-            padding: 0.4rem 0.75rem;
-            border-radius: 6px;
-            border: 1px solid #2da73c30;
-        }
-
-        .price-shipping i {
-            font-size: 1.1rem;
-        }
-
-        .shipping-text {
-            display: flex;
-            flex-direction: column;
-            font-size: 0.85rem;
-            line-height: 1.2;
-        }
-
-        .shipping-text strong {
-            color: var(--geuther-success);
-        }
-
-        .availability-section {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 1.5rem;
-            margin-top: 0.75rem;
-            padding-top: 0.75rem;
-            border-top: 1px solid var(--geuther-border);
-        }
-
-        .stock-status, .delivery-time {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.85rem;
-        }
-
-        .stock-status {
-            color: var(--geuther-success);
-            font-weight: 500;
-        }
-
-        .delivery-time i {
-            color: var(--geuther-primary);
-            font-size: 1rem;
-        }
-
-        /* Color Selection */
-        .color-selection {
-            margin: 0rem 0;
-            display: grid;
-            grid-template-columns: 1fr 3fr;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .color-label {
-            margin: 0;
-            font-weight: 500;
-        }
-
-        .color-options {
-            display: flex;
-            gap: 1rem;
-            justify-content: flex-start;
-        }
-
-        .color-option {
-            width: 48px;
-            height: 48px;
-            border-radius: 8px;
-            cursor: pointer;
-            border: 2px solid var(--geuther-border);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .color-option:hover {
-            transform: translateY(-2px);
-        }
-
-        .color-option.selected {
-            border-color: var(--geuther-primary);
-        }
-
-        .color-option.selected::after {
-            content: '';
-            position: absolute;
-            inset: -6px;
-            border: 2px solid var(--geuther-primary);
-            border-radius: 10px;
-        }
-
-        /* Add to Cart Section */
-        .add-to-cart-section {
-            display: flex;
-            gap: 1rem;
-            margin: 1rem 0;
-        }
-
-        .quantity-input {
-            display: flex;
-            align-items: center;
-            border: 1px solid var(--geuther-border);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .quantity-btn {
-            width: 48px;
-            height: 48px;
-            border: none;
-            background: var(--geuther-bg);
-            cursor: pointer;
-            font-size: 1.2rem;
-            color: var(--geuther-primary);
-            transition: all 0.3s ease;
-        }
-
-        .quantity-btn:hover {
-            background: var(--geuther-accent);
-        }
-
-        .quantity-value {
-            width: 64px;
-            height: 48px;
-            border: none;
-            text-align: center;
-            font-size: 1rem;
-            font-weight: 500;
-            border-left: 1px solid var(--geuther-border);
-            border-right: 1px solid var(--geuther-border);
-        }
-
-        .add-to-cart-btn {
-            flex: 1;
-            height: 48px;
-            background: var(--geuther-primary);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-        }
-
-        .add-to-cart-btn:hover {
-            background: #364b3d;
-        }
-
-        /* Mobile Gallery */
-        .mobile-gallery {
-            display: none;
-        }
-
-        @media (max-width: 992px) {
-            .product-hero {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-                margin-top: 0;
-            }
-
-            .product-gallery {
-                position: relative;
-                top: 0;
-            }
-
-            .manufacturer-badge span {
-                display: none;
-            }
-
-            .product-id {
-                font-size: 0.85rem;
-            }
-
-            .availability-section {
-                flex-direction: row;
-                flex-wrap: nowrap;
-                gap: 1rem;
-            }
-
-            .delivery-time {
-                white-space: nowrap;
-            }
-
-            .delivery-time span:first-child {
-                display: none;
-            }
-
-            .fixed-bottom-bar {
-                display: block;
-            }
-
-            .product-content {
-                margin-bottom: 120px;
-            }
-
-            .trust-elements {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.75rem;
-            }
-
-            .trust-item {
-                padding: 0.75rem;
-            }
-
-            .trust-item i {
-                font-size: 1.1rem;
-            }
-
-            .trust-text {
-                font-size: 0.85rem;
-            }
-
-            .color-selection {
-                grid-template-columns: 1fr 1fr;
-                gap: 0.5rem;
-            }
-
-            .color-label {
-                font-size: 0.9rem;
-            }
-
-            .color-options {
-                justify-content: flex-end;
-            }
-
-            .versandinfo {
-                margin-left: 0rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .gallery-thumbs {
-                display: none;
-            }
-
-            .gallery-main {
-                display: none;
-            }
-
-            .mobile-gallery {
-                display: block;
-                margin: 1rem 0;
-                position: relative;
-            }
-
-            .gallery-nav {
-                position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-                width: 40px;
-                height: 40px;
-                background: rgba(255, 255, 255, 0.9);
-                border: none;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                cursor: pointer;
-                z-index: 2;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            }
-
-            .gallery-nav.prev {
-                left: 10px;
-            }
-
-            .gallery-nav.next {
-                right: 10px;
-            }
-
-            .fixed-bottom-bar {
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                background: var(--geuther-bg);
-                padding: 1rem;
-                box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-                z-index: 1000;
-            }
-
-            .fixed-bottom-bar .color-selection {
-                margin: 0 0 1rem;
-            }
-
-            .fixed-bottom-bar .add-to-cart-section {
-                margin: 0;
-            }
-
-            .product-title {
-                font-size: 1.5rem;
-            }
-
-            .price-main {
-                font-size: 1.5rem;
-            }
-
-            .availability-section {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                align-items: center;
-                gap: 1rem;
-            }
-
-            .delivery-time span:first-child {
-                display: none;
-            }
-
-            .delivery-time span:last-child {
-                content: "In 2-3 Tagen bei dir";
-            }
-        }
-
-        /* Video Modal */
-        .video-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.8);
-            z-index: 1000;
-            backdrop-filter: blur(4px);
-        }
-
-        .video-modal.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .video-container {
-            width: 90%;
-            max-width: 1200px;
-            background: white;
-            border-radius: 12px;
-            position: relative;
-            aspect-ratio: 16/9;
-        }
-
-        .video-close {
-            position: absolute;
-            top: -40px;
-            right: 0;
-            width: 32px;
-            height: 32px;
-            background: white;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-        }
-
-        /* Feature Section Styles */
-        .feature-section,
-        .safety-section,
-        .materials-section {
-            margin-bottom: 6rem;
-        }
-
-        .feature-grid,
-        .safety-grid,
-        .materials-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .safety-grid.reversed {
-            direction: rtl;
-        }
-
-        .safety-grid.reversed > * {
-            direction: ltr;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            font-weight: 600;
-            color: var(--geuther-primary);
-            margin-bottom: 1.5rem;
-        }
-
-        .feature-highlight {
-            font-size: 1.2rem;
-            font-weight: 500;
-            color: var(--geuther-primary);
-            margin-bottom: 1rem;
-            line-height: 1.4;
-        }
-
-        .feature-text,
-        .safety-text,
-        .materials-text {
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .feature-image,
-        .safety-image,
-        .materials-image {
-            width: 100%;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        /* Materials Section */
-        .materials-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin: 1.5rem 0;
-        }
-
-        .material-badge {
-            background: var(--geuther-accent);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            color: var(--geuther-primary);
-            border: 1px solid var(--geuther-secondary);
-        }
-
-        .material-details {
-            margin-top: 2rem;
-        }
-
-        .material-details h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--geuther-primary);
-            margin-bottom: 1rem;
-        }
-
-        .material-details ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .material-details li {
-            position: relative;
-            padding-left: 1.5rem;
-            margin-bottom: 0.5rem;
-            line-height: 1.5;
-        }
-
-        .material-details li::before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: var(--geuther-primary);
-        }
-
-        /* Properties Section */
-        .properties-section {
-            margin-bottom: 4rem;
-            background: var(--geuther-bg);
-            border-radius: 12px;
-            overflow: hidden;
-        }
-
-        .properties-table {
-            border: 1px solid var(--geuther-border);
-            border-radius: 12px;
-        }
-
-        .property-row {
-            display: grid;
-            grid-template-columns: 200px 1fr;
-            border-bottom: 1px solid var(--geuther-border);
-        }
-
-        .property-row:last-child {
-            border-bottom: none;
-        }
-
-        .property-row:nth-child(odd) {
-            background: var(--geuther-accent);
-        }
-
-        .property-label,
-        .property-value {
-            padding: 1rem 1.5rem;
-            font-size: 1rem;
-            line-height: 1.4;
-        }
-
-        .property-label {
-            font-weight: 500;
-            color: var(--geuther-primary);
-        }
-
-        /* Downloads Section */
-        .downloads-section {
-            margin-bottom: 4rem;
-        }
-
-        .downloads-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .download-card {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1.5rem;
-            background: var(--geuther-accent);
-            border-radius: 12px;
-            text-decoration: none;
-            color: var(--geuther-text);
-            transition: all 0.3s ease;
-        }
-
-        .download-card:hover {
-            transform: translateY(-2px);
-            background: var(--geuther-secondary);
-        }
-
-        .download-card i {
-            font-size: 2rem;
-            color: var(--geuther-primary);
-        }
-
-        .download-info {
-            flex: 1;
-        }
-
-        .download-info h3 {
-            font-size: 1rem;
-            font-weight: 600;
-            margin: 0 0 0.25rem;
-        }
-
-        .download-info span {
-            font-size: 0.9rem;
-            opacity: 0.7;
-        }
-
-        /* Product Features Section */
-        .product-features-section {
-            background: var(--geuther-accent);
-            padding: 4rem 0;
-            margin-top: 4rem;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-        }
-
-        .feature-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-        }
-
-        .feature-icon {
-            font-size: 2rem;
-            color: var(--geuther-primary);
-            margin-bottom: 1rem;
-        }
-
-        .feature-title {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: var(--geuther-primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .feature-description {
-            font-size: 1rem;
-            color: var(--geuther-text);
-            line-height: 1.6;
-            margin: 0;
-        }
-
-        @media (max-width: 992px) {
-            .feature-grid,
-            .safety-grid,
-            .materials-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .downloads-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .section-title {
-                font-size: 1.75rem;
-            }
-
-            .feature-card {
-                padding: 1.5rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .property-row {
-                grid-template-columns: 1fr;
-            }
-
-            .property-label {
-                padding-bottom: 0.25rem;
-                background: none;
-            }
-
-            .property-value {
-                padding-top: 0.25rem;
-            }
-
-            .feature-title {
-                font-size: 1.2rem;
-            }
-
-            .feature-icon {
-                font-size: 1.75rem;
-            }
         }
     </style>
 </head>
 <body>
-    <main>
+    <div class="geuther-produktstart">
+
         <!-- Hero Section -->
-        <section class="hero-new-products">
+        <section class="hero-section-produktstart">
             <div class="container">
-                <h1>Geuther Neuheiten 2025</h1>
-                <p>Entdecken Sie unsere innovativen Produktneuheiten für das Jahr 2025. Jedes Produkt wurde mit Liebe zum Detail entwickelt, um Ihren Alltag mit Kindern noch sicherer und komfortabler zu gestalten.</p>
+                <h1 class="hero-title-produktstart">Entdecken Sie unsere Neuheiten</h1>
+                <p class="hero-subtitle-produktstart">
+                    Innovative Kindermöbel und Sicherheitslösungen, die mit Ihrer Familie wachsen – designed für höchste Ansprüche an Sicherheit, Funktionalität und Nachhaltigkeit.
+                </p>
             </div>
         </section>
 
-        <!-- New Products Section -->
-        <section class="new-product-section">
-            <!-- NALA Hochstuhl -->
-            <div class="product-row">
-                <div class="new-product-container">
-                    <div class="product-hero">
-                        <!-- Gallery Section -->
+        <!-- Produkt 1: NALA Hochstuhl -->
+        <section class="product-section nala">
+            <div class="container">
+                <div class="product-grid">
+                    <div class="product-image-column">
+                        <div class="product-main-image">
+                            <img src="https://www.geuther.de/thumbnail/f1/ca/7e/1705518703/geuther-hochstuhl-filou-up-2359-28_1920x1920.webp" alt="NALA Hochstuhl & Newborn-Set" class="product-image" id="main-image-nala">
+                        </div>
                         <div class="product-gallery">
-                            <div class="gallery-main">
-                                <img src="https://www.geuther.de/media/04/21/bf/1705518517/4842we_1n6fjzbh6sb7gw-2.webp" alt="NALA Hochstuhl Hauptbild">
-                            </div>
-                            <div class="gallery-thumbs">
-                                <div class="gallery-thumb active">
-                                    <img src="https://www.geuther.de/media/04/21/bf/1705518517/4842we_1n6fjzbh6sb7gw-2.webp" alt="NALA Hochstuhl Ansicht 1">
-                                </div>
-                                <div class="gallery-thumb">
-                                    <img src="https://www.geuther.de/media/23/f3/78/1705518553/4842we_2a5jhgjkznnw7k-2.webp" alt="NALA Hochstuhl Ansicht 2">
-                                </div>
-                                <div class="gallery-thumb">
-                                    <img src="https://www.geuther.de/media/d0/07/16/1705518556/4842_sw.webp" alt="NALA Hochstuhl Ansicht 3">
-                                </div>
-                                <div class="gallery-thumb">
-                                    <img src="https://www.geuther.de/media/6c/3f/b8/1705518633/4842_mb_07.webp" alt="NALA Hochstuhl Ansicht 4">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Product Info Section -->
-                        <div class="product-info">
-                            <div class="product-header">
-                                <div class="header-top">
-                                    <div class="manufacturer-badge">
-                                        <img src="https://www.geuther.de/media/a7/ee/58/1705518033/logo-geuther.svg" alt="Geuther Logo">
-                                        <span>Ein Original von Geuther</span>
-                                    </div>
-                                    <p class="product-id">Artikelnummer: 2732_NA</p>
-                                </div>
-                                <h1 class="product-detail-title">NALA Hochstuhl & Newborn Set</h1>
-                                <div class="product-rating-box">
-                                    <div class="rating-stars">
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-half"></i>
-                                    </div>
-                                    <a href="#reviews" class="rating-count">Erste Bewertung schreiben</a>
-                                </div>
-                            </div>
-
-                            <!-- Key Features -->
-                            <div class="key-features">
-                                <div class="key-feature">
-                                    <i class="bi bi-rulers"></i>
-                                    <span>2-in-1 Newborn Set (0-6 Monate)</span>
-                                </div>
-                                <div class="key-feature">
-                                    <i class="bi bi-arrows-move"></i>
-                                    <span>12 Höheneinstellungen (54-86 cm)</span>
-                                </div>
-                                <div class="key-feature">
-                                    <i class="bi bi-shield-check"></i>
-                                    <span>TÜV/GS zertifiziert</span>
-                                </div>
-                            </div>
-
-                            <!-- Price Section -->
-                            <div class="product-price-section">
-                                <div class="price-header">
-                                    <div class="price-main">
-                                        399,00 € <span class="price-tax">inkl. MwSt.</span>
-                                    </div>
-                                    <div class="price-shipping">
-                                        <i class="bi bi-truck"></i>
-                                        <div class="shipping-text">
-                                            <strong>Gratis Versand</strong>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="availability-section">
-                                    <div class="stock-status">
-                                        <i class="bi bi-check-circle-fill"></i>
-                                        Sofort verfügbar
-                                    </div>
-                                    <div class="delivery-time">
-                                        <i class="bi bi-truck-front"></i>
-                                        In ca. 2-3 Tagen bei dir
-                                    </div>
-                                    <div class="versandinfo">
-                                        <i class="bi bi-info-circle"></i>
-                                        <a href="javascript:void(0)" class="open-versandinfo" onclick="openVersandinfoModal()">Versandinfo</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Color Selection -->
-                            <div class="color-selection">
-                                <label class="color-label">Farbe:</label>
-                                <div class="color-options">
-                                    <div class="color-option selected" style="background: #ffffff;" title="Weiß"></div>
-                                    <div class="color-option" style="background: #2c2c2c;" title="Schwarz"></div>
-                                    <div class="color-option" style="background: #d4bc9c;" title="Natur"></div>
-                                    <div class="color-option" style="background: #8B7355;" title="Braun"></div>
-                                    <div class="color-option" style="background: #A7BFB4;" title="Salbei"></div>
-                                </div>
-                            </div>
-
-                            <!-- Add to Cart Section -->
-                            <div class="add-to-cart-section">
-                                <div class="quantity-input">
-                                    <button class="quantity-btn" type="button">-</button>
-                                    <input type="number" class="quantity-value" value="1" min="1" max="99">
-                                    <button class="quantity-btn" type="button">+</button>
-                                </div>
-                                <button class="add-to-cart-btn">
-                                    <i class="bi bi-cart-plus"></i>
-                                    In den Warenkorb
-                                </button>
-                            </div>
-
-                            <!-- Trust Elements -->
-                            <div class="trust-elements">
-                                <div class="trust-item">
-                                    <i class="bi bi-shield-check"></i>
-                                    <div class="trust-text">
-                                        <strong>Geprüfte Sicherheit</strong>
-                                        TÜV/GS zertifiziert
-                                    </div>
-                                </div>
-                                <div class="trust-item">
-                                    <i class="bi bi-award"></i>
-                                    <div class="trust-text">
-                                        <strong>Made in Germany</strong>
-                                        Höchste Qualität
-                                    </div>
-                                </div>
-                                <div class="trust-item">
-                                    <i class="bi bi-patch-check"></i>
-                                    <div class="trust-text">
-                                        <strong>10 Jahre Garantie</strong>
-                                        Auf Holzteile
-                                    </div>
-                                </div>
-                                <div class="trust-item">
-                                    <i class="bi bi-arrow-return-left"></i>
-                                    <div class="trust-text">
-                                        <strong>30 Tage Retoure</strong>
-                                        Kostenlos & einfach
-                                    </div>
-                                </div>
+                            <div class="gallery-thumbnails">
+                                <img src="https://www.geuther.de/thumbnail/f1/ca/7e/1705518703/geuther-hochstuhl-filou-up-2359-28_800x800.webp" alt="NALA Thumbnail 1" class="thumbnail active" onclick="changeImage(this.src)">
+                                <img src="https://www.geuther.de/media/e8/d0/8a/1705518655/setmoses_121.webp" alt="NALA Related Thumbnail 2" class="thumbnail" onclick="changeImage(this.src)">
+                                <img src="https://www.geuther.de/thumbnail/6a/48/f7/1705518642/geuther-wickelkommode-1155wkxl-31_800x800.webp" alt="NALA Related Thumbnail 3" class="thumbnail" onclick="changeImage(this.src)">
+                                <img src="https://www.geuther.de/thumbnail/75/68/c6/1705518647/geuther-4-in-1-cozy-do-1118bb-37_800x800.webp" alt="NALA Related Thumbnail 4" class="thumbnail" onclick="changeImage(this.src)">
                             </div>
                         </div>
                     </div>
-
                     <div class="product-content">
-                        <!-- Feature Section -->
-                        <section class="feature-section">
-                            <div class="feature-grid">
-                                <div class="feature-content">
-                                    <h2 class="section-title">Innovatives 2-in-1 Design</h2>
-                                    <p class="feature-highlight">
-                                        Der NALA Hochstuhl revolutioniert das Konzept des mitwachsenden Hochstuhls durch sein einzigartiges Newborn Set.
-                                    </p>
-                                    <p class="feature-text">
-                                        Von Geburt an begleitet der NALA Hochstuhl Ihr Kind durch alle Entwicklungsphasen. Das innovative Newborn Set verwandelt sich in Sekundenschnelle von einem sicheren Hochstuhlaufsatz in eine eigenständige Babywippe - und das ganz ohne Werkzeug. Ab dem 6. Monat wächst der Stuhl dann perfekt mit und passt sich dank seiner vielfältigen Einstellmöglichkeiten optimal an die Bedürfnisse Ihres Kindes an.
-                                    </p>
-                                    <ul class="feature-list">
-                                        <li class="feature-item">
-                                            <i class="bi bi-check-circle"></i>
-                                            <span>Newborn Set (0-6 Monate) mit 2-in-1 Funktion als Hochstuhlaufsatz oder separate Wippe</span>
-                                        </li>
-                                        <li class="feature-item">
-                                            <i class="bi bi-check-circle"></i>
-                                            <span>12 Höheneinstellungen von 54-86 cm für optimale Tischhöhenanpassung</span>
-                                        </li>
-                                        <li class="feature-item">
-                                            <i class="bi bi-check-circle"></i>
-                                            <span>16 Sitztiefeneinstellungen für ergonomischen Sitzkomfort in jedem Alter</span>
-                                        </li>
-                                        <li class="feature-item">
-                                            <i class="bi bi-check-circle"></i>
-                                            <span>5-Punkt-Sicherheitsgurt mit weicher Polsterung</span>
-                                        </li>
-                                        <li class="feature-item">
-                                            <i class="bi bi-check-circle"></i>
-                                            <span>Abnehmbares Essbrett mit erhöhtem Rand und Getränkehalter</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <img src="https://www.geuther.de/media/dc/4b/51/1724842241/2732_NA_02.jpg" 
-                                     alt="NALA Hochstuhl Features" 
-                                     class="feature-image">
-                            </div>
-                        </section>
+                        <h2 class="product-name">NALA Hochstuhl & Newborn-Set</h2>
+                        <p class="product-tagline">Wächst mit – von Geburt bis zum Erwachsenenalter.</p>
+                        <p class="product-description">
+                            Der NALA Hochstuhl kombiniert intelligentes Design, erstklassige Ergonomie und hochwertige Materialien – und begleitet Ihr Kind von den ersten Tagen bis ins Jugendalter.
+                        </p>
 
-                        <!-- Safety Section -->
-                        <section class="safety-section">
-                            <div class="safety-grid reversed">
-                                <div class="safety-content">
-                                    <h2 class="section-title">Sicherheit von Anfang an</h2>
-                                    <p class="safety-text">
-                                        Der NALA Hochstuhl wurde nach höchsten Sicherheitsstandards entwickelt und ist TÜV/GS zertifiziert. Jedes Detail wurde sorgfältig durchdacht, um maximale Sicherheit und Stabilität zu gewährleisten.
-                                    </p>
-                                    <div class="safety-features">
-                                        <div class="safety-feature">
-                                            <i class="bi bi-shield-check"></i>
-                                            <div class="safety-feature-text">
-                                                <strong>TÜV/GS geprüft</strong>
-                                                <span>Entspricht EN 14988:2017 + A1:2020</span>
-                                            </div>
-                                        </div>
-                                        <div class="safety-feature">
-                                            <i class="bi bi-heart-pulse"></i>
-                                            <div class="safety-feature-text">
-                                                <strong>Ergonomisch optimiert</strong>
-                                                <span>Entwickelt mit Kinderärzten</span>
-                                            </div>
-                                        </div>
-                                        <div class="safety-feature">
-                                            <i class="bi bi-droplet"></i>
-                                            <div class="safety-feature-text">
-                                                <strong>Schadstoffgeprüft</strong>
-                                                <span>Keine bedenklichen Inhaltsstoffe</span>
-                                            </div>
-                                        </div>
-                                        <div class="safety-feature">
-                                            <i class="bi bi-award"></i>
-                                            <div class="safety-feature-text">
-                                                <strong>Made in Germany</strong>
-                                                <span>Höchste Qualitätsstandards</span>
-                                            </div>
-                                        </div>
-                                    </div>
+                        <div class="product-purchase-options">
+                            <div class="product-availability">
+                                <div class="availability-status">
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    Sofort verfügbar
                                 </div>
-                                <img src="https://www.geuther.de/media/dc/4b/51/1724842241/2732_NA_03.jpg" 
-                                     alt="NALA Hochstuhl Sicherheit" 
-                                     class="safety-image">
-                            </div>
-                        </section>
-
-                        <!-- Materials Section -->
-                        <section class="materials-section">
-                            <div class="materials-grid">
-                                <div class="materials-content">
-                                    <h2 class="section-title">Nachhaltige Materialien</h2>
-                                    <p class="materials-text">
-                                        Bei der Entwicklung des NALA Hochstuhls haben wir besonderen Wert auf Nachhaltigkeit und Langlebigkeit gelegt. Alle verwendeten Materialien sind sorgfältig ausgewählt und entsprechen höchsten Qualitätsstandards.
-                                    </p>
-                                    <div class="materials-list">
-                                        <span class="material-badge">FSC-zertifiziertes Gummiholz</span>
-                                        <span class="material-badge">Wasserbasierte Farben</span>
-                                        <span class="material-badge">Schadstofffreie Polsterung</span>
-                                        <span class="material-badge">Recycelbare Verpackung</span>
-                                        <span class="material-badge">REACH-konform</span>
-                                    </div>
-                                    <div class="material-details">
-                                        <h3>Materialzusammensetzung:</h3>
-                                        <ul>
-                                            <li>Gestell: Massives FSC-zertifiziertes Gummiholz</li>
-                                            <li>Sitzfläche: Formholz mit ergonomischer Formgebung</li>
-                                            <li>Polsterung: Schadstoffgeprüfter Schaumstoff mit OEKO-TEX® Bezug</li>
-                                            <li>Gurtsystem: Reißfestes Polyester mit weicher Polsterung</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <img src="https://www.geuther.de/media/dc/4b/51/1724842241/2732_NA_04.jpg" 
-                                     alt="NALA Hochstuhl Materialien" 
-                                     class="materials-image">
-                            </div>
-                        </section>
-
-                        <!-- Product Properties Section -->
-                        <section class="properties-section">
-                            <h2 class="section-title">Produkteigenschaften</h2>
-                            <div class="properties-table">
-                                <div class="property-row">
-                                    <div class="property-label">Altersempfehlung:</div>
-                                    <div class="property-value">0 Monate bis Erwachsenenalter</div>
-                                </div>
-                                <div class="property-row">
-                                    <div class="property-label">Maximale Belastung:</div>
-                                    <div class="property-value">Newborn Set: 9 kg / Hochstuhl: 50 kg</div>
-                                </div>
-                                <div class="property-row">
-                                    <div class="property-label">Maße (HxBxT):</div>
-                                    <div class="property-value">86-54 x 55 x 72 cm</div>
-                                </div>
-                                <div class="property-row">
-                                    <div class="property-label">Gewicht:</div>
-                                    <div class="property-value">8,5 kg (inkl. Newborn Set)</div>
-                                </div>
-                                <div class="property-row">
-                                    <div class="property-label">Sicherheitsnorm:</div>
-                                    <div class="property-value">EN 14988:2017 + A1:2020</div>
-                                </div>
-                                <div class="property-row">
-                                    <div class="property-label">Garantie:</div>
-                                    <div class="property-value">10 Jahre auf Holzteile, 2 Jahre auf Zubehör</div>
+                                <div class="delivery-time">
+                                    <i class="bi bi-truck"></i>
+                                    Lieferzeit: 1-3 Tage
                                 </div>
                             </div>
-                        </section>
-
-                        <!-- Downloads Section -->
-                        <section class="downloads-section">
-                            <h2 class="section-title">Downloads & Dokumente</h2>
-                            <div class="downloads-grid">
-                                <a href="#" class="download-card">
-                                    <i class="bi bi-file-pdf"></i>
-                                    <div class="download-info">
-                                        <h3>Produktdatenblatt</h3>
-                                        <span>PDF, 2.1 MB</span>
-                                    </div>
-                                    <i class="bi bi-download"></i>
-                                </a>
-                                <a href="#" class="download-card">
-                                    <i class="bi bi-file-pdf"></i>
-                                    <div class="download-info">
-                                        <h3>Aufbauanleitung</h3>
-                                        <span>PDF, 3.4 MB</span>
-                                    </div>
-                                    <i class="bi bi-download"></i>
-                                </a>
-                                <a href="#" class="download-card">
-                                    <i class="bi bi-file-pdf"></i>
-                                    <div class="download-info">
-                                        <h3>Sicherheitshinweise</h3>
-                                        <span>PDF, 1.8 MB</span>
-                                    </div>
-                                    <i class="bi bi-download"></i>
-                                </a>
+                            <div class="product-price">Ab 199,99 €*</div>
+                            <div class="product-colors">
+                                <span class="colors-label">Farben:</span>
+                                <div class="color-variant white selected" title="Weiß"></div>
+                                <div class="color-variant natural" title="Natur"></div>
+                                <div class="color-variant black" title="Schwarz"></div>
+                                <div class="color-variant grey" title="Grau"></div>
+                                <div class="color-variant more" title="Weitere Farben">+3</div>
                             </div>
-                        </section>
+                            <a href="/produkt/nala-hochstuhl" class="product-button">
+                                Zum Produkt
+                            </a>
+                        </div>
                     </div>
+                </div>
 
-                    <div class="product-features-section">
-                        <div class="container">
-                            <div class="features-grid">
-                                <div class="feature-card">
-                                    <i class="bi bi-arrow-repeat feature-icon"></i>
-                                    <h3 class="feature-title">2-in-1 Newborn Set</h3>
-                                    <p class="feature-description">
-                                        Das innovative Newborn Set lässt sich in Sekunden von einem Hochstuhlaufsatz in eine eigenständige Wippe verwandeln - ganz ohne Werkzeug. Perfekt für die ersten 6 Lebensmonate.
-                                    </p>
-                                </div>
-                                <div class="feature-card">
-                                    <i class="bi bi-rulers feature-icon"></i>
-                                    <h3 class="feature-title">Maximale Anpassungsfähigkeit</h3>
-                                    <p class="feature-description">
-                                        Mit 12 Höhen- und 16 Tiefeneinstellungen bietet der NALA optimale ergonomische Unterstützung in jeder Entwicklungsphase - vom Baby bis zum Erwachsenen.
-                                    </p>
-                                </div>
-                                <div class="feature-card">
-                                    <i class="bi bi-shield-check feature-icon"></i>
-                                    <h3 class="feature-title">Sicherheit & Qualität</h3>
-                                    <p class="feature-description">
-                                        Gefertigt aus FSC-zertifiziertem Gummiholz und veredelt mit unbedenklichen wasserbasierten Farben. TÜV-geprüft und nach EN-Norm zertifiziert.
-                                    </p>
-                                </div>
-                                <div class="feature-card">
-                                    <i class="bi bi-heart feature-icon"></i>
-                                    <h3 class="feature-title">Komfort für Baby & Eltern</h3>
-                                    <p class="feature-description">
-                                        Das ergonomische Design und die weichen Polsterungen sorgen für optimalen Sitzkomfort. Die durchdachte Konstruktion ermöglicht eine einfache Reinigung und Pflege.
-                                    </p>
-                                </div>
+                <div class="product-additional-info">
+                     <div class="product-details">
+                        <h4 class="details-title">Technische Daten</h4>
+                        <ul class="details-list">
+                            <li><i class="bi bi-box-seam"></i><span>Funktionen: Hochstuhl, Newborn-Set (Aufsatz/Wipper), Baby-Set mit Tisch</span></li>
+                            <li><i class="bi bi-arrows-move"></i><span>Verstellbarkeit Sitz: 12 Höhen, 16 Tiefen</span></li>
+                            <li><i class="bi bi-arrows-move"></i><span>Verstellbarkeit Fußstütze: 12 Höhen, 13 Tiefen</span></li>
+                            <li><i class="bi bi-three-dots"></i><span>Verstellbarkeit Rückenlehne Newborn: 3 Positionen</span></li>
+                            <li><i class="bi bi-hand-index-thumb"></i><span>Bedienung: Werkzeugloses One-Click-System, seitlicher Knopf (Newborn)</span></li>
+                            <li><i class="bi bi-tree"></i><span>Material: FSC-Gummibaumholz, wasserbasierter Lack</span></li>
+                            <li><i class="bi bi-person-arms-up"></i><span>Belastbarkeit: bis 85 kg</span></li>
+                            <li><i class="bi bi-palette"></i><span>Farben: 7 Varianten</span></li>
+                        </ul>
+                    </div>
+                     <div class="product-usp">
+                        <h3 class="highlights-title">Highlights</h3>
+                        <ul class="highlights-list">
+                            <li>
+                                <i class="bi bi-star-fill"></i>
+                                <div><strong>Newborn-Set (0–6 Monate):</strong> 2-in-1 Funktion als Hochstuhl-Aufsatz oder separater Wipper (werkzeuglos wechselbar), 3-fach verstellbare Rückenlehne.</div>
+                            </li>
+                            <li>
+                                <i class="bi bi-star-fill"></i>
+                                <div><strong>Baby-Set (6–36 Monate):</strong> Zwei komfortable Sitzpositionen, inklusive abnehmbarem Tischchen.</div>
+                            </li>
+                            <li>
+                                <i class="bi bi-star-fill"></i>
+                                <div><strong>Maximale Ergonomie:</strong> Sitz (12 Höhen/16 Tiefen) & Fußstütze (12 Höhen/13 Tiefen) werkzeuglos per 1-Klick anpassbar für optimale 90°-Haltung.</div>
+                            </li>
+                            <li>
+                                <i class="bi bi-star-fill"></i>
+                                <div><strong>Nachhaltigkeit & Design:</strong> FSC-zertifiziertes Gummibaumholz, wasserbasierte Farbe, 7 stilvolle Farben, belastbar bis 85 kg.</div>
+                            </li>
+                        </ul>
+                        <h4 class="usp-title">Besonderheit</h4>
+                        <p class="usp-text">
+                            Einziger Holzhochstuhl mit echter Neugeborenen-Wippenfunktion. Unterstützt ergonomisch korrekte Haltung und begleitet Ihr Kind ein Leben lang.
+                        </p>
+                    </div>
+                 </div>
+            </div>
+        </section>
+
+        <!-- Produkt 2: HATO 4-in-1 Beistellbett -->
+        <section class="product-section hato">
+             <div class="container">
+                <div class="product-grid">
+                    <div class="product-content">
+                         <h2 class="product-name">HATO 4-in-1 Beistellbett</h2>
+                         <p class="product-tagline">Von Geburt bis Schulkind – ein Bett, das mitwächst.</p>
+                         <p class="product-description">
+                             Das HATO Beistellbett ist mehr als nur ein Schlafplatz – es ist ein flexibles Wohnmöbel, das sich Ihrer Familie anpasst. Entworfen im minimalistischen skandinavischen Stil von Says Who, bietet es Sicherheit, Funktionalität und Langlebigkeit. Alle nötigen Teile für den Umbau sind im Set enthalten.
+                         </p>
+
+                        <div class="product-purchase-options">
+                             <div class="product-availability">
+                                 <div class="availability-status">
+                                     <i class="bi bi-check-circle-fill"></i>
+                                     Sofort verfügbar
+                                 </div>
+                                 <div class="delivery-time">
+                                     <i class="bi bi-truck"></i>
+                                     Lieferzeit: 1-3 Tage
+                                 </div>
+                             </div>
+                              <div class="product-price">249,99 €*</div>
+                               <div class="product-colors">
+                                   <span class="colors-label">Farben:</span>
+                                   <div class="color-variant white selected" title="Weiß"></div>
+                                   <div class="color-variant natural" title="Natur"></div>
+                               </div>
+                              <a href="/produkt/hato-beistellbett" class="product-button">
+                                   Zum Produkt
+                               </a>
+                         </div>
+                    </div>
+                    <div class="product-image-column">
+                        <div class="product-image-container">
+                            <img src="https://www.geuther.de/media/3b/72/8e/1724231515/1123OM_NAWE_1.webp" alt="HATO 4-in-1 Beistellbett" class="product-image" id="main-image-hato">
+                        </div>
+                         <div class="product-gallery">
+                            <div class="gallery-thumbnails">
+                                <img src="https://www.geuther.de/media/3b/72/8e/1724231515/1123OM_NAWE_1_800x800.webp" alt="HATO Thumbnail 1" class="thumbnail active" onclick="changeImage(this.src)">
+                                <img src="https://www.geuther.de/thumbnail/62/f2/83/1705518704/1155_nest_in_the_clouds_005_800x800.webp" alt="HATO Thumbnail 2" class="thumbnail" onclick="changeImage(this.src)">
+                                <img src="https://www.geuther.de/media/a2/88/2d/1705518487/4872na032_2ecnypyxgzcacr_800x800.webp" alt="HATO Related Thumbnail 3" class="thumbnail" onclick="changeImage(this.src)">
                             </div>
                         </div>
                     </div>
                 </div>
+
+                 <div class="product-additional-info">
+                     <div class="product-details">
+                        <h4 class="details-title">Technische Daten</h4>
+                        <ul class="details-list">
+                            <li><i class="bi bi-box-seam"></i><span>Funktionen: Beistellbett, Bassinet, Kindersofa, Schreibtisch</span></li>
+                            <li><i class="bi bi-shield-check"></i><span>Sicherheit: 18cm Frontpanel (EU-Norm), Befestigungsgurt</span></li>
+                            <li><i class="bi bi-arrows-vertical"></i><span>Verstellbarkeit: 9 Höhenstufen</span></li>
+                            <li><i class="bi bi-circle-square"></i><span>Mobilität: 2 Rollen</span></li>
+                            <li><i class="bi bi-tree"></i><span>Material: FSC-Buche, FSC-Gummibaum, MDF, wasserbasierter Lack</span></li>
+                            <li><i class="bi bi-brush"></i><span>Design: Says Who (Dänemark)</span></li>
+                            <li><i class="bi bi-arrows-fullscreen"></i><span>Außenmaß: 47 × 88 cm</span></li>
+                            <li><i class="bi bi-aspect-ratio"></i><span>Matratzenmaß: 40 × 80 cm</span></li>
+                        </ul>
+                    </div>
+                     <div class="product-usp">
+                        <h3 class="highlights-title">Highlights</h3>
+                        <ul class="highlights-list">
+                            <li>
+                                <i class="bi bi-check-circle-fill"></i>
+                                <div><strong>4-in-1 Design:</strong> Beistellbett (EU-konform sicher), Stand-alone Bassinet (1-Klick-Umbau), Kindersofa, Kinderschreibtisch (bis ca. 10 Jahre).</div>
+                            </li>
+                            <li>
+                                <i class="bi bi-check-circle-fill"></i>
+                                <div><strong>Sicher & Flexibel:</strong> 18 cm hohe Frontplatte, 9-fach höhenverstellbar, sicherer Befestigungsgurt fürs Elternbett, 2 Rollen für Mobilität.</div>
+                            </li>
+                            <li>
+                                <i class="bi bi-check-circle-fill"></i>
+                                <div><strong>Nachhaltige Materialien & Design:</strong> FSC-zertifiziertes Buchen-/Gummibaumholz & MDF, wasserbasierte Lacke, designed mit Says Who.</div>
+                            </li>
+                        </ul>
+                        <h4 class="usp-title">Besonderheit</h4>
+                        <p class="usp-text">
+                            Deutlich längere Nutzungsdauer (bis 10 Jahre) als herkömmliche Beistellbetten. Vollständiger Umbau ohne Zukaufteile möglich.
+                         </p>
+                    </div>
+                </div>
             </div>
-
-            <!-- Weitere Produkte folgen mit gleicher Struktur -->
-            
         </section>
-    </main>
 
-    <!-- Video Modal -->
-    <div class="video-modal">
-        <div class="video-container">
-            <button class="video-close">
-                <i class="bi bi-x"></i>
-            </button>
-            <div class="video-content"></div>
-        </div>
+        <!-- Produkt 3: EASYLOCK FLAT-STEP -->
+        <section class="product-section easylock">
+            <div class="container">
+                <div class="product-grid">
+                     <div class="product-image-column">
+                        <div class="product-image-container">
+                            <img src="https://www.geuther.de/media/dc/1d/16/1708101600/2733_WE_01.webp" alt="EASYLOCK FLAT-STEP Sicherheitsgitter" class="product-image" id="main-image-easylock">
+                        </div>
+                        <div class="product-gallery">
+                            <div class="gallery-thumbnails">
+                                <img src="https://www.geuther.de/media/dc/1d/16/1708101600/2733_WE_01_800x800.webp" alt="Easylock Thumbnail 1" class="thumbnail active" onclick="changeImage(this.src)">
+                                <img src="https://www.geuther.de/media/d8/56/8c/1705518400/4792-_we_1_800x800.webp" alt="Easylock Thumbnail 2" class="thumbnail" onclick="changeImage(this.src)">
+                                <img src="https://www.geuther.de/media/e9/42/87/1705518432/4793-_we_1_800x800.webp" alt="Easylock Thumbnail 3" class="thumbnail" onclick="changeImage(this.src)">
+                                <img src="https://www.geuther.de/media/dc/4b/51/1724842241/2732_NA_01_800x800.jpg" alt="Easylock Related Thumbnail 4" class="thumbnail" onclick="changeImage(this.src)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-content">
+                        <h2 class="product-name">EASYLOCK FLAT-STEP Sicherheitsgitter</h2>
+                        <p class="product-tagline">Sicherer. Breiter. Komfortabler.</p>
+                        <p class="product-description">
+                            Das neue EASYLOCK FLAT-STEP vereint maximale Sicherheit mit täglicher Benutzerfreundlichkeit – und das in gewohnt hochwertigem Geuther-Design. Die extrem flache Bodenschiene minimiert die Stolpergefahr.
+                        </p>
+
+                        <div class="product-purchase-options">
+                             <div class="product-availability">
+                                 <div class="availability-status">
+                                     <i class="bi bi-check-circle-fill"></i>
+                                     Sofort verfügbar
+                                 </div>
+                                 <div class="delivery-time">
+                                     <i class="bi bi-truck"></i>
+                                     Lieferzeit: 1-3 Tage
+                                 </div>
+                             </div>
+                              <div class="product-price">Ab 69,99 €*</div>
+                               <div class="product-colors">
+                                   <span class="colors-label">Farben:</span>
+                                   <div class="color-variant white selected" title="Weiß"></div>
+                                   <div class="color-variant anthracite" title="Anthrazit"></div>
+                               </div>
+                              <a href="/produkt/easylock-flat-step" class="product-button">
+                                   Zum Produkt
+                               </a>
+                         </div>
+                    </div>
+                </div>
+
+                 <div class="product-additional-info">
+                     <div class="product-details">
+                        <h4 class="details-title">Technische Daten</h4>
+                        <ul class="details-list">
+                            <li><i class="bi bi-shield-lock"></i><span>Sicherheit: Extra flache Bodenschiene, Easy-Close Mechanismus</span></li>
+                            <li><i class="bi bi-hand-index"></i><span>Bedienung: Einhändig</span></li>
+                            <li><i class="bi bi-rulers"></i><span>Größen: 8 Modelle verfügbar</span></li>
+                            <li><i class="bi bi-arrows-angle-expand"></i><span>Passend für Öffnungen: 69 cm – 125 cm (ohne Erweiterungen)</span></li>
+                            <li><i class="bi bi-gear"></i><span>Material: Hochwertige, robuste Materialien (Metall/Kunststoff)</span></li>
+                            <li><i class="bi bi-tools"></i><span>Montage: Klemmen (kein Bohren nötig, optional fest verschraubbar)</span></li>
+                        </ul>
+                    </div>
+                     <div class="product-usp">
+                        <h3 class="highlights-title">Highlights</h3>
+                        <ul class="highlights-list">
+                            <li>
+                                <i class="bi bi-shield-check"></i>
+                                <div><strong>Sicher & Bequem:</strong> Extra flache Bodenschiene minimiert Stolpergefahr (ideal für Treppen), Easy-Close-Verschluss für Einhandbedienung.</div>
+                            </li>
+                            <li>
+                                <i class="bi bi-arrows-fullscreen"></i>
+                                <div><strong>Für jede Öffnung:</strong> In 8 Größen verfügbar, passend für Breiten von 69 cm bis 125 cm – ohne zusätzliche Erweiterungsteile.</div>
+                            </li>
+                            <li>
+                                <i class="bi bi-gem"></i>
+                                <div><strong>Typisch Geuther:</strong> Robuste Verarbeitung, hochwertige Materialien, modernes und funktionales Design.</div>
+                            </li>
+                        </ul>
+                        <h4 class="usp-title">Besonderheit</h4>
+                        <p class="usp-text">
+                            Kombiniert den Komfort einer extrem flachen Bodenschiene mit der Sicherheit des bewährten Easylock-Systems und großer Vielseitigkeit durch viele Größen ohne Erweiterungen.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </div>
 
+    <!-- JavaScript for Gallery (Example - Needs Implementation) -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Thumbnail Gallery
-            const mainImage = document.querySelector('.product-main-image img');
-            const thumbnails = document.querySelectorAll('.product-thumbnail');
-
-            thumbnails.forEach(thumbnail => {
-                thumbnail.addEventListener('click', function() {
-                    // Update main image
-                    mainImage.src = this.querySelector('img').src;
-                    
-                    // Update active state
-                    thumbnails.forEach(t => t.classList.remove('active'));
-                    this.classList.add('active');
-                });
-            });
-
-            // Color Selection
-            const colorOptions = document.querySelectorAll('.color-option');
-            colorOptions.forEach(option => {
-                option.addEventListener('click', function() {
-                    const parent = this.closest('.product-colors');
-                    parent.querySelectorAll('.color-option').forEach(opt => {
-                        opt.classList.remove('selected');
-                    });
-                    this.classList.add('selected');
-                });
-            });
-
-            // Video Modal
-            const videoModal = document.querySelector('.video-modal');
-            const videoButtons = document.querySelectorAll('.video-btn');
-            const videoClose = document.querySelector('.video-close');
-            const videoContent = document.querySelector('.video-content');
-
-            videoButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const videoId = this.dataset.video;
-                    videoContent.innerHTML = `<div style="padding:56.25% 0 0 0;position:relative;">
-                        <iframe src="about:blank" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-                    </div>`;
-                    videoModal.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                });
-            });
-
-            videoClose.addEventListener('click', function() {
-                videoModal.classList.remove('active');
-                videoContent.innerHTML = '';
-                document.body.style.overflow = '';
-            });
-
-            videoModal.addEventListener('click', function(e) {
-                if (e.target === videoModal) {
-                    videoModal.classList.remove('active');
-                    videoContent.innerHTML = '';
-                    document.body.style.overflow = '';
+        function changeImage(src) {
+            document.getElementById('main-image-nala').src = src;
+            document.getElementById('main-image-hato').src = src;
+            document.getElementById('main-image-easylock').src = src;
+            // Aktualisiere aktiven Thumbnail
+            document.querySelectorAll('.thumbnail').forEach(thumb => {
+                thumb.classList.remove('active');
+                if (thumb.src === src) {
+                    thumb.classList.add('active');
                 }
             });
+        }
+
+        // Initialisiere die Galerie
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstThumbnail = document.querySelector('.thumbnail');
+            if (firstThumbnail) {
+                firstThumbnail.classList.add('active');
+            }
         });
     </script>
+
 </body>
-</html> 
+</html>

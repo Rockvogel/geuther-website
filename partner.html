@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partner Portal | Geuther</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --geuther-primary: #42584A;
+            --geuther-secondary: #D4C4B7;
+            --geuther-text: #333333;
+            --geuther-bg: #FFFFFF;
+            --geuther-accent: #F5F1ED;
+            --geuther-border: #E5E5E5;
+        }
+
+        .geuther-partner {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--geuther-text);
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background-color: var(--geuther-accent);
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://www.geuther.de/thumbnail/62/f2/83/1705518704/1155_nest_in_the_clouds_005_800x800.webp') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--geuther-text);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        /* Resource Grid */
+        .resource-section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .resource-card {
+            background: var(--geuther-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 1px solid var(--geuther-border);
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .resource-icon {
+            font-size: 2.5rem;
+            color: var(--geuther-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .resource-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 1rem;
+        }
+
+        .resource-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--geuther-text);
+            margin-bottom: 1.5rem;
+        }
+
+        .resource-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--geuther-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .resource-link:hover {
+            color: var(--geuther-secondary);
+        }
+
+        .resource-link i {
+            font-size: 1.2rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background-color: var(--geuther-accent);
+            padding: 4rem 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contact-info {
+            background: var(--geuther-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .contact-person {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .contact-details h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-details p {
+            font-size: 0.95rem;
+            color: var(--geuther-text);
+            margin: 0;
+        }
+
+        .contact-form {
+            background: var(--geuther-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--geuther-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--geuther-border);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--geuther-secondary);
+            box-shadow: 0 0 0 2px rgba(212,196,183,0.2);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background-color: var(--geuther-primary);
+            color: var(--geuther-bg);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .form-button:hover {
+            background-color: var(--geuther-secondary);
+            color: var(--geuther-primary);
+            transform: translateY(-2px);
+        }
+
+        /* Download Section */
+        .download-section {
+            padding: 4rem 0;
+        }
+
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .download-card {
+            background: var(--geuther-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 1px solid var(--geuther-border);
+        }
+
+        .download-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .download-icon {
+            font-size: 2rem;
+            color: var(--geuther-primary);
+            margin-bottom: 1rem;
+        }
+
+        .download-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .download-size {
+            font-size: 0.85rem;
+            color: var(--geuther-text);
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .resource-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .download-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .download-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .resource-detail-section {
+            padding: 6rem 0;
+            border-bottom: 1px solid var(--geuther-border);
+        }
+
+        .resource-detail-section:nth-child(even) {
+            background-color: var(--geuther-accent);
+        }
+
+        .logo-grid, .color-grid, .product-image-grid, .template-grid, .social-grid, .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .logo-item, .color-item, .product-image-item, .template-item, .social-item, .tip-item {
+            background: var(--geuther-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .logo-item:hover, .product-image-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .color-preview {
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: var(--geuther-primary);
+            color: var(--geuther-bg);
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+        }
+
+        .download-btn:hover {
+            background-color: var(--geuther-secondary);
+            color: var(--geuther-primary);
+            transform: translateY(-2px);
+        }
+
+        .category h3, .text-category h3 {
+            color: var(--geuther-primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .text-block {
+            background: var(--geuther-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .text-block h4 {
+            color: var(--geuther-primary);
+            margin-bottom: 1rem;
+        }
+
+        .text-block ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .text-block ul li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .text-block ul li:before {
+            content: '•';
+            color: var(--geuther-secondary);
+            position: absolute;
+            left: 0;
+        }
+
+        @media (max-width: 768px) {
+            .logo-grid, .color-grid, .product-image-grid, .template-grid, .social-grid, .tips-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .text-block {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Rat6 Section Styles */
+        .rat6-section-header {
+            text-align: center;
+            padding: 4rem 0 2rem 0;
+            margin: 0;
+            position: relative;
+        }
+
+        .rat6-section-title {
+            font-size: 2.5rem;
+            color: var(--geuther-primary);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .rat6-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--geuther-secondary);
+        }
+
+        .rat6-section-subtitle {
+            font-size: 1.2rem;
+            color: var(--geuther-text);
+            opacity: 0.8;
+            font-weight: 400;
+            max-width: 800px;
+            margin: 1.5rem auto 0;
+        }
+
+        .rat6-features-grid {
+            padding: 3rem 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .rat6-feature-box {
+            background: var(--geuther-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+        }
+
+        .rat6-feature-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .rat6-feature-box.blue .rat6-feature-header {
+            background: linear-gradient(135deg, #E8F0F8 0%, #FFFFFF 100%);
+        }
+
+        .rat6-feature-box.green .rat6-feature-header {
+            background: linear-gradient(135deg, #E8F5ED 0%, #FFFFFF 100%);
+        }
+
+        .rat6-feature-box.purple .rat6-feature-header {
+            background: linear-gradient(135deg, #F2E8F5 0%, #FFFFFF 100%);
+        }
+
+        .rat6-feature-header {
+            padding: 2rem;
+            position: relative;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .rat6-feature-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--geuther-bg);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            flex-shrink: 0;
+        }
+
+        .rat6-feature-box.blue .rat6-feature-icon {
+            color: #4A90E2;
+        }
+
+        .rat6-feature-box.green .rat6-feature-icon {
+            color: #2da73c;
+        }
+
+        .rat6-feature-box.purple .rat6-feature-icon {
+            color: #9B6B9E;
+        }
+
+        .rat6-feature-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0;
+            color: var(--geuther-primary);
+        }
+
+        .rat6-feature-content {
+            padding: 2rem;
+        }
+
+        .rat6-feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .rat6-feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .rat6-feature-list i {
+            color: #2da73c;
+            font-size: 0.9rem;
+            margin-top: 0.2rem;
+            flex-shrink: 0;
+        }
+
+        .rat6-info-grid {
+            padding: 0 0 3rem 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+        }
+
+        .rat6-info-box {
+            background: var(--geuther-bg);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+        }
+
+        .rat6-info-box.position {
+            background: linear-gradient(135deg, #E8F0F8 0%, #FFFFFF 100%);
+        }
+
+        .rat6-info-box.certification {
+            background: linear-gradient(135deg, #F8F8F8 0%, #FFFFFF 100%);
+        }
+
+        .rat6-info-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .rat6-info-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--geuther-bg);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .rat6-info-box.position .rat6-info-icon {
+            color: #4A90E2;
+        }
+
+        .rat6-info-box.certification .rat6-info-icon {
+            color: #9B6B9E;
+        }
+
+        .rat6-info-title h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0;
+            color: var(--geuther-primary);
+        }
+
+        .certification-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .certification-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1rem;
+            border-radius: 999px;
+            background: var(--geuther-accent);
+            color: var(--geuther-primary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .certification-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            background: #E8E2D9;
+        }
+
+        .certification-badge i {
+            font-size: 1rem;
+            color: var(--geuther-primary);
+        }
+
+        @media (max-width: 992px) {
+            .rat6-features-grid {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 2rem 0;
+            }
+
+            .rat6-info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .rat6-section-header {
+                padding: 3rem 0 1.5rem 0;
+            }
+
+            .rat6-section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .rat6-features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="geuther-partner">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Geuther Partner Portal</h1>
+                    <p class="hero-subtitle">
+                        Willkommen im exklusiven Bereich für unsere Partner. Hier finden Sie alle wichtigen 
+                        Ressourcen und Materialien für eine erfolgreiche Zusammenarbeit.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Marken-Ressourcen -->
+        <section class="resource-section">
+            <div class="container">
+                <h2 class="section-title">Marken-Ressourcen</h2>
+                <div class="resource-grid">
+                    <div class="resource-card">
+                        <i class="bi bi-images resource-icon"></i>
+                        <h3 class="resource-title">Logos & Design</h3>
+                        <p class="resource-text">
+                            Laden Sie das Geuther Logo in verschiedenen Formaten und Varianten herunter. 
+                            Inklusive Gestaltungsrichtlinien und Farbcodes.
+                        </p>
+                        <a href="#logos-design" class="resource-link">
+                            Zum Download <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="resource-card">
+                        <i class="bi bi-camera resource-icon"></i>
+                        <h3 class="resource-title">Produktbilder</h3>
+                        <p class="resource-text">
+                            Hochauflösende Produkt- und Lifestyle-Fotos unserer Bestseller, 
+                            optimiert für verschiedene Medienkanäle.
+                        </p>
+                        <a href="#produktbilder" class="resource-link">
+                            Zur Bildergalerie <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="resource-card">
+                        <i class="bi bi-file-text resource-icon"></i>
+                        <h3 class="resource-title">Produkttexte</h3>
+                        <p class="resource-text">
+                            Vorformulierte Produktbeschreibungen, USPs und technische Details 
+                            für Ihre Marketing-Aktivitäten.
+                        </p>
+                        <a href="#produkttexte" class="resource-link">
+                            Zu den Texten <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="resource-card">
+                        <i class="bi bi-book resource-icon"></i>
+                        <h3 class="resource-title">Über Geuther</h3>
+                        <p class="resource-text">
+                            Lernen Sie unsere Geschichte, Werte und Qualitätsversprechen kennen.
+                        </p>
+                        <div style="display: flex; gap: 1rem;">
+                            <a href="#ueber-geuther" class="resource-link">
+                                Mehr erfahren <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="resource-card">
+                        <i class="bi bi-megaphone resource-icon"></i>
+                        <h3 class="resource-title">Marketing-Vorlagen</h3>
+                        <p class="resource-text">
+                            E-Mail-Templates, Social Media Posts und Werbevorlagen für 
+                            unsere Bestseller.
+                        </p>
+                        <a href="#marketing" class="resource-link">
+                            Zu den Vorlagen <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="resource-card">
+                        <i class="bi bi-graph-up-arrow resource-icon"></i>
+                        <h3 class="resource-title">Verkaufstipps</h3>
+                        <p class="resource-text">
+                            Best Practices und Verkaufsargumente für unsere Top-Produkte.
+                        </p>
+                        <a href="#verkaufstipps" class="resource-link">
+                            Zu den Tipps <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Detaillierte Ressourcen-Abschnitte -->
+        <section id="logos-design" class="resource-detail-section">
+            <div class="container">
+                <h2 class="section-title">Logos & Design</h2>
+                <div class="logo-variants">
+                    <div class="logo-group">
+                        <h3>Logo Hauptvarianten</h3>
+                        <div class="logo-grid">
+                            <div class="logo-item">
+                                <img src="path/to/logo-primary.svg" alt="Geuther Logo Primary">
+                                <h4>Hauptlogo</h4>
+                                <div class="download-options">
+                                    <a href="#" class="download-btn">SVG</a>
+                                    <a href="#" class="download-btn">PNG</a>
+                                    <a href="#" class="download-btn">EPS</a>
+                                </div>
+                            </div>
+                            <div class="logo-item">
+                                <img src="path/to/logo-white.svg" alt="Geuther Logo White">
+                                <h4>Weiße Version</h4>
+                                <div class="download-options">
+                                    <a href="#" class="download-btn">SVG</a>
+                                    <a href="#" class="download-btn">PNG</a>
+                                    <a href="#" class="download-btn">EPS</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="brand-colors">
+                        <h3>Markenfarben</h3>
+                        <div class="color-grid">
+                            <div class="color-item">
+                                <div class="color-preview" style="background-color: #42584A;"></div>
+                                <div class="color-info">
+                                    <h4>Primary</h4>
+                                    <p>#42584A</p>
+                                    <p>RGB: 66, 88, 74</p>
+                                </div>
+                            </div>
+                            <div class="color-item">
+                                <div class="color-preview" style="background-color: #D4C4B7;"></div>
+                                <div class="color-info">
+                                    <h4>Secondary</h4>
+                                    <p>#D4C4B7</p>
+                                    <p>RGB: 212, 196, 183</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="produktbilder" class="resource-detail-section">
+            <div class="container">
+                <h2 class="section-title">Produktbilder</h2>
+                <div class="product-categories">
+                    <div class="category">
+                        <h3>Tür- & Treppenschutzgitter</h3>
+                        <div class="product-image-grid">
+                            <div class="product-image-item">
+                                <img src="https://www.geuther.de/thumbnail/62/f2/83/1705518704/1155_nest_in_the_clouds_005_800x800.webp" alt="Schutzgitter Beispiel">
+                                <div class="image-info">
+                                    <h4>Easylock Plus</h4>
+                                    <p>Lifestyle & Produktaufnahmen</p>
+                                    <a href="#" class="download-btn">ZIP herunterladen</a>
+                                </div>
+                            </div>
+                            <!-- Weitere Produkte -->
+                        </div>
+                    </div>
+                    <div class="category">
+                        <h3>Hochstühle</h3>
+                        <div class="product-image-grid">
+                            <div class="product-image-item">
+                                <img src="https://www.geuther.de/thumbnail/f1/ca/7e/1705518703/geuther-hochstuhl-filou-up-2359-28_1920x1920.webp" alt="Hochstuhl Beispiel">
+                                <div class="image-info">
+                                    <h4>Filou Up</h4>
+                                    <p>Lifestyle & Produktaufnahmen</p>
+                                    <a href="#" class="download-btn">ZIP herunterladen</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="produkttexte" class="resource-detail-section">
+            <div class="container">
+                <h2 class="section-title">Produkttexte & Beschreibungen</h2>
+                <div class="text-categories">
+                    <div class="text-category">
+                        <h3>Tür- & Treppenschutzgitter</h3>
+                        <div class="text-content">
+                            <div class="text-block">
+                                <h4>Hauptmerkmale</h4>
+                                <ul>
+                                    <li>TÜV-geprüfte Sicherheit</li>
+                                    <li>Werkzeuglose Montage</li>
+                                    <li>Beidseitig schwenkbar</li>
+                                    <li>Automatischer Schließmechanismus</li>
+                                </ul>
+                            </div>
+                            <div class="text-block">
+                                <h4>Produktbeschreibung</h4>
+                                <p>Vorformulierte Texte für verschiedene Kanäle...</p>
+                                <a href="#" class="download-btn">Word-Dokument</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ueber-geuther" class="resource-detail-section">
+            <div class="container">
+                <h2 class="section-title">Über Geuther</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>Unsere Geschichte</h3>
+                        <p>Seit 1881 steht Geuther für hochwertige Kindermöbel...</p>
+                        <div class="about-downloads">
+                            <a href="/geschichte.html" class="download-btn">Zur Geschichte</a>
+                            <a href="/werte.html" class="download-btn">Unsere Werte</a>
+                        </div>
+                    </div>
+                    <div class="certification-badges">
+                        <h3>Zertifizierungen</h3>
+                        <div class="badge-grid">
+                            <!-- Zertifizierungslogos -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="marketing" class="resource-detail-section">
+            <div class="container">
+                <h2 class="section-title">Marketing-Vorlagen</h2>
+                <div class="marketing-resources">
+                    <div class="email-templates">
+                        <h3>E-Mail Templates</h3>
+                        <div class="template-grid">
+                            <div class="template-item">
+                                <h4>Produkteinführung</h4>
+                                <p>Template für neue Produkte</p>
+                                <a href="#" class="download-btn">HTML & Bilder</a>
+                            </div>
+                            <!-- Weitere Templates -->
+                        </div>
+                    </div>
+                    <div class="social-media">
+                        <h3>Social Media Vorlagen</h3>
+                        <div class="social-grid">
+                            <div class="social-item">
+                                <h4>Instagram Stories</h4>
+                                <p>Story-Templates für Produktvorstellungen</p>
+                                <a href="#" class="download-btn">PSD herunterladen</a>
+                            </div>
+                            <!-- Weitere Social Media Ressourcen -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="verkaufstipps" class="resource-detail-section">
+            <div class="container">
+                <h2 class="section-title">Verkaufstipps & Best Practices</h2>
+                <div class="sales-content">
+                    <div class="best-practices">
+                        <h3>Verkaufsargumente</h3>
+                        <div class="tips-grid">
+                            <div class="tip-item">
+                                <h4>Tür- & Treppenschutzgitter</h4>
+                                <ul>
+                                    <li>TÜV-geprüfte Sicherheit als Hauptargument</li>
+                                    <li>Einfache Installation ohne Bohren</li>
+                                    <li>Flexible Anpassung an verschiedene Öffnungen</li>
+                                </ul>
+                            </div>
+                            <!-- Weitere Verkaufstipps -->
+                        </div>
+                    </div>
+                    <div class="training-materials">
+                        <h3>Schulungsmaterialien</h3>
+                        <div class="training-grid">
+                            <div class="training-item">
+                                <h4>Produktschulung</h4>
+                                <p>Detaillierte Einführung in unsere Produktlinien</p>
+                                <a href="#" class="download-btn">PDF herunterladen</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Kontakt Section -->
+        <section class="contact-section">
+            <div class="container">
+                <h2 class="section-title">Ihr Ansprechpartner</h2>
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <div class="contact-person">
+                            <img src="https://www.geuther.de/media/8c/82/75/1705518661/1111ko_na_121_mb_3.webp" 
+                                 alt="Sarah Schmidt" 
+                                 class="contact-avatar">
+                            <div class="contact-details">
+                                <h3>Sarah Schmidt</h3>
+                                <p>Partner Management</p>
+                                <p>Tel: +49 (0) 123 456789</p>
+                                <p>E-Mail: partner@geuther.de</p>
+                            </div>
+                        </div>
+                        <p>
+                            Ich unterstütze Sie bei allen Fragen rund um unsere Partnerschaft und 
+                            helfe Ihnen, das Beste aus unserer Zusammenarbeit zu machen.
+                        </p>
+                    </div>
+                    <div class="contact-form">
+                        <form id="partnerContactForm">
+                            <div class="form-group">
+                                <label class="form-label">Name*</label>
+                                <input type="text" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">E-Mail*</label>
+                                <input type="email" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Telefon</label>
+                                <input type="tel" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Ihre Nachricht*</label>
+                                <textarea class="form-textarea" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <input type="checkbox" required>
+                                    Rückruf erwünscht
+                                </label>
+                            </div>
+                            <button type="submit" class="form-button">Nachricht senden</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Downloads Section -->
+        <section class="download-section">
+            <div class="container">
+                <h2 class="section-title">Wichtige Dokumente</h2>
+                <div class="download-grid">
+                    <div class="download-card">
+                        <i class="bi bi-file-pdf download-icon"></i>
+                        <h3 class="download-title">Produktkatalog 2024</h3>
+                        <span class="download-size">PDF, 25.3 MB</span>
+                    </div>
+                    <div class="download-card">
+                        <i class="bi bi-file-earmark-text download-icon"></i>
+                        <h3 class="download-title">Preisliste Händler</h3>
+                        <span class="download-size">PDF, 1.2 MB</span>
+                    </div>
+                    <div class="download-card">
+                        <i class="bi bi-file-earmark-spreadsheet download-icon"></i>
+                        <h3 class="download-title">Produkt-Datenblätter</h3>
+                        <span class="download-size">ZIP, 15.8 MB</span>
+                    </div>
+                    <div class="download-card">
+                        <i class="bi bi-file-zip download-icon"></i>
+                        <h3 class="download-title">Bildmaterial-Paket</h3>
+                        <span class="download-size">ZIP, 458 MB</span>
+                    </div>
+                    <div class="download-card">
+                        <i class="bi bi-file-slides download-icon"></i>
+                        <h3 class="download-title">Marken-Präsentation</h3>
+                        <span class="download-size">PDF, 8.5 MB</span>
+                    </div>
+                    <div class="download-card">
+                        <i class="bi bi-file-earmark-medical download-icon"></i>
+                        <h3 class="download-title">Sicherheitszertifikate</h3>
+                        <span class="download-size">PDF, 2.1 MB</span>
+                    </div>
+                    <div class="download-card">
+                        <i class="bi bi-file-earmark-richtext download-icon"></i>
+                        <h3 class="download-title">Social Media Guide</h3>
+                        <span class="download-size">PDF, 4.3 MB</span>
+                    </div>
+                    <div class="download-card">
+                        <i class="bi bi-file-earmark-code download-icon"></i>
+                        <h3 class="download-title">Produkt-Feed</h3>
+                        <span class="download-size">XML/CSV</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Qualität und Materialien -->
+        <section class="resource-detail-section">
+            <div class="container">
+                <div class="rat6-section-header">
+                    <h2 class="rat6-section-title">Qualität und Materialien</h2>
+                    <p class="rat6-section-subtitle">
+                        Entdecken Sie die hochwertigen Materialien und Qualitätsstandards, die Geuther Produkte auszeichnen
+                    </p>
+                </div>
+
+                <div class="rat6-features-grid">
+                    <div class="rat6-feature-box blue">
+                        <div class="rat6-feature-header">
+                            <div class="rat6-feature-icon">
+                                <i class="bi bi-tree"></i>
+                            </div>
+                            <h3 class="rat6-feature-title">Premium Buchenholz</h3>
+                        </div>
+                        <div class="rat6-feature-content">
+                            <ul class="rat6-feature-list">
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span>Hochwertige europäische Herkunft</span>
+                                </li>
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span>FSC-zertifizierte Wälder</span>
+                                </li>
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span>Langlebig und robust</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="rat6-feature-box green">
+                        <div class="rat6-feature-header">
+                            <div class="rat6-feature-icon">
+                                <i class="bi bi-shield-check"></i>
+                            </div>
+                            <h3 class="rat6-feature-title">Sicherheitsstandards</h3>
+                        </div>
+                        <div class="rat6-feature-content">
+                            <ul class="rat6-feature-list">
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span>TÜV-geprüfte Qualität</span>
+                                </li>
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span>10% höhere Testanforderungen</span>
+                                </li>
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span>Regelmäßige Qualitätskontrollen</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="rat6-feature-box purple">
+                        <div class="rat6-feature-header">
+                            <div class="rat6-feature-icon">
+                                <i class="bi bi-recycle"></i>
+                            </div>
+                            <h3 class="rat6-feature-title">Nachhaltigkeit</h3>
+                        </div>
+                        <div class="rat6-feature-content">
+                            <ul class="rat6-feature-list">
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span>Umweltfreundliche Produktion</span>
+                                </li>
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span>Wasserbasierte Lacke</span>
+                                </li>
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    <span>Nachhaltige Verpackung</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rat6-info-grid">
+                    <div class="rat6-info-box position">
+                        <div class="rat6-info-title">
+                            <div class="rat6-info-icon">
+                                <i class="bi bi-award"></i>
+                            </div>
+                            <h4>Zertifizierungen</h4>
+                        </div>
+                        <div class="certification-badges">
+                            <span class="certification-badge">
+                                <i class="bi bi-shield-check"></i>
+                                FSC-Zertifiziert
+                            </span>
+                            <span class="certification-badge">
+                                <i class="bi bi-shield-check"></i>
+                                PEFC-Standard
+                            </span>
+                            <span class="certification-badge">
+                                <i class="bi bi-shield-check"></i>
+                                EN 1930:2011
+                            </span>
+                        </div>
+                        <p>Unsere Produkte erfüllen höchste internationale Standards und werden regelmäßig von unabhängigen Instituten geprüft.</p>
+                    </div>
+
+                    <div class="rat6-info-box certification">
+                        <div class="rat6-info-title">
+                            <div class="rat6-info-icon">
+                                <i class="bi bi-tools"></i>
+                            </div>
+                            <h4>Qualitätssicherung</h4>
+                        </div>
+                        <p>Bei Geuther gehen wir bei der Qualitätssicherung keine Kompromisse ein. Jedes Produkt durchläuft strenge Tests:</p>
+                        <ul class="rat6-feature-list">
+                            <li>
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span>Belastungstests mit 10% höheren Anforderungen</span>
+                            </li>
+                            <li>
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span>Prüfung aller Materialien auf Schadstoffe</span>
+                            </li>
+                            <li>
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span>Dauerbelastungstests für Langlebigkeit</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Formular-Handling
+        document.getElementById('partnerContactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Hier später: Formular-Verarbeitung
+            alert('Vielen Dank für Ihre Nachricht. Wir melden uns zeitnah bei Ihnen.');
+        });
+
+        // Download-Handling
+        document.querySelectorAll('.download-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // Hier später: Download-Logik
+                alert('Download wird vorbereitet...');
+            });
+        });
+    </script>
+</body>
+</html> 

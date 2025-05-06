@@ -14,7 +14,7 @@
 ```
 
 ## Layout & Container
-- Maximale Breite: 1200px
+- Maximale Breite: 1400px
 - Zentrierte Container mit `margin: 0 auto`
 - Padding für Sektionen: 3rem 1rem (Desktop), 2rem 1rem (Mobile)
 - Grid-System: 3 Spalten (Desktop), 2 Spalten (Tablet), 1 Spalte (Mobile)
