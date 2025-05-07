@@ -142,7 +142,7 @@
         .geuther-affiliate .features-section {
             background-color: var(--geuther-accent);
             padding: 4rem 0;
-            margin: 4rem 0;
+            padding-bottom: 4rem;
         }
 
         .geuther-affiliate .features-title {
@@ -296,6 +296,221 @@
                 margin-bottom: 1rem;
             }
         }
+
+        .hero-cta-button {
+            margin: 2.5rem auto 2rem auto;
+            display: inline-flex;
+            font-size: 1.1rem;
+            padding: 1.1rem 2.7rem;
+            background: #fff;
+            color: var(--geuther-primary);
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--geuther-primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .hero-cta-button:hover {
+            background: var(--geuther-primary);
+            color: #fff;
+            border-color: var(--geuther-primary);
+        }
+        .cta-section-dark {
+            background: var(--geuther-primary);
+            color: #fff;
+            padding: 0 0 4rem 0;
+            margin: 0;
+            width: 100vw;
+            min-width: 100vw;
+            max-width: 100vw;
+            position: static;
+            text-align: center;
+            border-top: none;
+            box-sizing: border-box;
+            display: block;
+        }
+        .cta-section-dark .cta-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem 0 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .cta-section-dark .cta-title {
+            color: #fff;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .cta-section-dark .cta-text {
+            color: #fff;
+            font-size: 1.15rem;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+            text-align: center;
+        }
+        .cta-section-dark .cta-button-white {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #fff;
+            color: var(--geuther-primary);
+            border: 2px solid #fff;
+            padding: 1.1rem 2.7rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0;
+            font-size: 1.1rem;
+        }
+        .cta-section-dark .cta-button-white:hover {
+            background: var(--geuther-primary);
+            color: #fff;
+            border-color: #fff;
+        }
+        @media (max-width: 992px) {
+            .cta-section-dark .cta-content {
+                max-width: 98vw;
+                padding: 3rem 0.5rem 0 0.5rem;
+            }
+        }
+        @media (max-width: 768px) {
+            .cta-section-dark {
+                padding: 0 0 2.5rem 0;
+            }
+            .cta-section-dark .cta-content {
+                padding: 2rem 0.5rem 0 0.5rem;
+            }
+            .cta-section-dark .cta-title {
+                font-size: 1.3rem;
+            }
+            .cta-section-dark .cta-button-white {
+                width: 100%;
+                font-size: 1rem;
+            }
+        }
+        /* Abschluss-Sektion Affiliate */
+        .affiliate-conclusion-section {
+            background: var(--geuther-accent);
+            padding: 7rem 0 7rem 0;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            width: 100vw;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+        }
+        .affiliate-conclusion-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://www.geuther.de/media/67/04/ee/1705518697/1150_ia_4123_4124_4125_118_mb_03.webp') center/cover no-repeat;
+            opacity: 0.12;
+            z-index: 1;
+            filter: brightness(0.95) contrast(1.1);
+        }
+        .affiliate-conclusion-section .affiliate-conclusion-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        .affiliate-conclusion-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+        .affiliate-conclusion-subtitle {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            color: var(--geuther-primary);
+            margin-bottom: 4rem;
+            font-weight: 500;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .affiliate-conclusion-section .icon-boxes {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            width: 100%;
+            margin: 0 auto;
+        }
+        .affiliate-conclusion-section .icon-box {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            height: 100%;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .affiliate-conclusion-section .icon-box i {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--geuther-primary);
+        }
+        .affiliate-conclusion-section .icon-box-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+        }
+        .affiliate-conclusion-section .icon-box-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--geuther-text);
+        }
+        @media (max-width: 992px) {
+            .affiliate-conclusion-section .icon-boxes {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+        }
+        @media (max-width: 768px) {
+            .affiliate-conclusion-section {
+                padding: 4rem 0;
+            }
+            .affiliate-conclusion-title {
+                font-size: 1.5rem;
+            }
+            .affiliate-conclusion-subtitle {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+            .affiliate-conclusion-section .icon-boxes {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .affiliate-conclusion-section .icon-box {
+                padding: 1.5rem;
+            }
+            .affiliate-conclusion-section .icon-box i {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -307,6 +522,10 @@
                     Werden Sie Teil unseres erfolgreichen Partnernetzwerks. Als etablierte Marke im Bereich Kindersicherheit 
                     und Babyausstattung bieten wir Ihnen ein attraktives Affiliate-Programm mit überdurchschnittlichen Provisionen.
                 </p>
+                <a href="https://ui.awin.com/merchant-profile/21353" target="_blank" class="cta-button hero-cta-button">
+                    <i class="bi bi-arrow-right-circle"></i>
+                    Jetzt als Partner bewerben
+                </a>
                 <div class="target-groups">
                     <span class="target-badge">Influencer</span>
                     <span class="target-badge">Content Creator</span>
@@ -402,16 +621,49 @@
             </div>
         </section>
 
-        <section class="cta-section">
-            <h2 class="cta-title">Jetzt Partner werden</h2>
-            <p class="cta-text">
-                Melden Sie sich kostenlos zu unserem Programm an und starten Sie noch heute 
-                als Geuther Partner. Wir freuen uns darauf, Sie in unserem Netzwerk zu begrüßen.
-            </p>
-            <a href="https://ui.awin.com/merchant-profile/21353" target="_blank" class="cta-button">
-                <i class="bi bi-arrow-right-circle"></i>
-                Jetzt als Partner bewerben
-            </a>
+        <section class="cta-section cta-section-dark">
+            <div class="cta-content">
+                <h2 class="cta-title">Jetzt Partner werden</h2>
+                <p class="cta-text">
+                    Melden Sie sich kostenlos zu unserem Programm an und starten Sie noch heute 
+                    als Geuther Partner. Wir freuen uns darauf, Sie in unserem Netzwerk zu begrüßen.
+                </p>
+                <a href="https://ui.awin.com/merchant-profile/21353" target="_blank" class="cta-button cta-button-white">
+                    <i class="bi bi-arrow-right-circle"></i>
+                    Jetzt als Partner bewerben
+                </a>
+            </div>
+        </section>
+
+        <section class="affiliate-conclusion-section">
+            <div class="affiliate-conclusion-content">
+                <h2 class="affiliate-conclusion-title">Gemeinsam wachsen: Ihre Vorteile als Geuther Affiliate</h2>
+                <p class="affiliate-conclusion-subtitle">
+                    Werden Sie Teil unseres starken Netzwerks und profitieren Sie von persönlicher Betreuung, attraktiven Konditionen und einer vertrauensvollen Partnerschaft auf Augenhöhe.
+                </p>
+                <div class="icon-boxes">
+                    <div class="icon-box">
+                        <i class="bi bi-people"></i>
+                        <h3 class="icon-box-title">Partnerschaft</h3>
+                        <p class="icon-box-text">Langfristige Zusammenarbeit und persönlicher Kontakt zu unserem Team.</p>
+                    </div>
+                    <div class="icon-box">
+                        <i class="bi bi-graph-up-arrow"></i>
+                        <h3 class="icon-box-title">Wachstum</h3>
+                        <p class="icon-box-text">Profitieren Sie von einer starken Marke und attraktiven Provisionsmodellen.</p>
+                    </div>
+                    <div class="icon-box">
+                        <i class="bi bi-headset"></i>
+                        <h3 class="icon-box-title">Support</h3>
+                        <p class="icon-box-text">Schnelle Hilfe und individuelle Beratung für Ihren Erfolg.</p>
+                    </div>
+                    <div class="icon-box">
+                        <i class="bi bi-shield-check"></i>
+                        <h3 class="icon-box-title">Transparenz</h3>
+                        <p class="icon-box-text">Klare Kommunikation und faire Bedingungen für alle Partner.</p>
+                    </div>
+                </div>
+            </div>
         </section>
     </div>
 
