@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kundenrabatt für Fotos & Videos | Geuther</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --kundenrabatt-primary: #42584A;
+            --kundenrabatt-secondary: #D4C4B7;
+            --kundenrabatt-text: #333333;
+            --kundenrabatt-bg: #FFFFFF;
+            --kundenrabatt-accent: #F5F1ED;
+            --kundenrabatt-border: #E5E5E5;
+            --kundenrabatt-highlight: #e8a87c;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--kundenrabatt-text);
+            background: var(--kundenrabatt-bg);
+            margin: 0;
+            padding: 0;
+        }
+        .kundenrabatt-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        .kundenrabatt-hero {
+            background: var(--kundenrabatt-accent);
+            text-align: center;
+            padding: 3rem 0 6rem 0;
+            position: relative;
+        }
+        .kundenrabatt-hero-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--kundenrabatt-primary);
+            margin-bottom: 1.2rem;
+        }
+        .kundenrabatt-hero-subtitle {
+            font-size: 1.15rem;
+            color: var(--kundenrabatt-text);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .kundenrabatt-icon-boxes {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: -4rem;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 2;
+        }
+        .kundenrabatt-icon-box {
+            background: var(--kundenrabatt-bg);
+            border: 1px solid var(--kundenrabatt-border);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            text-align: center;
+            padding: 2rem 1rem;
+            transition: box-shadow 0.2s, transform 0.2s;
+            position: relative;
+            z-index: 3;
+        }
+        .kundenrabatt-icon-box:hover {
+            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+            transform: translateY(-5px);
+            z-index: 10;
+        }
+        .kundenrabatt-icon-box i {
+            font-size: 2.2rem;
+            color: var(--kundenrabatt-primary);
+            margin-bottom: 1rem;
+        }
+        .kundenrabatt-icon-box-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--kundenrabatt-primary);
+            margin-bottom: 0.5rem;
+        }
+        .kundenrabatt-icon-box-text {
+            font-size: 1rem;
+            color: var(--kundenrabatt-text);
+        }
+        .kundenrabatt-section-wrapper {
+            background: var(--kundenrabatt-primary);
+            border-radius: 18px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+            border: 1px solid var(--kundenrabatt-border);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+        .kundenrabatt-section-header {
+            background: transparent;
+            color: #fff;
+            padding: 2.5rem 2rem 1.5rem 2rem;
+            text-align: center;
+        }
+        .kundenrabatt-section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 2.5rem;
+            color: #fff;
+        }
+        /* Stepper Styles */
+        .kundenrabatt-stepper {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            position: relative;
+            margin-bottom: 2.5rem;
+            padding: 0 2rem;
+        }
+        .kundenrabatt-step {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            min-width: 0;
+        }
+        .kundenrabatt-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 32px;
+            right: -50%;
+            width: 100%;
+            height: 4px;
+            background: var(--kundenrabatt-secondary);
+            z-index: 1;
+        }
+        .kundenrabatt-step-bubble {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--kundenrabatt-highlight);
+            color: var(--kundenrabatt-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            border: 3px solid #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            z-index: 2;
+        }
+        .kundenrabatt-step-title {
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        .kundenrabatt-step-desc {
+            color: #fff;
+            font-size: 1rem;
+            text-align: center;
+            opacity: 0.95;
+        }
+        .kundenrabatt-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            padding: 2rem;
+        }
+        .kundenrabatt-card {
+            background: var(--kundenrabatt-accent);
+            border-radius: 10px;
+            border: 1px solid var(--kundenrabatt-border);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+            padding: 1.5rem 1rem;
+            display: flex;
+            flex-direction: column;
+            min-height: 220px;
+        }
+        .kundenrabatt-card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--kundenrabatt-primary);
+            margin-bottom: 0.7rem;
+        }
+        .kundenrabatt-card-content {
+            font-size: 1rem;
+            color: var(--kundenrabatt-text);
+        }
+        .kundenrabatt-card-content ul {
+            padding-left: 1.2em;
+            margin: 0;
+        }
+        .kundenrabatt-card-content li {
+            margin-bottom: 0.5rem;
+        }
+        .kundenrabatt-social-link {
+            display: inline-block;
+            margin-bottom: 0.5rem;
+            color: var(--kundenrabatt-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .kundenrabatt-social-link:hover {
+            color: var(--kundenrabatt-secondary);
+            text-decoration: underline;
+        }
+        .kundenrabatt-button-wrapper {
+            text-align: center;
+            margin: 3rem 0 2rem 0;
+        }
+        .kundenrabatt-button {
+            background: var(--kundenrabatt-primary);
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: background 0.2s, transform 0.2s;
+            display: inline-block;
+        }
+        .kundenrabatt-button:hover {
+            background: #364b3d;
+            transform: translateY(-2px);
+        }
+        @media (max-width: 992px) {
+            .kundenrabatt-icon-boxes, .kundenrabatt-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .kundenrabatt-stepper {
+                flex-direction: column;
+                gap: 2rem;
+                padding: 0 0.5rem;
+            }
+            .kundenrabatt-step:not(:last-child)::after {
+                display: none;
+            }
+        }
+        @media (max-width: 768px) {
+            .kundenrabatt-icon-boxes, .kundenrabatt-grid {
+                grid-template-columns: 1fr;
+            }
+            .kundenrabatt-hero-title {
+                font-size: 1.5rem;
+            }
+            .kundenrabatt-section-header {
+                padding: 1.5rem 1rem 1rem 1rem;
+            }
+            .kundenrabatt-stepper {
+                padding: 0;
+            }
+        }
+        .kundenrabatt-social-card {
+            display: flex;
+            align-items: flex-start;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+            border: 1px solid var(--kundenrabatt-border);
+            padding: 1rem 1.2rem;
+            gap: 1rem;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .kundenrabatt-social-card:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+            transform: translateY(-3px);
+        }
+        .kundenrabatt-social-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.7rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .kundenrabatt-social-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+        .kundenrabatt-social-title {
+            font-weight: 600;
+            color: var(--kundenrabatt-primary);
+            font-size: 1.05rem;
+        }
+        .kundenrabatt-social-desc {
+            font-size: 0.97rem;
+            color: var(--kundenrabatt-text);
+            margin-bottom: 0.2rem;
+        }
+        .kundenrabatt-contact-card {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+            border: 1px solid var(--kundenrabatt-border);
+            padding: 1.5rem 1.2rem 1.2rem 1.2rem;
+            min-height: 220px;
+        }
+        .kundenrabatt-contact-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--kundenrabatt-primary);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.7rem;
+            margin-bottom: 0.7rem;
+        }
+        @media (max-width: 992px) {
+            .kundenrabatt-social-card, .kundenrabatt-contact-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .kundenrabatt-social-icon, .kundenrabatt-contact-icon {
+                margin-bottom: 0.5rem;
+            }
+        }
+        .kundenrabatt-socialmedia-box {
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border: 1px solid var(--kundenrabatt-border);
+            margin: 2.5rem auto 2rem auto;
+            padding: 2.5rem 2.2rem 2.2rem 2.2rem;
+            max-width: 1000px;
+        }
+        .kundenrabatt-socialmedia-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .kundenrabatt-teilnahme-box {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+            border: 1px solid var(--kundenrabatt-border);
+            margin: 2rem 0 1.5rem 0;
+            padding: 1.5rem 1.2rem;
+        }
+        .kundenrabatt-teilnahme-title {
+            color: var(--kundenrabatt-primary);
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 0.7rem;
+        }
+        .kundenrabatt-teilnahme-list {
+            margin: 0;
+            padding-left: 1.2em;
+            color: var(--kundenrabatt-text);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+        .kundenrabatt-contact-section {
+            background: var(--kundenrabatt-accent);
+            border-radius: 18px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border: 1px solid var(--kundenrabatt-border);
+            margin: 3.5rem 0 2.5rem 0;
+            padding: 2.5rem 1.5rem 2.2rem 1.5rem;
+            max-width: 1200px;
+        }
+        .kundenrabatt-contact-title {
+            color: var(--kundenrabatt-primary);
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 2.5rem;
+            text-align: center;
+        }
+        .kundenrabatt-contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 0 auto;
+        }
+        .kundenrabatt-contact-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid var(--kundenrabatt-border);
+            transition: all 0.3s ease;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .kundenrabatt-contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        .kundenrabatt-contact-icon {
+            font-size: 2.5rem;
+            color: var(--kundenrabatt-secondary);
+            margin-bottom: 1.5rem;
+        }
+        .kundenrabatt-contact-card h3 {
+            color: var(--kundenrabatt-primary);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .kundenrabatt-contact-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--kundenrabatt-text);
+            margin-bottom: 0.5rem;
+        }
+        .kundenrabatt-contact-link {
+            color: var(--kundenrabatt-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-weight: 500;
+        }
+        .kundenrabatt-contact-link:hover {
+            color: var(--kundenrabatt-secondary);
+            transform: translateY(-2px);
+        }
+        .kundenrabatt-contact-hours {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--kundenrabatt-text);
+            padding-top: 1rem;
+            border-top: 1px solid var(--kundenrabatt-border);
+        }
+        @media (max-width: 992px) {
+            .kundenrabatt-socialmedia-grid, .kundenrabatt-contact-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+            .kundenrabatt-contact-section {
+                padding: 2rem 0.5rem 1.5rem 0.5rem;
+            }
+        }
+        .kundenrabatt-socialmedia-title {
+            font-size: 1.2rem;
+            color: var(--kundenrabatt-primary);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            margin-left: 0.2rem;
+        }
+        .kundenrabatt-contact-section-wide {
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            margin-right: calc(-50vw + 50%);
+            background: var(--kundenrabatt-accent);
+            padding: 3.5rem 0 2.5rem 0;
+            border-top: 1px solid var(--kundenrabatt-border);
+            border-bottom: 1px solid var(--kundenrabatt-border);
+        }
+        .kundenrabatt-contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        .kundenrabatt-contact-title {
+            color: var(--kundenrabatt-primary);
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 2.5rem;
+            text-align: center;
+        }
+        .kundenrabatt-contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 0 auto;
+        }
+        .kundenrabatt-contact-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid var(--kundenrabatt-border);
+            transition: all 0.3s ease;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .kundenrabatt-contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        .kundenrabatt-contact-icon-circle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--kundenrabatt-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.2rem;
+        }
+        .kundenrabatt-contact-icon {
+            font-size: 1.4rem;
+            color: #fff;
+            margin: 0;
+        }
+        .kundenrabatt-contact-card h3 {
+            color: var(--kundenrabatt-primary);
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .kundenrabatt-contact-text {
+            font-size: 0.97rem;
+            line-height: 1.6;
+            color: var(--kundenrabatt-text);
+            margin-bottom: 0.5rem;
+        }
+        .kundenrabatt-contact-link {
+            color: var(--kundenrabatt-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-weight: 500;
+        }
+        .kundenrabatt-contact-link:hover {
+            color: var(--kundenrabatt-secondary);
+            transform: translateY(-2px);
+        }
+        @media (max-width: 992px) {
+            .kundenrabatt-contact-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+            .kundenrabatt-contact-section-wide {
+                padding: 2rem 0 1.5rem 0;
+            }
+        }
+        @media (max-width: 1200px) {
+            .kundenrabatt-socialmedia-box {
+                max-width: 96vw;
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+        @media (max-width: 768px) {
+            .kundenrabatt-socialmedia-box {
+                max-width: 100vw;
+                border-radius: 0;
+                margin-left: 0;
+                margin-right: 0;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <!--#include file="header.html" -->
+
+    <main>
+        <section class="kundenrabatt-hero">
+            <div class="kundenrabatt-container">
+                <div>
+                    <h1 class="kundenrabatt-hero-title">Teile dein Geuther-Produkt & spare!</h1>
+                    <p class="kundenrabatt-hero-subtitle">Sende uns ein Foto oder Video deines Geuther-Produkts bei dir zu Hause oder teile es auf Social Media und erhalte einen Rabatt auf deine nächste Bestellung!</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="kundenrabatt-container">
+            <div class="kundenrabatt-icon-boxes">
+                <div class="kundenrabatt-icon-box">
+                    <i class="bi bi-camera"></i>
+                    <div class="kundenrabatt-icon-box-title">Foto einsenden</div>
+                    <div class="kundenrabatt-icon-box-text">Sende uns ein schönes Foto deines Geuther-Produkts im Einsatz und erhalte <b>5€ Rabatt</b> auf deine nächste Bestellung.</div>
+                </div>
+                <div class="kundenrabatt-icon-box">
+                    <i class="bi bi-film"></i>
+                    <div class="kundenrabatt-icon-box-title">Video einsenden</div>
+                    <div class="kundenrabatt-icon-box-text">Für ein kurzes Video (mind. 10 Sekunden) gibt es sogar <b>20€ Rabatt</b> auf deine nächste Bestellung.</div>
+                </div>
+                <div class="kundenrabatt-icon-box">
+                    <i class="bi bi-instagram"></i>
+                    <div class="kundenrabatt-icon-box-title">Auf Social Media teilen</div>
+                    <div class="kundenrabatt-icon-box-text">Poste dein Foto/Video auf Instagram, Facebook oder TikTok und verlinke <b>@geuther_official</b> – so inspirierst du andere Eltern!</div>
+                </div>
+                <div class="kundenrabatt-icon-box">
+                    <i class="bi bi-gift"></i>
+                    <div class="kundenrabatt-icon-box-title">Rabatt erhalten</div>
+                    <div class="kundenrabatt-icon-box-text">Nach Prüfung deiner Einsendung erhältst du einen Rabattcode per E-Mail für deinen nächsten Einkauf.</div>
+                </div>
+            </div>
+
+            <div class="kundenrabatt-section-wrapper">
+                <div class="kundenrabatt-section-header">
+                    <h2 class="kundenrabatt-section-title">So einfach geht's</h2>
+                    <div class="kundenrabatt-stepper">
+                        <div class="kundenrabatt-step">
+                            <div class="kundenrabatt-step-bubble">1</div>
+                            <div class="kundenrabatt-step-title">Foto oder Video machen</div>
+                            <div class="kundenrabatt-step-desc">Halte dein Geuther-Produkt im Wohnumfeld fest – als Foto oder Video (mind. 10 Sekunden).</div>
+                        </div>
+                        <div class="kundenrabatt-step">
+                            <div class="kundenrabatt-step-bubble">2</div>
+                            <div class="kundenrabatt-step-title">Einsenden oder posten</div>
+                            <div class="kundenrabatt-step-desc">Sende es an <a href="mailto:aktion@geuther.de" style="color: #fff; text-decoration: underline;">aktion@geuther.de</a> oder poste es auf Social Media und verlinke <b>@geuther_official</b>.</div>
+                        </div>
+                        <div class="kundenrabatt-step">
+                            <div class="kundenrabatt-step-bubble">3</div>
+                            <div class="kundenrabatt-step-title">Rabattcode erhalten</div>
+                            <div class="kundenrabatt-step-desc">Nach Prüfung bekommst du deinen Rabattcode per E-Mail für deine nächste Bestellung.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="kundenrabatt-socialmedia-box">
+                    <h3 class="kundenrabatt-socialmedia-title">Unsere Social-Media-Kanäle</h3>
+                    <div class="kundenrabatt-socialmedia-grid">
+                        <div class="kundenrabatt-social-card">
+                            <div class="kundenrabatt-social-icon" style="background: #E4405F;"><i class="bi bi-instagram"></i></div>
+                            <div class="kundenrabatt-social-content">
+                                <div class="kundenrabatt-social-title">Instagram</div>
+                                <div class="kundenrabatt-social-desc">Folge uns und teile dein Bild/Video mit <b>@geuther_official</b>.</div>
+                                <a href="https://www.instagram.com/geuther_official/" target="_blank" rel="noopener" class="kundenrabatt-social-link">Instagram öffnen</a>
+                            </div>
+                        </div>
+                        <div class="kundenrabatt-social-card">
+                            <div class="kundenrabatt-social-icon" style="background: #1877F3;"><i class="bi bi-facebook"></i></div>
+                            <div class="kundenrabatt-social-content">
+                                <div class="kundenrabatt-social-title">Facebook</div>
+                                <div class="kundenrabatt-social-desc">Teile dein Geuther-Erlebnis auf Facebook und verlinke uns.</div>
+                                <a href="https://www.facebook.com/geuther.official/" target="_blank" rel="noopener" class="kundenrabatt-social-link">Facebook öffnen</a>
+                            </div>
+                        </div>
+                        <div class="kundenrabatt-social-card">
+                            <div class="kundenrabatt-social-icon" style="background: #000;"><i class="bi bi-tiktok"></i></div>
+                            <div class="kundenrabatt-social-content">
+                                <div class="kundenrabatt-social-title">TikTok</div>
+                                <div class="kundenrabatt-social-desc">Zeige dein Geuther-Produkt in Aktion und tagge <b>@geuther_official</b>.</div>
+                                <a href="https://www.tiktok.com/@geuther_official" target="_blank" rel="noopener" class="kundenrabatt-social-link">TikTok öffnen</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="kundenrabatt-teilnahme-box">
+                <h3 class="kundenrabatt-teilnahme-title">Teilnahmebedingungen</h3>
+                <ul class="kundenrabatt-teilnahme-list">
+                    <li>Das Foto/Video muss ein Geuther-Produkt im Wohnumfeld zeigen.</li>
+                    <li>Das Material darf von uns für Marketingzwecke verwendet werden.</li>
+                    <li>Pro Bestellung ist nur eine Einsendung möglich.</li>
+                    <li>Der Rabattcode ist nicht mit anderen Aktionen kombinierbar.</li>
+                </ul>
+            </div>
+            <div class="kundenrabatt-button-wrapper">
+                <a href="mailto:aktion@geuther.de" class="kundenrabatt-button">Jetzt Foto/Video einsenden</a>
+            </div>
+
+            <section class="kundenrabatt-contact-section-wide">
+                <div class="kundenrabatt-contact-container">
+                    <h2 class="kundenrabatt-contact-title">Fragen zur Foto-/Video-Aktion?</h2>
+                    <div class="kundenrabatt-contact-grid">
+                        <div class="kundenrabatt-contact-card">
+                            <div class="kundenrabatt-contact-icon-circle"><i class="bi bi-envelope kundenrabatt-contact-icon"></i></div>
+                            <h3>Per E-Mail</h3>
+                            <p class="kundenrabatt-contact-text">Du hast Fragen zur Teilnahme, zum Ablauf oder zu den Bedingungen? Schreibe uns einfach eine E-Mail!</p>
+                            <p class="kundenrabatt-contact-text">
+                                <a href="mailto:aktion@geuther.de" class="kundenrabatt-contact-link">aktion@geuther.de</a>
+                            </p>
+                        </div>
+                        <div class="kundenrabatt-contact-card">
+                            <div class="kundenrabatt-contact-icon-circle"><i class="bi bi-chat-dots kundenrabatt-contact-icon"></i></div>
+                            <h3>Support-Formular</h3>
+                            <p class="kundenrabatt-contact-text">Nutze unser Kontaktformular, wenn du uns lieber schriftlich kontaktieren möchtest.</p>
+                            <p class="kundenrabatt-contact-text">
+                                <a href="/support.html#kontaktformular" class="kundenrabatt-contact-link">Zum Kontaktformular</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <!--#include file="footer.html" -->
+</body>
+</html> 
