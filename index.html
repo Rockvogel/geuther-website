@@ -1457,6 +1457,186 @@
         .comparison-toggle-switch:focus .switch-thumb {
             box-shadow: 0 0 0 3px #b2e5c2;
         }
+
+        /* Modal-Layer für Review-Foto */
+        .review-photo-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 2000;
+            background: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.2s;
+        }
+        .review-photo-modal-overlay.active {
+            display: flex;
+        }
+        .review-photo-modal-content {
+            position: relative;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+            padding: 2rem;
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .review-photo-modal-content img {
+            max-width: 70vw;
+            max-height: 70vh;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+        }
+        .review-photo-modal-content .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: #333;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            cursor: pointer;
+            z-index: 2;
+        }
+        .review-photo-modal-content .close-modal:hover {
+            background: #F5F1ED;
+        }
+        @media (max-width: 768px) {
+            .review-photo-modal-content {
+                padding: 0.5rem;
+            }
+            .review-photo-modal-content img {
+                max-width: 95vw;
+                max-height: 60vh;
+            }
+        }
+
+        /* --- Bewertungs-Karten & Kundenfotos (global aus detail.html) --- */
+        .review-card {
+            margin-bottom: 2.5rem;
+            background: var(--geuther-bg);
+            border: 1px solid var(--geuther-border);
+            border-radius: 12px;
+            padding: 1.5rem 1.5rem 1.2rem 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            position: relative;
+        }
+        .review-card .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+        .review-card .reviewer-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.1rem;
+        }
+        .review-card .reviewer-name {
+            font-weight: 600;
+            margin-bottom: 0.1rem;
+        }
+        .review-card .review-date {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        .review-rating-box {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 0.3rem;
+        }
+        .review-rating {
+            font-size: 1.3rem;
+            color: #ffd700;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-bottom: 0.1rem;
+            margin-top: 0.1rem;
+        }
+        .review-card .review-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            margin-top: 0.1rem;
+        }
+        .review-verified {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.93rem;
+            color: var(--geuther-success);
+            background: #eafbe7;
+            border-radius: 8px;
+            padding: 0.18rem 0.7rem;
+            font-weight: 500;
+            position: absolute;
+            top: 1.1rem;
+            right: 1.1rem;
+            margin: 0;
+            z-index: 2;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .review-card .review-text {
+            font-size: 0.98rem;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+        .review-card.with-photo {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+        .review-card.with-photo .review-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .review-photo {
+            width: 180px !important;
+            height: 180px !important;
+            object-fit: cover !important;
+            border-radius: 16px !important;
+            border: 2px solid #e5e5e5 !important;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.07) !important;
+            cursor: pointer !important;
+            flex-shrink: 0 !important;
+            margin-bottom: 0 !important;
+            transition: box-shadow 0.2s !important;
+            max-width: 180px !important;
+            max-height: 180px !important;
+        }
+        .review-photo:hover {
+            box-shadow: 0 8px 32px rgba(66,88,74,0.18) !important;
+        }
+        @media (max-width: 768px) {
+            .review-card.with-photo {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .review-photo {
+                width: 100% !important;
+                height: 180px !important;
+                margin-bottom: 1rem !important;
+            }
+            .review-verified {
+                top: 1rem;
+                right: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -2713,6 +2893,9 @@
                         syncElements();
                     }
 
+                    // Review-Foto-Modal nach jedem Content-Reload initialisieren
+                    initReviewPhotoModal();
+
                 } catch (error) {
                     console.error('Loading error:', error);
                     showError('Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.');
@@ -2748,6 +2931,7 @@
 
             // Initial Load
             loadContent('home.html');
+            initReviewPhotoModal();
         });
 
         // Countdown Timer für die Sale-Seite
@@ -2954,6 +3138,53 @@
                 }
             }
         });
+
+        // Review-Foto Modal (zentrierter Layer, global)
+        function initReviewPhotoModal() {
+            const reviewPhotos = document.querySelectorAll('.review-photo');
+            const reviewPhotoModal = document.getElementById('reviewPhotoModalOverlay');
+            const reviewPhotoModalImg = document.getElementById('reviewPhotoModalImg');
+            const closeReviewPhotoModal = document.getElementById('closeReviewPhotoModal');
+
+            reviewPhotos.forEach(photo => {
+                // Vorherige Listener entfernen (indem das Element geklont wird)
+                const newPhoto = photo.cloneNode(true);
+                photo.parentNode.replaceChild(newPhoto, photo);
+                newPhoto.addEventListener('click', function() {
+                    reviewPhotoModalImg.src = this.getAttribute('data-full') || this.src;
+                    reviewPhotoModal.classList.add('active');
+                    reviewPhotoModal.style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+            if (closeReviewPhotoModal) {
+                closeReviewPhotoModal.onclick = function(e) {
+                    reviewPhotoModal.classList.remove('active');
+                    reviewPhotoModal.style.display = 'none';
+                    reviewPhotoModalImg.src = '';
+                    document.body.style.overflow = '';
+                    e.stopPropagation();
+                };
+            }
+            if (reviewPhotoModal) {
+                reviewPhotoModal.onclick = function(e) {
+                    if (e.target === reviewPhotoModal) {
+                        reviewPhotoModal.classList.remove('active');
+                        reviewPhotoModal.style.display = 'none';
+                        reviewPhotoModalImg.src = '';
+                        document.body.style.overflow = '';
+                    }
+                };
+            }
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && reviewPhotoModal.classList.contains('active')) {
+                    reviewPhotoModal.classList.remove('active');
+                    reviewPhotoModal.style.display = 'none';
+                    reviewPhotoModalImg.src = '';
+                    document.body.style.overflow = '';
+                }
+            });
+        }
     </script>
 
     <!-- Versandinfo Modal -->
@@ -2964,6 +3195,14 @@
                 <i class="bi bi-x-lg"></i>
             </button>
             <iframe src="versandinfo.html" frameborder="0"></iframe>
+        </div>
+    </div>
+
+    <!-- Review-Foto Modal Layer (zentriert, über dem Content) -->
+    <div class="review-photo-modal-overlay" id="reviewPhotoModalOverlay" style="display: none;">
+        <div class="review-photo-modal-content">
+            <button class="close-modal" id="closeReviewPhotoModal" aria-label="Schließen"><i class="bi bi-x-lg"></i></button>
+            <img src="" alt="Kundenfoto groß" id="reviewPhotoModalImg">
         </div>
     </div>
 </body>
