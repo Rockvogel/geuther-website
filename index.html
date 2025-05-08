@@ -2903,6 +2903,8 @@
                     loading.classList.remove('active');
                     content.classList.remove('loading');
                 }
+                // Nach dem Laden des Contents:
+                afterContentLoad();
             }
 
             // Show Error Function
@@ -3185,6 +3187,71 @@
                 }
             });
         }
+
+        // Tabs für Produkt-Sektion (global initialisieren)
+        function initProductTabs() {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            if (tabBtns.length && tabContents.length) {
+                tabBtns.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        tabBtns.forEach(b => b.classList.remove('active'));
+                        tabContents.forEach(tc => tc.classList.remove('active'));
+                        this.classList.add('active');
+                        document.getElementById('tab-' + this.dataset.tab).classList.add('active');
+                    });
+                });
+            }
+        }
+
+        // Nach jedem Content-Reload Tabs initialisieren
+        function afterContentLoad() {
+            // Tabs für Produkt-Sektion (global initialisieren)
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            if (tabBtns.length && tabContents.length) {
+                tabBtns.forEach(btn => {
+                    // Vorherige Event-Listener entfernen
+                    const newBtn = btn.cloneNode(true);
+                    btn.parentNode.replaceChild(newBtn, btn);
+                });
+                const newTabBtns = document.querySelectorAll('.tab-btn');
+                newTabBtns.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        newTabBtns.forEach(b => b.classList.remove('active'));
+                        tabContents.forEach(tc => tc.classList.remove('active'));
+                        this.classList.add('active');
+                        document.getElementById('tab-' + this.dataset.tab).classList.add('active');
+                    });
+                });
+            }
+            initReviewPhotoModal();
+            // Grid-Layout für Produkteigenschaften/Downloads nachladen, falls nötig
+            const grid = document.querySelector('.properties-downloads-grid');
+            if (grid) {
+                // Entferne alle per JS gesetzten Inline-Styles
+                grid.removeAttribute('style');
+                function setGridColumns() {
+                    grid.removeAttribute('style');
+                }
+                setGridColumns();
+                window.addEventListener('resize', setGridColumns);
+            }
+            // Grid-Layout für Downloads korrigieren
+            const downloadsGrid = document.querySelector('.downloads-grid');
+            if (downloadsGrid) {
+                downloadsGrid.removeAttribute('style');
+                function setDownloadsGrid() {
+                    downloadsGrid.removeAttribute('style');
+                }
+                setDownloadsGrid();
+                window.addEventListener('resize', setDownloadsGrid);
+            }
+        }
+
+        // Nach jedem Content-Reload aufrufen
+        // Suche im loadContent nach: afterContentLoad();
+        // ... bestehender Code ...
     </script>
 
     <!-- Versandinfo Modal -->

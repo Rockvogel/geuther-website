@@ -938,6 +938,304 @@
                 gap: 2rem;
             }
         }
+
+        /* --- Produktgrid-Styles aus kategorie.html für Tabs --- */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+        .product-card {
+            background: var(--geuther-bg);
+            border: 1px solid var(--geuther-border);
+            border-radius: 8px;
+            overflow: visible;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+        .product-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+            z-index: 2;
+        }
+        .product-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+            background: transparent;
+            margin: 0.5rem;
+            display: block;
+            text-decoration: none;
+        }
+        .product-image img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: auto;
+            height: auto;
+            max-width: 80%;
+            max-height: 180px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+        .product-card:hover .product-image img {
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+        .product-info {
+            padding: 1rem;
+            position: relative;
+        }
+        .product-grid-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--geuther-primary);
+        }
+        .product-grid-title a {
+            color: var(--geuther-primary);
+            text-decoration: none;
+        }
+        .product-grid-description {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+        }
+        .product-availability {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            margin: 0.5rem 0;
+            font-size: 0.85rem;
+        }
+        .availability-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #2da73c;
+        }
+        .delivery-time {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--geuther-text);
+        }
+        .product-availability i {
+            font-size: 0.9rem;
+        }
+        .product-colors {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        .color-variant {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            border: 1px solid var(--geuther-border);
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        .color-variant.white { background: #ffffff; }
+        .color-variant.black { background: #2c2c2c; }
+        .color-variant.natural { background: #d4bc9c; }
+        .color-variant.more {
+            background: var(--geuther-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            color: var(--geuther-primary);
+            font-weight: 600;
+        }
+        .color-variant.selected {
+            border: 2px solid var(--geuther-primary);
+        }
+        .product-features-hover {
+            position: absolute;
+            left: -1px;
+            right: -1px;
+            top: 100%;
+            background: white;
+            border: 1px solid var(--geuther-border);
+            border-radius: 0 0 8px 8px;
+            padding: 1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 3;
+        }
+        .product-card:hover .product-features-hover {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .product-feature {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+            line-height: 1.3;
+        }
+        .product-feature i {
+            color: var(--geuther-primary);
+            font-size: 0.8rem;
+            margin-top: 0.2rem;
+            flex-shrink: 0;
+        }
+        .product-feature:last-child {
+            margin-bottom: 0;
+        }
+        .product-button {
+            display: block;
+            width: 100%;
+            padding: 0.75rem;
+            margin-top: 1rem;
+            background: var(--geuther-primary);
+            color: white;
+            text-align: center;
+            border: none;
+            border-radius: 4px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .product-button:hover {
+            background: #364b3d;
+        }
+        @media (max-width: 1200px) {
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (max-width: 992px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            .product-image {
+                height: 160px;
+            }
+        }
+
+        .product-tabs-section {
+            margin: 5rem 0 3rem 0;
+            display: flex;
+            justify-content: center;
+        }
+        .product-tabs-container {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(66,88,74,0.10);
+            padding: 2.5rem 2.5rem 2rem 2.5rem;
+            max-width: 1600px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+        }
+        .product-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            position: relative;
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .product-tabs::after {
+            content: "";
+            position: absolute;
+            left: 0; right: 0; bottom: -2px;
+            height: 1px;
+            background: var(--geuther-primary);
+            z-index: 1;
+            pointer-events: none;
+        }
+        .tab-btn {
+            position: relative;
+            z-index: 2;
+            background: var(--geuther-accent);
+            border: 1.5px solid var(--geuther-accent);
+            border-bottom: none;
+            border-radius: 12px 12px 0 0;
+            padding: 1rem 2.5rem 0.95rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--geuther-primary);
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s, border 0.2s;
+            outline: none;
+            box-shadow: 0 2px 8px rgba(66,88,74,0.04);
+            top: 2px;
+        }
+        .tab-btn.active {
+            background: #fff;
+            color: var(--geuther-primary);
+            border: 1.5px solid var(--geuther-primary);
+            border-bottom: none;
+            z-index: 3;
+            box-shadow: none;
+        }
+        .tab-btn.active::after {
+            content: "";
+            position: absolute;
+            left: 0; right: 0; bottom: -2px;
+            height: 1px;
+            background: #fff;
+            z-index: 4;
+            pointer-events: none;
+            border-radius: 0 0 6px 6px;
+        }
+        .tab-btn:not(.active) {
+            margin-bottom: 2px;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .product-tabs-section .product-grid {
+            margin: 0;
+            gap: 2rem;
+        }
+        @media (max-width: 1200px) {
+            .product-tabs-container {
+                padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+            }
+        }
+        @media (max-width: 992px) {
+            .product-tabs-section {
+                margin: 3rem 0 2rem 0;
+            }
+            .product-tabs {
+                flex-direction: column;
+                gap: 0.5rem;
+                border-bottom: none;
+                padding-bottom: 0;
+            }
+            .tab-btn {
+                width: 100%;
+                border-radius: 8px;
+                border-bottom: 1.5px solid var(--geuther-accent);
+            }
+            .tab-btn.active {
+                border-bottom: 2.5px solid #fff;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1466,6 +1764,307 @@
                         <i class="bi bi-chevron-down"></i>
                     </button>
                 </section>
+
+                <!-- Tabs für Ähnliche Produkte, Zubehör, Ersatzteile -->
+                <section class="product-tabs-section">
+                    <div class="product-tabs-container">
+                        <div class="product-tabs">
+                            <button class="tab-btn active" data-tab="similar">Ähnliche Produkte</button>
+                            <button class="tab-btn" data-tab="accessories">Zubehör</button>
+                            <button class="tab-btn" data-tab="spare">Ersatzteile</button>
+                        </div>
+                        <div class="tab-content active" id="tab-similar">
+                            <div class="product-grid">
+                                <!-- Beispielprodukte aus kategorie.html -->
+                                <div class="product-card">
+                                    <a href="/produkt/treppenschutzgitter-2733" class="product-image">
+                                        <img src="https://www.geuther.de/media/dc/1d/16/1708101600/2733_WE_01.webp" alt="Treppenschutzgitter 2733+">
+                                    </a>
+                                    <div class="product-info">
+                                        <h2 class="product-grid-title">
+                                            <a href="/produkt/treppenschutzgitter-2733">Treppenschutzgitter 2733+ für Öffnungen von 67 cm - 95 cm aus Holz</a>
+                                        </h2>
+                                        <p class="product-grid-description">Absolut sicher durch Wandbefestigung</p>
+                                        <div class="product-availability">
+                                            <div class="availability-status">
+                                                <i class="bi bi-check-circle-fill"></i>
+                                                Sofort verfügbar
+                                            </div>
+                                            <div class="delivery-time">
+                                                <i class="bi bi-truck"></i>
+                                                Lieferzeit: 1-3 Tage
+                                            </div>
+                                        </div>
+                                        <div class="product-price">89,99 €*</div>
+                                        <div class="product-colors">
+                                            <div class="color-variant white selected" title="Weiß"></div>
+                                            <div class="color-variant black" title="Gebeizt-Schwarz"></div>
+                                            <div class="color-variant natural" title="Natur"></div>
+                                            <div class="color-variant more" title="Weitere Farben">+1</div>
+                                        </div>
+                                        <div class="product-features-hover">
+                                            <div class="product-feature">
+                                                <i class="bi bi-check-circle"></i>
+                                                <span>Barrierefreier Durchgang ohne Stolperfalle</span>
+                                            </div>
+                                            <div class="product-feature">
+                                                <i class="bi bi-check-circle"></i>
+                                                <span>Sicherheitsplus durch extrahohe Ausführung</span>
+                                            </div>
+                                            <a href="/produkt/treppenschutzgitter-2733" class="product-button">Zum Produkt</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-card">
+                                    <a href="/produkt/tuerschutzgitter-2732" class="product-image">
+                                        <img src="https://www.geuther.de/media/dc/4b/51/1724842241/2732_NA_01.jpg" alt="Türschutzgitter 2732+">
+                                    </a>
+                                    <div class="product-info">
+                                        <h2 class="product-grid-title">
+                                            <a href="/produkt/tuerschutzgitter-2732">Türschutzgitter 2732+ für Öffnungen von 58 cm - 93 cm aus Holz</a>
+                                        </h2>
+                                        <p class="product-grid-description">Absolut sicher durch Wandbefestigung</p>
+                                        <div class="product-availability">
+                                            <div class="availability-status">
+                                                <i class="bi bi-check-circle-fill"></i>
+                                                Sofort verfügbar
+                                            </div>
+                                            <div class="delivery-time">
+                                                <i class="bi bi-truck"></i>
+                                                Lieferzeit: 1-3 Tage
+                                            </div>
+                                        </div>
+                                        <div class="product-price">Ab 59,99 €*</div>
+                                        <div class="product-colors">
+                                            <div class="color-variant natural selected" title="Natur"></div>
+                                            <div class="color-variant black" title="Schwarz"></div>
+                                            <div class="color-variant natural" title="Unbehandelt"></div>
+                                            <div class="color-variant more" title="Weitere Farben">+1</div>
+                                        </div>
+                                        <div class="product-features-hover">
+                                            <div class="product-feature">
+                                                <i class="bi bi-check-circle"></i>
+                                                <span>Installation in der Türöffnung oder Wand außerhalb</span>
+                                            </div>
+                                            <div class="product-feature">
+                                                <i class="bi bi-check-circle"></i>
+                                                <span>Sicherheitsplus durch extrahohe Ausführung</span>
+                                            </div>
+                                            <a href="/produkt/tuerschutzgitter-2732" class="product-button">Zum Produkt</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-card">
+                                    <a href="/produkt/easylock-plus-metall-4792" class="product-image">
+                                        <img src="https://www.geuther.de/media/d8/56/8c/1705518400/4792-_we_1.webp" alt="Easylock Plus Metall">
+                                    </a>
+                                    <div class="product-info">
+                                        <h2 class="product-grid-title">
+                                            <a href="/produkt/easylock-plus-metall-4792">Tür- und Treppenschutzgitter Easylock Plus zum Klemmen Metall (88,5 cm - 96,5 cm)</a>
+                                        </h2>
+                                        <p class="product-grid-description">Für Durchgänge von 76-232,5 cm</p>
+                                        <div class="product-availability">
+                                            <div class="availability-status">
+                                                <i class="bi bi-check-circle-fill"></i>
+                                                Sofort verfügbar
+                                            </div>
+                                            <div class="delivery-time">
+                                                <i class="bi bi-truck"></i>
+                                                Lieferzeit: 1-3 Tage
+                                            </div>
+                                        </div>
+                                        <div class="product-price">Ab 59,99 €*</div>
+                                        <div class="product-features-hover">
+                                            <div class="product-feature">
+                                                <i class="bi bi-check-circle"></i>
+                                                <span>Montage ohne Bohren</span>
+                                            </div>
+                                            <div class="product-feature">
+                                                <i class="bi bi-check-circle"></i>
+                                                <span>Öffnung in 2 Richtungen</span>
+                                            </div>
+                                            <a href="/produkt/easylock-plus-metall-4792" class="product-button">Zum Produkt</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-card">
+                                    <a href="/produkt/easylock-wood-plus-2793" class="product-image">
+                                        <img src="https://www.geuther.de/media/d4/88/69/1705518537/2793-_02.webp" alt="Easylock Wood Plus">
+                                    </a>
+                                    <div class="product-info">
+                                        <h2 class="product-grid-title">
+                                            <a href="/produkt/easylock-wood-plus-2793">Tür- und Treppenschutzgitter Easylock Wood Plus (Ohne Bohren) (84,5 cm - 92,5 cm)</a>
+                                        </h2>
+                                        <p class="product-grid-description">Für Durchgänge von 84-124,5 cm</p>
+                                        <div class="product-availability">
+                                            <div class="availability-status">
+                                                <i class="bi bi-check-circle-fill"></i>
+                                                Sofort verfügbar
+                                            </div>
+                                            <div class="delivery-time">
+                                                <i class="bi bi-truck"></i>
+                                                Lieferzeit: 1-3 Tage
+                                            </div>
+                                        </div>
+                                        <div class="product-price">Ab 109,99 €*</div>
+                                        <div class="product-features-hover">
+                                            <div class="product-feature">
+                                                <i class="bi bi-check-circle"></i>
+                                                <span>Montage ohne Bohren</span>
+                                            </div>
+                                            <div class="product-feature">
+                                                <i class="bi bi-check-circle"></i>
+                                                <span>Öffnung in 2 Richtungen</span>
+                                            </div>
+                                            <a href="/produkt/easylock-wood-plus-2793" class="product-button">Zum Produkt</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-content" id="tab-accessories">
+                            <div class="product-grid">
+                                <!-- Beispiel Zubehörprodukte -->
+                                <div class="product-card">
+                                    <a href="#" class="product-image">
+                                        <img src="https://www.geuther.de/media/ba/68/ae/1706262351/2273_NA_MB_10.webp" alt="Verlängerung Easylock">
+                                    </a>
+                                    <div class="product-info">
+                                        <h2 class="product-grid-title">
+                                            <a href="#">Verlängerung Easylock 8 cm</a>
+                                        </h2>
+                                        <p class="product-grid-description">Passend für Easylock Plus Modelle</p>
+                                        <div class="product-availability">
+                                            <div class="availability-status">
+                                                <i class="bi bi-check-circle-fill"></i>
+                                                Sofort verfügbar
+                                            </div>
+                                            <div class="delivery-time">
+                                                <i class="bi bi-truck"></i>
+                                                Lieferzeit: 1-3 Tage
+                                            </div>
+                                        </div>
+                                        <div class="product-price">19,99 €*</div>
+                                        <div class="product-features-hover">
+                                            <div class="product-feature">
+                                                <i class="bi bi-plus-circle"></i>
+                                                <span>Für breitere Durchgänge</span>
+                                            </div>
+                                            <a href="#" class="product-button">Zum Produkt</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-card">
+                                    <a href="#" class="product-image">
+                                        <img src="https://www.geuther.de/media/8c/82/75/1705518661/1111ko_na_121_mb_3.webp" alt="Wandbefestigungsset">
+                                    </a>
+                                    <div class="product-info">
+                                        <h2 class="product-grid-title">
+                                            <a href="#">Wandbefestigungsset</a>
+                                        </h2>
+                                        <p class="product-grid-description">Für zusätzliche Sicherheit</p>
+                                        <div class="product-availability">
+                                            <div class="availability-status">
+                                                <i class="bi bi-check-circle-fill"></i>
+                                                Sofort verfügbar
+                                            </div>
+                                            <div class="delivery-time">
+                                                <i class="bi bi-truck"></i>
+                                                Lieferzeit: 1-3 Tage
+                                            </div>
+                                        </div>
+                                        <div class="product-price">9,99 €*</div>
+                                        <div class="product-features-hover">
+                                            <div class="product-feature">
+                                                <i class="bi bi-tools"></i>
+                                                <span>Für alle Geuther Gitter</span>
+                                            </div>
+                                            <a href="#" class="product-button">Zum Produkt</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-content" id="tab-spare">
+                            <div class="product-grid">
+                                <!-- Beispiel Ersatzteile -->
+                                <div class="product-card">
+                                    <a href="#" class="product-image">
+                                        <img src="https://www.geuther.de/media/64/d7/4a/1705518505/2792-_02.webp" alt="Ersatzrolle">
+                                    </a>
+                                    <div class="product-info">
+                                        <h2 class="product-grid-title">
+                                            <a href="#">Ersatzrolle für Wickelregal</a>
+                                        </h2>
+                                        <p class="product-grid-description">Passend für Clarissa &amp; Co.</p>
+                                        <div class="product-availability">
+                                            <div class="availability-status">
+                                                <i class="bi bi-check-circle-fill"></i>
+                                                Sofort verfügbar
+                                            </div>
+                                            <div class="delivery-time">
+                                                <i class="bi bi-truck"></i>
+                                                Lieferzeit: 1-3 Tage
+                                            </div>
+                                        </div>
+                                        <div class="product-price">4,99 €*</div>
+                                        <div class="product-features-hover">
+                                            <div class="product-feature">
+                                                <i class="bi bi-gear"></i>
+                                                <span>Original Geuther Ersatzteil</span>
+                                            </div>
+                                            <a href="#" class="product-button">Zum Produkt</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-card">
+                                    <a href="#" class="product-image">
+                                        <img src="https://www.geuther.de/media/dc/4b/51/1724842241/2732_NA_01.jpg" alt="Ersatzschraubenset">
+                                    </a>
+                                    <div class="product-info">
+                                        <h2 class="product-grid-title">
+                                            <a href="#">Ersatzschraubenset</a>
+                                        </h2>
+                                        <p class="product-grid-description">Für alle Schutzgitter</p>
+                                        <div class="product-availability">
+                                            <div class="availability-status">
+                                                <i class="bi bi-check-circle-fill"></i>
+                                                Sofort verfügbar
+                                            </div>
+                                            <div class="delivery-time">
+                                                <i class="bi bi-truck"></i>
+                                                Lieferzeit: 1-3 Tage
+                                            </div>
+                                        </div>
+                                        <div class="product-price">2,99 €*</div>
+                                        <div class="product-features-hover">
+                                            <div class="product-feature">
+                                                <i class="bi bi-tools"></i>
+                                                <span>Komplettset</span>
+                                            </div>
+                                            <a href="#" class="product-button">Zum Produkt</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const tabBtns = document.querySelectorAll('.tab-btn');
+                        const tabContents = document.querySelectorAll('.tab-content');
+                        tabBtns.forEach(btn => {
+                            btn.addEventListener('click', function() {
+                                tabBtns.forEach(b => b.classList.remove('active'));
+                                tabContents.forEach(tc => tc.classList.remove('active'));
+                                this.classList.add('active');
+                                document.getElementById('tab-' + this.dataset.tab).classList.add('active');
+                            });
+                        });
+                    });
+                </script>
             </div>
 
             <style>
